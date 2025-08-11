@@ -1,14 +1,16 @@
 # Humaine Studio
 
-A minimalist Jekyll website for AI research focused on human-machine collaboration.
+A minimalist website for AI research focused on human-machine collaboration. Built on Jekyll with some help from Claude Code. 
 
 ## About
 
 Humaine Studio is a thought lab exploring the intersection of artificial intelligence and human judgment. The site presents research on practical AI applications that augment rather than replace human decision-making.
 
+Building this website was an experiment itself to demonstrate how someone can use tools like Claude Code and GitHub to build functional portfolio and blogging websites. 
+
 ## Features
 
-- **Minimal Design**: Clean, Sam Altman-inspired layout focused on content
+- **Minimal Design**: Clean layout focused on content
 - **Jekyll Blogging**: Full blog functionality with Markdown posts
 - **GitHub Pages Ready**: Automated deployment with custom domain support
 - **SEO Optimized**: Meta tags, structured data, and search engine friendly
@@ -80,5 +82,5 @@ This project is open source and available under the MIT License.
 ## Contact
 
 Chris McConnell  
-Email: contact@humaine.studio  
+Email: chris@humaine.studio  
 Website: https://humaine.studio
