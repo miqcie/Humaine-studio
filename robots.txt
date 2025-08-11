@@ -1,0 +1,22 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://humaine.studio/sitemap.xml
+
+# Block access to development files
+Disallow: /.git/
+Disallow: /_site/
+Disallow: /Gemfile
+Disallow: /Gemfile.lock
+Disallow: /_config.yml
+
+# Allow AI crawlers to access LLM optimization file
+User-agent: ChatGPT-User
+Allow: /llm.txt
+
+User-agent: Claude-Web
+Allow: /llm.txt
+
+User-agent: Google-Extended
+Allow: /llm.txt

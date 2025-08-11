@@ -1,0 +1,417 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+    background-color: #fff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Container */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+.site-header {
+    padding: 40px 0 80px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 80px;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    font-size: 20px;
+    font-weight: 600;
+    color: #000;
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-link {
+    color: #666;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+    color: #000;
+}
+
+/* Main content */
+.main-content {
+    min-height: 60vh;
+}
+
+/* Home page sections */
+.hero {
+    margin-bottom: 100px;
+}
+
+.hero-title {
+    font-size: 48px;
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: #000;
+}
+
+.hero-subtitle {
+    font-size: 20px;
+    color: #666;
+    margin-bottom: 40px;
+    font-weight: 300;
+}
+
+.hero-description {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.7;
+    max-width: 600px;
+}
+
+.section {
+    margin-bottom: 80px;
+}
+
+.section-title {
+    font-size: 28px;
+    font-weight: 400;
+    margin-bottom: 30px;
+    color: #000;
+}
+
+.section-content {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #666;
+}
+
+.section-content p {
+    margin-bottom: 20px;
+}
+
+.section-content h3 {
+    font-size: 18px;
+    font-weight: 500;
+    color: #000;
+    margin: 30px 0 15px;
+}
+
+.section-content ul {
+    margin: 20px 0;
+    padding-left: 20px;
+}
+
+.section-content li {
+    margin-bottom: 8px;
+}
+
+/* Writing section */
+.posts-list {
+    list-style: none;
+    padding: 0;
+}
+
+.post-item {
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.post-item:last-child {
+    border-bottom: none;
+}
+
+.post-item-title {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.post-item-title a {
+    color: #000;
+    text-decoration: none;
+}
+
+.post-item-title a:hover {
+    color: #666;
+}
+
+.post-item-date {
+    font-size: 14px;
+    color: #999;
+    margin-bottom: 12px;
+}
+
+.post-item-excerpt {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Post page */
+.post {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.post-header {
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.post-meta {
+    font-size: 14px;
+    color: #999;
+    margin-bottom: 20px;
+}
+
+.post-title {
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 1.3;
+    margin-bottom: 20px;
+    color: #000;
+}
+
+.post-excerpt {
+    font-size: 18px;
+    color: #666;
+    font-weight: 300;
+    line-height: 1.5;
+}
+
+.post-content {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #333;
+}
+
+.post-content h1,
+.post-content h2,
+.post-content h3,
+.post-content h4 {
+    color: #000;
+    margin: 40px 0 20px;
+    font-weight: 500;
+}
+
+.post-content h1 { font-size: 32px; }
+.post-content h2 { font-size: 24px; }
+.post-content h3 { font-size: 20px; }
+.post-content h4 { font-size: 18px; }
+
+.post-content p {
+    margin-bottom: 20px;
+}
+
+.post-content ul, .post-content ol {
+    margin: 20px 0;
+    padding-left: 30px;
+}
+
+.post-content li {
+    margin-bottom: 8px;
+}
+
+.post-content blockquote {
+    border-left: 3px solid #ddd;
+    margin: 30px 0;
+    padding-left: 20px;
+    font-style: italic;
+    color: #666;
+}
+
+.post-content code {
+    background: #f5f5f5;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 14px;
+    font-family: 'Monaco', 'Consolas', monospace;
+}
+
+.post-content pre {
+    background: #f8f8f8;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    padding: 20px;
+    overflow-x: auto;
+    margin: 30px 0;
+}
+
+.post-content pre code {
+    background: none;
+    padding: 0;
+    border-radius: 0;
+}
+
+.post-footer {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid #eee;
+}
+
+.post-tags {
+    margin-bottom: 30px;
+}
+
+.post-tag {
+    display: inline-block;
+    background: #f0f0f0;
+    color: #666;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+}
+
+.post-navigation {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.prev-post, .next-post {
+    color: #666;
+    text-decoration: none;
+    font-size: 14px;
+    max-width: 45%;
+}
+
+.prev-post:hover, .next-post:hover {
+    color: #000;
+}
+
+.next-post {
+    text-align: right;
+}
+
+.back-to-writing {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.back-to-writing a {
+    color: #666;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.back-to-writing a:hover {
+    color: #000;
+}
+
+/* Contact section */
+.contact-info {
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+.contact-info a {
+    color: #000;
+    text-decoration: none;
+    border-bottom: 1px solid #ddd;
+}
+
+.contact-info a:hover {
+    border-bottom-color: #000;
+}
+
+/* Footer */
+.site-footer {
+    margin-top: 120px;
+    padding: 40px 0 60px;
+    border-top: 1px solid #eee;
+}
+
+.footer-content {
+    text-align: center;
+    font-size: 14px;
+    color: #999;
+}
+
+.footer-content p {
+    margin-bottom: 8px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .site-header {
+        padding: 30px 0 50px;
+        margin-bottom: 50px;
+    }
+    
+    .nav {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .nav-links {
+        gap: 20px;
+    }
+    
+    .hero-title {
+        font-size: 36px;
+    }
+    
+    .hero-subtitle {
+        font-size: 18px;
+    }
+    
+    .section-title {
+        font-size: 24px;
+    }
+    
+    .post-title {
+        font-size: 28px;
+    }
+    
+    .post-navigation {
+        flex-direction: column;
+    }
+    
+    .prev-post, .next-post {
+        max-width: 100%;
+        text-align: left;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 28px;
+    }
+    
+    .section {
+        margin-bottom: 60px;
+    }
+    
+    .site-footer {
+        margin-top: 80px;
+    }
+}

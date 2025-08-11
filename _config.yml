@@ -1,0 +1,62 @@
+# Site settings
+title: Humaine Studio
+description: "A thought lab exploring human-machine collaboration at the intersection of AI and human judgment."
+url: "https://humaine.studio"
+baseurl: ""
+
+# Author information
+author:
+  name: "Chris McConnell"
+  email: "contact@humaine.studio"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: /:categories/:year/:month/:day/:title/
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Collections
+collections:
+  posts:
+    output: true
+    permalink: /:collection/:year/:month/:day/:title/
+
+# Default values
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "Chris McConnell"
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+
+# SEO settings
+twitter:
+  username: humaine_studio
+  card: summary
+
+social:
+  name: Chris McConnell
+  links:
+    - https://twitter.com/humaine_studio
+    - https://linkedin.com/in/chrismcconnell
+
+# Exclude files from processing
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/

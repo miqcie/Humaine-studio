@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include head.html %}
+</head>
+<body>
+    <div class="container">
+        <header class="site-header">
+            <nav class="nav">
+                <a href="{{ '/' | relative_url }}" class="nav-logo">{{ site.title }}</a>
+                <div class="nav-links">
+                    <a href="{{ '/' | relative_url }}" class="nav-link">Home</a>
+                    <a href="{{ '/#philosophy' | relative_url }}" class="nav-link">Philosophy</a>
+                    <a href="{{ '/#research' | relative_url }}" class="nav-link">Research</a>
+                    <a href="{{ '/#writing' | relative_url }}" class="nav-link">Writing</a>
+                    <a href="{{ '/#contact' | relative_url }}" class="nav-link">Contact</a>
+                </div>
+            </nav>
+        </header>
+
+        <main class="main-content">
+            {{ content }}
+        </main>
+
+        <footer class="site-footer">
+            <div class="footer-content">
+                <p>&copy; {{ 'now' | date: "%Y" }} {{ site.title }}. All rights reserved.</p>
+                <p>{{ site.description }}</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+</body>
+</html>
