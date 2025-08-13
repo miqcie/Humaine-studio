@@ -67,6 +67,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 }
 
 .nav-logo {
@@ -79,6 +80,17 @@ body {
 .nav-links {
     display: flex;
     gap: 30px;
+}
+
+/* Desktop theme toggle positioning */
+@media (min-width: 769px) {
+    .theme-toggle {
+        position: absolute;
+        top: 50%;
+        right: 16px;
+        transform: translateY(-50%);
+        margin-left: 0;
+    }
 }
 
 .nav-link {
@@ -103,6 +115,11 @@ body {
     color: var(--text-light);
     transition: all 0.2s ease;
     margin-left: 20px;
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .theme-toggle:hover {
@@ -434,6 +451,93 @@ body {
     margin-bottom: 8px;
 }
 
+.footer-links {
+    margin-bottom: 20px;
+}
+
+.footer-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 14px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.footer-link:hover {
+    color: var(--text-dark);
+    background-color: var(--border-light);
+}
+
+.footer-link svg {
+    transition: transform 0.2s ease;
+}
+
+.footer-link:hover svg {
+    transform: scale(1.1);
+}
+
+/* Hamburger menu styles */
+.nav-toggle {
+    display: none;
+}
+
+.nav-toggle-label {
+    position: relative;
+    height: 44px;
+    width: 44px;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-toggle-label span,
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+    display: block;
+    background: var(--text-color);
+    height: 2px;
+    width: 20px;
+    border-radius: 2px;
+    position: relative;
+    transition: background 0.3s ease;
+}
+
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    transition: all 0.3s ease;
+}
+
+.nav-toggle-label span::before {
+    top: 6px;
+}
+
+.nav-toggle-label span::after {
+    top: -6px;
+}
+
+/* Hamburger animation when checked */
+.nav-toggle:checked + .nav-toggle-label span {
+    background: transparent;
+}
+
+.nav-toggle:checked + .nav-toggle-label span::before {
+    transform: rotate(45deg);
+    top: 0;
+}
+
+.nav-toggle:checked + .nav-toggle-label span::after {
+    transform: rotate(-45deg);
+    top: 0;
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
     .container {
@@ -441,17 +545,64 @@ body {
     }
     
     .site-header {
-        padding: 30px 0 50px;
-        margin-bottom: 50px;
+        padding: 20px 0;
+        margin-bottom: 40px;
     }
     
     .nav {
-        flex-direction: column;
-        gap: 20px;
+        position: relative;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .nav-toggle-label {
+        display: flex;
+        order: 2;
+    }
+    
+    .theme-toggle {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+        margin-left: 0;
+        min-width: 44px;
+        min-height: 44px;
+        padding: 10px;
+    }
+    
+    .nav-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--bg-color);
+        border-top: 1px solid var(--border-color);
+        transform: scale(1, 0);
+        transform-origin: top;
+        transition: transform 0.3s ease;
+        z-index: 1000;
+    }
+    
+    .nav-toggle:checked ~ .nav-menu {
+        transform: scale(1, 1);
     }
     
     .nav-links {
-        gap: 20px;
+        flex-direction: column;
+        gap: 0;
+        padding: 20px 0;
+    }
+    
+    .nav-link {
+        display: block;
+        padding: 15px 0;
+        font-size: 16px;
+        border-bottom: 1px solid var(--border-light);
+    }
+    
+    .nav-link:last-child {
+        border-bottom: none;
     }
     
     .hero-title {

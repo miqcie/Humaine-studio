@@ -1,0 +1,26 @@
+<header class="site-header">
+    <nav class="nav">
+        <a href="{{ '/' | relative_url }}" class="nav-logo">{{ site.title }}</a>
+        
+        <!-- Hamburger menu button (mobile only) -->
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <label for="nav-toggle" class="nav-toggle-label">
+            <span></span>
+        </label>
+        
+        <!-- Navigation menu -->
+        <div class="nav-menu">
+            <div class="nav-links">
+                <a href="{{ '/#philosophy' | relative_url }}" class="nav-link">Philosophy</a>
+                <a href="{{ '/#research' | relative_url }}" class="nav-link">Research</a>
+                <a href="{{ '/#writing' | relative_url }}" class="nav-link">Writing</a>
+                <a href="{{ '/#contact' | relative_url }}" class="nav-link">Contact</a>
+            </div>
+        </div>
+        
+        <!-- Dark mode toggle -->
+        <button class="theme-toggle" aria-label="Toggle dark mode">
+            <span class="theme-toggle-icon">🌙</span>
+        </button>
+    </nav>
+</header>
