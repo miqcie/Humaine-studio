@@ -557,18 +557,19 @@ body {
     
     .nav-toggle-label {
         display: flex;
-        order: 2;
+        order: 1;
     }
     
     .theme-toggle {
-        position: absolute;
-        top: 50%;
-        right: 0;
-        transform: translateY(-50%);
+        position: fixed;
+        top: 16px;
+        right: 16px;
+        transform: none;
         margin-left: 0;
         min-width: 44px;
         min-height: 44px;
         padding: 10px;
+        z-index: 1001;
     }
     
     .nav-menu {
