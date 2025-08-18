@@ -1,0 +1,76 @@
+name: Jekyll Site CI
+
+on:
+  push:
+    branches: [ main, 'feature/**' ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.1'
+        bundler-cache: true
+        
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        
+    - name: Install dependencies
+      run: |
+        bundle install
+        npm install -g htmlhint axe-core lighthouse-ci
+        
+    - name: Build Jekyll site
+      run: bundle exec jekyll build --strict_front_matter
+      env:
+        JEKYLL_ENV: production
+        
+    - name: HTML Validation
+      run: |
+        find _site -name "*.html" -exec htmlhint {} \;
+        
+    - name: Check HTML5 validity
+      uses: Cyb3r-Jak3/html5validator-action@v7.2.0
+      with:
+        root: _site/
+        
+    - name: Run accessibility tests
+      run: |
+        npx @axe-core/cli _site --include-tags wcag2a,wcag2aa --exit
+        
+    - name: Check external links
+      uses: gaurav-nelson/github-action-markdown-link-check@v1
+      with:
+        folder-path: '_posts, .'
+        file-extension: '.md,.html'
+        
+    - name: Spell check content
+      uses: rojopolis/spellcheck-github-actions@0.35.0
+      with:
+        source_files: '_posts/*.md *.md _site/*.html'
+        task_name: Markdown
+        
+    - name: Run Lighthouse CI
+      run: |
+        lhci autorun --collect.staticDistDir=_site --assert.preset=lighthouse:no-pwa
+      env:
+        LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+        
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      if: failure()
+      with:
+        name: build-artifacts
+        path: |
+          _site/
+          .lighthouseci/
