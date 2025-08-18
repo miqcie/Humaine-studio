@@ -67,7 +67,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative;
+    ;
 }
 
 .nav-logo {
@@ -82,16 +82,6 @@ body {
     gap: 30px;
 }
 
-/* Desktop theme toggle positioning */
-@media (min-width: 769px) {
-    .theme-toggle {
-        position: absolute;
-        top: 50%;
-        right: 16px;
-        transform: translateY(-50%);
-        margin-left: 0;
-    }
-}
 
 .nav-link {
     color: var(--text-light);
@@ -114,7 +104,7 @@ body {
     font-size: 14px;
     color: var(--text-light);
     transition: all 0.2s ease;
-    margin-left: 20px;
+    margin-left: auto;
     min-width: 44px;
     min-height: 44px;
     display: flex;
@@ -558,6 +548,7 @@ body {
     .nav-toggle-label {
         display: flex;
         order: 1;
+        margin-right: 60px; /* Space for theme toggle */
     }
     
     .theme-toggle {
