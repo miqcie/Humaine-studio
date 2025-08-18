@@ -558,6 +558,7 @@ body {
     .nav-toggle-label {
         display: flex;
         order: 1;
+        margin-right: 60px; /* Space for theme toggle */
     }
     
     .theme-toggle {
