@@ -75,7 +75,7 @@ Key settings in `_config.yml`:
 └── CNAME               # Custom domain
 ```
 ## Future Maybe Updates
-- Look at a content management system like [SiteLeaf]([url](https://www.siteleaf.com/)) [CloudCannon](https://cloudcannon.com/)
+- Look at a content management system like [SiteLeaf](https://www.siteleaf.com/) or [CloudCannon](https://cloudcannon.com/)
 
 ## License
 
