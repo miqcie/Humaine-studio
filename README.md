@@ -74,8 +74,8 @@ Key settings in `_config.yml`:
 ├── llm.txt             # AI optimization
 └── CNAME               # Custom domain
 ```
-## Future Updates
-- Add CloudCannon as CMS https://cloudcannon.com/
+## Future Maybe Updates
+- Look at a content management system like [SiteLeaf]([url](https://www.siteleaf.com/)) [CloudCannon](https://cloudcannon.com/)
 
 ## License
 
