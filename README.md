@@ -74,6 +74,8 @@ Key settings in `_config.yml`:
 ├── llm.txt             # AI optimization
 └── CNAME               # Custom domain
 ```
+## Future Updates
+- Add CloudCannon as CMS https://cloudcannon.com/
 
 ## License
 
