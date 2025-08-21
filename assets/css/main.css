@@ -636,3 +636,56 @@ body {
         margin-top: 80px;
     }
 }
+
+/* Footnote styles */
+.footnotes {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+.footnotes ol {
+    padding-left: 1.2rem;
+}
+
+.footnotes li {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+}
+
+.footnotes p {
+    margin: 0;
+}
+
+.footnotes a {
+    color: var(--text-light);
+    text-decoration: none;
+}
+
+.footnotes a:hover {
+    color: var(--text-dark);
+    text-decoration: underline;
+}
+
+/* Resume download button - minimal styling */
+p:has(a[href*=".pdf"]) {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+a[href*=".pdf"] {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background-color: var(--text-dark);
+    color: var(--bg-color);
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+a[href*=".pdf"]:hover {
+    opacity: 0.8;
+}

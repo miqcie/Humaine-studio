@@ -10,6 +10,49 @@
 - **Live Site**: https://humaine.studio
 - **Tech Stack**: Jekyll, GitHub Pages, Markdown, HTML/CSS/JS
 
+## CRITICAL Jekyll/Markdown Rules
+
+### ⚠️ NEVER Mix HTML Containers with Markdown Content
+**Problem:** Jekyll's kramdown parser switches to HTML mode when it encounters HTML block elements, causing markdown syntax to render as literal text instead of being processed.
+
+**❌ WRONG:**
+```html
+<div class="some-container">
+## This heading won't render
+- This list won't work
+**This bold won't work**
+</div>
+```
+
+**✅ CORRECT OPTIONS:**
+1. **Pure Markdown** (preferred):
+```markdown
+## This heading renders properly
+- This list works
+**This bold works**
+```
+
+2. **HTML with markdown="1" attribute** (if HTML container needed):
+```html
+<div class="some-container" markdown="1">
+## This heading will render
+- This list will work
+</div>
+```
+
+3. **Pure HTML** (convert everything):
+```html
+<div class="some-container">
+<h2>This heading renders</h2>
+<ul><li>This list works</li></ul>
+<p><strong>This bold works</strong></p>
+</div>
+```
+
+### Recent Fixes Applied
+- **Cover letter page**: Removed HTML `<article>` and `<div>` wrappers, used pure markdown
+- **Resume page**: Avoided HTML containers, used CSS targeting instead
+
 ## Development Environment Setup
 
 ### Required Tools
@@ -40,10 +83,11 @@ humaine.studio/
 ├── _posts/              # Blog posts (YYYY-MM-DD-title.md format)
 ├── _includes/           # Reusable components
 ├── _layouts/            # Page templates
-├── assets/              # CSS, JS, images
+├── assets/              # CSS, JS, images, PDFs
 │   ├── css/
 │   ├── js/
-│   └── images/
+│   ├── images/
+│   └── resume/          # Resume PDFs
 ├── docs/                # Internal documentation
 ├── CLAUDE.md            # This file - Claude Code context
 ├── .gitignore           # What not to track
@@ -125,6 +169,7 @@ lighthouse http://localhost:4000 --chrome-flags="--headless"
 - Keep filenames lowercase with hyphens
 - Use semantic HTML in layouts
 - Optimize images before adding to assets/
+- **NEVER mix HTML containers with markdown content**
 
 ### Content Guidelines
 - Write in clear, accessible language
@@ -299,6 +344,7 @@ git revert HEAD
 7. **Optimize for learning** - prioritize clear, educational content over complexity
 8. **Run CI checks locally** - use testing commands before pushing
 9. **Follow PR workflow** - all changes go through pull request review
+10. **NEVER mix HTML containers with markdown** - use pure markdown or pure HTML
 
 ## Quick Reference
 
@@ -317,7 +363,7 @@ bundle exec jekyll build      # Test build process
 - Pages: `page-name.md` (root level)
 - Layouts: `_layouts/`
 - Includes: `_includes/`
-- Assets: `assets/css/`, `assets/js/`, `assets/images/`
+- Assets: `assets/css/`, `assets/js/`, `assets/images/`, `assets/resume/`
 - Config: `_config.yml`
 - CI/CD: `.github/workflows/`
 - Testing configs: `.htmlhintrc`, `lighthouserc.js`, `.spellcheck.yml`
