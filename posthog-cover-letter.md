@@ -7,7 +7,7 @@ description: "Cover letter for PostHog Technical Account Executive/Manager posit
 
 # PostHog Cover Letter
 
-👋🏻 | [linkedin](https://www.linkedin.com/in/c-mcconnell) | [GitHub](https://github.com/miqcie) | [Website](https://humaine.studio) | [Resume](/resume/)
+👋🏻 | [linkedin](https://www.linkedin.com/in/c-mcconnell) | [GitHub](https://github.com/miqcie) | [Website](https://humaine.studio) | [Resume](https://humaine.studio/#resume)
 
 ## Executive Summary
 
