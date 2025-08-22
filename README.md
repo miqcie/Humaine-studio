@@ -11,7 +11,7 @@ Building this website was an experiment itself to demonstrate how someone can us
 ## Features
 
 - **Minimal Design**: Clean layout focused on content
-- **Jekyll Blogging**: Full blog functionality with Markdown posts
+- **Jekyll Blogging**: Full blog functionality with Markdown posts. https://jekyllrb.com/
 - **GitHub Pages Ready**: Automated deployment with custom domain support
 - **SEO Optimized**: Meta tags, structured data, and search engine friendly
 - **Mobile Responsive**: Works well on all device sizes
@@ -74,6 +74,8 @@ Key settings in `_config.yml`:
 ├── llm.txt             # AI optimization
 └── CNAME               # Custom domain
 ```
+## Future Maybe Updates
+- Look at a content management system like [SiteLeaf](https://www.siteleaf.com/) or [CloudCannon](https://cloudcannon.com/)
 
 ## License
 
