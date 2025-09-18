@@ -1,88 +1,56 @@
 # Humaine Studio
 
-A minimalist website for AI research focused on human-machine collaboration. Built on Jekyll with some help from Claude Code. 
+Organizations struggle with AI tools that create more friction than they remove. Humaine Studio builds human-AI collaboration patterns that surface evidence for better decisions.
 
-## About
+**Current Projects:**
 
-Humaine Studio is a thought lab exploring the intersection of artificial intelligence and human judgment. The site presents research on practical AI applications that augment rather than replace human decision-making.
+- **[Caldris.io](https://Caldris.io)** - Continuous compliance monitoring with transparent audit trails for ISO/SOC2
+- **[Mondrian.dev](https://Mondrian.dev)** - Open source Zero Trust OS addressing the security poverty line
+- **This website** - Built using Claude Code to demonstrate development acceleration principles
 
-Building this website was an experiment itself to demonstrate how someone can use tools like Claude Code and GitHub to build functional portfolio and blogging websites. 
+## Evidence-Based Approach
 
-## Features
+This site demonstrates our core principle: AI tools should show their work. Built with Jekyll and Claude Code, we documented the development process to show:
 
-- **Minimal Design**: Clean layout focused on content
-- **Jekyll Blogging**: Full blog functionality with Markdown posts. https://jekyllrb.com/
-- **GitHub Pages Ready**: Automated deployment with custom domain support
-- **SEO Optimized**: Meta tags, structured data, and search engine friendly
-- **Mobile Responsive**: Works well on all device sizes
-- **AI Optimized**: Includes LLM.txt for better AI understanding
+- Where AI speeds up work vs. where humans need control
+- How transparent workflows reduce organizational friction
+- Which collaboration patterns transfer across domains
 
-## Quick Start
+## Technical Setup
 
-1. Clone this repository
-2. Install Jekyll: `gem install jekyll bundler`
-3. Install dependencies: `bundle install`
-4. Run locally: `bundle exec jekyll serve`
-5. Visit `http://localhost:4000`
+**Features:**
 
-## Writing Blog Posts
+- Minimal design focused on content over decoration
+- Jekyll blogging with GitHub Pages deployment
+- Mobile responsive with SEO optimization
+- LLM.txt for AI tool compatibility
 
-Create new posts in the `_posts` directory using the format:
-`YYYY-MM-DD-post-title.md`
+**Quick Start:**
 
-Example front matter:
-```yaml
----
-layout: post
-title: "Your Post Title"
-date: 2024-08-11 12:00:00 -0500
-categories: [category1, category2]
-tags: [tag1, tag2]
-excerpt: "Brief description of the post"
----
+```bash
+git clone [repo-url]
+gem install jekyll bundler
+bundle install
+bundle exec jekyll serve
 ```
 
-## Deployment
+**Deployment:**
+Push to main branch for automatic GitHub Pages deployment. Add custom domain via CNAME file.
 
-The site is configured for GitHub Pages with automatic deployment. Simply push to the main branch and GitHub will build and deploy the site.
-
-For custom domain setup:
-1. Add your domain to the `CNAME` file
-2. Configure DNS settings with your domain provider
-3. Enable GitHub Pages with custom domain in repository settings
-
-## Configuration
-
-Key settings in `_config.yml`:
-- Site title and description
-- Author information
-- Social media links
-- SEO settings
-
-## File Structure
+**Structure:**
 
 ```
-├── _config.yml          # Site configuration
-├── _layouts/            # Page templates
-├── _includes/           # Reusable components
-├── _posts/              # Blog posts
-├── assets/
-│   ├── css/main.css     # Stylesheet
-│   └── js/main.js       # JavaScript
-├── index.md             # Homepage
-├── robots.txt           # SEO file
-├── llm.txt             # AI optimization
-└── CNAME               # Custom domain
+├── _config.yml     # Site configuration
+├── _posts/         # Blog posts (YYYY-MM-DD-title.md)
+├── _layouts/       # Page templates  
+├── assets/         # CSS/JS files
+└── llm.txt         # AI optimization
 ```
-## Future Maybe Updates
-- Look at a content management system like [SiteLeaf](https://www.siteleaf.com/) or [CloudCannon](https://cloudcannon.com/)
-
-## License
-
-This project is open source and available under the MIT License.
 
 ## Contact
 
 Chris McConnell  
-Email: chris@humaine.studio  
-Website: https://humaine.studio
+Email: [chris@humaine.studio](mailto:chris@humaine.studio)  
+Website: <https://humaine.studio>
+
+*MIT License - This project demonstrates practical human-AI collaboration rather than theoretical research.*
