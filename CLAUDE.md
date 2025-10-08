@@ -271,6 +271,15 @@ claude-code "ultrathink: plan a comprehensive content strategy for showcasing co
 3. **Implement**: "Now implement the plan, following our style guidelines"
 4. **Test**: "Test the changes locally and fix any issues"
 5. **Commit**: "Create a descriptive commit and push to feature branch"
+6. **Wrap-up**: "Run `specstory sync` to document the session"
+
+### Session End Workflow
+**ALWAYS run at the end of every session:**
+```bash
+# Sync session history to Specstory
+specstory sync
+```
+This documents your work and maintains a searchable history of all Claude Code sessions.
 
 ## Emergency Procedures
 
@@ -337,7 +346,7 @@ git revert HEAD
 
 1. **ALWAYS work on feature branches** - never commit directly to main
 2. **Test locally first** - run `bundle exec jekyll serve` before pushing
-3. **Follow the explore→plan→implement→test→commit workflow** for complex changes
+3. **Follow the explore→plan→implement→test→commit→wrap-up workflow** for complex changes
 4. **Keep security in mind** - this is a public repository
 5. **Document decisions** - explain why you made specific choices
 6. **Maintain accessibility** - ensure all users can access content
@@ -345,6 +354,7 @@ git revert HEAD
 8. **Run CI checks locally** - use testing commands before pushing
 9. **Follow PR workflow** - all changes go through pull request review
 10. **NEVER mix HTML containers with markdown** - use pure markdown or pure HTML
+11. **ALWAYS run `specstory sync` at session end** - documents work history automatically
 
 ## Quick Reference
 
@@ -356,6 +366,7 @@ bundle exec jekyll serve      # Start local server
 git diff                      # Review changes
 gh pr create                  # Create pull request
 bundle exec jekyll build      # Test build process
+specstory sync                # Document session history (run at session end)
 ```
 
 ### File Locations
