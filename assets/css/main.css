@@ -669,7 +669,7 @@ body {
 }
 
 /* Resume download button - minimal styling */
-p:has(a[href*=".pdf"]) {
+.pdf-download-container {
     text-align: center;
     margin: 2rem 0;
 }
