@@ -30,9 +30,37 @@ class InsulinCalculator {
 
   init() {
     this.cacheElements();
+    this.loadFromLocalStorage();
     this.attachEventListeners();
     this.populateInsulinTypes();
     this.updateDisplay();
+  }
+
+  saveToLocalStorage() {
+    try {
+      const settings = {
+        icr: this.state.icr,
+        isf: this.state.isf,
+        targetBG: this.state.targetBG,
+        insulinType: this.state.insulinType,
+        units: this.state.units
+      };
+      localStorage.setItem('insulinCalculatorSettings', JSON.stringify(settings));
+    } catch (error) {
+      console.warn('Failed to save settings to localStorage:', error);
+    }
+  }
+
+  loadFromLocalStorage() {
+    try {
+      const savedSettings = localStorage.getItem('insulinCalculatorSettings');
+      if (savedSettings) {
+        const settings = JSON.parse(savedSettings);
+        Object.assign(this.state, settings);
+      }
+    } catch (error) {
+      console.warn('Failed to load settings from localStorage:', error);
+    }
   }
 
   cacheElements() {
@@ -75,22 +103,26 @@ class InsulinCalculator {
       this.state.icr = Number(e.target.value);
       this.elements.icrValue.textContent = `1:${this.state.icr}`;
       this.elements.icrGrams.textContent = this.state.icr;
+      this.saveToLocalStorage();
       this.calculate();
     });
 
     this.elements.isfSlider.addEventListener('input', (e) => {
       this.state.isf = parseFloat(e.target.value);
       this.updateISFDisplay();
+      this.saveToLocalStorage();
       this.calculate();
     });
 
     this.elements.targetBGInput.addEventListener('input', (e) => {
       this.state.targetBG = parseFloat(e.target.value);
+      this.saveToLocalStorage();
       this.calculate();
     });
 
     this.elements.insulinTypeSelect.addEventListener('change', (e) => {
       this.state.insulinType = e.target.value;
+      this.saveToLocalStorage();
       this.updateDisplay();
     });
 
@@ -171,6 +203,7 @@ class InsulinCalculator {
     this.elements.targetBGInput.value = this.displayValue(this.state.targetBG);
     this.elements.isfSlider.value = this.state.isf;
 
+    this.saveToLocalStorage();
     this.updateDisplay();
     this.calculate();
   }
