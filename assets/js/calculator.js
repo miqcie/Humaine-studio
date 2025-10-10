@@ -30,6 +30,7 @@ class InsulinCalculator {
 
   init() {
     this.cacheElements();
+    this.loadSettings();
     this.attachEventListeners();
     this.populateInsulinTypes();
     this.updateDisplay();
@@ -59,16 +60,96 @@ class InsulinCalculator {
     };
   }
 
+  loadSettings() {
+    try {
+      if (typeof localStorage === 'undefined') {
+        return;
+      }
+
+      const savedSettings = localStorage.getItem('insulinCalculatorSettings');
+      if (!savedSettings) {
+        return;
+      }
+
+      const settings = JSON.parse(savedSettings);
+
+      // Restore state from saved settings
+      if (settings.currentBG !== undefined) {
+        this.state.currentBG = settings.currentBG;
+        this.elements.currentBGInput.value = settings.currentBG;
+      }
+      if (settings.carbs !== undefined) {
+        this.state.carbs = settings.carbs;
+        this.elements.carbsInput.value = settings.carbs;
+      }
+      if (settings.icr !== undefined) {
+        this.state.icr = settings.icr;
+        this.elements.icrSlider.value = settings.icr;
+      }
+      if (settings.isf !== undefined) {
+        this.state.isf = settings.isf;
+        this.elements.isfSlider.value = settings.isf;
+      }
+      if (settings.targetBG !== undefined) {
+        this.state.targetBG = settings.targetBG;
+        this.elements.targetBGInput.value = settings.targetBG;
+      }
+      if (settings.insulinType !== undefined) {
+        this.state.insulinType = settings.insulinType;
+      }
+      if (settings.units !== undefined) {
+        this.state.units = settings.units;
+        
+        // Update input attributes for mmol/L units
+        if (settings.units === 'mmol/L') {
+          this.elements.currentBGInput.step = '0.1';
+          this.elements.targetBGInput.step = '0.1';
+          this.elements.isfSlider.min = '1';
+          this.elements.isfSlider.max = '8';
+          this.elements.isfSlider.step = '0.1';
+        }
+      }
+    } catch (error) {
+      // Silently fail if localStorage is unavailable or data is corrupt
+      console.warn('Failed to load settings from localStorage:', error);
+    }
+  }
+
+  saveSettings() {
+    try {
+      if (typeof localStorage === 'undefined') {
+        return;
+      }
+
+      const settings = {
+        currentBG: this.state.currentBG,
+        carbs: this.state.carbs,
+        icr: this.state.icr,
+        isf: this.state.isf,
+        targetBG: this.state.targetBG,
+        insulinType: this.state.insulinType,
+        units: this.state.units
+      };
+
+      localStorage.setItem('insulinCalculatorSettings', JSON.stringify(settings));
+    } catch (error) {
+      // Silently fail if localStorage is unavailable (e.g., Safari private mode, storage full)
+      console.warn('Failed to save settings to localStorage:', error);
+    }
+  }
+
   attachEventListeners() {
     // Input changes
     this.elements.currentBGInput.addEventListener('input', (e) => {
       this.state.currentBG = e.target.value;
       this.calculate();
+      this.saveSettings();
     });
 
     this.elements.carbsInput.addEventListener('input', (e) => {
       this.state.carbs = e.target.value;
       this.calculate();
+      this.saveSettings();
     });
 
     this.elements.icrSlider.addEventListener('input', (e) => {
@@ -76,22 +157,26 @@ class InsulinCalculator {
       this.elements.icrValue.textContent = `1:${this.state.icr}`;
       this.elements.icrGrams.textContent = this.state.icr;
       this.calculate();
+      this.saveSettings();
     });
 
     this.elements.isfSlider.addEventListener('input', (e) => {
       this.state.isf = parseFloat(e.target.value);
       this.updateISFDisplay();
       this.calculate();
+      this.saveSettings();
     });
 
     this.elements.targetBGInput.addEventListener('input', (e) => {
       this.state.targetBG = parseFloat(e.target.value);
       this.calculate();
+      this.saveSettings();
     });
 
     this.elements.insulinTypeSelect.addEventListener('change', (e) => {
       this.state.insulinType = e.target.value;
       this.updateDisplay();
+      this.saveSettings();
     });
 
     this.elements.unitsToggle.addEventListener('click', () => {
@@ -106,7 +191,7 @@ class InsulinCalculator {
 
   populateInsulinTypes() {
     this.elements.insulinTypeSelect.innerHTML = this.insulinTypes
-      .map(type => `<option value="${type}">${type}</option>`)
+      .map(type => `<option value="${type}" ${type === this.state.insulinType ? 'selected' : ''}>${type}</option>`)
       .join('');
   }
 
@@ -173,6 +258,7 @@ class InsulinCalculator {
 
     this.updateDisplay();
     this.calculate();
+    this.saveSettings();
   }
 
   toggleSources() {
@@ -284,6 +370,10 @@ class InsulinCalculator {
     this.elements.currentBGLabel.textContent = `Current Blood Glucose (${this.state.units})`;
     this.elements.targetBGLabel.textContent = `Target BG (${this.state.units})`;
     this.elements.isfLabel.textContent = `Correction Factor (ISF)`;
+
+    // Update ICR display
+    this.elements.icrValue.textContent = `1:${this.state.icr}`;
+    this.elements.icrGrams.textContent = this.state.icr;
 
     // Update ISF display
     this.updateISFDisplay();
