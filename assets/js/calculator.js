@@ -6,8 +6,8 @@ class InsulinCalculator {
     this.state = {
       currentBG: '',
       carbs: '',
-      icr: 15, // Updated from 20 to 15 (more common adult baseline)
-      isf: 50, // Updated from 80 to 50 mg/dL (standard adult baseline)
+      icr: 30, // Updated from 20 to 15 (more common adult baseline)
+      isf: 80, // Updated from 80 to 50 mg/dL (standard adult baseline)
       targetBG: 120,
       insulinType: 'Humalog (Lispro)',
       showSources: false,
