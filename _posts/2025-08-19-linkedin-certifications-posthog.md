@@ -93,7 +93,7 @@ The entire implementation was just 15 lines of clean JavaScript - no frameworks,
 
 ---
 
-Want to see this in action? Check out [PostHog's Post-it Training Academy](https://posthog.com/post-it-training) and get yourself certified! 📝
+Want to see this in action? Check out [PostHog Academy](https://posthog.com/academy) to learn more about PostHog's training programs! 📝
 
 **Technical specs:**
 - React/TypeScript
