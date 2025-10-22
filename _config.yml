@@ -50,6 +50,11 @@ social:
     - https://twitter.com/humaine_studio
     - https://linkedin.com/in/chrismcconnell
 
+# Analytics
+analytics:
+  apollo:
+    app_id: "68bb19f655bf65001d82c61f"
+
 # Exclude files from processing
 exclude:
   - README.md
