@@ -6,8 +6,8 @@ class InsulinCalculator {
     this.state = {
       currentBG: '',
       carbs: '',
-      icr: 30, // Updated from 20 to 15 (more common adult baseline)
-      isf: 80, // Updated from 80 to 50 mg/dL (standard adult baseline)
+      icr: 40, // Insulin-to-Carb Ratio: 1 unit per 40g of carbs
+      isf: 70, // Insulin Sensitivity Factor: 1 unit drops BG by 70 mg/dL
       targetBG: 120,
       insulinType: 'Humalog (Lispro)',
       showSources: false,
