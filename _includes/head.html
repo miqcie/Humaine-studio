@@ -56,6 +56,22 @@
 </script>
 
 <!-- Apollo.io Website Visitor Tracking -->
+{% if site.analytics.apollo.app_id %}
+<script>
+function initApollo() {
+  var n = Math.random().toString(36).substring(7),
+      o = document.createElement("script");
+  o.src = "https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache=" + n;
+  o.async = true;
+  o.defer = true;
+  o.onload = function() {
+    window.trackingFunctions.onLoad({appId: {{ site.analytics.apollo.app_id | jsonify }}});
+  };
+  document.head.appendChild(o);
+}
+initApollo();
+</script>
+{% endif %}
 <script>function initApollo(){var n=Math.random().toString(36).substring(7),o=document.createElement("script");
 o.src="https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache="+n,o.async=!0,o.defer=!0,
 o.onload=function(){window.trackingFunctions.onLoad({appId:"68bb19f655bf65001d82c61f"})},
