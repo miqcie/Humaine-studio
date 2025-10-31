@@ -39,6 +39,7 @@ jobs:
           --exclude 'https://diabetesjournals.org/*'
           --exclude 'https://posthog.com/opt-out'
           --exclude 'https://humaine.studio/privacy/'
+          --exclude 'https://humaine.studio/posts/*/ai-inequality-digital-future-of-work/'
         fail: true
         jobSummary: true
       env:
