@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "How I Connected Claude to Notion Using Model Context Protocol (MCP) — No Dev Chops Needed"
-date: 2024-08-10 10:00:00 -0500
+date: 2025-08-10 10:00:00 -0500
 categories: [ai tools, notion, automation]
 tags: [claude, mcp, notion, api, integration]
 excerpt: "A step-by-step guide to connecting Claude AI to Notion using the Model Context Protocol, making your AI assistant aware of your knowledge base."

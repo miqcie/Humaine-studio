@@ -11,7 +11,7 @@ Building a research portfolio website requires balancing simplicity with functio
 
 ## Design Philosophy
 
-I drew inspiration from Sam Altman's website—clean, minimal, and focused on content rather than flashy design. The goal was to create something that felt professional without being overwhelming, letting the research and writing speak for itself.
+I drew inspiration from Dario Amodei's [website](https://www.darioamodei.com)—clean, minimal, and focused on content rather than flashy design. The goal was to create something that felt professional without being overwhelming, letting the research and writing speak for itself.
 
 Key design principles:
 - **Minimal and clean**: White background, plenty of whitespace, clean typography
