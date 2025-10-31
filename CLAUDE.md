@@ -276,10 +276,10 @@ claude-code "ultrathink: plan a comprehensive content strategy for showcasing co
 ### Session End Workflow
 **ALWAYS run at the end of every session:**
 ```bash
-# Sync session history to Specstory
-specstory sync
+# Sync session history to Specstory (local only, no cloud sync)
+specstory sync --no-cloud-sync
 ```
-This documents your work and maintains a searchable history of all Claude Code sessions.
+This documents your work and maintains a searchable history of all Claude Code sessions in `.specstory/` directory.
 
 ## Emergency Procedures
 
@@ -354,19 +354,19 @@ git revert HEAD
 8. **Run CI checks locally** - use testing commands before pushing
 9. **Follow PR workflow** - all changes go through pull request review
 10. **NEVER mix HTML containers with markdown** - use pure markdown or pure HTML
-11. **ALWAYS run `specstory sync` at session end** - documents work history automatically
+11. **ALWAYS run `specstory sync --no-cloud-sync` at session end** - documents work history automatically
 
 ## Quick Reference
 
 ### Essential Commands
 ```bash
-git status                    # Check current status
-git checkout -b feature/name  # Create new branch
-bundle exec jekyll serve      # Start local server
-git diff                      # Review changes
-gh pr create                  # Create pull request
-bundle exec jekyll build      # Test build process
-specstory sync                # Document session history (run at session end)
+git status                         # Check current status
+git checkout -b feature/name       # Create new branch
+bundle exec jekyll serve           # Start local server
+git diff                           # Review changes
+gh pr create                       # Create pull request
+bundle exec jekyll build           # Test build process
+specstory sync --no-cloud-sync     # Document session history (run at session end)
 ```
 
 ### File Locations
