@@ -70,69 +70,6 @@ permalink: /
   </div>
 </section>
 
-<section id="resume" class="section">
-  <h2 class="section-title">Resume</h2>
-  <div class="section-content">
-    <p>mcconnell.chris@icloud.com | (202) 341–8344 | LinkedIn: <a href="https://www.linkedin.com/in/c-mcconnell">c-mcconnell</a> | GitHub: <a href="https://github.com/miqcie">@miqcie</a></p>
-    
-    <p><strong>Technical Account Executive | Sales + Implementation | PostHog Contributor</strong></p>
-
-    <h3>EXPERIENCE</h3>
-
-    <h4>PostHog | Contributor (2025-Present)</h4>
-    <ul>
-      <li>Contributed dynamic LinkedIn sharing feature via GitHub <a href="https://github.com/PostHog/posthog.com/pull/12507">PR #12507</a></li>
-      <li>Completed PostHog Academy Post-it Note certification</li>
-      <li>Implemented analytics on 2 personal sites</li>
-      <li><strong>Pizza Toppings:</strong> Supreme (pineapple=Switzerland)</li>
-    </ul>
-
-    <h4>Deep Water Point & Associates | Director, Sales & Operations (2021-2025)</h4>
-    <ul>
-      <li><strong>$500K enterprise deal</strong> closed through consultative selling and technical discovery</li>
-      <li><strong>$400K savings</strong> delivered with Python automation (cut 160 hrs → 12 hrs)</li>
-      <li><strong>300+ users secured</strong> with Zero Trust (NIST 800-171 compliant)</li>
-      <li><strong>100+ consultants trained</strong> on secure AI adoption and technical tool implementation</li>
-      <li>Improved sales forecasting accuracy by cleaning pipeline data and optimizing CPQ workflows</li>
-    </ul>
-
-    <h4>Style.me (SaaS Fashion Startup) | MBA Sales Manager (2020)</h4>
-    <ul>
-      <li><strong>50% lower inbound lead cost</strong> using A/B testing + funnel optimization in LinkedIn Campaign Manager</li>
-      <li>Supported product-led growth from MVP → PMF</li>
-    </ul>
-
-    <h4>Ermenegildo Zegna | Sales Director (2018-2019)</h4>
-    <ul>
-      <li><strong>$4M P&L managed</strong> with 7-person team</li>
-      <li><strong>$500K revenue growth</strong> through CxO engagement + relationships</li>
-    </ul>
-
-    <h4>Saks Fifth Avenue | Sales Manager (2013-2018)</h4>
-    <ul>
-      <li><strong>Scaled sales $4.5M → $6M</strong> leading 15-person team</li>
-      <li>Launched digital selling platforms driving omni-channel adoption</li>
-      <li>Managed <strong>20+ vendor relationships</strong> and product training programs</li>
-    </ul>
-
-    <h3>SPEAKING & RECOGNITION</h3>
-    <ul>
-      <li>Featured by 1Password at NASDAQ & <a href="https://blog.1password.com/rsac-2025-recap-with-1password">RSA Conference 2025</a> for human-centric security implementation</li>
-      <li>Guest lecturer: NYU Stern MBA & VCU Executive MBA programs on stakeholder management</li>
-    </ul>
-
-    <h3>TECHNICAL SKILLS</h3>
-    <p><strong>Analytics:</strong> PostHog, Google Analytics, Power BI<br>
-    <strong>Sales:</strong> Salesforce, Apollo, LinkedIn Navigator<br>
-    <strong>Implementation:</strong> Python automation, API integrations, Zapier, Postman, SQL</p>
-
-    <h3>EDUCATION</h3>
-    <p><strong>MBA Strategy & Analytics</strong>, NYU Stern | <strong>BA English</strong>, University of Idaho</p>
-
-    <p><a href="{{ '/assets/resume/Chris_McConnell_PostHog_TAE.pdf' | relative_url }}">📄 Download PDF Resume</a></p>
-  </div>
-</section>
-
 <section id="contact" class="section">
   <h2 class="section-title">Contact</h2>
   <div class="section-content">
