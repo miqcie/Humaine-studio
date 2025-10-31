@@ -12,6 +12,7 @@ Burkeman
 Burkeman's
 Sequoia
 API
+APIs
 CSS
 JavaScript
 JS
@@ -29,3 +30,12 @@ CI
 accessibility
 a11y
 performant
+WCAG
+ISPAD
+Scheiner
+MDN
+localStorage
+WebAIM
+HIPAA
+ICR
+ISF
