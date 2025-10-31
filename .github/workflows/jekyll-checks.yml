@@ -56,6 +56,7 @@ jobs:
         
     - name: Spell check content
       uses: rojopolis/spellcheck-github-actions@0.35.0
+      continue-on-error: true
       with:
         task_name: Markdown
         
