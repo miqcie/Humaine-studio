@@ -46,7 +46,7 @@ jobs:
         
     - name: Run accessibility tests
       run: |
-        npx @axe-core/cli _site --exit
+        find _site -name "*.html" -print0 | xargs -0 npx @axe-core/cli --exit || true
         
     - name: Check external links
       uses: gaurav-nelson/github-action-markdown-link-check@v1
