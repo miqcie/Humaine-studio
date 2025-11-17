@@ -1,11 +1,33 @@
 ---
 layout: post
-title: "Building Auto-Sync Between Notion and Claude Code: A Technical Deep-Dive"
+title: "Building Auto-Sync Between Notion and Claude Code: Part 2"
 date: 2025-11-17 16:00:00 -0600
 categories: [ai tools, notion, automation, claude code]
 tags: [claude, notion, api, integration, automation, mcp, developer tools]
-excerpt: "How I built an automatic task synchronization system between Notion and Claude Code, applied critical security fixes from a technical review, and organized everything for maintainability."
+excerpt: "Part 2: Taking the Notion-Claude connection further with automatic task synchronization, production-ready error handling, and security hardening. A technical deep-dive into building reliable automation."
 ---
+
+## Building on the Foundation
+
+In my [previous post about connecting Claude to Notion with MCP](/posts/2024/08/10/connecting-claude-to-notion-with-mcp), I showed how to set up the basic connection between Claude and Notion using the Model Context Protocol. That guide focused on getting started—no dev experience needed.
+
+This post is **Part 2**: taking that connection to the next level with **automatic task synchronization**. If you're comfortable with the command line and want to see what production-ready automation looks like (including the unglamorous parts like error handling and security), this is for you.
+
+### What's Different from Part 1?
+
+**Part 1** (August 2024): Setting up the MCP connection
+- Manual queries to Notion from Claude
+- Understanding the basics
+- Getting comfortable with API concepts
+
+**Part 2** (This post): Building automation
+- Automatic sync on every session start
+- Production-ready error handling
+- Security hardening and validation
+- Project organization and maintenance
+- Real technical review and fixes
+
+Think of Part 1 as "learning to drive" and Part 2 as "building a self-driving car"—you need the fundamentals first, then you can tackle automation.
 
 ## The Problem
 
@@ -253,8 +275,15 @@ The technical review was brutal but invaluable. It caught issues that would have
 
 ---
 
+## Series Navigation
+
+- **[Part 1: Connecting Claude to Notion with MCP](/posts/2024/08/10/connecting-claude-to-notion-with-mcp)** - Setting up the basic connection (beginner-friendly)
+- **Part 2: Building Auto-Sync** - This post - Production-ready automation (intermediate/advanced)
+- **Part 3: Bidirectional Sync** - Coming soon - Writing tasks back to Notion with conflict resolution
+
 *This post is part of my journey learning to code with curiosity. If you're building similar integrations or have questions about the implementation, feel free to [reach out](https://humaine.studio/#contact).*
 
 **Tools used**: Claude Code, Notion API, 1Password CLI, Node.js, Bash
 **Time invested**: ~4 hours (Phase 1), saved countless hours of manual task copying
 **Status**: ✅ Production ready (with caveats documented above)
+**Prerequisites**: Read [Part 1](/posts/2024/08/10/connecting-claude-to-notion-with-mcp) first if you're new to Notion MCP
