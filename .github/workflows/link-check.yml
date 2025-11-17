@@ -11,6 +11,9 @@ on:
 jobs:
   link-check:
     runs-on: ubuntu-latest
+    env:
+      LANG: C.UTF-8
+      LC_ALL: C.UTF-8
     steps:
     - name: Checkout
       uses: actions/checkout@v4
