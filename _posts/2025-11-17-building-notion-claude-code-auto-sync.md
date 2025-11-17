@@ -9,7 +9,7 @@ excerpt: "Part 2: Taking the Notion-Claude connection further with automatic tas
 
 ## Building on the Foundation
 
-In a [previous post about connecting Claude to Notion with MCP](/posts/2024/08/10/connecting-claude-to-notion-with-mcp), I showed how to use MCP to set up a basic connection between Claude Desktop app and Notion. The goal was to show how easy it was.
+In a [previous post about connecting Claude to Notion with MCP](/posts/2025/08/10/connecting-claude-to-notion-with-mcp), I showed how to use MCP to set up a basic connection between Claude Desktop app and Notion. The goal was to show how easy it was.
 
 And a few months later, the capabilities of the Notion MCP is way WAY greater. Also in this time I've shifted most of my work to Claude Code CLI. So I needed to evolve how I interfaced with Notion.
 
