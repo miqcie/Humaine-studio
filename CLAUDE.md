@@ -469,6 +469,171 @@ gh pr status
 gh workflow list
 ```
 
+## Publishing Workflow: Jekyll + Substack
+
+### Content Strategy
+**Primary Platform:** Jekyll site (humaine.studio) = source of truth
+**Secondary Platform:** Substack (humainestudio.substack.com) = audience growth & email distribution
+
+**Publishing Model:** Write once in Jekyll → Mirror to Substack → Set canonical URL
+
+### Phase 1: Planning & Topic Selection
+
+**Location:** `writing-topics/applied-ai-topics.md`
+
+1. Review topics list and select based on priority/interest
+2. Update status: "To Do" → "In Progress"
+3. Commit status change: `git commit -m "Starting [TOPIC-ID]: [Title]"`
+4. (Optional) Create research notes in `writing-topics/notes/[TOPIC-ID]-notes.md`
+
+### Phase 2: Writing Locally
+
+**Draft Location:** `_drafts/` folder (not published until moved)
+
+```bash
+# Create new draft
+cd "/Users/chrismcconnell/GitHub/Humaine Studio"
+touch _drafts/post-title.md
+
+# Add front matter
+---
+layout: post
+title: "Your Post Title"
+date: YYYY-MM-DD
+categories: [category1, category2]
+excerpt: "Brief description for SEO and previews"
+---
+```
+
+**Writing Tips:**
+- Write in markdown in your local editor (VS Code/Cursor)
+- Use Claude Code for research, editing, and content generation
+- Commit frequently as checkpoints: `git commit -m "Draft: Added section X"`
+- Each commit = save point you can return to
+
+**Preview Locally:**
+```bash
+bundle exec jekyll serve --drafts
+# View at: http://localhost:4000
+```
+
+### Phase 3: Publishing to Jekyll (Automated)
+
+**When draft is ready:**
+
+```bash
+# 1. Move from _drafts/ to _posts/ with date prefix
+mv _drafts/post-title.md _posts/2025-11-25-post-title.md
+
+# 2. Update topics list status: "In Progress" → "Published"
+# Edit: writing-topics/applied-ai-topics.md
+
+# 3. Final preview
+bundle exec jekyll serve
+# Verify at: http://localhost:4000
+
+# 4. Commit and push
+git add _posts/2025-11-25-post-title.md
+git add writing-topics/applied-ai-topics.md
+git commit -m "Publish: [Title] ([TOPIC-ID])
+
+- [Brief description of content]
+- Published to humaine.studio blog"
+
+git push origin main
+```
+
+**Automatic Deployment:**
+- GitHub Actions triggers on push
+- Runs CI checks (HTML validation, a11y, performance)
+- Deploys to humaine.studio (2-3 minutes)
+- Post live at: `humaine.studio/posts/YYYY/MM/DD/post-title/`
+
+### Phase 4: Mirror to Substack
+
+**Timing:** Can be done immediately or batched weekly
+
+```bash
+# Helper script (see scripts/mirror-to-substack.sh)
+./scripts/mirror-to-substack.sh "https://humaine.studio/posts/2025/11/25/post-title/"
+```
+
+**Manual Process:**
+1. Open published post on humaine.studio
+2. Copy markdown or HTML content
+3. Log into Substack → New Post
+4. Paste content into editor
+5. Add Substack-specific elements:
+   - Email-friendly opening hook
+   - "Originally published at [URL]" footer
+   - Call-to-action for subscribers
+6. **CRITICAL:** Set canonical URL in post settings:
+   - ☑️ "This post was originally published elsewhere"
+   - Canonical URL: `https://humaine.studio/posts/.../post-title/`
+7. Publish or schedule
+8. Email sent to subscribers automatically
+
+**Why Canonical URL Matters:**
+- Google knows humaine.studio is the original source
+- SEO credit goes to your site
+- Substack serves as distribution channel
+
+### Phase 5: Promotion (Optional)
+
+**Can be batched weekly:**
+- LinkedIn: Share with summary
+- Twitter/X: Thread or link
+- Direct outreach to people who'd find it valuable
+- Engage with Substack comments
+
+### ADHD-Friendly Batching Strategy
+
+**Focus Sessions (Writing):**
+- Week 1-2: Write 3-4 drafts in `_drafts/`
+- Commit after each writing session
+
+**Publishing Cadence:**
+- Every Monday: Publish one post to Jekyll (automated)
+- Every Friday: Batch mirror to Substack
+- Weekend: Batch social promotion
+
+**Benefits:**
+- Separates creative work (writing) from distribution (publishing)
+- Builds content buffer to reduce pressure
+- Clear triggers reduce decision fatigue
+
+### Time Estimates Per Post
+
+| Activity | Time | Batchable? |
+|----------|------|------------|
+| Topic selection | 5 min | Yes |
+| Writing first draft | 2-4 hours | No |
+| Review & polish | 30-60 min | No |
+| Publish to Jekyll | 2 min | No |
+| Mirror to Substack | 10-15 min | **Yes** |
+| Promotion | 15-30 min | **Yes** |
+
+### Quick Reference Commands
+
+```bash
+# Start new draft
+touch _drafts/$(date +%Y-%m-%d)-topic-title.md
+
+# Preview drafts locally
+bundle exec jekyll serve --drafts
+
+# Publish draft (move to _posts with date)
+mv _drafts/title.md _posts/$(date +%Y-%m-%d)-title.md
+
+# Standard commit for published post
+git add _posts/*.md writing-topics/applied-ai-topics.md
+git commit -m "Publish: [Title] ([TOPIC-ID])"
+git push origin main
+
+# Helper for Substack mirroring
+./scripts/mirror-to-substack.sh "[POST_URL]"
+```
+
 ## Claude Code Best Practices for This Project
 
 ### Effective Prompts for This Codebase
@@ -629,7 +794,11 @@ specstory sync --no-cloud-sync     # Document session history (run at session en
 ```
 
 ### File Locations
-- Blog posts: `_posts/YYYY-MM-DD-title.md`
+- Published posts: `_posts/YYYY-MM-DD-title.md`
+- Draft posts: `_drafts/title.md`
+- Topics list: `writing-topics/applied-ai-topics.md`
+- Research notes: `writing-topics/notes/[TOPIC-ID]-notes.md`
+- Helper scripts: `scripts/`
 - Pages: `page-name.md` (root level)
 - Layouts: `_layouts/`
 - Includes: `_includes/`

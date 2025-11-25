@@ -9,20 +9,14 @@ excerpt: "Part 2: Taking the Notion-Claude connection further with automatic tas
 
 ## Building on the Foundation
 
-In a [previous post about connecting Claude to Notion with MCP](/posts/2025/08/10/connecting-claude-to-notion-with-mcp), I showed how to use MCP to set up a basic connection between Claude Desktop app and Notion. The goal was to show how easy it was.
+In my [previous post about connecting Claude to Notion with MCP](/posts/2024/08/10/connecting-claude-to-notion-with-mcp), I showed how to set up the basic connection between Claude and Notion using the Model Context Protocol. That guide focused on getting started—no dev experience needed.
 
-And a few months later, the capabilities of the Notion MCP is way WAY greater. Also in this time I've shifted most of my work to Claude Code CLI. So I needed to evolve how I interfaced with Notion.
-
-A quick tangent: 
-
-When I was in middle school in the mid-90's, I remember learning BASIC. There was a math game about optimization running a snack stand at a football stadium. You can to input variables for hotdogs, soda pops, hot chocolate, and popcorn. You didn't know the weather and how it would affect the result. I really enjoyed that game, but I didn't have the patience to learn programming. A few years (decades) later and the technology has "caught up" to my brain!
-
-This post is **Part 2**: advancing MCP connections to help sync work across multiple tools. The goal is **automatic task synchronization**. If you're comfortable with the command line and want to see what production-ready automation looks like (including the unglamorous parts like error handling and security), this is for you.
+This post is **Part 2**: taking that connection to the next level with **automatic task synchronization**. If you're comfortable with the command line and want to see what production-ready automation looks like (including the unglamorous parts like error handling and security), this is for you.
 
 ### What's Different from Part 1?
 
 **Part 1** (August 2024): Setting up the MCP connection
-- Manual queries to Notion from Claude Desktop
+- Manual queries to Notion from Claude
 - Understanding the basics
 - Getting comfortable with API concepts
 
