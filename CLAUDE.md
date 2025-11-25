@@ -4,11 +4,19 @@
 
 ## Project Overview
 
-**humaine.studio** - A Jekyll-based website hosted on GitHub Pages, showcasing the journey of learning to code with curiosity and an English/MBA background.
+**humaine.studio** - A Jekyll-based website hosted on GitHub Pages, showcasing the journey of learning to code with curiosity and an English/MBA background. Serves as a research portfolio, career showcase, and educational tools platform.
 
 - **Repository**: https://github.com/miqcie/Humaine-studio
 - **Live Site**: https://humaine.studio
-- **Tech Stack**: Jekyll, GitHub Pages, Markdown, HTML/CSS/JS
+- **Tech Stack**: Jekyll, GitHub Pages, Markdown, HTML/CSS/JS, React/Vite (experiments)
+- **Analytics**: PostHog (privacy-focused), Apollo.io (visitor intelligence)
+- **CI/CD**: GitHub Actions (build, test, deploy, validation)
+
+### Site Functions
+- **Research Portfolio**: Blog posts on AI, automation, and technical topics
+- **Career Showcase**: PostHog cover letter, resume, professional experience
+- **Educational Tools**: T1D insulin calculator with localStorage persistence
+- **Experiments**: React/Vite applications under `/experiments/` directory
 
 ## CRITICAL Jekyll/Markdown Rules
 
@@ -52,6 +60,7 @@
 ### Recent Fixes Applied
 - **Cover letter page**: Removed HTML `<article>` and `<div>` wrappers, used pure markdown
 - **Resume page**: Avoided HTML containers, used CSS targeting instead
+- **Asset serving**: Added `.nojekyll` at repository root for proper GitHub Pages static asset serving
 
 ## Development Environment Setup
 
@@ -79,24 +88,87 @@ bundle exec jekyll build
 ## Repository Structure
 ```
 humaine.studio/
-├── _config.yml          # Jekyll configuration
-├── _posts/              # Published blog posts (YYYY-MM-DD-title.md format)
-├── _drafts/             # Work-in-progress posts (not published)
-├── _includes/           # Reusable components
-├── _layouts/            # Page templates
-├── assets/              # CSS, JS, images, PDFs
-│   ├── css/
-│   ├── js/
-│   ├── images/
-│   └── resume/          # Resume PDFs
-├── writing-topics/      # Content planning and topic tracking
-│   ├── applied-ai-topics.md   # Master topics list
-│   └── notes/           # Research notes for each topic
-├── scripts/             # Helper scripts (Substack mirroring, etc.)
-├── docs/                # Internal documentation
-├── CLAUDE.md            # This file - Claude Code context
-├── .gitignore           # What not to track
-└── README.md            # Public project documentation
+├── Root Configuration Files
+│   ├── _config.yml               # Jekyll configuration (site metadata, plugins, analytics)
+│   ├── Gemfile                   # Ruby gem dependencies (github-pages, jekyll plugins)
+│   ├── CNAME                     # Custom domain (humaine.studio)
+│   ├── robots.txt                # SEO crawler directives
+│   ├── .gitignore                # Git exclusions
+│   ├── .nojekyll                 # GitHub Pages asset serving marker
+│   ├── .htmlhintrc               # HTML validation rules
+│   ├── .spellcheck.yml           # Spell check configuration
+│   └── lighthouserc.js           # Performance testing config
+│
+├── Root Pages (Served at domain root)
+│   ├── index.md                  # Homepage (hero, philosophy, research, writing)
+│   ├── calculator.md             # T1D insulin calculator interface
+│   ├── posthog-cover-letter.md   # PostHog TAE/Manager cover letter
+│   ├── privacy.md                # Privacy policy (PostHog/Apollo.io disclosure)
+│   └── weeks-of-life.html        # Life weeks visualization tool
+│
+├── Jekyll Core Directories
+│   ├── _posts/                   # Blog posts (YYYY-MM-DD-title.md format)
+│   │   ├── 2021-02-20-ai-inequality-digital-future-of-work.md
+│   │   ├── 2024-08-10-connecting-claude-to-notion-with-mcp.md
+│   │   ├── 2024-08-11-building-humaine-studio-with-jekyll.md
+│   │   ├── 2025-08-18-gilfoyle.md
+│   │   ├── 2025-08-19-linkedin-certifications-posthog.md
+│   │   └── 2025-11-17-building-notion-claude-code-auto-sync.md
+│   │
+│   ├── _layouts/                 # Page templates
+│   │   ├── default.html          # Base layout (header, main, footer, analytics)
+│   │   ├── home.html             # Homepage wrapper
+│   │   └── post.html             # Blog post template
+│   │
+│   ├── _includes/                # Reusable components
+│   │   ├── head.html             # <head> section (SEO, fonts, structured data)
+│   │   ├── header.html           # Navigation (logo, menu, dark mode toggle)
+│   │   └── footer.html           # Footer (links, copyright)
+│   │
+│   └── assets/                   # Static files
+│       ├── css/
+│       │   ├── main.css          # Global styles (theme, typography, dark mode)
+│       │   └── calculator.css    # Calculator-specific styles
+│       ├── js/
+│       │   ├── main.js           # Theme management, smooth scrolling, PostHog
+│       │   └── calculator.js     # Insulin calculation engine (localStorage)
+│       ├── images/
+│       │   ├── favicon-32x32.png
+│       │   ├── apple-touch-icon.png
+│       │   └── posts/            # Blog post images
+│       └── resume/
+│           └── Chris_McConnell_PostHog_TAE.pdf
+│
+├── Experiments (React/Vite Applications)
+│   └── experiments/
+│       └── invoice-collab/       # Invoice collaboration experiment
+│           ├── index.html        # Built Vite app entry point
+│           ├── .nojekyll         # Prevent Jekyll processing
+│           ├── vite.svg          # Vite logo
+│           └── assets/
+│               ├── index-*.css   # Compiled CSS (hash-versioned)
+│               └── index-*.js    # Compiled JavaScript (hash-versioned)
+│
+├── GitHub Actions & CI/CD
+│   └── .github/
+│       ├── workflows/
+│       │   ├── jekyll-checks.yml # Main CI (build, HTML, a11y, perf, links, spell)
+│       │   ├── jekyll.yml        # GitHub Pages deployment
+│       │   └── link-check.yml    # Weekly link validation (Lychee)
+│       └── wordlist.txt          # Spell-check approved terms
+│
+├── Documentation & Context
+│   ├── docs/
+│   │   └── calculator-roadmap.md # T1D calculator feature roadmap
+│   ├── CLAUDE.md                 # This file - Claude Code context
+│   ├── README.md                 # Public project documentation
+│   ├── llm.txt                   # LLM optimization metadata
+│   └── SESSION_CONTEXT.md        # Ongoing development session notes
+│
+└── Session History (.gitignored)
+    └── .specstory/               # Claude Code session history
+        ├── .project.json         # Project metadata
+        └── history/              # Session logs (JSON format)
 ```
 
 ## Git Workflow - ALWAYS Follow This
@@ -133,17 +205,52 @@ git push origin feature/descriptive-name
 ## Testing & CI/CD
 
 ### GitHub Actions Workflows
-This repository includes automated checks that run on every PR:
+This repository includes automated checks across three workflow files:
 
-```yaml
-# .github/workflows/jekyll-checks.yml
-- Jekyll Build Verification  # Ensures site builds without errors
-- HTML5 Validation          # Catches markup issues
-- Accessibility Testing     # axe-core automated a11y checks  
-- Performance Audit         # Lighthouse CI scores
-- Link Checking            # Validates external URLs work
-- Spell Check              # Content quality validation
-```
+#### **jekyll-checks.yml** (Main CI Pipeline)
+**Triggers**: Push to main/feature/*, PRs to main
+
+**Build Phase**:
+- Ruby 3.1 with bundler caching
+- Node 18 for testing tools
+- `bundle exec jekyll build --strict_front_matter`
+- Sets `JEKYLL_ENV=production` and `LANG=C.UTF-8` (UTF-8 encoding fix)
+
+**Quality Checks** (all run in parallel):
+1. **HTML Validation**: htmlhint + HTML5 validator (blocks merge)
+2. **Accessibility**: axe-core CLI with WCAG 2a/2aa tags (blocks merge)
+3. **Link Checking**: Markdown link checker (blocks merge)
+4. **Spell Check**: pyspelling (`continue-on-error: true` - non-blocking)
+5. **Performance**: Lighthouse CI (`continue-on-error: true` - non-blocking)
+
+**Notes**:
+- Spell check is non-blocking until wordlist refined (Issue #19)
+- Lighthouse CI is non-blocking until 404 errors fixed (Issue #20)
+- UTF-8 encoding fix prevents Jekyll build failures (from #22)
+
+#### **jekyll.yml** (Deployment Pipeline)
+**Triggers**: Push to main, manual workflow_dispatch
+
+**Steps**:
+1. Build with Jekyll (`bundle exec jekyll build`)
+2. Upload artifact to GitHub Pages
+3. Deploy using `actions/deploy-pages@v4`
+
+**Permissions**: contents:read, pages:write, id-token:write
+
+#### **link-check.yml** (Weekly Link Validation)
+**Triggers**: Push to main, PRs to main, weekly (Sunday 00:00 UTC)
+
+**Tool**: Lychee Link Checker v1.8.0
+
+**Excluded URLs** (due to authentication, rate limiting, or privacy):
+- `claude.ai/*` (authentication required)
+- `reddit.com/*` (rate limiting)
+- `linkedin.com/in/*` (profile privacy)
+- `mondrian.dev/*` (temporary unreliable)
+- Font CDNs, medical journals, specific pages
+
+**Accepted Status Codes**: 200-308, 403, 429, 999
 
 ### Local Testing Commands
 ```bash
@@ -182,6 +289,108 @@ lighthouse http://localhost:4000 --chrome-flags="--headless"
 - Include code examples when relevant
 - Document decisions and reasoning
 
+## Working with Experiments
+
+The `/experiments/` directory hosts React/Vite applications alongside the main Jekyll site. These experiments are served as static SPAs at `https://humaine.studio/experiments/{experiment-name}/`.
+
+### Experiments Structure
+```
+experiments/
+└── {experiment-name}/
+    ├── index.html           # Built Vite app entry point
+    ├── .nojekyll            # REQUIRED: Prevents Jekyll processing
+    ├── assets/
+    │   ├── index-*.css      # Compiled CSS (hash-versioned)
+    │   └── index-*.js       # Compiled JavaScript (hash-versioned)
+    └── [other static files]
+```
+
+### Critical Rules for Experiments
+
+1. **ALWAYS include `.nojekyll`** in each experiment directory
+   - Without this file, GitHub Pages will process the experiment with Jekyll
+   - This causes asset serving failures and broken paths
+   - Place `.nojekyll` at the root of the experiment directory
+
+2. **Only commit built files** to the experiments directory
+   - Build your React/Vite app locally with `npm run build` or `vite build`
+   - Commit only the `dist/` output (renamed to experiment name)
+   - Do NOT commit `src/`, `node_modules/`, or development files
+
+3. **Hash-based asset versioning**
+   - Vite automatically generates hashed filenames: `index-CiAQKk_N.css`
+   - This ensures cache busting when you deploy updates
+   - Commit the entire `assets/` directory with each build
+
+4. **Link to experiments from main site**
+   - Add navigation links in appropriate pages
+   - Example: `[Invoice Collaboration](/experiments/invoice-collab/)`
+   - Document the experiment's purpose in the page that links to it
+
+### Current Experiments
+
+#### **invoice-collab**
+- **Purpose**: Invoice collaboration features (experimental)
+- **Tech Stack**: React, Vite
+- **Status**: Active development
+- **URL**: https://humaine.studio/experiments/invoice-collab/
+
+### Adding a New Experiment
+
+```bash
+# 1. Build your React/Vite app locally
+cd /path/to/your/app
+npm run build
+
+# 2. Copy dist output to experiments directory
+cp -r dist/ /path/to/humaine-studio/experiments/new-experiment/
+
+# 3. Add .nojekyll to prevent Jekyll processing
+touch experiments/new-experiment/.nojekyll
+
+# 4. Commit and push
+git add experiments/new-experiment/
+git commit -m "Add: new-experiment to experiments"
+git push origin feature/new-experiment
+
+# 5. Create PR and merge to deploy
+```
+
+## Published Content
+
+### Blog Posts (6 total)
+Current published posts in `_posts/` directory:
+
+| Date | Title | Topics |
+|------|-------|--------|
+| 2021-02-20 | AI Inequality and the Digital Future of Work | AI ethics, automation, human dignity |
+| 2024-08-10 | Connecting Claude to Notion with MCP | MCP, Claude, Notion integration |
+| 2024-08-11 | Building Humaine Studio with Jekyll | Web development, Jekyll, site philosophy |
+| 2025-08-18 | Gilfoyle | Claude agent development, automation |
+| 2025-08-19 | LinkedIn Certifications: PostHog | PostHog analytics, certification |
+| 2025-11-17 | Building Notion-Claude Code Auto-Sync | MCP automation, production workflows |
+
+### Special Pages
+Root-level pages served at `https://humaine.studio/{page-name}/`:
+
+- **index.md** - Homepage with hero, philosophy, research areas, writing section
+- **calculator.md** - T1D Insulin Calculator
+  - Carb-to-insulin calculations (ICR)
+  - Correction factor calculations (ISF)
+  - localStorage for user settings
+  - Multiple insulin types supported
+  - Roadmap at `docs/calculator-roadmap.md`
+- **posthog-cover-letter.md** - PostHog Technical Account Executive/Manager cover letter
+- **privacy.md** - Privacy policy with PostHog/Apollo.io disclosure
+- **weeks-of-life.html** - Interactive life weeks visualization
+
+### Documentation Files
+- **CLAUDE.md** - This file, loaded by Claude Code for context
+- **llm.txt** - LLM optimization metadata (content hierarchy, technical stack)
+- **SESSION_CONTEXT.md** - Ongoing development session notes
+- **README.md** - Public project documentation
+- **docs/calculator-roadmap.md** - T1D calculator feature roadmap (IOB, history, time-based ratios)
+
 ## Security Best Practices
 
 ### NEVER Commit These Items
@@ -194,10 +403,24 @@ private/               # Private files
 .vscode/settings.json  # May contain local paths/tokens
 ```
 
-### Safe External Integrations
+### Active External Integrations
 ```bash
-# ✅ Safe for static sites
-- Google Analytics (GA4)
+# ✅ Currently Integrated
+- PostHog Analytics (phc_gKgLr0iMjD1gnLV3yd8lEYWIUWmkIk8BuI6jUG3rTBg)
+  - Privacy-focused analytics
+  - person_profiles: 'identified_only'
+  - Configured in _layouts/default.html
+  - Privacy policy disclosure in privacy.md
+
+- Apollo.io Visitor Intelligence (app_id: "68bb19f655bf65001d82c61f")
+  - Company/visitor enrichment for job hunting
+  - microTracker embedded inline
+  - Privacy policy disclosure in privacy.md
+
+- Google Fonts (Inter font family)
+  - CDN: fonts.googleapis.com, fonts.gstatic.com
+
+# ✅ Safe for static sites (examples)
 - Formspree for contact forms
 - Disqus/Utterances for comments
 - CDN resources (cdnjs.cloudflare.com)
@@ -496,6 +719,34 @@ git revert HEAD
 - Check markdown link syntax
 ```
 
+## Known Issues & Future Improvements
+
+### Active Issues
+Based on workflow comments and repository state:
+
+1. **Issue #19: Spell Check Wordlist Refinement**
+   - Status: Non-blocking in CI (`continue-on-error: true`)
+   - Action: Refine `.github/wordlist.txt` to reduce false positives
+   - Impact: Currently allows merging with spell check failures
+
+2. **Issue #20: Lighthouse CI 404 Errors**
+   - Status: Non-blocking in CI (`continue-on-error: true`)
+   - Action: Fix 404 errors before making Lighthouse checks blocking
+   - Impact: Performance audits run but don't block merges
+
+3. **Issue #22: UTF-8 Encoding in Jekyll Builds** (RESOLVED)
+   - Solution: Set `LANG=C.UTF-8` in workflow
+   - Status: Fixed in jekyll-checks.yml
+   - Context: Prevented Jekyll build failures on special characters
+
+### Planned Calculator Enhancements
+From `docs/calculator-roadmap.md`:
+
+- **Insulin on Board (IOB) Tracking** (CRITICAL for safety)
+- Dose history logging
+- Time-based ratios (different ICR/ISF by time of day)
+- Data export for medical appointments
+
 ## Project Goals & Context
 
 ### Learning Journey Documentation
@@ -524,7 +775,10 @@ git revert HEAD
 8. **Run CI checks locally** - use testing commands before pushing
 9. **Follow PR workflow** - all changes go through pull request review
 10. **NEVER mix HTML containers with markdown** - use pure markdown or pure HTML
-11. **ALWAYS run `specstory sync --no-cloud-sync` at session end** - documents work history automatically
+11. **ALWAYS include `.nojekyll`** in experiment directories - prevents Jekyll processing of React/Vite apps
+12. **ALWAYS run `specstory sync --no-cloud-sync` at session end** - documents work history automatically
+13. **Check active issues** - some CI checks are non-blocking (spell check, Lighthouse)
+14. **Privacy disclosure** - any new tracking must be documented in privacy.md
 
 ## Quick Reference
 
@@ -552,6 +806,9 @@ specstory sync --no-cloud-sync     # Document session history (run at session en
 - Config: `_config.yml`
 - CI/CD: `.github/workflows/`
 - Testing configs: `.htmlhintrc`, `lighthouserc.js`, `.spellcheck.yml`
+- Experiments: `experiments/{experiment-name}/` (React/Vite SPAs)
+- Documentation: `docs/`, `CLAUDE.md`, `llm.txt`, `SESSION_CONTEXT.md`
+- Session history: `.specstory/history/` (gitignored)
 
 ---
 
