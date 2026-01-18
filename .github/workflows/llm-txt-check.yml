@@ -1,0 +1,30 @@
+name: LLM.txt Maintenance Check
+
+on:
+  pull_request:
+    paths:
+      - '_posts/**'
+      - '*.md'
+      - 'experiments/**'
+      - '_config.yml'
+  workflow_dispatch:
+
+jobs:
+  check-llm-txt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check if llm.txt needs updating
+        run: |
+          echo "::notice::Reminder: If you've added/removed content, update llm.txt"
+          echo ""
+          echo "Content that should be reflected in llm.txt:"
+          echo "- Blog posts in _posts/ (currently $(ls -1 _posts/*.md 2>/dev/null | wc -l) posts)"
+          echo "- Root pages (*.md files)"
+          echo "- Experiments in experiments/"
+          echo "- Major config changes in _config.yml"
+          echo ""
+          echo "Last updated: $(grep 'Last Updated' llm.txt || echo 'Date not found')"
+          echo ""
+          echo "If content inventory changed, please update llm.txt before merging."

@@ -56,6 +56,11 @@ analytics:
   apollo:
     app_id: "68bb19f655bf65001d82c61f"
 
+# Include files that Jekyll would normally ignore
+include:
+  - llm.txt
+  - .nojekyll
+
 # Exclude files from processing
 exclude:
   - README.md
