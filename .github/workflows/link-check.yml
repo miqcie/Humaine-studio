@@ -33,9 +33,13 @@ jobs:
         args: >-
           --verbose --no-progress '_site/**/*.html'
           --accept 200,204,206,300,301,302,303,304,307,308,403,429,999
+          --timeout 20
+          --max-retries 3
           --exclude 'https://claude.ai/*'
           --exclude 'https://www.reddit.com/*'
           --exclude 'https://www.linkedin.com/in/*'
+          --exclude 'https://medium.com/*'
+          --exclude 'https://*.medium.com/*'
           --exclude 'https://mondrian.dev/*'
           --exclude 'https://fonts.googleapis.com/*'
           --exclude 'https://fonts.gstatic.com/*'
