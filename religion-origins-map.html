@@ -51,8 +51,8 @@ description: Interactive map showing where major world religions originated
 
     .legend-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 12px;
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 8px;
     }
 
     .legend-item {
@@ -61,6 +61,14 @@ description: Interactive map showing where major world religions originated
         gap: 10px;
         font-size: 14px;
         color: var(--text-color);
+        cursor: pointer;
+        padding: 6px 10px;
+        border-radius: 6px;
+        transition: background-color 0.15s ease;
+    }
+
+    .legend-item:hover {
+        background-color: var(--border-color);
     }
 
     .legend-dot {
@@ -97,6 +105,88 @@ description: Interactive map showing where major world religions originated
         font-size: 13px;
         color: #444;
         line-height: 1.5;
+        margin-bottom: 10px;
+    }
+
+    .popup-link {
+        font-size: 12px;
+        color: #3b82f6;
+        text-decoration: none;
+    }
+
+    .popup-link:hover {
+        text-decoration: underline;
+    }
+
+    /* Tufte-style visualization */
+    .affiliation-section {
+        margin-top: 40px;
+        padding: 30px 20px;
+        background: var(--code-bg);
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+    }
+
+    .affiliation-title {
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 8px;
+        color: var(--text-dark);
+    }
+
+    .affiliation-subtitle {
+        font-size: 13px;
+        color: var(--text-lighter);
+        margin-bottom: 30px;
+    }
+
+    .chart-container {
+        max-width: 700px;
+    }
+
+    .chart-row {
+        display: flex;
+        align-items: center;
+        margin-bottom: 12px;
+        gap: 12px;
+    }
+
+    .chart-label {
+        width: 140px;
+        font-size: 13px;
+        color: var(--text-color);
+        text-align: right;
+        flex-shrink: 0;
+    }
+
+    .chart-bar-container {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .chart-bar {
+        height: 18px;
+        border-radius: 2px;
+        transition: opacity 0.15s ease;
+    }
+
+    .chart-bar:hover {
+        opacity: 0.8;
+    }
+
+    .chart-value {
+        font-size: 12px;
+        color: var(--text-light);
+        min-width: 45px;
+    }
+
+    .chart-footnote {
+        margin-top: 20px;
+        font-size: 11px;
+        color: var(--text-lighter);
+        line-height: 1.5;
     }
 
     @media (max-width: 768px) {
@@ -109,7 +199,27 @@ description: Interactive map showing where major world religions originated
         }
 
         .legend-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .chart-label {
+            width: 100px;
+            font-size: 12px;
+        }
+
+        .chart-value {
+            font-size: 11px;
+            min-width: 40px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .legend-grid {
             grid-template-columns: 1fr;
+        }
+
+        .chart-label {
+            width: 80px;
         }
     }
 </style>
@@ -120,7 +230,7 @@ description: Interactive map showing where major world religions originated
     <h1 class="map-title">Origins of World Religions</h1>
     <p class="map-description">
         An interactive map showing where humanity's major religions originated.
-        Click on any marker to learn more about each religion's birthplace.
+        Click on any marker or legend item to learn more.
     </p>
 </div>
 
@@ -135,6 +245,19 @@ description: Interactive map showing where major world religions originated
     </div>
 </div>
 
+<div class="affiliation-section">
+    <h2 class="affiliation-title">Global Religious Affiliation</h2>
+    <p class="affiliation-subtitle">Estimated percentage of world population, 2024</p>
+    <div class="chart-container" id="chart-container">
+        <!-- Populated by JavaScript -->
+    </div>
+    <p class="chart-footnote">
+        Source: Pew Research Center, World Religion Database.
+        "Secular" includes atheists, agnostics, and religiously unaffiliated.
+        Folk religions include traditional African, Chinese folk, Native American, and Aboriginal beliefs.
+    </p>
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
 <script>
@@ -147,7 +270,8 @@ description: Interactive map showing where major world religions originated
             city: "Jerusalem, Israel",
             date: "~30 CE",
             color: "#3b82f6",
-            description: "Founded on the teachings of Jesus Christ. Jerusalem is where Jesus was crucified and resurrected."
+            description: "Founded on the teachings of Jesus Christ. Jerusalem is where Jesus was crucified and resurrected.",
+            wiki: "https://en.wikipedia.org/wiki/Christianity"
         },
         {
             name: "Islam",
@@ -156,16 +280,18 @@ description: Interactive map showing where major world religions originated
             city: "Mecca, Saudi Arabia",
             date: "~610 CE",
             color: "#10b981",
-            description: "Founded by Prophet Muhammad, who received revelations from God in Mecca."
+            description: "Founded by Prophet Muhammad, who received revelations from God in Mecca.",
+            wiki: "https://en.wikipedia.org/wiki/Islam"
         },
         {
             name: "Judaism",
             lat: 31.7683,
-            lng: 35.2137,
+            lng: 35.5,
             city: "Canaan/Jerusalem",
             date: "~2000 BCE",
             color: "#8b5cf6",
-            description: "One of the oldest monotheistic religions, originating with Abraham in the land of Canaan."
+            description: "One of the oldest monotheistic religions, originating with Abraham in the land of Canaan.",
+            wiki: "https://en.wikipedia.org/wiki/Judaism"
         },
         {
             name: "Hinduism",
@@ -174,7 +300,8 @@ description: Interactive map showing where major world religions originated
             city: "Indus Valley, India",
             date: "~1500 BCE",
             color: "#f59e0b",
-            description: "Developed in the Indian subcontinent with no single founder. Varanasi is one of its holiest cities."
+            description: "Developed in the Indian subcontinent with no single founder. Varanasi is one of its holiest cities.",
+            wiki: "https://en.wikipedia.org/wiki/Hinduism"
         },
         {
             name: "Buddhism",
@@ -183,7 +310,8 @@ description: Interactive map showing where major world religions originated
             city: "Bodh Gaya, India",
             date: "~500 BCE",
             color: "#ef4444",
-            description: "Founded by Siddhartha Gautama (Buddha) who attained enlightenment under the Bodhi tree."
+            description: "Founded by Siddhartha Gautama (Buddha) who attained enlightenment under the Bodhi tree.",
+            wiki: "https://en.wikipedia.org/wiki/Buddhism"
         },
         {
             name: "Sikhism",
@@ -192,7 +320,8 @@ description: Interactive map showing where major world religions originated
             city: "Punjab, India",
             date: "~1500 CE",
             color: "#06b6d4",
-            description: "Founded by Guru Nanak in the Punjab region, emphasizing equality and service."
+            description: "Founded by Guru Nanak in the Punjab region, emphasizing equality and service.",
+            wiki: "https://en.wikipedia.org/wiki/Sikhism"
         },
         {
             name: "Confucianism",
@@ -201,16 +330,18 @@ description: Interactive map showing where major world religions originated
             city: "Qufu, China",
             date: "~500 BCE",
             color: "#ec4899",
-            description: "Founded by Confucius in Qufu, focusing on ethics, family, and social harmony."
+            description: "Founded by Confucius in Qufu, focusing on ethics, family, and social harmony.",
+            wiki: "https://en.wikipedia.org/wiki/Confucianism"
         },
         {
             name: "Taoism",
-            lat: 32.0603,
-            lng: 118.7969,
+            lat: 34.2,
+            lng: 108.9,
             city: "China",
             date: "~400 BCE",
             color: "#14b8a6",
-            description: "Associated with Laozi, emphasizing living in harmony with the Tao (the Way)."
+            description: "Associated with Laozi, emphasizing living in harmony with the Tao (the Way).",
+            wiki: "https://en.wikipedia.org/wiki/Taoism"
         },
         {
             name: "Shinto",
@@ -219,7 +350,8 @@ description: Interactive map showing where major world religions originated
             city: "Japan",
             date: "Ancient",
             color: "#f97316",
-            description: "Indigenous religion of Japan centered on kami (spirits) and nature worship. Ise Grand Shrine is most sacred."
+            description: "Indigenous religion of Japan centered on kami (spirits) and nature worship. Ise Grand Shrine is most sacred.",
+            wiki: "https://en.wikipedia.org/wiki/Shinto"
         },
         {
             name: "Zoroastrianism",
@@ -228,7 +360,8 @@ description: Interactive map showing where major world religions originated
             city: "Persia (Iran)",
             date: "~1500 BCE",
             color: "#a855f7",
-            description: "Founded by Zoroaster in ancient Persia, one of the world's oldest monotheistic religions."
+            description: "Founded by Zoroaster in ancient Persia, one of the world's oldest monotheistic religions.",
+            wiki: "https://en.wikipedia.org/wiki/Zoroastrianism"
         },
         {
             name: "Jainism",
@@ -237,7 +370,8 @@ description: Interactive map showing where major world religions originated
             city: "Bihar, India",
             date: "~600 BCE",
             color: "#84cc16",
-            description: "Founded by Mahavira, emphasizing non-violence, truth, and asceticism."
+            description: "Founded by Mahavira, emphasizing non-violence, truth, and asceticism.",
+            wiki: "https://en.wikipedia.org/wiki/Jainism"
         },
         {
             name: "Baha'i Faith",
@@ -246,14 +380,90 @@ description: Interactive map showing where major world religions originated
             city: "Shiraz, Iran",
             date: "1844 CE",
             color: "#0ea5e9",
-            description: "Founded by Baha'u'llah, teaching the unity of all religions and humanity."
+            description: "Founded by Baha'u'llah, teaching the unity of all religions and humanity.",
+            wiki: "https://en.wikipedia.org/wiki/Bah%C3%A1%27%C3%AD_Faith"
+        },
+        {
+            name: "Mormonism",
+            lat: 42.9086,
+            lng: -76.8486,
+            city: "Fayette, New York, USA",
+            date: "1830 CE",
+            color: "#6366f1",
+            description: "Founded by Joseph Smith with the publication of the Book of Mormon. Later centered in Salt Lake City.",
+            wiki: "https://en.wikipedia.org/wiki/Mormonism"
+        },
+        {
+            name: "Rastafari",
+            lat: 18.1096,
+            lng: -77.2975,
+            city: "Jamaica",
+            date: "1930s CE",
+            color: "#22c55e",
+            description: "Developed in Jamaica, venerating Haile Selassie I of Ethiopia as the returned messiah.",
+            wiki: "https://en.wikipedia.org/wiki/Rastafari"
+        },
+        {
+            name: "Druze",
+            lat: 30.0444,
+            lng: 31.2357,
+            city: "Cairo, Egypt",
+            date: "1017 CE",
+            color: "#eab308",
+            description: "Emerged from Ismaili Islam during the Fatimid Caliphate, incorporating Gnostic and Neoplatonic elements.",
+            wiki: "https://en.wikipedia.org/wiki/Druze"
+        },
+        {
+            name: "Cao Dai",
+            lat: 11.3114,
+            lng: 106.6299,
+            city: "Tay Ninh, Vietnam",
+            date: "1926 CE",
+            color: "#f472b6",
+            description: "Syncretic religion combining Buddhism, Christianity, Taoism, and Confucianism. The 'Eye of Providence' is its symbol.",
+            wiki: "https://en.wikipedia.org/wiki/Caodaism"
+        },
+        {
+            name: "Tenrikyo",
+            lat: 34.5967,
+            lng: 135.8530,
+            city: "Tenri, Japan",
+            date: "1838 CE",
+            color: "#fb923c",
+            description: "Founded by Nakayama Miki, teaching that God the Parent wishes for human beings to live a 'Joyous Life'.",
+            wiki: "https://en.wikipedia.org/wiki/Tenrikyo"
+        },
+        {
+            name: "Mandaeism",
+            lat: 31.0,
+            lng: 47.0,
+            city: "Southern Mesopotamia",
+            date: "~1st century CE",
+            color: "#94a3b8",
+            description: "Ancient Gnostic religion venerating John the Baptist. Adherents practice frequent baptism rituals.",
+            wiki: "https://en.wikipedia.org/wiki/Mandaeism"
         }
     ];
 
-    // Initialize map
-    const map = L.map('map').setView([25, 60], 2);
+    // Global affiliation data (Tufte-style chart)
+    const affiliationData = [
+        { name: "Christianity", percent: 31.1, color: "#3b82f6" },
+        { name: "Islam", percent: 24.9, color: "#10b981" },
+        { name: "Secular / Non-religious", percent: 15.6, color: "#6b7280" },
+        { name: "Hinduism", percent: 15.2, color: "#f59e0b" },
+        { name: "Buddhism", percent: 6.6, color: "#ef4444" },
+        { name: "Folk Religions", percent: 5.6, color: "#a78bfa" },
+        { name: "Other Religions", percent: 0.8, color: "#94a3b8" },
+        { name: "Judaism", percent: 0.2, color: "#8b5cf6" }
+    ];
 
-    // Add tile layer (using a neutral style)
+    // Store markers for legend interaction
+    const markers = {};
+
+    // Initialize map
+    const map = L.map('map').setView([28, 55], 2);
+
+    // Add tile layer
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         maxZoom: 18
@@ -284,18 +494,20 @@ description: Interactive map showing where major world religions originated
         }).addTo(map);
 
         const popupContent = `
-            <div style="min-width: 200px;">
+            <div style="min-width: 220px;">
                 <div class="popup-title">${religion.name}</div>
                 <div class="popup-location">${religion.city}</div>
                 <div class="popup-date">${religion.date}</div>
                 <div class="popup-desc">${religion.description}</div>
+                <a href="${religion.wiki}" target="_blank" rel="noopener noreferrer" class="popup-link">Learn more on Wikipedia →</a>
             </div>
         `;
 
         marker.bindPopup(popupContent);
+        markers[religion.name] = marker;
     });
 
-    // Populate legend
+    // Populate legend with clickable items
     const legendGrid = document.getElementById('legend-grid');
     religions.forEach(religion => {
         const item = document.createElement('div');
@@ -304,10 +516,37 @@ description: Interactive map showing where major world religions originated
             <span class="legend-dot" style="background-color: ${religion.color}"></span>
             <span>${religion.name}</span>
         `;
+        item.addEventListener('click', () => {
+            const marker = markers[religion.name];
+            map.setView([religion.lat, religion.lng], 6, { animate: true });
+            marker.openPopup();
+        });
+        item.setAttribute('title', `Click to view ${religion.name} on map`);
         legendGrid.appendChild(item);
     });
 
-    // Handle map resize on window resize
+    // Render Tufte-style horizontal bar chart
+    const chartContainer = document.getElementById('chart-container');
+    const maxPercent = Math.max(...affiliationData.map(d => d.percent));
+
+    affiliationData.forEach(item => {
+        const row = document.createElement('div');
+        row.className = 'chart-row';
+
+        const barWidth = (item.percent / maxPercent) * 100;
+
+        row.innerHTML = `
+            <div class="chart-label">${item.name}</div>
+            <div class="chart-bar-container">
+                <div class="chart-bar" style="width: ${barWidth}%; background-color: ${item.color};"></div>
+                <span class="chart-value">${item.percent}%</span>
+            </div>
+        `;
+
+        chartContainer.appendChild(row);
+    });
+
+    // Handle map resize
     window.addEventListener('resize', () => {
         map.invalidateSize();
     });
