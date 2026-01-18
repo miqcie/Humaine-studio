@@ -28,7 +28,7 @@ Located at `/posts/YYYY/MM/DD/post-title/`:
 1. **AI Inequality and the Digital Future of Work** (2021-02-20)
    - Topics: AI ethics, automation, human dignity
 
-2. **Connecting Claude to Notion with MCP** (2024-08-10)
+2. **Connecting Claude to Notion with MCP** (2025-08-10)
    - Topics: Model Context Protocol, Claude integration, Notion automation
 
 3. **Building Humaine Studio with Jekyll** (2024-08-11)
