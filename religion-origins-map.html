@@ -1,0 +1,314 @@
+---
+layout: default
+title: World Religion Origins Map
+description: Interactive map showing where major world religions originated
+---
+
+<style>
+    .map-container {
+        margin: 0 -20px;
+    }
+
+    #map {
+        height: 500px;
+        width: 100%;
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+    }
+
+    .map-header {
+        margin-bottom: 30px;
+    }
+
+    .map-title {
+        font-size: 32px;
+        font-weight: 400;
+        margin-bottom: 15px;
+        color: var(--text-dark);
+    }
+
+    .map-description {
+        font-size: 16px;
+        color: var(--text-light);
+        line-height: 1.7;
+        max-width: 600px;
+    }
+
+    .legend {
+        margin-top: 30px;
+        padding: 20px;
+        background: var(--code-bg);
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+    }
+
+    .legend-title {
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 15px;
+        color: var(--text-dark);
+    }
+
+    .legend-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 12px;
+    }
+
+    .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 14px;
+        color: var(--text-color);
+    }
+
+    .legend-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        flex-shrink: 0;
+    }
+
+    .leaflet-popup-content-wrapper {
+        border-radius: 8px;
+    }
+
+    .popup-title {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: #333;
+    }
+
+    .popup-location {
+        font-size: 13px;
+        color: #666;
+        margin-bottom: 4px;
+    }
+
+    .popup-date {
+        font-size: 12px;
+        color: #888;
+        margin-bottom: 8px;
+    }
+
+    .popup-desc {
+        font-size: 13px;
+        color: #444;
+        line-height: 1.5;
+    }
+
+    @media (max-width: 768px) {
+        #map {
+            height: 400px;
+        }
+
+        .map-title {
+            font-size: 24px;
+        }
+
+        .legend-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+<div class="map-header">
+    <h1 class="map-title">Origins of World Religions</h1>
+    <p class="map-description">
+        An interactive map showing where humanity's major religions originated.
+        Click on any marker to learn more about each religion's birthplace.
+    </p>
+</div>
+
+<div class="map-container">
+    <div id="map"></div>
+</div>
+
+<div class="legend">
+    <h2 class="legend-title">Religions</h2>
+    <div class="legend-grid" id="legend-grid">
+        <!-- Populated by JavaScript -->
+    </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+<script>
+    // Religion data with origins
+    const religions = [
+        {
+            name: "Christianity",
+            lat: 31.7683,
+            lng: 35.2137,
+            city: "Jerusalem, Israel",
+            date: "~30 CE",
+            color: "#3b82f6",
+            description: "Founded on the teachings of Jesus Christ. Jerusalem is where Jesus was crucified and resurrected."
+        },
+        {
+            name: "Islam",
+            lat: 21.4225,
+            lng: 39.8262,
+            city: "Mecca, Saudi Arabia",
+            date: "~610 CE",
+            color: "#10b981",
+            description: "Founded by Prophet Muhammad, who received revelations from God in Mecca."
+        },
+        {
+            name: "Judaism",
+            lat: 31.7683,
+            lng: 35.2137,
+            city: "Canaan/Jerusalem",
+            date: "~2000 BCE",
+            color: "#8b5cf6",
+            description: "One of the oldest monotheistic religions, originating with Abraham in the land of Canaan."
+        },
+        {
+            name: "Hinduism",
+            lat: 25.3176,
+            lng: 82.9739,
+            city: "Indus Valley, India",
+            date: "~1500 BCE",
+            color: "#f59e0b",
+            description: "Developed in the Indian subcontinent with no single founder. Varanasi is one of its holiest cities."
+        },
+        {
+            name: "Buddhism",
+            lat: 24.6961,
+            lng: 84.9911,
+            city: "Bodh Gaya, India",
+            date: "~500 BCE",
+            color: "#ef4444",
+            description: "Founded by Siddhartha Gautama (Buddha) who attained enlightenment under the Bodhi tree."
+        },
+        {
+            name: "Sikhism",
+            lat: 31.6200,
+            lng: 74.8765,
+            city: "Punjab, India",
+            date: "~1500 CE",
+            color: "#06b6d4",
+            description: "Founded by Guru Nanak in the Punjab region, emphasizing equality and service."
+        },
+        {
+            name: "Confucianism",
+            lat: 35.5967,
+            lng: 116.9917,
+            city: "Qufu, China",
+            date: "~500 BCE",
+            color: "#ec4899",
+            description: "Founded by Confucius in Qufu, focusing on ethics, family, and social harmony."
+        },
+        {
+            name: "Taoism",
+            lat: 32.0603,
+            lng: 118.7969,
+            city: "China",
+            date: "~400 BCE",
+            color: "#14b8a6",
+            description: "Associated with Laozi, emphasizing living in harmony with the Tao (the Way)."
+        },
+        {
+            name: "Shinto",
+            lat: 34.4550,
+            lng: 136.7257,
+            city: "Japan",
+            date: "Ancient",
+            color: "#f97316",
+            description: "Indigenous religion of Japan centered on kami (spirits) and nature worship. Ise Grand Shrine is most sacred."
+        },
+        {
+            name: "Zoroastrianism",
+            lat: 29.5926,
+            lng: 52.5836,
+            city: "Persia (Iran)",
+            date: "~1500 BCE",
+            color: "#a855f7",
+            description: "Founded by Zoroaster in ancient Persia, one of the world's oldest monotheistic religions."
+        },
+        {
+            name: "Jainism",
+            lat: 25.0,
+            lng: 85.5,
+            city: "Bihar, India",
+            date: "~600 BCE",
+            color: "#84cc16",
+            description: "Founded by Mahavira, emphasizing non-violence, truth, and asceticism."
+        },
+        {
+            name: "Baha'i Faith",
+            lat: 29.6168,
+            lng: 52.5311,
+            city: "Shiraz, Iran",
+            date: "1844 CE",
+            color: "#0ea5e9",
+            description: "Founded by Baha'u'llah, teaching the unity of all religions and humanity."
+        }
+    ];
+
+    // Initialize map
+    const map = L.map('map').setView([25, 60], 2);
+
+    // Add tile layer (using a neutral style)
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        maxZoom: 18
+    }).addTo(map);
+
+    // Create custom icon function
+    function createIcon(color) {
+        return L.divIcon({
+            className: 'custom-marker',
+            html: `<div style="
+                background-color: ${color};
+                width: 24px;
+                height: 24px;
+                border-radius: 50%;
+                border: 3px solid white;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            "></div>`,
+            iconSize: [24, 24],
+            iconAnchor: [12, 12],
+            popupAnchor: [0, -12]
+        });
+    }
+
+    // Add markers
+    religions.forEach(religion => {
+        const marker = L.marker([religion.lat, religion.lng], {
+            icon: createIcon(religion.color)
+        }).addTo(map);
+
+        const popupContent = `
+            <div style="min-width: 200px;">
+                <div class="popup-title">${religion.name}</div>
+                <div class="popup-location">${religion.city}</div>
+                <div class="popup-date">${religion.date}</div>
+                <div class="popup-desc">${religion.description}</div>
+            </div>
+        `;
+
+        marker.bindPopup(popupContent);
+    });
+
+    // Populate legend
+    const legendGrid = document.getElementById('legend-grid');
+    religions.forEach(religion => {
+        const item = document.createElement('div');
+        item.className = 'legend-item';
+        item.innerHTML = `
+            <span class="legend-dot" style="background-color: ${religion.color}"></span>
+            <span>${religion.name}</span>
+        `;
+        legendGrid.appendChild(item);
+    });
+
+    // Handle map resize on window resize
+    window.addEventListener('resize', () => {
+        map.invalidateSize();
+    });
+</script>
