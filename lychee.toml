@@ -1,0 +1,62 @@
+# Lychee link checker configuration
+# Documentation: https://github.com/lycheeverse/lychee
+
+# Maximum number of concurrent network requests
+max_concurrency = 10
+
+# Request timeout in seconds
+timeout = 20
+
+# Maximum number of retries per link
+max_retries = 3
+
+# HTTP status codes to accept as valid
+accept = [
+    200, 204, 206,           # Success
+    300, 301, 302, 303, 304, 307, 308,  # Redirects
+    403, 429, 999            # Special cases (forbidden, rate limited, LinkedIn)
+]
+
+# Exclude specific URLs and patterns
+exclude = [
+    # Authentication required
+    'https://claude.ai/*',
+    'https://www.linkedin.com/in/*',
+    'https://docs.google.com/*',    # Google Docs often require auth
+
+    # Rate limiting / login walls
+    'https://www.reddit.com/*',
+    'https://medium.com/*',
+    'https://*.medium.com/*',
+
+    # Temporarily unreliable
+    'https://mondrian.dev/*',
+    'https://caldris.io/*',
+
+    # CDN resources
+    'https://fonts.googleapis.com/*',
+    'https://fonts.gstatic.com/*',
+    'https://unpkg.com/*',
+    'https://assets.apollo.io/*',
+
+    # Academic / research (often flaky or paywalled)
+    'https://diabetesjournals.org/*',
+    'https://eml.berkeley.edu/*',
+    'https://arxiv.org/*',
+
+    # Known issues
+    'https://posthog.com/opt-out',
+
+    # Internal redirects (avoid duplicate checks)
+    'https://humaine.studio/privacy/',
+    'https://humaine.studio/posts/2021/02/20/ai-inequality-digital-future-of-work/',
+]
+
+# Exclude link checking for specific elements
+exclude_link_local = true
+
+# Include HTTP links (not just HTTPS)
+include_verbatim = false
+
+# User agent string
+user_agent = "Mozilla/5.0 (compatible; LycheeBot/1.0; +https://humaine.studio)"

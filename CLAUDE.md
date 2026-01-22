@@ -469,6 +469,42 @@ gh pr status
 gh workflow list
 ```
 
+### Maintaining llm.txt
+
+**What is llm.txt?** A file at the root of the site (`/llm.txt`) that helps AI models understand your content, structure, and purpose. Think of it as a README specifically for LLMs.
+
+**When to update:**
+```bash
+# ✅ MUST update llm.txt when:
+- Adding/removing blog posts → Update count and add entry
+- Adding/removing primary pages → Update Primary Pages section
+- Adding/removing experiments → Update Experiments section
+- Changing tech stack → Update Technical Stack section
+
+# 📝 SHOULD update when:
+- Updating analytics/tracking → Update Analytics & Tracking
+- Adding CI/CD workflows → Update CI/CD Pipeline
+- Changing site philosophy → Update Site Overview
+
+# Quick check if update needed
+ls -1 _posts/*.md | wc -l  # Compare to blog post count in llm.txt
+grep "Last Updated" llm.txt  # Should reflect recent changes
+```
+
+**Update workflow:**
+```bash
+# 1. Edit llm.txt with changes
+# 2. Update "Last Updated" date to current date
+# 3. Commit with clear message
+git add llm.txt
+git commit -m "Update: llm.txt with [what changed]"
+
+# Example: After publishing new blog post
+git commit -m "Update: llm.txt with new blog post count (7 total)"
+```
+
+**See also:** `docs/llm-txt-maintenance.md` for detailed maintenance guide
+
 ## Publishing Workflow: Jekyll + Substack
 
 ### Content Strategy

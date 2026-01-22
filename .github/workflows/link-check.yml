@@ -28,21 +28,10 @@ jobs:
       run: bundle exec jekyll build
 
     - name: Link Checker
-      uses: lycheeverse/lychee-action@v1.8.0
+      uses: lycheeverse/lychee-action@v1.10.0
       with:
-        args: >-
-          --verbose --no-progress '_site/**/*.html'
-          --accept 200,204,206,300,301,302,303,304,307,308,403,429,999
-          --exclude 'https://claude.ai/*'
-          --exclude 'https://www.reddit.com/*'
-          --exclude 'https://www.linkedin.com/in/*'
-          --exclude 'https://mondrian.dev/*'
-          --exclude 'https://fonts.googleapis.com/$'
-          --exclude 'https://fonts.gstatic.com/$'
-          --exclude 'https://diabetesjournals.org/*'
-          --exclude 'https://posthog.com/opt-out'
-          --exclude 'https://humaine.studio/privacy/'
-          --exclude 'https://humaine.studio/posts/2021/02/20/ai-inequality-digital-future-of-work/'
+        args: --verbose --no-progress '_site/**/*.html'
+        format: markdown
         fail: true
         jobSummary: true
       env:

@@ -4,8 +4,8 @@ Organizations struggle with AI tools that create more friction than they remove.
 
 **Current Projects:**
 
-- **[Caldris.io](https://Caldris.io)** - Continuous compliance monitoring with transparent audit trails for ISO/SOC2
-- **[Mondrian.dev](https://Mondrian.dev)** - Open source Zero Trust OS addressing the security poverty line
+- **[Caldris.io](https://caldris.io)** - Continuous compliance monitoring with transparent audit trails for ISO/SOC2
+- **[Mondrian.dev](https://mondrian.dev)** - Open source Zero Trust OS addressing the security poverty line
 - **This website** - Built using Claude Code to demonstrate development acceleration principles
 
 ## Evidence-Based Approach
