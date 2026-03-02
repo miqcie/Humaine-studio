@@ -41,3 +41,7 @@ yarn-error.log*
 
 # Specstory session history
 .specstory/
+
+# AI assistant config (internal, not public)
+CLAUDE.md
+.claude/
