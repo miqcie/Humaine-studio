@@ -33,18 +33,32 @@
                 if (!shown) showVariant('a');
             }, 1500);
 
-            try {
-                if (typeof posthog !== 'undefined' && posthog.onFeatureFlags) {
-                    posthog.onFeatureFlags(function() {
-                        var flag = posthog.getFeatureFlag(opts.flag);
-                        if (flag === 'test') {
-                            showVariant('b');
-                        } else {
-                            showVariant('a');
-                        }
-                    });
-                }
-            } catch (e) {}
+            function registerFeatureFlagHandler() {
+                try {
+                    if (typeof posthog !== 'undefined' && posthog.onFeatureFlags) {
+                        posthog.onFeatureFlags(function() {
+                            var flag = posthog.getFeatureFlag(opts.flag);
+                            if (flag === 'test') {
+                                showVariant('b');
+                            } else {
+                                showVariant('a');
+                            }
+                        });
+                        return true;
+                    }
+                } catch (e) {}
+                return false;
+            }
+
+            if (!registerFeatureFlagHandler()) {
+                var waitMs = 0;
+                var poll = setInterval(function() {
+                    waitMs += 50;
+                    if (registerFeatureFlagHandler() || waitMs >= 1500 || shown) {
+                        clearInterval(poll);
+                    }
+                }, 50);
+            }
         };
         </script>
 
