@@ -20,6 +20,23 @@
 
 ## CRITICAL Jekyll/Markdown Rules
 
+### ⚠️ Post Permalinks: Collection Override
+**Posts render at `/posts/YYYY/MM/DD/title/`** — NOT `/:categories/...`.
+
+The `_config.yml` has two permalink settings:
+- Line 15 (default): `/:categories/:year/:month/:day/:title/`
+- Line 28 (posts collection): `/:collection/:year/:month/:day/:title/`
+
+**The collection-level permalink wins.** Since `:collection` = `posts`, the actual URL is always `/posts/...` regardless of categories in frontmatter.
+
+**For cross-references between posts**, prefer Jekyll's built-in tag:
+```liquid
+{% raw %}[Link text]({% post_url 2026-03-02-slug-here %}){% endraw %}
+```
+This validates at build time and won't break if permalink structure changes.
+
+**Link checker note:** New posts that cross-reference each other will always fail the link checker on PRs (checks against live site where posts don't exist yet). This resolves after merge + deploy.
+
 ### ⚠️ NEVER Mix HTML Containers with Markdown Content
 **Problem:** Jekyll's kramdown parser switches to HTML mode when it encounters HTML block elements, causing markdown syntax to render as literal text instead of being processed.
 
