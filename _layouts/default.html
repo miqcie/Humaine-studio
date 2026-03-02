@@ -7,6 +7,61 @@
     <div class="container">
         {% include header.html %}
 
+        <!-- PostHog Experiment Helper: must be before {{ content }} so pages can call runExperiment() inline -->
+        <script>
+        window.runExperiment = function(opts) {
+            // opts: { name, flag, variantAId, variantBId }
+            var shown = false;
+
+            function showVariant(variant) {
+                if (shown) return;
+                shown = true;
+                var id = (variant === 'b') ? opts.variantBId : opts.variantAId;
+                var el = document.getElementById(id);
+                if (el) el.style.display = 'block';
+                try {
+                    if (typeof posthog !== 'undefined' && posthog.capture) {
+                        posthog.capture('experiment_variant_shown', {
+                            experiment: opts.name,
+                            variant: variant
+                        });
+                    }
+                } catch (e) {}
+            }
+
+            setTimeout(function() {
+                if (!shown) showVariant('a');
+            }, 1500);
+
+            function registerFeatureFlagHandler() {
+                try {
+                    if (typeof posthog !== 'undefined' && posthog.onFeatureFlags) {
+                        posthog.onFeatureFlags(function() {
+                            var flag = posthog.getFeatureFlag(opts.flag);
+                            if (flag === 'test') {
+                                showVariant('b');
+                            } else {
+                                showVariant('a');
+                            }
+                        });
+                        return true;
+                    }
+                } catch (e) {}
+                return false;
+            }
+
+            if (!registerFeatureFlagHandler()) {
+                var waitMs = 0;
+                var poll = setInterval(function() {
+                    waitMs += 50;
+                    if (registerFeatureFlagHandler() || waitMs >= 1500 || shown) {
+                        clearInterval(poll);
+                    }
+                }, 50);
+            }
+        };
+        </script>
+
         <main class="main-content">
             {{ content }}
         </main>
