@@ -7,6 +7,47 @@
     <div class="container">
         {% include header.html %}
 
+        <!-- PostHog Experiment Helper: must be before {{ content }} so pages can call runExperiment() inline -->
+        <script>
+        window.runExperiment = function(opts) {
+            // opts: { name, flag, variantAId, variantBId }
+            var shown = false;
+
+            function showVariant(variant) {
+                if (shown) return;
+                shown = true;
+                var id = (variant === 'b') ? opts.variantBId : opts.variantAId;
+                var el = document.getElementById(id);
+                if (el) el.style.display = 'block';
+                try {
+                    if (typeof posthog !== 'undefined' && posthog.capture) {
+                        posthog.capture('experiment_variant_shown', {
+                            experiment: opts.name,
+                            variant: variant
+                        });
+                    }
+                } catch (e) {}
+            }
+
+            setTimeout(function() {
+                if (!shown) showVariant('a');
+            }, 1500);
+
+            try {
+                if (typeof posthog !== 'undefined' && posthog.onFeatureFlags) {
+                    posthog.onFeatureFlags(function() {
+                        var flag = posthog.getFeatureFlag(opts.flag);
+                        if (flag === 'test') {
+                            showVariant('b');
+                        } else {
+                            showVariant('a');
+                        }
+                    });
+                }
+            } catch (e) {}
+        };
+        </script>
+
         <main class="main-content">
             {{ content }}
         </main>
@@ -26,46 +67,5 @@
         person_profiles: 'identified_only', // or 'always' to create profiles for anonymous users as well
     })
 </script>
-
-    <!-- PostHog Experiment Helper: reusable from any page -->
-    <script>
-    window.runExperiment = function(opts) {
-        // opts: { name, flag, variantAId, variantBId }
-        var shown = false;
-
-        function showVariant(variant) {
-            if (shown) return;
-            shown = true;
-            var id = (variant === 'b') ? opts.variantBId : opts.variantAId;
-            var el = document.getElementById(id);
-            if (el) el.style.display = 'block';
-            try {
-                if (typeof posthog !== 'undefined' && posthog.capture) {
-                    posthog.capture('experiment_variant_shown', {
-                        experiment: opts.name,
-                        variant: variant
-                    });
-                }
-            } catch (e) {}
-        }
-
-        setTimeout(function() {
-            if (!shown) showVariant('a');
-        }, 1500);
-
-        try {
-            if (typeof posthog !== 'undefined' && posthog.onFeatureFlags) {
-                posthog.onFeatureFlags(function() {
-                    var flag = posthog.getFeatureFlag(opts.flag);
-                    if (flag === 'test') {
-                        showVariant('b');
-                    } else {
-                        showVariant('a');
-                    }
-                });
-            }
-        } catch (e) {}
-    };
-    </script>
 </body>
 </html>
