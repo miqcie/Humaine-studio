@@ -189,8 +189,8 @@ Until then, the security poverty line remains. And 29% of startups will keep los
 ---
 
 **Related Reading:**
-- [Why I Built and Shelved a Zero Trust Tool](/security/compliance/2026/03/02/experiments-building-grc-tool-weekend/) - Decision framework for fast validation vs. full commitment
-- [Evidence-First vs Detection-Only Security](/security/compliance/2026/03/02/evidence-first-vs-detection-only-security/) - Technical deep-dive into cryptographic attestations
+- [Why I Built and Shelved a Zero Trust Tool](/posts/2026/03/02/experiments-building-grc-tool-weekend/) - Decision framework for fast validation vs. full commitment
+- [Evidence-First vs Detection-Only Security](/posts/2026/03/02/evidence-first-vs-detection-only-security/) - Technical deep-dive into cryptographic attestations
 
 **Sources Cited:**
 - Wendy Nather (451 Research, 2011) - Original "security poverty line" concept

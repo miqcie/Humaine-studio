@@ -142,8 +142,8 @@ Sometimes that means building a product. Sometimes it means advising others on w
 ---
 
 **Related Reading:**
-- [The Security Poverty Line: Why Startups Can't Compete on Compliance](/security/compliance/2026/03/02/security-poverty-line/) - Economic analysis with quantified data
-- [Evidence-First vs Detection-Only Security](/security/compliance/2026/03/02/evidence-first-vs-detection-only-security/) - Technical deep-dive into Mondrian's implementation
+- [The Security Poverty Line: Why Startups Can't Compete on Compliance](/posts/2026/03/02/security-poverty-line/) - Economic analysis with quantified data
+- [Evidence-First vs Detection-Only Security](/posts/2026/03/02/evidence-first-vs-detection-only-security/) - Technical deep-dive into Mondrian's implementation
 
 **For advisory/consulting inquiries** about compliance automation, evidence-first security, or build/buy decisions in the security space: [Eagle Ridge Advisory](https://eagleridge.io) | [Humaine Studio](https://humaine.studio)
 

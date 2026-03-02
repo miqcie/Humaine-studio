@@ -419,8 +419,8 @@ And the next time an auditor asks "Can you prove this control ran?" - you'll hav
 ---
 
 **Related Reading:**
-- [Why I Built and Shelved a Zero Trust Tool](/security/compliance/2026/03/02/experiments-building-grc-tool-weekend/) - The decision framework behind Mondrian's archive
-- [The Security Poverty Line](/security/compliance/2026/03/02/security-poverty-line/) - Economic analysis of compliance costs
+- [Why I Built and Shelved a Zero Trust Tool](/posts/2026/03/02/experiments-building-grc-tool-weekend/) - The decision framework behind Mondrian's archive
+- [The Security Poverty Line](/posts/2026/03/02/security-poverty-line/) - Economic analysis of compliance costs
 
 **Technical Resources:**
 - [SLSA Framework](https://slsa.dev) - Supply chain attestation standards
