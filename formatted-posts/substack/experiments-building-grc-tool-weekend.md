@@ -1,0 +1,131 @@
+# Experiments in Building a GRC Tool in a Weekend
+
+*I built a Zero Trust CI/CD prototype in 4 hours that generates cryptographic compliance proof. Here's what I learned about fast validation — and why I'm not launching it.*
+
+---
+
+Most people who identify a real market problem try to build a company around it. I did the opposite.
+
+I built a working Zero Trust tool in 4 hours. It blocks risky infrastructure changes, generates cryptographically signed attestations, and integrates with GitHub Actions. The code works. The technical approach is sound. The market problem is real.
+
+And I'm not launching it.
+
+This isn't a failure story. It's a decision framework story — one that every CISO should understand when evaluating build vs. buy decisions in security tooling.
+
+## The Problem: The Security Poverty Line
+
+In 2011, Wendy Nather at 451 Research coined the term "security poverty line" — the economic threshold below which organizations cannot achieve mature security posture, regardless of effort.
+
+Fourteen years later, the data shows it's gotten worse:
+
+**29% of organizations lose new business** due to missing compliance certifications (A-LIGN 2023). Not because their product is bad. Not because their security is weak. Because they can't afford the $200,000–$400,000 first-year cost to prove it:
+
+- SOC 2 certification: $35K–150K initially, $12K–60K annually
+- Internal engineering effort: 100–200 hours = ~$50K opportunity cost
+- Insurance impact: Companies with strong security controls receive more favorable terms
+- Lost deal velocity: 41% report sales cycle slowdowns (Drata 2023)
+
+I experienced this firsthand at DeepWaterPoint & Associates. We spent hundreds of hours collecting screenshots and documentation for auditors — compliance theatre that didn't meaningfully reduce risk, just checked boxes.
+
+## The Validation: Building Mondrian
+
+I was accepted to Startup Virginia's Idea Factory, a pre-incubator program focused on customer discovery and early validation. The framework was clear: talk to 50+ potential customers before building anything.
+
+I did the opposite. I spent 4 hours building first.
+
+**What Mondrian does:**
+- Scans infrastructure code (Terraform) for security violations
+- Blocks risky GitHub PRs before they merge
+- Generates DSSE-signed attestations proving controls ran
+- Creates tamper-evident audit trails with hash chains
+
+The technical approach works. Evidence-first security is feasible — you can cryptographically prove that security controls ran, not just claim they did in a screenshot.
+
+## The Data: What The Prototype Proved
+
+**Technical validation was complete:** SLSA-compatible attestation format, DSSE cryptographic signatures, GitHub Actions integration, hash-chain integrity for tamper-evident audit logs.
+
+**Market resonance was real:** 96% of GRC teams struggle with compliance (Swimlane). Average data breach costs $4.45M (IBM 2023). For a startup with $2M ARR, a $200K compliance cost represents 10% of revenue.
+
+**But competitive reality was sobering:**
+- Checkov, Terrascan, and tfsec already provide free policy scanning
+- Vanta and Drata already lowered compliance costs from $400K to $200K
+- They solve 80% of evidence collection through SaaS integrations
+- The remaining 20% (cryptographic proof) requires answering: "Do auditors actually accept this?"
+
+## The Decision: Why Archive Instead of Launch
+
+I had the technical pieces. I had quantified market data. I had a clear positioning: "PostHog for Zero Trust — make enterprise security accessible without enterprise budgets."
+
+What I didn't have: 50 customer discovery interviews validating demand.
+
+**The Startup Virginia framework was right, and I ignored it.** Build first, validate later — classic founder mistake. But the framework's rigor revealed something more valuable: a mismatch between the work required and my actual strengths.
+
+**What OSS product maintenance requires:**
+- Ongoing community building and developer evangelism
+- Sustained customer development (50+ interviews, continuous feedback loops)
+- Product management and roadmap prioritization
+- Support and documentation maintenance
+
+**What I'm actually good at:**
+- Fast prototyping to validate technical feasibility
+- Translation and synthesis (compliance to engineering language)
+- Strategic analysis (build/buy/partner decision frameworks)
+- Content creation that reaches broader audiences
+
+The moment of clarity: I had customer discovery paralysis. Not because I couldn't talk to people. But because deep down, I knew community-building wasn't where I'd create the most value.
+
+**Then family health shifted priorities.** My kid was diagnosed with Type 1 Diabetes a few weeks after building Mondrian. Suddenly the 12–18 month SBIR research commitment I'd planned became impossible.
+
+But the deeper reason was already there: **advisory/content work creates more impact for my skill set than OSS product maintenance.**
+
+## The Lesson: Fast Prototyping for Validation, Not Commitment
+
+Here's what I got right:
+
+- **Fast validation beats slow planning** — 4 hours proved technical feasibility without months of architecture docs
+- **Documentation captures value** — Technical specs preserve learnings even when the product is archived
+- **Evidence-first approach is sound** — The technical pieces exist (SLSA, DSSE, Sigstore), integration is the gap
+- **Market framing resonates** — "Security poverty line" cuts through noise better than feature lists
+
+Here's what I missed:
+
+- **Customer validation comes first** — Should have talked to 20 security leaders before writing any code
+- **Competitive moat analysis matters** — "Why hasn't Vanta/Drata added crypto attestations?" is the critical question
+- **Match work to strengths** — Community-building misalignment should have been obvious earlier
+- **Honest ROI analysis upfront** — Advisory model gives flexibility; OSS maintenance locks in commitment
+
+## What This Means for CISOs
+
+Every CISO faces build vs. buy decisions. The conventional wisdom is "buy when possible, build when differentiation matters." But that misses the nuance:
+
+**Build to validate, not to launch.** Rapid prototyping can answer: Is this technical approach feasible? Does our team have the skills to maintain this? What's the actual effort required vs. vendor solution?
+
+**Partner when vendors solve 80%.** Vanta and Drata lowered compliance costs by 75%. The remaining gap might not justify building a competitive solution.
+
+**Advise when translation matters more than code.** Sometimes the highest-value work is helping others make better decisions, not building the thing yourself.
+
+## The Best Product Decision is Sometimes No Product At All
+
+Mondrian validates an approach. It doesn't become a company. The code lives as an open-source reference. The insights become blog posts and advisory frameworks.
+
+**This isn't a failure — it's strategic repositioning.** I can help more organizations by validating technical approaches quickly, translating compliance requirements into engineering reality, making honest build/buy/partner recommendations, and sharing frameworks publicly.
+
+For CISOs: **prototype to validate ideas, not to commit.** Build small, learn fast, and be ruthlessly honest about where your team's strengths create the most value.
+
+Sometimes that means building a product. Sometimes it means advising others on what to build. And sometimes — like Mondrian — it means validating an approach and moving on.
+
+---
+
+**Related reading from Humaine Studio:**
+- [The Security Poverty Line: Why Startups Can't Compete on Compliance](https://humaine.studio/posts/2026/03/02/security-poverty-line/) — Economic analysis with quantified data
+- [Evidence-First vs Detection-Only Security](https://humaine.studio/posts/2026/03/02/evidence-first-vs-detection-only-security/) — Technical deep-dive into Mondrian's implementation
+
+**GitHub:** [miqcie/mondrian](https://github.com/miqcie/mondrian) (archived read-only reference)
+
+*Originally published at [humaine.studio](https://humaine.studio/posts/2026/03/02/experiments-building-grc-tool-weekend/)*
+
+---
+
+> **Canonical URL:** https://humaine.studio/posts/2026/03/02/experiments-building-grc-tool-weekend/
+> Set this in Substack post settings under "This post was originally published elsewhere"
