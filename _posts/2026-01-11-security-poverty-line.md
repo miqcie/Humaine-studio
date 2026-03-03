@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "The Security Poverty Line: Why Startups Can't Compete on Compliance"
-date: 2026-03-02
+date: 2026-02-02
 categories: [security, compliance]
 tags: [security-poverty-line, startup-compliance, SOC2, GRC-automation, Wendy-Nather]
 excerpt: "Wendy Nather named it in 2011. Fourteen years later, 29% of companies still lose new business to the $200K security poverty line. Here's why compliance costs are destroying startup economics."
