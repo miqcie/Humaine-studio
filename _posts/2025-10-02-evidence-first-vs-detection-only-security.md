@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Evidence-First vs Detection-Only Security: The Gap in Current Tooling"
-date: 2026-03-02
+date: 2025-10-02
 categories: [security, compliance]
 tags: [evidence-first-security, SLSA, DSSE, attestation, tamper-evident, Checkov]
 excerpt: "Checkov tells you what's wrong. But can you prove it was fixed? Here's why detection-only security fails compliance audits — and how evidence-first architecture solves it."

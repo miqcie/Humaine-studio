@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Experiments in Building a GRC Tool in a Weekend"
-date: 2026-03-02
+date: 2026-01-11
 categories: [security, compliance]
 tags: [zero-trust, compliance, GRC, build-vs-buy, decision-framework]
 excerpt: "I built a Zero Trust CI/CD prototype in 4 hours that generates cryptographic compliance proof. Here’s what I learned about fast validation and what that decision framework means for solopreneurs in GRC and cybersecurity."
@@ -11,7 +11,7 @@ Most people who identify a real market problem try to build a company around it.
 
 I built a working Zero Trust tool in 4 hours. It blocks risky infrastructure changes, generates cryptographically signed attestations, and integrates with GitHub Actions. The code works. The technical approach is sound. The market problem is real.
 
-And I’m not launching it.
+[And I’m not launching it](https://humaine.studio/posts/2026/01/11/experiments-building-grc-tool-weekend/).
 
 This isn’t a failure story. It’s a decision framework story — one that every CISO should understand when evaluating build vs. buy decisions in security tooling. The interesting part isn’t the code. It’s the reasoning behind choosing *not* to ship it.
 
