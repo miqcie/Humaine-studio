@@ -126,4 +126,25 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     window.addEventListener('scroll', updateActiveNavLink);
+
+    // Blog post read tracking — fires once when reader scrolls past 75% of article
+    var postContent = document.querySelector('article.post .post-content');
+    if (postContent) {
+        var postReadFired = false;
+        window.addEventListener('scroll', function() {
+            if (postReadFired) return;
+            var rect = postContent.getBoundingClientRect();
+            var scrolledThrough = -rect.top / (rect.height - window.innerHeight);
+            if (scrolledThrough >= 0.75) {
+                postReadFired = true;
+                if (typeof window.posthog !== 'undefined') {
+                    window.posthog.capture('post_read', {
+                        title: document.title,
+                        path: window.location.pathname,
+                        scroll_depth: 75
+                    });
+                }
+            }
+        });
+    }
 });

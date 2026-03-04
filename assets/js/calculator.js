@@ -57,9 +57,18 @@ class InsulinCalculator {
       if (savedSettings) {
         const settings = JSON.parse(savedSettings);
         Object.assign(this.state, settings);
+        this.trackReturningUser();
       }
     } catch (error) {
       console.warn('Failed to load settings from localStorage:', error);
+    }
+  }
+
+  trackReturningUser() {
+    if (typeof window.posthog !== 'undefined') {
+      window.posthog.capture('calculator_returning_user', {
+        insulin_type: this.state.insulinType
+      });
     }
   }
 
@@ -172,7 +181,15 @@ class InsulinCalculator {
   }
 
   toggleUnits() {
-    const newUnits = this.state.units === 'mg/dL' ? 'mmol/L' : 'mg/dL';
+    const oldUnits = this.state.units;
+    const newUnits = oldUnits === 'mg/dL' ? 'mmol/L' : 'mg/dL';
+
+    if (typeof window.posthog !== 'undefined') {
+      window.posthog.capture('calculator_units_toggled', {
+        from: oldUnits,
+        to: newUnits
+      });
+    }
 
     // Convert current values
     if (this.state.currentBG) {
@@ -258,10 +275,25 @@ class InsulinCalculator {
     };
   }
 
+  trackCalculation(result) {
+    // Debounce: only fire once per 2s of inactivity (calculate() fires on every keystroke)
+    clearTimeout(this._trackTimeout);
+    this._trackTimeout = setTimeout(() => {
+      if (typeof window.posthog !== 'undefined') {
+        window.posthog.capture('calculator_used', {
+          insulin_type: this.state.insulinType,
+          units: this.state.units,
+          dose: result.roundedDose
+        });
+      }
+    }, 2000);
+  }
+
   calculate() {
     const result = this.calculateDose();
 
     if (result) {
+      this.trackCalculation(result);
       this.displayResult(result);
       this.elements.resultSection.style.display = 'block';
       this.elements.placeholderSection.style.display = 'none';
