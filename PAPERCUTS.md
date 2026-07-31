@@ -1,0 +1,3 @@
+- 2026-07-31: roughdraft open for review → CLI watcher died twice (UND_ERR_HEADERS_TIMEOUT) while the browser viewer kept working; exit signal lost
+- 2026-07-31: editing a draft while Roughdraft viewer open → viewer buffer silently overwrote disk edits (image paths reverted twice); close the tab before agent edits
+- 2026-07-31: verifying deployed CSS fix → GitHub Pages 600s cache served stale main.css; cache-bust the stylesheet before concluding a fix did not deploy
