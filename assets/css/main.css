@@ -292,6 +292,39 @@ body {
     color: var(--text-color);
 }
 
+.post-content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1.5em auto;
+    background: #fff;
+    border-radius: 4px;
+}
+
+[data-theme="dark"] .post-content img {
+    border: 1px solid var(--border-color);
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.post-content table {
+    border-collapse: collapse;
+    margin: 1.5em 0;
+    font-size: 15px;
+}
+
+.post-content th,
+.post-content td {
+    padding: 8px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.post-content th {
+    color: var(--text-light);
+    font-weight: 600;
+}
+
 .post-content h1,
 .post-content h2,
 .post-content h3,
