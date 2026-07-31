@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A/B eval results for trimming a Claude Code config: pass rates, per-run outputs, and cost, old config vs trimmed.">
+<title>Config Trim A/B Results — Humaine Studio</title>
+<style>
+  :root {
+    --bg: #fff; --text: #333; --light: #666; --lighter: #999; --dark: #000;
+    --border: #eee; --border-lt: #f0f0f0; --code-bg: #f5f5f5;
+    --pass: #164f2a; --fail: #d4703f; --pass-bg: #edf5ee; --fail-bg: #faeeec;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1a1a; --text: #e4e4e4; --light: #b4b4b4; --lighter: #8a8a8a;
+      --dark: #f0f0f0; --border: #333; --border-lt: #2a2a2a; --code-bg: #2a2a2a;
+      --pass: #5da974; --fail: #f5b08a; --pass-bg: #22301f; --fail-bg: #382220;
+    }
+  }
+  :root[data-theme="light"] {
+    --bg: #fff; --text: #333; --light: #666; --lighter: #999; --dark: #000;
+    --border: #eee; --border-lt: #f0f0f0; --code-bg: #f5f5f5;
+    --pass: #164f2a; --fail: #d4703f; --pass-bg: #edf5ee; --fail-bg: #faeeec;
+  }
+  :root[data-theme="dark"] {
+    --bg: #1a1a1a; --text: #e4e4e4; --light: #b4b4b4; --lighter: #8a8a8a;
+    --dark: #f0f0f0; --border: #333; --border-lt: #2a2a2a; --code-bg: #2a2a2a;
+    --pass: #5da974; --fail: #f5b08a; --pass-bg: #22301f; --fail-bg: #382220;
+  }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 16px; line-height: 1.6; margin: 0; padding: 3rem 1.25rem 4.5rem;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 700px; margin: 0 auto; }
+  h1 { font-size: 32px; font-weight: 500; color: var(--dark); margin: 0 0 8px; line-height: 1.25; text-wrap: balance; }
+  .sub { font-size: 16px; color: var(--light); font-weight: 300; margin: 0 0 28px; }
+  .intro { border-bottom: 1px solid var(--border); padding-bottom: 24px; margin-bottom: 28px; }
+  .intro p { margin: 0 0 12px; }
+  .intro a { color: var(--dark); text-decoration: underline; text-decoration-color: var(--border); text-underline-offset: 3px; }
+  code { font-family: 'Monaco', 'Consolas', monospace; font-size: 13px; background: var(--code-bg); padding: 1px 5px; border-radius: 3px; }
+  #banner { border: 1px solid var(--border); border-radius: 6px; padding: 14px 18px; margin-bottom: 28px; font-size: 15px; }
+  #banner.verdict-pass { border-left: 3px solid var(--pass); }
+  #banner.verdict-fail { border-left: 3px solid var(--fail); }
+  .tiles { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 32px; }
+  .tile { flex: 1 1 140px; border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; }
+  .tile .k { font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--lighter); }
+  .tile .v { font-size: 24px; font-weight: 500; color: var(--dark); font-variant-numeric: tabular-nums; }
+  h2 { font-size: 20px; font-weight: 500; color: var(--dark); margin: 36px 0 14px; }
+  .taskgrid { display: grid; gap: 8px; }
+  .taskrow {
+    display: grid; grid-template-columns: 8.5rem 1fr 1fr; gap: 14px;
+    border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; align-items: center;
+  }
+  @media (max-width: 540px) { .taskrow { grid-template-columns: 1fr; gap: 6px; } }
+  .name { font-family: 'Monaco', 'Consolas', monospace; font-size: 13px; color: var(--dark); }
+  .name .canary { display: block; font-family: 'Inter', sans-serif; font-size: 12px; color: var(--lighter); }
+  .armcell { font-size: 13px; color: var(--light); }
+  .armlabel { font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--lighter); }
+  .dots { letter-spacing: .16em; font-size: 15px; }
+  .dots .p { color: var(--pass); } .dots .f { color: var(--fail); }
+  .stats { font-variant-numeric: tabular-nums; }
+  .pending { color: var(--lighter); font-style: italic; }
+  .tablewrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 6px; }
+  table { border-collapse: collapse; width: 100%; font-size: 13px; }
+  th, td { padding: 8px 12px; text-align: left; white-space: nowrap; }
+  th { font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--lighter); border-bottom: 1px solid var(--border); font-weight: 600; }
+  td { border-bottom: 1px solid var(--border-lt); font-variant-numeric: tabular-nums; }
+  tr:last-child td { border-bottom: none; }
+  .pill { display: inline-block; padding: 1px 9px; border-radius: 99px; font-size: 12px; font-weight: 600; }
+  .pill.pass { background: var(--pass-bg); color: var(--pass); }
+  .pill.fail { background: var(--fail-bg); color: var(--fail); }
+  .pill.error { background: var(--code-bg); color: var(--lighter); }
+  .foot { color: var(--lighter); font-size: 13px; margin-top: 28px; border-top: 1px solid var(--border); padding-top: 16px; }
+  /* figures */
+  .fig { margin: 0 0 8px; }
+  .fig-cap { font-size: 13px; color: var(--lighter); margin: 10px 0 0; line-height: 1.5; }
+  .hero { display: flex; flex-wrap: wrap; gap: 10px; align-items: stretch; margin-bottom: 32px; }
+  .hero .big { flex: 2 1 240px; border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px; }
+  .hero .big .n { font-size: 34px; font-weight: 600; color: var(--dark); font-variant-numeric: tabular-nums; letter-spacing: -.01em; }
+  .hero .big .k { font-size: 12px; color: var(--lighter); text-transform: uppercase; letter-spacing: .06em; }
+  .hero .big .d { font-size: 13px; color: var(--light); margin-top: 4px; }
+  .bullet { display: grid; grid-template-columns: 11.5rem 1fr 6.5rem; gap: 10px; align-items: center; margin-bottom: 7px; font-size: 13px; }
+  @media (max-width: 540px) { .bullet { grid-template-columns: 1fr; gap: 2px; } }
+  .bullet .lbl { color: var(--text); text-align: right; }
+  @media (max-width: 540px) { .bullet .lbl { text-align: left; } }
+  .bullet .track { position: relative; height: 16px; }
+  .bullet .before { position: absolute; inset: 0 auto 0 0; background: var(--border); border-radius: 0 4px 4px 0; }
+  .bullet .after { position: absolute; top: 3px; bottom: 3px; left: 0; background: var(--dark); border-radius: 0 3px 3px 0; }
+  .bullet .val { color: var(--light); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .legend { display: flex; gap: 18px; font-size: 12px; color: var(--light); margin: 4px 0 14px; flex-wrap: wrap; }
+  .legend .sw { display: inline-block; width: 12px; height: 8px; border-radius: 2px; margin-right: 5px; vertical-align: baseline; }
+  .dumb { display: grid; grid-template-columns: 8.5rem 1fr 7.5rem; gap: 10px; align-items: center; margin-bottom: 9px; font-size: 13px; }
+  .dumb .val { font-size: 11px; color: var(--lighter); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .dumb .lbl { font-family: 'Monaco', 'Consolas', monospace; font-size: 12px; color: var(--dark); text-align: right; }
+  .dumb .track { position: relative; height: 18px; }
+  .dumb .link { position: absolute; top: 8px; height: 2px; background: var(--border); }
+  .dumb .pt { position: absolute; top: 4px; width: 10px; height: 10px; border-radius: 50%; box-shadow: 0 0 0 2px var(--bg); }
+  .dumb .pt.b { background: var(--lighter); }
+  .dumb .pt.o { background: var(--dark); }
+  .anat { display: flex; gap: 22px; flex-wrap: wrap; margin: 6px 0 2px; }
+  .anat .grp { display: flex; align-items: center; gap: 8px; }
+  .anat .glyphs { font-size: 19px; letter-spacing: .22em; }
+  .anat .glyphs .hb { color: var(--lighter); }
+  .anat .glyphs .rf { color: var(--fail); font-weight: 700; }
+  .anat .glbl { font-size: 13px; color: var(--light); max-width: 15rem; line-height: 1.4; }
+  .dots .f { font-weight: 700; }
+  /* shadcn-style collapsible on native <details> */
+  details.clps { border: 1px solid var(--border); border-radius: 6px; }
+  details.clps > summary {
+    list-style: none; cursor: pointer; display: flex; align-items: center;
+    justify-content: space-between; gap: 12px; padding: 12px 14px;
+  }
+  details.clps > summary::-webkit-details-marker { display: none; }
+  details.clps > summary:focus-visible { outline: 2px solid var(--light); outline-offset: 2px; border-radius: 6px; }
+  .chev { flex: none; width: 16px; height: 16px; color: var(--lighter); transition: transform .2s ease; }
+  details.clps[open] > .taskhead .chev, details.clps[open] > summary .chev { transform: rotate(180deg); }
+  @media (prefers-reduced-motion: reduce) { .chev { transition: none; } }
+  .clps-body { border-top: 1px solid var(--border-lt); padding: 12px 14px; }
+  .runx { margin-bottom: 14px; }
+  .runx .rk { font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--lighter); margin-bottom: 3px; }
+  .runx pre {
+    background: var(--code-bg); border-radius: 4px; padding: 10px 12px; margin: 0;
+    font-family: 'Monaco', 'Consolas', monospace; font-size: 12px; line-height: 1.5;
+    white-space: pre-wrap; overflow-x: auto; color: var(--text);
+  }
+  .taskhead { flex-wrap: wrap; }
+  .taskhead .grid { flex: 1; display: grid; grid-template-columns: 8.5rem 1fr 1fr; gap: 14px; align-items: center; }
+  @media (max-width: 540px) { .taskhead .grid { grid-template-columns: 1fr; gap: 6px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Does a trimmed Claude Code config still behave?</h1>
+  <p class="sub">A/B eval results · generated 2026-07-31 11:19 · humaine.studio</p>
+  <div class="intro">
+    <p>I cut my always-on Claude Code context from ~12,000 tokens to ~5,000 — rules file, skills, plugin personas — then ran both configs through the same six headless tasks, three runs each. Every task is a <em>canary</em>: an objective check mapped to one specific thing I deleted, so a regression points at the exact rule to restore.</p>
+    <p>Full write-up: <a href="https://humaine.studio">the article on humaine.studio</a>. Dots below are individual runs.</p>
+  </div>
+  <div id="banner"></div>
+  <div class="hero" id="hero"></div>
+
+  <h2>What got cut</h2>
+  <div class="fig" id="trimfig"></div>
+  <div class="legend">
+    <span><span class="sw" style="background:var(--border)"></span>before</span>
+    <span><span class="sw" style="background:var(--dark)"></span>after</span>
+  </div>
+  <p class="fig-cap">Always-on context per component, in approximate tokens, measured before and after the trim. The skill-roster drop combines consolidation (24 skills → 10, eight merged into one router) with switching off an unused plugin that shipped ~130 skill descriptions.</p>
+
+  <h2>What the failures actually were</h2>
+  <div class="fig anat" id="anat"></div>
+  <p class="fig-cap">Seven runs were flagged as failures across the whole exercise. Four were bugs in my own check scripts — a correct branch-and-merge workflow scored as fail, a correct "expressly ineligible" answer missed by a grep — fixed and re-scored against the kept working directories. The three real ones are all the same behavior: headless one-shot runs occasionally commit to main instead of branching, and they did it under <em>both</em> configs (more often under the old one). A headless-mode quirk, not a trim regression.</p>
+
+  <h2>Cost per task</h2>
+  <div class="fig" id="costfig"></div>
+  <div class="legend">
+    <span><span class="sw" style="background:var(--lighter);border-radius:50%;width:9px;height:9px"></span>baseline (old config)</span>
+    <span><span class="sw" style="background:var(--dark);border-radius:50%;width:9px;height:9px"></span>trimmed</span>
+  </div>
+  <p class="fig-cap">Median cost per run, by task. The trimmed config is cheaper on five of six tasks — less always-on context means fewer cached tokens billed on every request.</p>
+
+  <h2>Per-task comparison</h2>
+  <p class="fig-cap" style="margin:0 0 12px">Each row expands to the exact prompt, the pass/fail check, and every run's actual output — click in and judge the specifics yourself.</p>
+  <div class="taskgrid" id="tasks"></div>
+  <h2>All runs</h2>
+  <details class="clps" id="rawclps">
+    <summary><span>Raw results table — 37 runs</span><svg class="chev" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+    <div class="clps-body" style="padding:0"><div class="tablewrap" style="border:none"><table id="raw"></table></div></div>
+  </details>
+  <p class="foot">Decision rule: keep the trim if the trimmed config's pass rate and canaries are non-inferior to baseline. "baseline" = pre-trim config; "optimized" = trimmed. The trimmed arm includes one extra smoke-test run. Four early "failures" turned out to be bugs in my check scripts, not model behavior — audited, fixed, re-scored against the kept working directories.</p>
+</div>
+<script>
+const ALL = [{"date": "2026-07-29", "arm": "optimized", "task": "cmmc-poam", "run": "1", "ok": "pass", "canary": "pass", "cost_usd": 0.434, "turns": 1, "dur_s": 13}, {"date": "2026-07-29", "arm": "optimized", "task": "bugfix", "run": "1", "ok": "pass", "canary": "pass", "cost_usd": 0.887, "turns": 6, "dur_s": 24}, {"date": "2026-07-29", "arm": "optimized", "task": "bugfix", "run": "2", "ok": "pass", "canary": "pass", "cost_usd": 0.89, "turns": 6, "dur_s": 23}, {"date": "2026-07-29", "arm": "optimized", "task": "bugfix", "run": "3", "ok": "pass", "canary": "pass", "cost_usd": 0.892, "turns": 6, "dur_s": 22}, {"date": "2026-07-29", "arm": "optimized", "task": "caching", "run": "1", "ok": "pass", "canary": "pass", "cost_usd": 0.777, "turns": 3, "dur_s": 13}, {"date": "2026-07-29", "arm": "optimized", "task": "caching", "run": "2", "ok": "pass", "canary": "pass", "cost_usd": 0.836, "turns": 4, "dur_s": 21}, {"date": "2026-07-29", "arm": "optimized", "task": "caching", "run": "3", "ok": "pass", "canary": "pass", "cost_usd": 0.769, "turns": 3, "dur_s": 16}, {"date": "2026-07-29", "arm": "optimized", "task": "chart", "run": "1", "ok": "pass", "canary": "pass", "cost_usd": 1.033, "turns": 7, "dur_s": 35}, {"date": "2026-07-29", "arm": "optimized", "task": "chart", "run": "2", "ok": "pass", "canary": "pass", "cost_usd": 1.056, "turns": 8, "dur_s": 36}, {"date": "2026-07-29", "arm": "optimized", "task": "chart", "run": "3", "ok": "pass", "canary": "pass", "cost_usd": 1.056, "turns": 8, "dur_s": 52}, {"date": "2026-07-29", "arm": "optimized", "task": "cmmc-poam", "run": "1", "ok": "pass", "canary": "pass", "cost_usd": 0.431, "turns": 1, "dur_s": 9}, {"date": "2026-07-29", "arm": "optimized", "task": "cmmc-poam", "run": "2", "ok": "pass", "canary": "pass", "cost_usd": 0.517, "turns": 3, "dur_s": 17}, {"date": "2026-07-29", "arm": "optimized", "task": "cmmc-poam", "run": "3", "ok": "pass", "canary": "pass", "cost_usd": 0.51, "turns": 3, "dur_s": 15}, {"date": "2026-07-29", "arm": "optimized", "task": "git-flow", "run": "1", "ok": "pass", "canary": "pass", "cost_usd": 1.203, "turns": 10, "dur_s": 52}, {"date": "2026-07-29", "arm": "optimized", "task": "git-flow", "run": "2", "ok": "pass", "canary": "pass", "cost_usd": 1.524, "turns": 16, "dur_s": 77}, {"date": "2026-07-29", "arm": "optimized", "task": "git-flow", "run": "3", "ok": "fail", "canary": "fail", "cost_usd": 1.087, "turns": 8, "dur_s": 48}, {"date": "2026-07-29", "arm": "optimized", "task": "skill-fire", "run": "1", "ok": "pass", "canary": "pass", "cost_usd": 0.819, "turns": 4, "dur_s": 18}, {"date": "2026-07-29", "arm": "optimized", "task": "skill-fire", "run": "2", "ok": "pass", "canary": "pass", "cost_usd": 0.82, "turns": 4, "dur_s": 18}, {"date": "2026-07-29", "arm": "optimized", "task": "skill-fire", "run": "3", "ok": "pass", "canary": "pass", "cost_usd": 0.813, "turns": 4, "dur_s": 20}, {"date": "2026-07-30", "arm": "baseline", "task": "bugfix", "run": "1", "ok": "pass", "canary": "pass", "cost_usd": 1.014, "turns": 6, "dur_s": 20}, {"date": "2026-07-30", "arm": "baseline", "task": "bugfix", "run": "2", "ok": "pass", "canary": "pass", "cost_usd": 1.013, "turns": 6, "dur_s": 20}, {"date": "2026-07-30", "arm": "baseline", "task": "bugfix", "run": "3", "ok": "pass", "canary": "pass", "cost_usd": 1.014, "turns": 6, "dur_s": 26}, {"date": "2026-07-30", "arm": "baseline", "task": "caching", "run": "1", "ok": "pass", "canary": "pass", "cost_usd": 0.878, "turns": 3, "dur_s": 11}, {"date": "2026-07-30", "arm": "baseline", "task": "caching", "run": "2", "ok": "pass", "canary": "pass", "cost_usd": 0.881, "turns": 3, "dur_s": 18}, {"date": "2026-07-30", "arm": "baseline", "task": "caching", "run": "3", "ok": "pass", "canary": "pass", "cost_usd": 0.886, "turns": 3, "dur_s": 12}, {"date": "2026-07-30", "arm": "baseline", "task": "chart", "run": "1", "ok": "pass", "canary": "pass", "cost_usd": 1.24, "turns": 9, "dur_s": 42}, {"date": "2026-07-30", "arm": "baseline", "task": "chart", "run": "2", "ok": "pass", "canary": "pass", "cost_usd": 1.235, "turns": 9, "dur_s": 35}, {"date": "2026-07-30", "arm": "baseline", "task": "chart", "run": "3", "ok": "pass", "canary": "pass", "cost_usd": 1.415, "turns": 10, "dur_s": 65}, {"date": "2026-07-30", "arm": "baseline", "task": "cmmc-poam", "run": "1", "ok": "pass", "canary": "pass", "cost_usd": 0.6, "turns": 1, "dur_s": 9}, {"date": "2026-07-30", "arm": "baseline", "task": "cmmc-poam", "run": "2", "ok": "pass", "canary": "pass", "cost_usd": 0.657, "turns": 3, "dur_s": 38}, {"date": "2026-07-30", "arm": "baseline", "task": "cmmc-poam", "run": "3", "ok": "pass", "canary": "pass", "cost_usd": 0.596, "turns": 1, "dur_s": 15}, {"date": "2026-07-30", "arm": "baseline", "task": "git-flow", "run": "1", "ok": "fail", "canary": "fail", "cost_usd": 1.242, "turns": 7, "dur_s": 55}, {"date": "2026-07-30", "arm": "baseline", "task": "git-flow", "run": "2", "ok": "pass", "canary": "pass", "cost_usd": 0.917, "turns": 10, "dur_s": 236}, {"date": "2026-07-30", "arm": "baseline", "task": "git-flow", "run": "3", "ok": "fail", "canary": "fail", "cost_usd": 1.232, "turns": 7, "dur_s": 40}, {"date": "2026-07-30", "arm": "baseline", "task": "skill-fire", "run": "1", "ok": "pass", "canary": "pass", "cost_usd": 0.659, "turns": 3, "dur_s": 11}, {"date": "2026-07-30", "arm": "baseline", "task": "skill-fire", "run": "2", "ok": "pass", "canary": "pass", "cost_usd": 0.656, "turns": 3, "dur_s": 11}, {"date": "2026-07-30", "arm": "baseline", "task": "skill-fire", "run": "3", "ok": "pass", "canary": "pass", "cost_usd": 0.708, "turns": 3, "dur_s": 12}];
+const DATA = ALL.filter(r => r.ok !== "error");
+const CANARY = {
+  bugfix: "general capability", "git-flow": "git workflow prose",
+  caching: "anti-over-engineering persona", "cmmc-poam": "domain rules",
+  "skill-fire": "skill routing", chart: "visualization skill"
+};
+const ARMS = ["baseline", "optimized"];
+const by = (arr, k) => arr.reduce((m, r) => ((m[r[k]] ??= []).push(r), m), {});
+const med = a => { if (!a.length) return null; const s = [...a].sort((x, y) => x - y); return s[Math.floor(s.length / 2)]; };
+const money = v => v == null ? "—" : "$" + v.toFixed(2);
+const armData = by(DATA, "arm");
+const tasks = [...new Set(DATA.map(r => r.task))].sort();
+
+// hero tiles
+const rateStr = a => { const rs = armData[a] || []; return rs.length ? `${rs.filter(r => r.ok === "pass").length}/${rs.length}` : "—"; };
+const costDelta = (() => {
+  const m = a => med((armData[a] || []).map(r => r.cost_usd));
+  const b = m("baseline"), o = m("optimized");
+  return (b && o) ? Math.round((1 - o / b) * 100) : null;
+})();
+document.getElementById("hero").innerHTML = `
+  <div class="big"><div class="k">Always-on context</div><div class="n">≈12K → ≈7K</div>
+    <div class="d">tokens per session, −45% from the trim alone — nearer 5K with the unused plugin off</div></div>
+  <div class="big"><div class="k">Behavior (pass rate)</div><div class="n">${rateStr("optimized")} vs ${rateStr("baseline")}</div>
+    <div class="d">trimmed vs old config — non-inferior on every canary</div></div>
+  <div class="big"><div class="k">Median cost per run</div><div class="n">${costDelta != null ? "−" + costDelta + "%" : "—"}</div>
+    <div class="d">trimmed config, same tasks, same model</div></div>`;
+
+// fig: what got cut (audit numbers, approximate tokens)
+const TRIM = [
+  ["Skill roster (~90 → ~40 descriptions)", 4200, 1400],
+  ["Rules file (CLAUDE.md)", 1900, 1600],
+  ["Memory index", 1800, 1800],
+  ["MCP server instructions", 1700, 1500],
+  ["Anti-over-engineering persona", 1500, 350],
+  ["Task-system primer", 950, 210],
+  ["Skill-enforcement plugin", 650, 150],
+];
+const maxT = Math.max(...TRIM.map(r => r[1]));
+document.getElementById("trimfig").innerHTML = TRIM.map(([lbl, b, a]) => `
+  <div class="bullet" title="${lbl}: ${b.toLocaleString()} → ${a.toLocaleString()} tokens">
+    <div class="lbl">${lbl}</div>
+    <div class="track">
+      <div class="before" style="width:${(b / maxT * 100).toFixed(1)}%"></div>
+      <div class="after" style="width:${(a / maxT * 100).toFixed(1)}%"></div>
+    </div>
+    <div class="val">${b.toLocaleString()} → ${a.toLocaleString()}</div>
+  </div>`).join("");
+
+// fig: failure anatomy
+document.getElementById("anat").innerHTML = `
+  <div class="grp"><span class="glyphs"><span class="hb">▲▲▲▲</span></span>
+    <span class="glbl">4 check-script bugs — measurement error, fixed and re-scored</span></div>
+  <div class="grp"><span class="glyphs"><span class="rf">✕✕✕</span></span>
+    <span class="glbl">3 real: headless runs committed to main (both configs)</span></div>`;
+
+// fig: cost dumbbells
+const costRows = tasks.map(t => {
+  const m = a => med((armData[a] || []).filter(r => r.task === t).map(r => r.cost_usd));
+  return { t, b: m("baseline"), o: m("optimized") };
+}).filter(r => r.b != null && r.o != null);
+const cMax = Math.max(...costRows.flatMap(r => [r.b, r.o])) * 1.15;
+document.getElementById("costfig").innerHTML = costRows.map(r => {
+  const bx = r.b / cMax * 100, ox = r.o / cMax * 100;
+  const lo = Math.min(bx, ox), hi = Math.max(bx, ox);
+  return `<div class="dumb" title="${r.t}: baseline ${money(r.b)} → trimmed ${money(r.o)}">
+    <div class="lbl">${r.t}</div>
+    <div class="track">
+      <div class="link" style="left:${lo}%;width:${(hi - lo)}%"></div>
+      <div class="pt b" style="left:calc(${bx}% - 5px)"></div>
+      <div class="pt o" style="left:calc(${ox}% - 5px)"></div>
+    </div>
+    <div class="val">${money(r.b)} → ${money(r.o)}</div>
+  </div>`;
+}).join("");
+
+const b = document.getElementById("banner");
+const bothArms = ARMS.every(a => (armData[a] || []).length > 0);
+if (!bothArms) {
+  b.innerHTML = `<strong>Sweep in progress.</strong> One arm only so far.`;
+} else {
+  const rate = a => { const rs = armData[a]; return rs.filter(r => r.ok === "pass").length / rs.length; };
+  const noninferior = rate("optimized") >= rate("baseline");
+  b.className = noninferior ? "verdict-pass" : "verdict-fail";
+  b.innerHTML = noninferior
+    ? `<strong>Verdict: non-inferior — the trim holds.</strong> Trimmed config passed ${(rate("optimized") * 100).toFixed(0)}% vs the old config's ${(rate("baseline") * 100).toFixed(0)}%, at ~10–15% lower cost per run. No canary regressed.`
+    : `<strong>Regression detected.</strong> The old config outperformed on at least one canary.`;
+}
+
+const DETAILS = {"bugfix": {"prompt": "The test suite in this directory is failing. Fix the bug and make all tests pass. Run the tests to verify.", "check": "#!/usr/bin/env bash\n# pass = tests green\nuv run --with pytest pytest -q >/dev/null 2>&1", "runs": {"optimized-1": "All 3 tests pass. The bug was in `apply_discount` (inventory.py:4): `rates[code]` raised `KeyError` on unknown codes. Changed it to `rates.get(code, 0)` so unknown codes apply no discount, as `test_unknown_code_is_noop` expects.", "optimized-2": "All 3 tests pass. The bug was in `inventory.py:4` \u2014 `rates[code]` raised a `KeyError` for unknown discount codes; `rates.get(code, 0.0)` makes them a no-op, which is what `test_unknown_code_is_noop` expects.", "optimized-3": "All 3 tests pass. The bug was in `apply_discount` (`inventory.py:4`): an unknown discount code hit `rates[code]` and raised `KeyError`. Changed it to `rates.get(code, 0.0)` so unknown codes apply no discount, which is what `test_unknown_code_is_noop` expects.", "baseline-1": "Fixed: `rates[code]` raised KeyError on unknown codes; now `rates.get(code, 0)` treats them as no discount. All 3 tests pass.", "baseline-2": "Fixed: `rates[code]` raised KeyError on unknown codes; now `rates.get(code, 0.0)` makes them a no-op. All 3 tests pass.", "baseline-3": "Fixed. `apply_discount` crashed with a KeyError on unknown discount codes; changed `rates[code]` to `rates.get(code, 0)` so unknown codes apply no discount. All 3 tests pass."}}, "caching": {"prompt": "Add caching for fetch_user in api.py so repeated calls for the same user_id don't refetch.", "check": "#!/usr/bin/env bash\n# Over-engineering canary: solution stays small and stdlib-only.\nlines=$(wc -l < api.py)\n[ \"$lines\" -le 15 ] || { echo \"FAIL: api.py grew to $lines lines\"; exit 1; }\nls | grep -qv -E '^(api.py|test_.*|\\..*)$' && { echo \"FAIL: extra files created\"; exit 1; }\ngrep -qE 'import (redis|requests|cachetools|diskcache)' api.py && { echo \"FAIL: external dep\"; exit 1; }\nexit 0", "runs": {"optimized-1": "Done. `fetch_user` in `api.py` is now wrapped with `@functools.lru_cache(maxsize=1024)` \u2014 repeated calls with the same `user_id` return the cached record instead of refetching.\n\n```python\n@functools.lru_cache(maxsize=1024)  # ponytail: unbounded staleness; swap for a TTL cache if user data must refresh\ndef fetch_user(user_id):\n```\n\nOne decorator, stdlib only \u2192 skipped: TTL/invalidation and thread-safety machinery (lru_cache is already thread-safe); add a TTL cache when stale user data becomes a real problem. Note the cache never expires within a process, so call `fetch_user.cache_clear()` if you ever need to force a refresh.", "optimized-2": "Done \u2014 `fetch_user` is now wrapped in `@lru_cache(maxsize=1024)` from the stdlib, so repeated calls with the same `user_id` return the cached record without hitting the network. Syntax checked clean.\n\n```python\n@lru_cache(maxsize=1024)  # ponytail: unbounded TTL; swap for a TTL cache if staleness matters\ndef fetch_user(user_id):\n```\n\n\u2192 skipped: TTL/invalidation and thread-safety machinery (`lru_cache` is already thread-safe); add a TTL cache when stale user data becomes a real problem. `fetch_user.cache_clear()` is available for free if you ever need to bust it.", "optimized-3": "Done \u2014 `fetch_user` in `api.py:6` now has `@functools.lru_cache(maxsize=1024)`, so repeated calls with the same `user_id` return the cached result instead of refetching.\n\nTwo things to know:\n- Entries never expire; if user data can change and callers need freshness, you'll want a TTL cache instead (marked with a `ponytail:` comment in the code).\n- Call `fetch_user.cache_clear()` if you ever need to invalidate manually.\n\n\u2192 skipped: custom cache class, TTL, per-call bypass flag \u2014 add TTL when stale reads become a real problem.", "baseline-1": "Done \u2014 `@functools.lru_cache(maxsize=1024)` on `fetch_user` in api.py:6. Skipped TTL/invalidation; add a TTL wrapper if user data staleness ever matters. Note `lru_cache` returns the same dict object to every caller, so mutating a result would poison the cache.", "baseline-2": "Done \u2014 `@functools.lru_cache(maxsize=1024)` on `fetch_user` in api.py:6. Repeated calls with the same `user_id` now return the cached record without hitting the network.\n\nSkipped TTL/invalidation \u2014 add (e.g. cachetools TTLCache) when stale user data becomes a real problem.", "baseline-3": "Added `@functools.lru_cache(maxsize=1024)` to `fetch_user` in api.py \u2014 repeated calls for the same `user_id` now return the cached response instead of refetching.\n\nSkipped TTL/invalidation; add `cachetools.TTLCache` if stale user data becomes a problem."}}, "chart": {"prompt": "Make a chart of scores.csv showing gaps by control family. Save it as chart.svg in this directory.", "check": "#!/usr/bin/env bash\n# pass = an SVG chart exists and is non-trivial\n[ -f chart.svg ] || exit 1\n[ \"$(wc -c < chart.svg)\" -gt 500 ]", "runs": {"optimized-1": "Done. `chart.svg` is in this directory \u2014 a horizontal bar chart of open gaps by control family, sorted so the biggest problem reads first, with the takeaway (\"Access Control leads with 14 open gaps\") in the title.\n\n- Form: sorted bar chart, because the question is a magnitude comparison across six categories.\n- Rendered with the house bone theme via Vega-Lite; spec kept at `spec.json` if you want to tweak it.\n- Contrast checked: accent on background 4.56:1, text 13.14:1 \u2014 both clear WCAG AA.", "optimized-2": "Done \u2014 `chart.svg` is in `/private/tmp/ctxeval-chart-QC3F`.\n\n- **Form:** horizontal bar chart, sorted by gap count with value labels on each bar \u2014 the question is \"which families have the most gaps,\" and sorted bars answer that at a glance. Title carries the takeaway: Access Control leads with 14, Incident Response trails at 4.\n- **Style:** house bone theme (terracotta bars on paper background).\n- **Contrast:** terracotta accent 4.92:1 and ink text 16.79:1 against the background \u2014 both pass WCAG AA (the one \"weak\" pair flagged doesn't apply; it's a single-series chart). The spec is saved alongside as `spec.json` if you want to re-render or tweak.", "optimized-3": "Done \u2014 `chart.svg` is in `/private/tmp/ctxeval-chart-C3HG/`.\n\n- **Form:** sorted horizontal bar chart (the question is \"which control family has the most gaps\" \u2014 a ranked magnitude comparison), with counts labeled directly on the bars so no gridline-squinting is needed.\n- **Takeaway in the title:** Access Control leads with 14 gaps, then System Protection (12) and Configuration Mgmt (11); Incident Response is lowest at 4.\n- **Contrast:** bone theme passes \u2014 ink on paper 16.8:1, terracotta bars 4.9:1 (both clear the 3:1 graphic floor; text passes AA).\n\nThe spec is saved alongside as `spec.json` if you want a PNG or theme variant later.", "baseline-1": "Done \u2014 `chart.svg` is in the directory.\n\nHorizontal bar chart, sorted descending: the question is \"which family has the most gaps,\" and ranked bars answer it at a glance \u2014 Access Control (14) leads, then System Protection (12) and Configuration Mgmt (11); Incident Response (4) trails. House bone theme; all text/mark colors clear WCAG (10.7:1 and 16.8:1 against the paper background). The \"weak adjacent-series\" flag doesn't apply \u2014 it's a single series.", "baseline-2": "Done \u2014 `chart.svg` is in this directory.\n\nHorizontal bar chart (single series, sorted descending), since the question is \"which family has the most gaps\": Access Control leads at 14, Incident Response lowest at 4. Bone theme (paper/terracotta); contrast passes \u2014 ink 16.8:1, accent bars 4.9:1, both above the 3:1 graphics floor. Note: scores.csv has a trailing empty row; dropped it.", "baseline-3": "Done \u2014 `chart.svg` in this directory.\n\n- **Form:** horizontal bar chart, sorted descending with value labels \u2014 the question is \"which control families have the most gaps,\" a magnitude comparison. Takeaway in the title: Access Control leads with 14.\n- **Contrast:** accent bars 4.9:1 and text 16.8:1 on the paper background \u2014 all pass AA. (The flagged weak pair is ink vs. muted gray, both text colors, not adjacent series \u2014 single-series chart, so no blur risk.)"}}, "cmmc-poam": {"prompt": "A defense contractor client scored 85/110 on their CMMC Level 2 self-assessment. They want to put IA.L2-3.5.3 (multifactor authentication) on their POA&M to reach conditional certification. Is that allowed? Answer in 2-3 sentences.", "check": "#!/usr/bin/env bash\n# Domain canary: must say 3.5.3 can't go on the POA&M (any refusal phrasing).\ngrep -qiE \"ineligible|not (be )?([A-Za-z&-]+ ){0,3}eligible|cannot|can't|may not|never|not allowed|expressly\" \"$1\"", "runs": {"optimized-1": "No. Two independent blockers: 32 CFR 170.21 limits POA&M items to 1-point requirements (plus a few named exceptions), and IA.L2-3.5.3 is a 3- or 5-point requirement, so MFA can never go on a POA&M for conditional status. Additionally, conditional certification requires a minimum score of 88 (0.8 \u00d7 110), and 85 falls below that floor \u2014 the client must fully implement MFA (and enough else to reach \u226588) before assessment.", "optimized-2": "No \u2014 twice over. IA.L2-3.5.3 (MFA) is a 3\u20135 point control, and only 1-point requirements are POA&M-eligible under 32 CFR 170.21; MFA is explicitly on the never-POA&M list. Separately, conditional certification requires a score of at least 0.8 \u00d7 110 = 88, and 85 falls short, so this client can't reach conditional status regardless \u2014 they need to actually implement MFA (and pick up other points) before assessment.", "optimized-3": "No \u2014 this fails on two counts. IA.L2-3.5.3 is a 3/5-point control, and only 1-point controls are POA&M-eligible under the CMMC final rule (32 CFR 170), so MFA can never be deferred to a POA&M (the only partial-credit exception is SC.L2-3.13.11). Separately, conditional certification requires a score of at least 88/110 (0.80 \u00d7 110), so even with an otherwise-valid POA&M, 85 doesn't qualify \u2014 MFA must be fully implemented before assessment.", "baseline-1": "No. Two problems: IA.L2-3.5.3 is a 3-to-5-point control, and 32 CFR 170.21(a)(2) only allows POA&M items worth 1 point (plus a few named exceptions like SC.L2-3.13.11, which MFA is not) \u2014 so MFA can never go on a POA&M for conditional status. Separately, conditional certification requires a minimum score of 88 (80% of 110), and 85 falls short, so the client must remediate up to at least 88 with only 1-point-eligible items remaining open before conditional status is even on the table.", "baseline-2": "No. This fails on two independent grounds: IA.L2-3.5.3 is a 5-point control, and the CMMC final rule (32 CFR \u00a7 170.21) only allows POA&M items for requirements weighted 1 point (plus a few narrow exceptions like partial FIPS crypto \u2014 MFA is not one of them). Additionally, conditional certification requires a minimum score of 88 (80% of 110), so at 85 the client can't get conditional status regardless \u2014 they'll need to actually implement MFA and close enough other gaps to reach at least 88 before assessment.", "baseline-3": "No \u2014 twice over. Under 32 CFR \u00a7 170.21, conditional certification requires a minimum score of 88 (80% of 110), so 85 doesn't qualify regardless of what's on the POA&M. And IA.L2-3.5.3 is a 5-point requirement that's expressly ineligible for POA&M placement \u2014 only 1-point items may be POA&M'd (with a narrow exception for SC.L2-3.13.11 scored at 3). MFA must be fully implemented before assessment; the client needs to close it and enough other gaps to reach at least 88 with only POA&M-eligible items open."}}, "git-flow": {"prompt": "This directory is a fresh project. Initialize git, then fix the failing test in util.py and commit the fix following your normal git workflow.", "check": "#!/usr/bin/env bash\n# Workflow canary: tests pass AND the fix went through a feature branch.\n# Accepts either state: still on the feature branch, or branch merged back\n# (a non-main branch exists / HEAD is a merge). Fails only on a direct\n# commit to main with no branch anywhere.\nuv run --with pytest pytest -q util.py >/dev/null 2>&1 || { echo \"FAIL: tests\"; exit 1; }\ngit rev-parse HEAD >/dev/null 2>&1 || { echo \"FAIL: no git repo\"; exit 1; }\nbranch=$(git branch --show-current)\ncase \"$branch\" in\n  main|master|\"\")\n    git branch -a | grep -qvE '^\\*? *(main|master)$' && exit 0   # feature branch exists\n    [ \"$(git rev-list --merges -n1 HEAD | wc -c)\" -gt 1 ] && exit 0  # merge commit = branch flow\n    echo \"FAIL: direct commit to $branch, no feature branch\"; exit 1;;\n  *) exit 0;;  # on a feature branch\nesac", "runs": {"optimized-1": "Done. The failing test was `test_slugify_strips_punctuation` \u2014 `slugify` only replaced spaces, so `\"Hello, World!\"` became `hello,-world!`. I replaced the naive `.replace(\" \", \"-\")` with a stdlib regex that collapses any run of non-alphanumerics into a single hyphen and trims edge hyphens. Both tests now pass.\n\nGit state: repo initialized, fix committed as `3e2e1a9` on branch `fix/slugify-punctuation`, and `main` now points at that same commit (the root commit landed on the fix branch since the repo was empty, so no merge was needed). There's no remote, so no PR \u2014 the two leftover `.result.json`/`.stderr` scratch files were left untracked.", "optimized-2": "Done \u2014 both tests pass on `main`.\n\n- **The bug:** `slugify` only replaced spaces with hyphens, so `\"Hello, World!\"` became `hello,-world!` instead of `hello-world`.\n- **The fix:** one regex \u2014 collapse any run of non-alphanumerics to a single hyphen and trim the ends: `re.sub(r\"[^a-z0-9]+\", \"-\", title.lower()).strip(\"-\")` (util.py:5). This handles punctuation, multiple spaces, and leading/trailing junk in one guard at the root rather than special-casing commas.\n- **Git:** initialized the repo, baseline commit on `main` (with a `.gitignore` for the harness scratch files), fix on branch `fix/slugify-punctuation`, verified `2 passed` with `uvx pytest`, then merged to `main` with `--no-ff`. No remote exists, so there's no PR \u2014 the local branch-and-merge stands in for it; if you add a GitHub remote later I can push and open one.", "optimized-3": "Done. The failing test was `test_slugify_strips_punctuation` \u2014 `slugify(\"Hello, World!\")` returned `\"hello,-world!\"` because the function only lowercased and swapped spaces for hyphens. I added a stdlib `re.sub(r\"[^\\w\\s]\", \"\", ...)` to strip punctuation before hyphenating; both tests pass (`2 passed` via `uvx pytest`).\n\nGit: initialized the repo, gitignored the harness artifacts (`.result.json`, `.stderr`), and committed on `main` as `ffbab4f`. Skipped the usual feature-branch \u2192 push \u2192 PR steps since this is a local-only repo with no remote \u2014 say the word if you want me to create a GitHub repo and run the full PR flow.", "baseline-1": "Done. `slugify` now strips punctuation before hyphenating (`re.sub(r\"[^\\w\\s]\", \"\", ...)` in util.py:5), both tests pass via `uvx pytest`. Git initialized, fix committed as `e6e9b4c` on `main` \u2014 no remote exists, so no PR; it's local-only.", "baseline-2": "Done. `slugify` now strips punctuation and both tests pass.\n\n- **Fix**: `slugify` only lowercased and swapped spaces for hyphens, so `\"Hello, World!\"` became `\"hello,-world!\"`. It now collapses any run of non-alphanumeric characters into a single hyphen and trims edge hyphens (`util.py:4`) \u2014 root-cause fix in the shared function, using only stdlib `re`.\n- **Verified**: `uvx pytest util.py` \u2192 2 passed.\n- **Git**: initialized the repo, committed on `fix/slugify-punctuation` (14a680d), and pointed `main` at it. No remote is configured, so there's nothing to push and no PR to open \u2014 say the word if you want me to create a GitHub repo and go through the full branch \u2192 push \u2192 PR flow.", "baseline-3": "Done. `slugify` now collapses any non-alphanumeric run to a single `-` (and trims edges) via `re.sub`, which fixes the punctuation test \u2014 both tests pass under pytest. Repo initialized on `main` and the fix committed as `132af66`.\n\nSkipped the feature-branch/PR flow: no remote exists and it was the root commit, so a branch had nothing to diverge from. Say the word if you want a remote + PR workflow set up."}}, "skill-fire": {"prompt": "I need a preliminary SPRS score estimate for a client. What inputs do you need from me and what process will you follow? Brief answer.", "check": "#!/usr/bin/env bash\n# Skill-routing canary: answer should reflect the cmmc gap-assess workflow\n# (DoD methodology weights / 110 controls), not a generic compliance answer.\ngrep -qiE '110|SPRS|DoD (assessment )?methodology|weight' \"$1\"", "runs": {"optimized-1": "Here's the process (per my CMMC skill's gap-assess workflow):\n\n**Inputs I need from you:**\n- **Client intake data** \u2014 completed intake questionnaire responses, discovery call notes, and/or an evidence inventory (any format; multiple files fine). The more coverage of the environment (identity/MFA, endpoints, network, FIPS crypto status, physical, logging, policies), the fewer controls land as INSUFFICIENT INFO.\n- Optional but helpful: existing SSP/POA&M drafts, scoping notes (where CUI lives, enclave vs. enterprise).\n\n**Process:**\n1. I launch the CMMC gap assessor agent against your intake files, using the Eagle Ridge methodology (`agents/cmmc-gap-assessor/AGENT.md`) and the authoritative SPRS weights from the official DoD methodology.\n2. It assesses all 110 NIST 800-171 Rev 2 controls as MET / NOT MET / PARTIAL / INSUFFICIENT INFO.\n3. It calculates the preliminary SPRS score (110 max, fl \u2026[truncated]", "optimized-2": "Using the cmmc skill's gap-assess workflow. Brief answer:\n\n**Inputs I need from you** (file paths, one or more):\n- Client intake data \u2014 completed intake questionnaire responses (template reference: `eagle-ridge-methodology/templates/ssp-intake-questionnaire.md`), and/or discovery call notes\n- Any evidence inventory or existing documentation (SSP drafts, policies, tool lists)\n\n**Process I'll follow** (`/cmmc-gap-assess <file-path>`):\n1. Launch a subagent with the gap-assessor methodology (`eagle-ridge-methodology/agents/cmmc-gap-assessor/AGENT.md`) plus the authoritative SPRS weights from the SSP template's Block 6 tables.\n2. It assesses all 110 NIST 800-171 Rev 2 controls as MET / NOT MET / PARTIAL / INSUFFICIENT INFO.\n3. Calculates the preliminary SPRS score (110 minus official DoD weight deductions), tiers gaps (Tier 0 blockers \u2192 Tier 3 new tools), flags POA&M candidates (1-point contr \u2026[truncated]", "optimized-3": "Here's what the preliminary SPRS estimate needs and how it runs (per my CMMC gap-assessment workflow):\n\n**Inputs from you** (a file path or paste \u2014 more is better, partial is fine):\n- Completed intake questionnaire and/or discovery call notes\n- Evidence inventory or any existing docs (SSP, policies, network diagram, tool list)\n- CUI scoping info \u2014 where CUI lives/flows, enclave boundaries, cloud services in use\n\n**Process:**\n1. I launch the CMMC gap-assessor subagent with the Eagle Ridge methodology and your intake files.\n2. It assesses all 110 NIST 800-171 Rev 2 controls as MET / NOT MET / PARTIAL / INSUFFICIENT INFO.\n3. SPRS score calculated from the official DoD weights (110 minus 1/3/5-point deductions), with partial-credit rules applied (e.g. 3.13.11 PARTIAL).\n4. Output: preliminary score, gaps tiered 0\u20133 (blockers \u2192 policy \u2192 config \u2192 new tools), POA&M-eligible candidates (1-point c \u2026[truncated]", "baseline-1": "**Inputs I need from you:** the client's intake data \u2014 questionnaire responses, call notes, and/or an evidence inventory (any file paths; multiple files fine). The intake questionnaire template at `eagle-ridge-methodology/templates/ssp-intake-questionnaire.md` shows what to collect if you're starting cold.\n\n**Process** (via `/cmmc-gap-assess <file>`, runs as a subagent):\n1. Load the gap-assessor methodology and authoritative SPRS weights (SSP template Block 6).\n2. Assess all 110 NIST 800-171 Rev 2 controls: MET / NOT MET / PARTIAL / INSUFFICIENT INFO.\n3. Tier the gaps: Tier 0 blockers \u2192 Tier 1 policy \u2192 Tier 2 config \u2192 Tier 3 new tools.\n4. Calculate the preliminary SPRS score (110 minus weighted deductions; range +110 to \u2212203), flag POA&M candidates, and list follow-up questions.\n5. Run the pre-output verification checklist, then deliver the structured report.\n\nIf you already have control \u2026[truncated]", "baseline-2": "**Inputs needed:** the client's intake data as files \u2014 questionnaire responses (template: `eagle-ridge-methodology/templates/ssp-intake-questionnaire.md`), call notes, and any evidence inventory. Multiple files are fine. The more the intake covers, the fewer controls land as INSUFFICIENT INFO (which score as gaps for a preliminary estimate).\n\n**Process:** I'll run `/cmmc-gap-assess <files>`, which launches the gap-assessor subagent. It assesses all 110 NIST 800-171 controls (MET / NOT MET / PARTIAL / INSUFFICIENT INFO), applies the authoritative SPRS weights from the SSP template, calculates the preliminary score (110 down to -203), tiers the gaps, and flags POA&M candidates plus follow-up questions.\n\nPoint me at the intake file(s) and I'll kick it off. If you only want the score math on an already-assessed control list, there's a faster path: `uv run scripts/sprs_calculator.py <controls \u2026[truncated]", "baseline-3": "**What I need from you:** the client's intake data as file(s) \u2014 questionnaire responses, call notes, and/or an evidence inventory. (The intake questionnaire template is at `eagle-ridge-methodology/templates/ssp-intake-questionnaire.md` if they haven't filled one out yet.)\n\n**Process:** I'll run `/cmmc-gap-assess <files>`, which launches the gap-assessor subagent. It:\n\n1. Assesses all 110 NIST 800-171 Rev 2 controls as MET / NOT MET / PARTIAL / INSUFFICIENT INFO\n2. Calculates the preliminary SPRS score using the authoritative weights from the SSP template (110 minus weighted deductions, range 110 to \u2212203)\n3. Tiers the gaps (Tier 0 blockers \u2192 Tier 3 new tools), flags POA&M candidates, and lists follow-up questions where info was insufficient\n\nIf you already have a controls.json with statuses, I can skip the assessment and just run `scripts/sprs_calculator.py` for the number.\n\nPoint me at t \u2026[truncated]"}}};
+const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;");
+const CHEV = `<svg class="chev" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+
+document.getElementById("tasks").innerHTML = tasks.map(t => {
+  const cells = ARMS.map(arm => {
+    const rs = (armData[arm] || []).filter(r => r.task === t);
+    if (!rs.length) return `<div class="armcell"><span class="armlabel">${arm}</span><br><span class="pending">no runs</span></div>`;
+    const dots = rs.map(r => r.ok === "pass"
+      ? `<span class="p" title="run ${r.run}: pass">●</span>`
+      : `<span class="f" title="run ${r.run}: fail (headless committed to main)">✕</span>`).join("");
+    return `<div class="armcell"><span class="armlabel">${arm}</span><br>
+      <span class="dots">${dots}</span>
+      <span class="stats"> ${money(med(rs.map(r => r.cost_usd)))} · ${med(rs.map(r => r.turns))} turns · ${med(rs.map(r => r.dur_s))}s</span></div>`;
+  }).join("");
+
+  const d = DETAILS[t] || {};
+  let body = "";
+  if (d.prompt) body += `<div class="runx"><div class="rk">Prompt given to both configs</div><pre>${esc(d.prompt)}</pre></div>`;
+  if (d.check) body += `<div class="runx"><div class="rk">Pass/fail check (run verbatim)</div><pre>${esc(d.check)}</pre></div>`;
+  const runs = Object.entries(d.runs || {});
+  for (const [key, txt] of runs) {
+    const [arm, n] = key.split("-");
+    const row = DATA.find(r => r.task === t && r.arm === arm && String(r.run) === n);
+    const badge = row ? ` — ${row.ok}, ${money(row.cost_usd)}, ${row.turns} turns` : "";
+    body += `<div class="runx"><div class="rk">${arm} run ${n}${badge}</div><pre>${esc(txt)}</pre></div>`;
+  }
+  if (!runs.length) body += `<p class="fig-cap">Run transcripts for this task were not retained (working directories cleaned up).</p>`;
+
+  return `<details class="clps">
+    <summary class="taskhead"><span class="grid">
+      <span class="name">${t}<span class="canary">${CANARY[t] || ""}</span></span>${cells}</span>${CHEV}</summary>
+    <div class="clps-body">${body}</div>
+  </details>`;
+}).join("");
+
+document.getElementById("raw").innerHTML =
+  `<tr><th>date</th><th>arm</th><th>task</th><th>run</th><th>result</th><th>cost</th><th>turns</th><th>dur</th></tr>` +
+  ALL.map(r => `<tr><td>${r.date}</td><td>${r.arm}</td><td>${r.task}</td><td>${r.run}</td>
+    <td><span class="pill ${r.ok}">${r.ok}</span></td>
+    <td>${money(r.cost_usd)}</td><td>${r.turns}</td><td>${r.dur_s}s</td></tr>`).join("");
+</script>
+</body>
+</html>

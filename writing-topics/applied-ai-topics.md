@@ -24,7 +24,7 @@ A list of potential articles and research notes, categorized by theme, to be dev
 | :---: | :---: | :--- | :--- | :--- |
 | High | PIA-001 | **From Prototype to Production: Hardening LLM Workflows** | Discuss the technical challenges of moving an AI proof-of-concept into a reliable, enterprise-grade system, covering error handling, security (Zero Trust), and auditable pipelines. | To Do |
 | Medium | PIA-002 | **The Craft of AI-Assisted Development (A Case Study)** | Write about the experience of building a project (like Humaine Studio itself) using an AI coding assistant. What are the trade-offs and how does the human developer's role change? | To Do |
-| Medium | PIA-003 | **Context Engineering for Reliable Agents** | Detail how structured inputs and clear context are vital for getting predictable and high-quality results from large language models, especially in complex tasks. | To Do |
+| Medium | PIA-003 | **Context Engineering for Reliable Agents** | Detail how structured inputs and clear context are vital for getting predictable and high-quality results from large language models, especially in complex tasks. | Published (2026-07-31: Fewer Rules, Better Agent) |
 
 ---
 
