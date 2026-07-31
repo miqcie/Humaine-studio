@@ -22,13 +22,13 @@ Humaine Studio is the personal website and learning portfolio of Chris McConnell
 - **/privacy/** - Privacy policy (PostHog analytics, Apollo.io visitor intelligence)
 - **/weeks-of-life/** - Interactive life weeks visualization tool
 
-### Blog Posts (6 published)
+### Blog Posts (11 published)
 Located at `/posts/YYYY/MM/DD/post-title/`:
 
 1. **AI Inequality and the Digital Future of Work** (2021-02-20)
    - Topics: AI ethics, automation, human dignity
 
-2. **Connecting Claude to Notion with MCP** (2025-08-10)
+2. **Connecting Claude to Notion with MCP** (2024-08-10)
    - Topics: Model Context Protocol, Claude integration, Notion automation
 
 3. **Building Humaine Studio with Jekyll** (2024-08-11)
@@ -40,8 +40,25 @@ Located at `/posts/YYYY/MM/DD/post-title/`:
 5. **LinkedIn Certifications: PostHog** (2025-08-19)
    - Topics: PostHog analytics platform, product analytics certification
 
-6. **Building Notion-Claude Code Auto-Sync** (2025-11-17)
+6. **Evidence-First vs Detection-Only Security** (2025-10-02)
+   - Topics: security tooling, compliance evidence, zero trust
+
+7. **Building Notion-Claude Code Auto-Sync** (2025-11-17)
    - Topics: MCP automation, production workflows, developer tools
+
+8. **Experiments in Building a GRC Tool in a Weekend** (2026-01-11)
+   - Topics: GRC tooling, build-vs-buy, fast validation
+
+9. **The Security Poverty Line** (2026-01-11)
+   - Topics: security economics, compliance costs, SMB security
+
+10. **Building a Terminal Portfolio with Braille Art** (2026-03-29)
+    - Topics: TUI design, portfolio site, creative coding
+
+11. **Fewer Rules, Better Agent: Testing Anthropic's Context Advice on My Own Setup** (2026-07-31)
+    - Topics: Claude Code, context engineering, evals, LLM ops
+    - Companion data: `/config-trim-results.html` (interactive eval results)
+    - Companion repo: https://github.com/miqcie/claude-config-evals
 
 ### Experiments
 Interactive React/Vite applications at `/experiments/`:
@@ -206,7 +223,7 @@ This site represents an active learning journey. The author is open to:
 
 ---
 
-**Last Updated**: 2026-01-18 (via Claude Code)
+**Last Updated**: 2026-07-31 (via Claude Code)
 
 **Site Purpose**: Portfolio, learning documentation, career showcase, and educational resource for career changers exploring AI, automation, and web development.
 
