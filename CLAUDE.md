@@ -700,15 +700,10 @@ claude-code "ultrathink: plan a comprehensive content strategy for showcasing co
 3. **Implement**: "Now implement the plan, following our style guidelines"
 4. **Test**: "Test the changes locally and fix any issues"
 5. **Commit**: "Create a descriptive commit and push to feature branch"
-6. **Wrap-up**: "Run `specstory sync` to document the session"
 
 ### Session End Workflow
-**ALWAYS run at the end of every session:**
-```bash
-# Sync session history to Specstory (local only, no cloud sync)
-specstory sync --no-cloud-sync
-```
-This documents your work and maintains a searchable history of all Claude Code sessions in `.specstory/` directory.
+Specstory was retired (the CLI is uninstalled); no session-sync step is
+required. Historical session logs remain in `.specstory/history/` (gitignored).
 
 ## Emergency Procedures
 
@@ -812,9 +807,8 @@ From `docs/calculator-roadmap.md`:
 9. **Follow PR workflow** - all changes go through pull request review
 10. **NEVER mix HTML containers with markdown** - use pure markdown or pure HTML
 11. **ALWAYS include `.nojekyll`** in experiment directories - prevents Jekyll processing of React/Vite apps
-12. **ALWAYS run `specstory sync --no-cloud-sync` at session end** - documents work history automatically
-13. **Check active issues** - some CI checks are non-blocking (spell check, Lighthouse)
-14. **Privacy disclosure** - any new tracking must be documented in privacy.md
+12. **Check active issues** - some CI checks are non-blocking (spell check, Lighthouse)
+13. **Privacy disclosure** - any new tracking must be documented in privacy.md
 
 ## Quick Reference
 
@@ -826,7 +820,6 @@ bundle exec jekyll serve           # Start local server
 git diff                           # Review changes
 gh pr create                       # Create pull request
 bundle exec jekyll build           # Test build process
-specstory sync --no-cloud-sync     # Document session history (run at session end)
 ```
 
 ### File Locations
