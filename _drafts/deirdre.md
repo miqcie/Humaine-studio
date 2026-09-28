@@ -6,19 +6,19 @@ tags: ["projects", "workflow", "ai", "Deirdre McCloskey", "Claude Code", "agents
 excerpt: "I turned Deirdre McCloskey's Economical Writing into a Claude Code agent that reviews prose for flab, fog, and AI tics. Then I made her review her own repo. She found problems."
 ---
 
-I studied English as an undergrad. There were aspirations of politics and/or being a lawyer, and my uncle said that learning to write would always be a good skill to have. Strunk and White was my go-to for simple prose. I distinctly remember a partner at a law firm I worked at taught me a simple construct: tell them what you're going to write, write it, tell them what you just wrote.
+Here's Deirdre[^1]. She's a plugin and a skill that helps you write better.
 
-Some years later, out of frustration with how AI tries to write, I found [_Economical Writing_](https://press.uchicago.edu/ucp/books/book/chicago/E/bo29562607.html) by Deirdre McCloskey. It's 100-ish pages, funny, and it both ruined my confidence and gave me a way to rebuild it. Once you've read "A Paragraph Should Have a Point" you start noticing most writing doesn't have one. Yes, your writing as well.
+I studied English in college with aspirations of being a barista. My uncle said that learning to write would always be a good skill to have. Strunk and White was my go-to for simple prose. I distinctly remember a partner at a law firm I worked at taught me a simple construct: tell them what you're going to write, write it, tell them what you just wrote.
 
-Everything I drafted with AI help came out sounding like AI. You know the tells. "It's not just a tool, it's a paradigm shift." The rule-of-three closing. "Moreover." A "delve" if you're unlucky. The writing is cold, inert, and lifeless.
+Like many others, I've become frustrated with how LLMs write and suffered through the dark months from Opus 4.6 to 5.1. Everything I drafted with AI help came out sounding like AI. You know the tells. "It's not just a tool, it's a paradigm shift." The rule-of-three closing. "Moreover." A "delve" if you're unlucky. The writing is cold, inert, and lifeless.
 
-I understand the irony of using a `/skill` in an LLM to help me write. I still think it's a useful exercise. AI is not going anywhere. It is a useful tool. We must learn to use it wisely. So let's use the tool to improve our writing.
+I asked Claude to create some rules and they came back with _Economical Writing_ by Deirdre McCloskey. It's 100-ish pages about how economists should write. It's funny, clever, and it created a useful set of rules to improve my writing and how to steer agents. Once you've read "A Paragraph Should Have a Point" you start noticing most writing doesn't have one. Yes, your writing as well.
 
-Yes, you can grind your own cornmeal. Or you can buy it. It'll be okay.
+I understand the irony of using a `/skill` in an LLM to help me write. And Pangram checking my work before publishing. I still think it's a useful exercise. AI is not going anywhere. It is a useful tool. We must learn to use it wisely. So let's use the tool to improve our writing. [I'm not ashamed of it.](https://tenor.com/Xnrt.gif)
 
-Here's Deirdre. She's a plugin and a skill. So I did the thing I do now with recurring problems: I made it a Claude Code agent. Her name is deirdre[^1], and she's public.
+Yes, you can grind your own cornmeal. Or you can buy it and make some tasty cornbread. Know what to leverage.
 
-## What she does
+## Deirdre as a writing helper
 
 Ask `/deirdre` to review your writing and prose. She reviews your prose the way McCloskey teaches her writing: warm, witty, and intolerant toward flab, fog, and pretentiousness. Two extra rules increase her utility and reduce personal irritation.
 
@@ -28,7 +28,7 @@ Ask `/deirdre` to review your writing and prose. She reviews your prose the way 
 
 There's a dumb-on-purpose grep script, `llm-lint.sh`, that catches mechanical tics (banned intensifiers, "furthermore," buzzword filler), whatever b.s. Pangram is attempting, and drops them into the response. The grep does the mechanical work; Deirdre is the judge, not regex: rhythm, argument, and opinionated writing is the point.
 
-## Deirdre reviewed herself
+## What does Deirdre think of Deirdre?
 
 I dispatched deirdre to review her own README. This felt like a trap and it was. Verdict: "tighten-then-publish." Findings included:
 
@@ -38,7 +38,7 @@ She caught the install section claiming "the skill alone is enough" while the sk
 
 She also praised what earned it, which is the part of the character I worked hardest to get right. Contemptuous reviewers are easy to build and exhausting to use. McCloskey's actual register — high standards, good cheer, roast the habit and never the human — is what makes me continue to use the tool. I hope you run the review a second time, too.
 
-## Install
+## Install Deirdre
 
 Go to [github.com/miqcie/deirdre](https://github.com/miqcie/deirdre). In Claude Code, copy/paste the code below:
 
