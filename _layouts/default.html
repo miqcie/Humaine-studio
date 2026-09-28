@@ -7,7 +7,7 @@
     <div class="container">
         {% include header.html %}
 
-        <!-- PostHog Experiment Helper: must be before {{ content }} so pages can call runExperiment() inline -->
+        <!-- PostHog Experiment Helper: must load before the page content so pages can call runExperiment() inline -->
         <script>
         window.runExperiment = function(opts) {
             // opts: { name, flag, variantAId, variantBId }
