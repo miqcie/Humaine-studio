@@ -17,7 +17,7 @@ I asked Claude to create some rules and they came back with _Economical Writing_
 
 I understand the irony of using a `/skill` in an LLM to help me write. And Pangram checking my work before publishing. I still think it's a useful exercise. AI is not going anywhere. It is a useful tool. We must learn to use it wisely. So let's use the tool to improve our writing. [I'm not ashamed of it.](https://tenor.com/Xnrt.gif)
 
-Yes, you can grind your own cornmeal. Or you can buy it and make some tasty cornbread. Know what to leverage.
+Yes, you can grind your own cornmeal. Or you can buy it and make some tasty cornbread. Know what to leverage. <!-- llm-lint: ignore -->
 
 ## Deirdre as a writing helper
 
