@@ -72,3 +72,14 @@ exclude:
   - vendor/gems/
   - vendor/ruby/
   - session-log-*.md
+  # repo-internal files: keep off the public site
+  - CLAUDE.md
+  - SESSION_CONTEXT.md
+  - PAPERCUTS.md
+  - "PostHog Cover Letter.pdf"
+  - "*.code-workspace"
+  - lighthouserc.js
+  - lychee.toml
+  - scripts/
+  - docs/
+  - writing-topics/
