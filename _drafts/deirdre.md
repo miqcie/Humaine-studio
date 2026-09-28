@@ -6,25 +6,29 @@ tags: ["projects", "workflow", "ai", "Deirdre McCloskey", "Claude Code", "agents
 excerpt: "I turned Deirdre McCloskey's Economical Writing into a Claude Code agent that reviews prose for flab, fog, and AI tics. Then I made her review her own repo. She found problems."
 ---
 
-I studied English as an undergrad. There were aspirations of politics and/or being a lawyer, and my uncle said that learning to write would always be a good skill to have. Some years later I found [_Economical Writing_](https://press.uchicago.edu/ucp/books/book/chicago/E/bo29562607.html) by Deirdre McCloskey, out of frustration with how AI tries to write — {==it might have already been the LLM era==}{>>Chronology reads crossed: you found the book *because of* AI prose, then aren't sure it was the LLM era. Pick one? (your call, your voice)<<}{id="c1" by="Claude" at="2026-09-28T15:05:00.000Z"}. It's 100-ish pages, funny, and it both ruined my confidence and gave me a way to rebuild it. Once you've read "A Paragraph Should Have a Point" you start noticing paragraphs that don't have one. Many of them are yours.
+I studied English as an undergrad. There were aspirations of politics and/or being a lawyer, and my uncle said that learning to write would always be a good skill to have. Strunk and White was my go-to for simple prose. I distinctly remember a partner at a law firm I worked at taught me a simple construct: tell them what you're going to write, write it, tell them what you just wrote. Some years later, out of frustration with how AI tries to write, I found [_Economical Writing_](https://press.uchicago.edu/ucp/books/book/chicago/E/bo29562607.html) by Deirdre McCloskey. It's 100-ish pages, funny, and it both ruined my confidence and gave me a way to rebuild it. Once you've read "A Paragraph Should Have a Point" you start noticing most writing doesn't have one. Yes, your writing as well.
 
 Everything I drafted with AI help came out sounding like AI. You know the tells. "It's not just a tool, it's a paradigm shift." The rule-of-three closing. "Moreover." A "delve" if you're unlucky. The prose is grammatical, confident, and dead.
 
-So I did the thing I do now with recurring problems: I made it a [Claude Code agent](https://docs.anthropic.com/en/docs/claude-code/overview). Her name is deirdre[^1], and she's public: [**github.com/miqcie/deirdre**](https://github.com/miqcie/deirdre).
+And while I understand the irony of using a `/skill` in an LLM to help me write, I still think it's a useful exercise. AI is not going anywhere. It is a useful tool. We must learn to use it wisely. So let's use the tool to improve our writing.
+
+Yes, you can grind your own cornmeal. Or you can buy it. It'll be okay.
+
+Here's Deirdre. She's a plugin and a skill. So I did the thing I do now with recurring problems: I made it a Claude Code agent. Her name is deirdre[^1], and she's public.
 
 ## What she does
 
-You say {~~`/deirdre draft.md`~>`/deirdre:deirdre draft.md`~~}{id="s1" by="Claude" at="2026-09-28T15:05:00.000Z"} (or just "review this draft") and she reviews your prose the way McCloskey teaches writing: warm, witty, and gently merciless toward flab, fog, and pretension. Two rules make her useful instead of annoying:
+You say `/deirdre:deirdre draft.md` (or just "review this draft") and she reviews your prose the way McCloskey teaches writing: warm, witty, and gently merciless toward flab, fog, and pretension. There are two rules that increase her utility and reduce irritation.
 
 1. **Every finding needs a rewrite.** She quotes the offending line, names the rule (McCloskey #25, active verbs — or "LLM tic: not-X-it's-Y"), and hands you a concrete replacement. A rule without a rewrite is a lecture, and she doesn't lecture.
 
-2. **Every cut must buy clarity, force, or joy.** She's not a compression algorithm. A sentence that earns its length keeps it.
+2. **Every cut must improve the clarity, force, or joy of the writing.** The goal is to simplify, but not blunt the impact of your point. A good sentence, no matter its length, that earns its length stays the way it is.
 
-There's also a dumb-on-purpose companion: `llm-lint.sh`, a grep script that catches the mechanical tics (banned intensifiers, "furthermore," buzzword filler) and exits 1 so it drops into CI. The grep does the mechanical work; the agent does the judgment a regex can't — rhythm, argument, whether each paragraph has a point.
+There's a dumb-on-purpose grep script, `llm-lint.sh`, that catches the mechanical tics (banned intensifiers, "furthermore," buzzword filler), whatever Pangram is attempting, and exits 1 so it drops into CI. The grep does the mechanical work; Deirdre is the judge, not regex: rhythm, argument, whether each paragraph has a point.
 
-## The fun part: she reviewed herself
+## Deirdre reviewed herself
 
-Before promoting the repo, I dispatched deirdre to review her own README. This felt like a trap and it was. Verdict: "tighten-then-publish." Findings included:
+I dispatched deirdre to review her own README. This felt like a trap and it was. Verdict: "tighten-then-publish." Findings included:
 
 > "Three pronouns, two referents, one sentence... The information is simple and the sentence is not."
 
@@ -34,15 +38,7 @@ She also praised what earned it, which is the part of the character I worked har
 
 ## Install
 
-{--```bash
-git clone https://github.com/miqcie/deirdre.git
-mkdir -p ~/.claude/skills/deirdre
-cp deirdre/skills/deirdre/SKILL.md deirdre/STYLE_GUIDE.md ~/.claude/skills/deirdre/
-```
-
-That's it — one skill file carries the persona, doctrine, and method. The repo also has the subagent version and a `/deirdre` slash command if you want them.--}{id="s2" by="Claude" at="2026-09-28T15:05:00.000Z"}
-
-{++In Claude Code, she installs as a plugin:
+The code is at [github.com/miqcie/deirdre](https://github.com/miqcie/deirdre). In [Claude Code](https://code.claude.com/docs/en/overview), she installs as a plugin:
 
 ```
 /plugin marketplace add miqcie/deirdre
@@ -51,8 +47,8 @@ That's it — one skill file carries the persona, doctrine, and method. The repo
 
 The plugin ships the skill and a subagent. The subagent runs the review in its own context, so a long critique stays out of your session. `/plugin update` gets you her fixes.
 
-For other agents that read `SKILL.md` folders (Codex, Hermes, pi), copy or symlink `skills/deirdre/` from the repo. The style guide lives in that folder, so the skill works on its own.++}{id="s3" by="Claude" at="2026-09-28T15:05:00.000Z"}
+For other agents that read `SKILL.md` folders (Codex, Hermes, pi), copy or symlink `skills/deirdre/` from the repo. The style guide lives in that folder, so the skill works on its own.
 
 And buy [the book](https://press.uchicago.edu/ucp/books/book/chicago/E/bo29562607.html). The repo is an homage, not an affiliation. McCloskey said it better in 100 pages than any agent ever will.
 
-[^1]: deirdre is a Claude Code agent inspired by Deirdre McCloskey's _Economical Writing_. The real Professor McCloskey is not involved and is presumably busy writing actual books.
+[^1]: deirdre is a Claude Code plugin and skill inspired by Deirdre McCloskey's _Economical Writing_. The real Professor McCloskey is not involved and is presumably busy writing actual books.
