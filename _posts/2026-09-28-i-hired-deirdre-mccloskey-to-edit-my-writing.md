@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "I Hired Deirdre McCloskey to Edit My Writing (Sort Of)"
+date: 2026-09-28
 categories: ["ai research", "claude code", "writing"]
 tags: ["projects", "workflow", "ai", "Deirdre McCloskey", "Claude Code", "agents"]
 excerpt: "I turned Deirdre McCloskey's Economical Writing into a Claude Code agent that reviews prose for flab, fog, and AI tics. Then I made her review her own repo. She found problems."

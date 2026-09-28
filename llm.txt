@@ -22,7 +22,7 @@ Humaine Studio is the personal website and learning portfolio of Chris McConnell
 - **/privacy/** - Privacy policy (PostHog analytics, Apollo.io visitor intelligence)
 - **/weeks-of-life/** - Interactive life weeks visualization tool
 
-### Blog Posts (11 published)
+### Blog Posts (12 published)
 Located at `/posts/YYYY/MM/DD/post-title/`:
 
 1. **AI Inequality and the Digital Future of Work** (2021-02-20)
@@ -59,6 +59,10 @@ Located at `/posts/YYYY/MM/DD/post-title/`:
     - Topics: Claude Code, context engineering, evals, LLM ops
     - Companion data: `/config-trim-results.html` (interactive eval results)
     - Companion repo: https://github.com/miqcie/claude-config-evals
+
+12. **I Hired Deirdre McCloskey to Edit My Writing (Sort Of)** (2026-09-28)
+    - Topics: writing, Claude Code plugins and skills, LLM writing tics
+    - Companion repo: https://github.com/miqcie/deirdre
 
 ### Experiments
 Interactive React/Vite applications at `/experiments/`:
@@ -223,7 +227,7 @@ This site represents an active learning journey. The author is open to:
 
 ---
 
-**Last Updated**: 2026-07-31 (via Claude Code)
+**Last Updated**: 2026-09-28 (via Claude Code)
 
 **Site Purpose**: Portfolio, learning documentation, career showcase, and educational resource for career changers exploring AI, automation, and web development.
 
