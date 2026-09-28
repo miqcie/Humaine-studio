@@ -21,7 +21,7 @@ Yes, you can grind your own cornmeal. Or you can buy it and make some tasty corn
 
 ## Deirdre as a writing helper
 
-Ask `/deirdre` to review your writing and prose. She reviews your prose the way McCloskey teaches her writing: warm, witty, and intolerant toward flab, fog, and pretentiousness. Two extra rules increase her utility and reduce personal irritation.
+Ask `/deirdre:deirdre` to review your writing and prose. She reviews your prose the way McCloskey teaches her writing: warm, witty, and intolerant toward flab, fog, and pretentiousness. Two extra rules increase her utility and reduce personal irritation.
 
 1. **Every finding needs a rewrite.** She quotes the offending line, names the rule (McCloskey #25, active verbs — or "LLM tic: not-X-it's-Y"), and hands you a concrete replacement. A rule without a rewrite is a lecture, and she doesn't lecture.
 
