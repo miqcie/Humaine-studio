@@ -2,227 +2,225 @@
 layout: default
 title: World Religion Origins Map
 description: Interactive map showing where major world religions originated
+custom_css: |
+  .map-container {
+      margin: 0 -20px;
+  }
+
+  #map {
+      height: 500px;
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+  }
+
+  .map-header {
+      margin-bottom: 30px;
+  }
+
+  .map-title {
+      font-size: 32px;
+      font-weight: 400;
+      margin-bottom: 15px;
+      color: var(--text-dark);
+  }
+
+  .map-description {
+      font-size: 16px;
+      color: var(--text-light);
+      line-height: 1.7;
+      max-width: 600px;
+  }
+
+  .legend {
+      margin-top: 30px;
+      padding: 20px;
+      background: var(--code-bg);
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+  }
+
+  .legend-title {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 15px;
+      color: var(--text-dark);
+  }
+
+  .legend-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 8px;
+  }
+
+  .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--text-color);
+      cursor: pointer;
+      padding: 6px 10px;
+      border-radius: 6px;
+      transition: background-color 0.15s ease;
+  }
+
+  .legend-item:hover {
+      background-color: var(--border-color);
+  }
+
+  .legend-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      flex-shrink: 0;
+  }
+
+  .leaflet-popup-content-wrapper {
+      border-radius: 8px;
+  }
+
+  .popup-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #333;
+  }
+
+  .popup-location {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 4px;
+  }
+
+  .popup-date {
+      font-size: 12px;
+      color: #888;
+      margin-bottom: 8px;
+  }
+
+  .popup-desc {
+      font-size: 13px;
+      color: #444;
+      line-height: 1.5;
+      margin-bottom: 10px;
+  }
+
+  .popup-link {
+      font-size: 12px;
+      color: #3b82f6;
+      text-decoration: none;
+  }
+
+  .popup-link:hover {
+      text-decoration: underline;
+  }
+
+  /* Tufte-style visualization */
+  .affiliation-section {
+      margin-top: 40px;
+      padding: 30px 20px;
+      background: var(--code-bg);
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+  }
+
+  .affiliation-title {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 8px;
+      color: var(--text-dark);
+  }
+
+  .affiliation-subtitle {
+      font-size: 13px;
+      color: var(--text-lighter);
+      margin-bottom: 30px;
+  }
+
+  .chart-container {
+      max-width: 700px;
+  }
+
+  .chart-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+      gap: 12px;
+  }
+
+  .chart-label {
+      width: 140px;
+      font-size: 13px;
+      color: var(--text-color);
+      text-align: right;
+      flex-shrink: 0;
+  }
+
+  .chart-bar-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+  }
+
+  .chart-bar {
+      height: 18px;
+      border-radius: 2px;
+      transition: opacity 0.15s ease;
+  }
+
+  .chart-bar:hover {
+      opacity: 0.8;
+  }
+
+  .chart-value {
+      font-size: 12px;
+      color: var(--text-light);
+      min-width: 45px;
+  }
+
+  .chart-footnote {
+      margin-top: 20px;
+      font-size: 11px;
+      color: var(--text-lighter);
+      line-height: 1.5;
+  }
+
+  @media (max-width: 768px) {
+      #map {
+          height: 400px;
+      }
+
+      .map-title {
+          font-size: 24px;
+      }
+
+      .legend-grid {
+          grid-template-columns: repeat(2, 1fr);
+      }
+
+      .chart-label {
+          width: 100px;
+          font-size: 12px;
+      }
+
+      .chart-value {
+          font-size: 11px;
+          min-width: 40px;
+      }
+  }
+
+  @media (max-width: 480px) {
+      .legend-grid {
+          grid-template-columns: 1fr;
+      }
+
+      .chart-label {
+          width: 80px;
+      }
+  }
 ---
-
-<style>
-    .map-container {
-        margin: 0 -20px;
-    }
-
-    #map {
-        height: 500px;
-        width: 100%;
-        border-radius: 8px;
-        border: 1px solid var(--border-color);
-    }
-
-    .map-header {
-        margin-bottom: 30px;
-    }
-
-    .map-title {
-        font-size: 32px;
-        font-weight: 400;
-        margin-bottom: 15px;
-        color: var(--text-dark);
-    }
-
-    .map-description {
-        font-size: 16px;
-        color: var(--text-light);
-        line-height: 1.7;
-        max-width: 600px;
-    }
-
-    .legend {
-        margin-top: 30px;
-        padding: 20px;
-        background: var(--code-bg);
-        border-radius: 8px;
-        border: 1px solid var(--border-color);
-    }
-
-    .legend-title {
-        font-size: 18px;
-        font-weight: 500;
-        margin-bottom: 15px;
-        color: var(--text-dark);
-    }
-
-    .legend-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-        gap: 8px;
-    }
-
-    .legend-item {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        font-size: 14px;
-        color: var(--text-color);
-        cursor: pointer;
-        padding: 6px 10px;
-        border-radius: 6px;
-        transition: background-color 0.15s ease;
-    }
-
-    .legend-item:hover {
-        background-color: var(--border-color);
-    }
-
-    .legend-dot {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        flex-shrink: 0;
-    }
-
-    .leaflet-popup-content-wrapper {
-        border-radius: 8px;
-    }
-
-    .popup-title {
-        font-size: 16px;
-        font-weight: 600;
-        margin-bottom: 8px;
-        color: #333;
-    }
-
-    .popup-location {
-        font-size: 13px;
-        color: #666;
-        margin-bottom: 4px;
-    }
-
-    .popup-date {
-        font-size: 12px;
-        color: #888;
-        margin-bottom: 8px;
-    }
-
-    .popup-desc {
-        font-size: 13px;
-        color: #444;
-        line-height: 1.5;
-        margin-bottom: 10px;
-    }
-
-    .popup-link {
-        font-size: 12px;
-        color: #3b82f6;
-        text-decoration: none;
-    }
-
-    .popup-link:hover {
-        text-decoration: underline;
-    }
-
-    /* Tufte-style visualization */
-    .affiliation-section {
-        margin-top: 40px;
-        padding: 30px 20px;
-        background: var(--code-bg);
-        border-radius: 8px;
-        border: 1px solid var(--border-color);
-    }
-
-    .affiliation-title {
-        font-size: 18px;
-        font-weight: 500;
-        margin-bottom: 8px;
-        color: var(--text-dark);
-    }
-
-    .affiliation-subtitle {
-        font-size: 13px;
-        color: var(--text-lighter);
-        margin-bottom: 30px;
-    }
-
-    .chart-container {
-        max-width: 700px;
-    }
-
-    .chart-row {
-        display: flex;
-        align-items: center;
-        margin-bottom: 12px;
-        gap: 12px;
-    }
-
-    .chart-label {
-        width: 140px;
-        font-size: 13px;
-        color: var(--text-color);
-        text-align: right;
-        flex-shrink: 0;
-    }
-
-    .chart-bar-container {
-        flex: 1;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-
-    .chart-bar {
-        height: 18px;
-        border-radius: 2px;
-        transition: opacity 0.15s ease;
-    }
-
-    .chart-bar:hover {
-        opacity: 0.8;
-    }
-
-    .chart-value {
-        font-size: 12px;
-        color: var(--text-light);
-        min-width: 45px;
-    }
-
-    .chart-footnote {
-        margin-top: 20px;
-        font-size: 11px;
-        color: var(--text-lighter);
-        line-height: 1.5;
-    }
-
-    @media (max-width: 768px) {
-        #map {
-            height: 400px;
-        }
-
-        .map-title {
-            font-size: 24px;
-        }
-
-        .legend-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        .chart-label {
-            width: 100px;
-            font-size: 12px;
-        }
-
-        .chart-value {
-            font-size: 11px;
-            min-width: 40px;
-        }
-    }
-
-    @media (max-width: 480px) {
-        .legend-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .chart-label {
-            width: 80px;
-        }
-    }
-</style>
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="anonymous" />
 
