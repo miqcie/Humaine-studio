@@ -1,13 +1,20 @@
 // T1D Insulin Calculator
 // Vanilla JavaScript implementation
 
+// Starting values used when a visitor has no saved settings.
+// Single source of truth: the sliders and labels are set from these on load.
+const CALCULATOR_DEFAULTS = {
+  icr: 40, // Insulin-to-Carb Ratio: 1 unit per 40g of carbs
+  isf: 70  // Insulin Sensitivity Factor: 1 unit drops BG by 70 mg/dL
+};
+
 class InsulinCalculator {
   constructor() {
     this.state = {
       currentBG: '',
       carbs: '',
-      icr: 40, // Insulin-to-Carb Ratio: 1 unit per 40g of carbs
-      isf: 70, // Insulin Sensitivity Factor: 1 unit drops BG by 70 mg/dL
+      icr: CALCULATOR_DEFAULTS.icr,
+      isf: CALCULATOR_DEFAULTS.isf,
       targetBG: 120,
       insulinType: 'Humalog (Lispro)',
       showSources: false,
@@ -33,7 +40,26 @@ class InsulinCalculator {
     this.loadFromLocalStorage();
     this.attachEventListeners();
     this.populateInsulinTypes();
+    this.syncControlsToState();
     this.updateDisplay();
+  }
+
+  // Make every visible control and label show the value the math will use.
+  syncControlsToState() {
+    const el = this.elements;
+    if (this.state.units === 'mmol/L') {
+      el.isfSlider.min = '1';
+      el.isfSlider.max = '8';
+      el.isfSlider.step = '0.1';
+      el.currentBGInput.step = '0.1';
+      el.targetBGInput.step = '0.1';
+    }
+    el.icrSlider.value = this.state.icr;
+    el.icrValue.textContent = `1:${this.state.icr}`;
+    el.icrGrams.textContent = this.state.icr;
+    el.isfSlider.value = this.state.isf;
+    el.targetBGInput.value = this.displayValue(this.state.targetBG);
+    el.insulinTypeSelect.value = this.state.insulinType;
   }
 
   saveToLocalStorage() {
@@ -363,6 +389,12 @@ class InsulinCalculator {
 }
 
 // Initialize calculator when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-  new InsulinCalculator();
-});
+if (typeof document !== 'undefined') {
+  document.addEventListener('DOMContentLoaded', () => {
+    new InsulinCalculator();
+  });
+}
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { InsulinCalculator, CALCULATOR_DEFAULTS };
+}
