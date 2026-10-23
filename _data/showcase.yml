@@ -111,7 +111,7 @@ groups:
         image: "/assets/images/showcase/deirdre.jpg"
         alt: "Deirdre repository on GitHub"
         what: "An editor in a box. It reads your draft by Deirdre McCloskey's rules and offers a rewrite for every fault."
-        why: "Everything I drafted with AI sounded like AI. Claude pointed me to McCloskey's *Economical Writing*, and I turned its rules into a checklist. An homage, not affiliated. The [story is here](/posts/2026/09/28/i-hired-deirdre-mccloskey-to-edit-my-writing/)."
+        why: "Everything I drafted with AI sounded like AI. Claude pointed me to McCloskey's [*Economical Writing*](https://press.uchicago.edu/ucp/books/book/chicago/E/bo25674588.html), and I turned its rules into a checklist. An homage, not affiliated. The [story is here](/posts/2026/09/28/i-hired-deirdre-mccloskey-to-edit-my-writing/)."
         problem: "Writers get specific fixes instead of vague advice, plus a quick check that flags 20 common AI tells before a commit."
         built: "A Claude Code skill and agent written in Markdown, plus a small Bash and Perl linter. First version in August 2026; public plugin and v2.1 on Sept. 28."
         lessons: "Deirdre reviewed her own README and caught an install step that broke the skill. The linter flagged the README's own examples, so it now skips quotes and code. Plugin versions drifted, so one release script now bumps them together. Lesson: point the tool at itself first."
