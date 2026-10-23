@@ -720,6 +720,11 @@ body {
     max-inline-size: 36rem;
 }
 
+.showcase-header .showcase-disclosure {
+    margin-block-start: 0.75rem;
+    font-size: 14px;
+}
+
 .showcase-sr {
     position: absolute;
     inline-size: 1px;
