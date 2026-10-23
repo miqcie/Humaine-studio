@@ -247,7 +247,7 @@ groups:
         what: "One command at the end of a work session that files every loose end: tasks, issues, decisions, notes and a short recap."
         why: "My rule: if I have to remember something more than once, automate it. Before this, \"fix later\" items and decisions vanished when the chat window closed."
         problem: "Every session ends the same way. Thirteen steps each write to exactly one place: the repo, Linear, beads, my memory files or a coaching log. Finished work closes, deferred work becomes a GitHub issue, and a recap is committed. A result only counts if a number moved."
-        built: "A Markdown skill for Claude Code that drives the GitHub CLI, Linear, beads and my memory files. It began as a project command on Sept. 19, 2026 and became a skill that runs on my Mac and in cloud sessions by Oct. 19. About 59 runs so far."
+        built: "A Markdown skill for Claude Code that drives the GitHub CLI, Linear, beads and my memory files. It began as a slash-command shortcut on Oct. 5, 2025 and grew over a year into a skill that runs on my Mac and in cloud sessions. About 59 recorded runs so far."
         lessons: "An early version stalled when a Notion tool wasn't connected, so tasks moved to Linear and each step now runs on its own. I filed decisions in the wrong tracker until I split the work into three lanes. Summary tables got skipped, so every step must now print its result. Lesson: a checklist only works if it shows its work."
         uses: "Hospital shift handoffs, restaurant closing checklists, lab notebook sign-offs, social work case notes, project retros."
         note: "The skill is not public yet."
