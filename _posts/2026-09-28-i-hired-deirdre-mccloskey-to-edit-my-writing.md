@@ -52,6 +52,6 @@ The plugin is designed as a skill and subagent. The subagent runs the review in 
 
 For other agents that read `SKILL.md` folders (Codex, Hermes, pi), copy or symlink `skills/deirdre/` from the repo. The style guide lives in that folder, so the skill works on its own.
 
-Lastly, buy her book, [_Economical Writing_](https://press.uchicago.edu/ucp/books/book/chicago/E/bo29562607.html).
+Lastly, buy her book, [_Economical Writing_](https://press.uchicago.edu/ucp/books/book/chicago/E/bo25674588.html).
 
 [^1]: deirdre is a Claude Code plugin and skill inspired by Deirdre McCloskey's _Economical Writing_. The real Professor McCloskey is not involved and is presumably confused or irritated by this distraction.

@@ -1,0 +1,63 @@
+---
+layout: default
+title: Tools
+permalink: /tools/
+description: "Tools and projects Chris McConnell built in 2025 and 2026: civic pages, AI agents and evals, data viz, compliance tooling and health tools. Each with what it is, how it was built, and what went wrong."
+---
+<div class="showcase">
+  <header class="showcase-header">
+    <h1>Tools</h1>
+    <p>Things I built in the last eighteen months, most of them with Claude Code. Each one says what it is and why it exists. Open the fold for how it was built and what went wrong.</p>
+    <p class="showcase-disclosure">Cards drafted with Claude from my repos, build notes and session recaps, then edited by me.</p>
+  </header>
+
+  <!-- Filter and open-all need the script below; the bar stays hidden without it -->
+  <div class="showcase-bar" hidden>
+    <fieldset class="showcase-filter">
+      <legend class="showcase-sr">Show projects</legend>
+      <label><input type="radio" name="showcase-filter" value="all" checked> All</label>
+      {%- for g in site.data.showcase.groups %}
+      <label><input type="radio" name="showcase-filter" value="{{ g.name | slugify }}"> {{ g.name }}</label>
+      {%- endfor %}
+    </fieldset>
+    <button type="button" class="showcase-toggle" aria-pressed="false">Open all</button>
+  </div>
+
+  {%- for g in site.data.showcase.groups %}
+  <section class="showcase-group" data-group="{{ g.name | slugify }}" aria-labelledby="group-{{ forloop.index }}">
+    <h2 id="group-{{ forloop.index }}">{{ g.name }}</h2>
+    {%- for p in g.projects %}
+    {% include showcase-card.html project=p %}
+    {%- endfor %}
+  </section>
+  {%- endfor %}
+
+  <section class="showcase-group" data-group="smaller-builds" aria-labelledby="group-smaller">
+    <h2 id="group-smaller">Smaller builds</h2>
+    <ul class="showcase-smaller">
+      <li><a href="https://github.com/miqcie/usaspending-mcp-server">usaspending-mcp-server</a> lets an AI assistant search federal contract awards in plain language. Sixteen read-only tools; the docs are still a draft.</li>
+      <li><a href="https://github.com/miqcie/grepai-beads-helpers">grepai-beads-helpers</a> sets up local code search and agent memory in one command.</li>
+    </ul>
+    <p class="showcase-footer">More code on <a href="https://github.com/miqcie">GitHub</a>.</p>
+  </section>
+</div>
+
+<script>
+  (function () {
+    var root = document.querySelector('.showcase');
+    var bar = root.querySelector('.showcase-bar');
+    var groups = root.querySelectorAll('.showcase-group');
+    var toggle = bar.querySelector('.showcase-toggle');
+    bar.hidden = false;
+    bar.addEventListener('change', function (e) {
+      var v = e.target.value;
+      groups.forEach(function (g) { g.hidden = v !== 'all' && g.dataset.group !== v; });
+    });
+    toggle.addEventListener('click', function () {
+      var open = toggle.getAttribute('aria-pressed') !== 'true';
+      root.querySelectorAll('.showcase-more').forEach(function (d) { d.open = open; });
+      toggle.setAttribute('aria-pressed', String(open));
+      toggle.textContent = open ? 'Close all' : 'Open all';
+    });
+  })();
+</script>

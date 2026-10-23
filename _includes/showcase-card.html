@@ -1,0 +1,38 @@
+{%- comment -%} One /tools/ card. Pass project=<item from _data/showcase.yml>. {%- endcomment -%}
+{%- assign p = include.project -%}
+<article class="showcase-card" id="{{ p.id }}">
+  <div class="showcase-head">
+    <h3 class="showcase-title">{{ p.title }}</h3>
+    <span class="showcase-badge">{{ p.status }}</span>
+  </div>
+  <div class="showcase-body">
+    <div class="showcase-summary">
+      <p class="showcase-lead">{{ p.what | markdownify | remove: '<p>' | remove: '</p>' | strip }}</p>
+      <p>{{ p.why | markdownify | remove: '<p>' | remove: '</p>' | strip }}</p>
+      {%- if p.links.size > 0 or p.note %}
+      <p class="showcase-links">
+        {%- for l in p.links %}
+        <a href="{{ l.url | relative_url }}">{{ l.label }}</a>
+        {%- endfor %}
+        {%- if p.note %}<span class="showcase-note">{{ p.note }}</span>{% endif %}
+      </p>
+      {%- endif %}
+    </div>
+    {%- if p.image %}
+    <img class="showcase-shot" src="{{ p.image | relative_url }}" alt="{{ p.alt }}" loading="lazy" width="1280" height="800">
+    {%- endif %}
+  </div>
+  <details class="showcase-more">
+    <summary>How it was built and what went wrong</summary>
+    <dl>
+      <dt>The problem it solves</dt>
+      <dd>{{ p.problem | markdownify }}</dd>
+      <dt>How it was built</dt>
+      <dd>{{ p.built | markdownify }}</dd>
+      <dt>Mistakes and lessons</dt>
+      <dd>{{ p.lessons | markdownify }}</dd>
+      <dt>Other uses</dt>
+      <dd>{{ p.uses | markdownify }}</dd>
+    </dl>
+  </details>
+</article>

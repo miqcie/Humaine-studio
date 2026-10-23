@@ -7,7 +7,7 @@
 Humaine Studio is the personal website and learning portfolio of Chris McConnell, documenting a journey of learning to code with curiosity, an English/MBA background, and no formal CS education. The site serves multiple purposes:
 
 1. **Research Portfolio** - Blog posts exploring AI, automation, and technical topics
-2. **Career Showcase** - Professional applications and work samples (PostHog cover letter, resume)
+2. **Tools Showcase** - Projects built 2025-2026, each with what, why, how built, mistakes and a link (/tools/)
 3. **Educational Tools** - Practical applications like the T1D insulin calculator
 4. **Learning Journey** - Transparent documentation of learning process, including mistakes and growth
 
@@ -17,6 +17,7 @@ Humaine Studio is the personal website and learning portfolio of Chris McConnell
 
 ### Primary Pages
 - **/** (Homepage) - Hero section, philosophy, research areas, recent writing
+- **/tools/** - Showcase of tools and projects: agents, evals, civic pages, data viz, compliance tooling
 - **/calculator/** - Type 1 Diabetes insulin calculator with localStorage persistence
 - **/posthog-cover-letter/** - Technical Account Executive/Manager cover letter for PostHog
 - **/privacy/** - Privacy policy (PostHog analytics, Apollo.io visitor intelligence)
@@ -180,7 +181,7 @@ Interactive React/Vite applications at `/experiments/`:
 **Pages**: Root-level `.md` files
 **Layouts**: `_layouts/` (Liquid templates)
 **Components**: `_includes/` (reusable HTML partials)
-**Static Assets**: `assets/` (CSS, JS, images, resume PDF)
+**Static Assets**: `assets/` (CSS, JS, images)
 **Experiments**: `experiments/` (React/Vite SPAs with `.nojekyll` files)
 **Documentation**: `docs/`, `CLAUDE.md`, `llm.txt`, `SESSION_CONTEXT.md`
 
@@ -227,7 +228,7 @@ This site represents an active learning journey. The author is open to:
 
 ---
 
-**Last Updated**: 2026-09-28 (via Claude Code)
+**Last Updated**: 2026-10-23 (via Claude Code)
 
 **Site Purpose**: Portfolio, learning documentation, career showcase, and educational resource for career changers exploring AI, automation, and web development.
 
