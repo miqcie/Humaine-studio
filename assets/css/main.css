@@ -301,6 +301,14 @@ body {
     border-radius: 4px;
 }
 
+/* Screenshots on non-post pages (e.g. /tools/) */
+.main-content p > img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+}
+
 [data-theme="dark"] .post-content img {
     border: 1px solid var(--border-color);
     padding: 8px;
