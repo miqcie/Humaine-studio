@@ -52,6 +52,20 @@ def export(out):
     Path(out).expanduser().write_text("\n".join(lines))
 
 
+def accept_review(md):
+    """Accept every Roughdraft (CriticMarkup) suggestion and drop comments."""
+    comments = len(re.findall(r"\{>>", md))
+    if comments:
+        print(f"note: dropping {comments} comment(s); handle them before importing")
+    md = re.sub(r'\{id="[^"]*"[^}]*\}', "", md)
+    md = re.sub(r"\{>>.*?<<\}", "", md, flags=re.S)
+    md = re.sub(r"\{--.*?--\}", "", md, flags=re.S)
+    md = re.sub(r"\{~~.*?~>(.*?)~~\}", r"\1", md, flags=re.S)
+    md = re.sub(r"\{\+\+(.*?)\+\+\}|\{==(.*?)==\}", lambda m: m.group(1) or m.group(2) or "", md, flags=re.S)
+    md = re.sub(r" {2,}", " ", md)
+    return re.sub(r" +([.,;:])", r"\1", md)
+
+
 def parse(md):
     """Return {id: {field: value}} from the edited Markdown."""
     cards, card, key, title = {}, None, None, None
@@ -95,7 +109,7 @@ def dump(data):
 
 def import_(src, target=DATA):
     data = yaml.safe_load(target.read_text())
-    edits = parse(Path(src).expanduser().read_text())
+    edits = parse(accept_review(Path(src).expanduser().read_text()))
     known = {p["id"] for g in data["groups"] for p in g["projects"]}
     unknown = set(edits) - known
     if unknown:
@@ -121,6 +135,8 @@ def check():
         export(md)
         import_(md, copy)
         assert copy.read_text() == DATA.read_text(), "round trip changed showcase.yml"
+    review = 'a {++new++}{id="s1" by="u"} {--old--}{id="s2" by="u"} {~~x~>y~~} {==z==}{>>c<<}{id="c1" by="u"} end.'
+    assert accept_review(review) == "a new y z end.", accept_review(review)
     print("round trip ok")
 
 
