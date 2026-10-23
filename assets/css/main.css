@@ -301,14 +301,6 @@ body {
     border-radius: 4px;
 }
 
-/* Screenshots on non-post pages (e.g. /tools/) */
-.main-content p > img {
-    max-width: 100%;
-    height: auto;
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-}
-
 [data-theme="dark"] .post-content img {
     border: 1px solid var(--border-color);
     padding: 8px;
@@ -707,4 +699,326 @@ body {
 .footnotes a:hover {
     color: var(--text-dark);
     text-decoration: underline;
+}
+
+/* Tools showcase (/tools/): quiet type, one strong element (the screenshots) */
+.showcase {
+    --showcase-gap: clamp(1.75rem, 4vw, 2.5rem);
+}
+
+.showcase-header h1 {
+    font-size: clamp(2rem, 1.7rem + 1.2vw, 2.25rem);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--text-dark);
+    margin-block-end: 0.75rem;
+}
+
+.showcase-header p {
+    color: var(--text-light);
+    line-height: 1.7;
+    max-inline-size: 36rem;
+}
+
+.showcase-sr {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: clip;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+/* Sticky filter bar: group chips plus open-all */
+.showcase-bar {
+    position: sticky;
+    inset-block-start: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-block: 2.5rem 3rem;
+    padding-block: 0.75rem;
+    background: var(--bg-color);
+    border-block-end: 1px solid var(--border-light);
+}
+
+.showcase-bar[hidden] {
+    display: none;
+}
+
+.showcase-filter {
+    display: flex;
+    gap: 0.5rem;
+    flex: 1;
+    min-inline-size: 0;
+    border: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    /* Fade the cut-off edge so the row reads as scrollable */
+    mask-image: linear-gradient(to right, #000 calc(100% - 2rem), transparent);
+}
+
+/* The theme toggle is fixed top-right below 768px; keep the sticky bar clear of it */
+@media (max-width: 768px) {
+    .showcase-bar {
+        padding-inline-end: 3.5rem;
+    }
+}
+
+.showcase-filter label,
+.showcase-badge {
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+    white-space: nowrap;
+}
+
+.showcase-filter label {
+    position: relative;
+    padding: 0.3rem 0.8rem;
+    font-size: 14px;
+    color: var(--text-light);
+    cursor: pointer;
+}
+
+.showcase-filter input {
+    position: absolute;
+    inset: 0;
+    inline-size: 100%;
+    block-size: 100%;
+    margin: 0;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.showcase-filter label:has(input:checked) {
+    background: var(--text-dark);
+    border-color: var(--text-dark);
+    color: var(--bg-color);
+}
+
+.showcase-filter label:has(input:focus-visible) {
+    outline: 2px solid var(--text-dark);
+    outline-offset: 2px;
+}
+
+.showcase-toggle {
+    flex: none;
+    padding-block: 0.3rem;
+    font: inherit;
+    font-size: 14px;
+    color: var(--text-light);
+    background: none;
+    border: 0;
+    border-block-end: 1px solid var(--link-underline);
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.showcase-toggle:focus-visible {
+    outline: 2px solid var(--text-dark);
+    outline-offset: 3px;
+}
+
+.showcase-toggle:active,
+.showcase-filter label:active {
+    transform: scale(0.97);
+}
+
+.showcase-group > h2 {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-light);
+}
+
+.showcase-smaller {
+    list-style: none;
+}
+
+.showcase-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.4rem 0.75rem;
+    margin-block-end: 1rem;
+}
+
+.showcase-badge {
+    padding: 0.05rem 0.55rem;
+    font-size: 12px;
+    color: var(--text-light);
+}
+
+.showcase-group {
+    margin-block-end: 4rem;
+}
+
+.showcase-group > h2 {
+    margin-block-end: 0.75rem;
+}
+
+.showcase-card {
+    padding-block: var(--showcase-gap);
+    border-block-start: 1px solid var(--border-light);
+    scroll-margin-block-start: 1.5rem;
+}
+
+.showcase-title {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--text-dark);
+}
+
+/* Text and screenshot share a row, then stack on narrow screens with no breakpoint */
+.showcase-body {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem 2rem;
+    align-items: start;
+}
+
+.showcase-summary {
+    flex: 999 1 20rem;
+}
+
+.showcase-shot {
+    flex: 1 1 15rem;
+    min-inline-size: 0;
+    block-size: auto;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    object-position: top;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background: var(--bg-color);
+}
+
+[data-theme="dark"] .showcase-shot {
+    filter: brightness(0.88);
+}
+
+.showcase-summary p,
+.showcase-smaller li {
+    color: var(--text-light);
+    line-height: 1.7;
+    margin-block-end: 0.75rem;
+}
+
+.showcase-summary .showcase-lead {
+    font-size: 17px;
+    color: var(--text-color);
+}
+
+.showcase-summary .showcase-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem 1.25rem;
+    margin-block: 1rem 0;
+}
+
+.showcase-note {
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+.showcase a {
+    color: var(--text-dark);
+    text-decoration: none;
+    border-block-end: 1px solid var(--link-underline);
+}
+
+.showcase a:focus-visible,
+.showcase summary:focus-visible {
+    outline: 2px solid var(--text-dark);
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+
+.showcase-more {
+    margin-block-start: 1rem;
+    interpolate-size: allow-keywords;
+}
+
+.showcase-more summary {
+    inline-size: fit-content;
+    padding-block: 0.5rem;
+    font-size: 15px;
+    color: var(--text-light);
+    cursor: pointer;
+    list-style: none;
+}
+
+.showcase-more summary::-webkit-details-marker {
+    display: none;
+}
+
+.showcase-more summary::before {
+    content: "+";
+    display: inline-block;
+    inline-size: 1.25em;
+    color: var(--text-lighter);
+}
+
+.showcase-more[open] summary::before {
+    content: "\2212";
+}
+
+.showcase-more::details-content {
+    block-size: 0;
+    overflow: clip;
+}
+
+.showcase-more[open]::details-content {
+    block-size: auto;
+}
+
+.showcase-more dl {
+    max-inline-size: 40rem;
+    padding-inline-start: 1.25em;
+    padding-block-end: 0.5rem;
+}
+
+.showcase-more dt {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-light);
+    margin-block-start: 1rem;
+}
+
+.showcase-more dd {
+    color: var(--text-light);
+    line-height: 1.7;
+}
+
+.showcase-more code {
+    font-size: 0.9em;
+    background: var(--code-bg);
+    padding-inline: 0.3em;
+    border-radius: 3px;
+}
+
+.showcase-footer {
+    font-size: 15px;
+    color: var(--text-light);
+    margin-block-start: 1.5rem;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .showcase a:hover {
+        border-block-end-color: var(--text-dark);
+    }
+
+    .showcase-more summary:hover,
+    .showcase-toggle:hover,
+    .showcase-filter label:not(:has(input:checked)):hover {
+        color: var(--text-dark);
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .showcase-more::details-content {
+        transition: block-size 0.25s ease-out, content-visibility 0.25s allow-discrete;
+    }
 }

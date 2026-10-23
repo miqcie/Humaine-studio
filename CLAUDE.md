@@ -14,7 +14,7 @@
 
 ### Site Functions
 - **Research Portfolio**: Blog posts on AI, automation, and technical topics
-- **Tools Showcase**: `tools.md` at `/tools/`, project cards in `showcase-writer` format, screenshots in `assets/images/showcase/`
+- **Tools Showcase**: `/tools/` = `tools.html` looping `_data/showcase.yml` through `_includes/showcase-card.html`; edit cards in the YAML (Markdown values), screenshots in `assets/images/showcase/`
 - **Educational Tools**: T1D insulin calculator with localStorage persistence
 - **Experiments**: React/Vite applications under `/experiments/` directory
 
