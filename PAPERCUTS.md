@@ -1,3 +1,10 @@
 - 2026-07-31: roughdraft open for review → CLI watcher died twice (UND_ERR_HEADERS_TIMEOUT) while the browser viewer kept working; exit signal lost
 - 2026-07-31: editing a draft while Roughdraft viewer open → viewer buffer silently overwrote disk edits (image paths reverted twice); close the tab before agent edits
 - 2026-07-31: verifying deployed CSS fix → GitHub Pages 600s cache served stale main.css; cache-bust the stylesheet before concluding a fix did not deploy
+- 2026-10-23: copy edit in Roughdraft on ~/Desktop → iCloud-synced Desktop blocks agent reads (EDEADLK) and the edits never reached disk; hand-off files now go to ~/GitHub/_inbox
+- 2026-10-23: 20-minute Roughdraft review → `roughdraft open` wait crashed at 5 min again; a background API long-poll with 4-minute snapshots (roughdraft-wait.sh) held for two rounds
+- 2026-10-23: importing a Roughdraft review → it rewrote `/posts/...` links to `./posts/...`, which break on /tools/; check links after every import
+- 2026-10-23: CI on PR #49 → ubuntu-latest moved to 26.04 and setup-ruby has no Ruby 3.1, so CI and the Pages deploy failed before running; pinned ubuntu-24.04
+- 2026-10-23: Chris checking screenshots → the agent stopped the local preview server while his tab was open, so lazy images showed as broken; keep the preview up or say when it stops
+- 2026-10-23: building in a worktree → no gems there; build with BUNDLE_GEMFILE and BUNDLE_APP_CONFIG pointed at the main checkout
+- **Sanding target (2026-10-23):** five Roughdraft entries share one cause, the CLI's blocking wait plus autosave conflicts. Fix: install roughdraft-wait.sh and update the roughdraft skill (Linear follow-up).

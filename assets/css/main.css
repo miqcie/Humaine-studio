@@ -473,7 +473,13 @@ body {
     margin-bottom: 8px;
 }
 
+/* Flex row: inline-flex links baseline-align on the GitHub icon, which lifts that link */
 .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
     margin-bottom: 20px;
 }
 
