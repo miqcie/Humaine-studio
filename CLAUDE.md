@@ -14,7 +14,7 @@
 
 ### Site Functions
 - **Research Portfolio**: Blog posts on AI, automation, and technical topics
-- **Career Showcase**: PostHog cover letter, resume, professional experience
+- **Tools Showcase**: `tools.md` at `/tools/`, project cards in `showcase-writer` format, screenshots in `assets/images/showcase/`
 - **Educational Tools**: T1D insulin calculator with localStorage persistence
 - **Experiments**: React/Vite applications under `/experiments/` directory
 
@@ -135,9 +135,8 @@ humaine.studio/
 │       ├── images/
 │       │   ├── favicon-32x32.png
 │       │   ├── apple-touch-icon.png
-│       │   └── posts/            # Blog post images
-│       └── resume/
-│           └── Chris_McConnell_PostHog_TAE.pdf
+│       │   ├── posts/            # Blog post images
+│       │   └── showcase/         # /tools/ project screenshots
 │
 ├── Experiments (React/Vite Applications)
 │   └── experiments/
@@ -838,7 +837,7 @@ specstory sync --no-cloud-sync     # Document session history (run at session en
 - Pages: `page-name.md` (root level)
 - Layouts: `_layouts/`
 - Includes: `_includes/`
-- Assets: `assets/css/`, `assets/js/`, `assets/images/`, `assets/resume/`
+- Assets: `assets/css/`, `assets/js/`, `assets/images/`
 - Config: `_config.yml`
 - CI/CD: `.github/workflows/`
 - Testing configs: `.htmlhintrc`, `lighthouserc.js`, `.spellcheck.yml`

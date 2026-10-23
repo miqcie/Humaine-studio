@@ -7,8 +7,7 @@ description: "Cover letter for PostHog Technical Account Executive/Manager posit
 
 # PostHog Cover Letter
 
-👋🏻 | [linkedin](https://www.linkedin.com/in/c-mcconnell) | [GitHub](https://github.com/miqcie) | [Website](https://humaine.studio) | [Resume](https://humaine.studio/#resume)
-
+👋🏻 | [linkedin](https://www.linkedin.com/in/c-mcconnell) | [GitHub](https://github.com/miqcie) | [Website](https://humaine.studio)
 ## Executive Summary
 
 **tl;dr** I'm a product obsessive that finds great pleasure in finding things out[^1] and enthusiastically sharing that knowledge[^2]. My car license plate says "scrapi"[^3]. My sales approach is a gardener teaching other to garden: nurturing relationships over time, not passively fishing or hunting for quick kills.

@@ -700,24 +700,3 @@ body {
     color: var(--text-dark);
     text-decoration: underline;
 }
-
-/* Resume download button - minimal styling */
-.pdf-download-container {
-    text-align: center;
-    margin: 2rem 0;
-}
-
-a[href*=".pdf"] {
-    display: inline-block;
-    padding: 0.8rem 1.5rem;
-    background-color: var(--text-dark);
-    color: var(--bg-color);
-    border-radius: 6px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: opacity 0.2s ease;
-}
-
-a[href*=".pdf"]:hover {
-    opacity: 0.8;
-}
