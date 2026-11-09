@@ -41,3 +41,5 @@ yarn-error.log*
 
 # Specstory session history
 .specstory/
+# AI session logs (can contain personal data)
+.specstory/
