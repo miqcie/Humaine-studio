@@ -34,7 +34,7 @@ I use [PostHog](https://posthog.com) to understand how visitors use this site an
 
 ### Visitor Intelligence (Apollo.io)
 
-I use [Apollo.io](https://www.apollo.io) to understand which companies and organizations visit this site. As someone actively job hunting, this helps me identify potential opportunities and interested employers.
+I use [Apollo.io](https://www.apollo.io) to understand which companies and organizations visit this site. This helps me see which organizations are interested in my work.
 
 **Apollo.io collects:**
 - Your IP address and company information
