@@ -31,7 +31,11 @@ jobs:
     - name: Link Checker
       uses: lycheeverse/lychee-action@v1.10.0
       with:
-        args: --verbose --no-progress '_site/**/*.html'
+        # PRs skip humaine.studio links: a new post's own URL 404s until it deploys. Main and weekly runs still check them.
+        args: >-
+          --verbose --no-progress
+          ${{ github.event_name == 'pull_request' && '--exclude ^https://humaine\.studio/' || '' }}
+          '_site/**/*.html'
         format: markdown
         fail: true
         jobSummary: true
