@@ -32,9 +32,12 @@ code, pre, kbd, samp { font-family: var(--font-mono); }
 .post-content a:hover, .section-content a:hover { color: var(--klein-press); }
 .post-tag { font: 500 11px/1.5 var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; }
 .post-content blockquote { font-style: normal; }
-/* Tables fit the column: cells wrap instead of pushing the page sideways on phones. */
+/* Tables fill the column. break-word, not anywhere: anywhere shrinks each cell's
+   min-content to one letter, so short columns ("Role") get split mid-word. */
 .post-content table { width: 100%; }
-.post-content th, .post-content td { overflow-wrap: anywhere; }
+.post-content th, .post-content td { overflow-wrap: break-word; }
+/* Phones: the table scrolls inside itself instead of pushing the page sideways. */
+@media (max-width: 640px) { .post-content table { display: block; overflow-x: auto; } }
 
 /* Home */
 .home-hero { display: flex; flex-wrap: wrap; align-items: center; gap: 48px; margin-bottom: 96px; }
