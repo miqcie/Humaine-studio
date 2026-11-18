@@ -16,15 +16,15 @@
           "type": "image/svg+xml"
         },
         "humaine-curlew.svg": {
-          "blob": "e492943b3afc280b7e50b72939c6fa40",
+          "blob": "2439a942ba10700fe1a37e2503317ca0",
           "name": "humaine-curlew.svg",
-          "size": 22048,
+          "size": 5075,
           "type": "image/svg+xml"
         },
         "humaine-curlew-vermilion.svg": {
-          "blob": "7c37f63619be9fa78eb33e1503d6a56f",
+          "blob": "7d6ac2412aa724326d1569911f6e7614",
           "name": "humaine-curlew-vermilion.svg",
-          "size": 22048,
+          "size": 5075,
           "type": "image/svg+xml"
         }
       },
@@ -50,9 +50,9 @@
     "Logos"
   ],
   "lastChange": {
-    "at": "2026-11-18T14:35:00Z",
+    "at": "2026-11-18T14:50:00Z",
     "by": "Chris McConnell",
-    "note": "Add the curlew character mark, traced from draft 5 and recolored to Klein & Linen.",
+    "note": "Re-trace the curlew with smooth edges (soft masks); 22 KB to 5 KB.",
     "via": "Claude Code"
   },
   "layout": "files",
