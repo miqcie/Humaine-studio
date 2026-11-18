@@ -48,9 +48,9 @@ code, pre, kbd, samp { font-family: var(--font-mono); }
 [data-theme="dark"] .home-hero-art { outline: 1px solid var(--rule); outline-offset: 0; }
 @media (max-width: 640px) { .home-hero-art { flex-basis: 200px; width: 200px; } }
 /* Section separation that survives a small view: a 2px ink rule, about 96px of air,
-   a full-bleed sunken band on alternate sections, 48px headings with a Klein square. */
+   a full-bleed surface band on alternate sections, 48px headings with a Klein square. */
 .home-section { display: flex; flex-direction: column; gap: 20px; padding: 24px 0 48px; border-top: 2px solid var(--ink); margin-bottom: 48px; }
-.home-section.is-band { border-top: 0; padding-top: 48px; background: var(--sunken); box-shadow: 0 0 0 100vmax var(--sunken); clip-path: inset(0 -100vmax); }
+.home-section.is-band { border-top: 0; padding-top: 48px; background: var(--surface); box-shadow: 0 0 0 100vmax var(--surface); clip-path: inset(0 -100vmax); }
 .home-section.is-band > h2 { border-top: 2px solid var(--ink); padding-top: 24px; }
 .home-section h2 { margin: 0; font: 500 clamp(32px, 5vw, 48px)/1.1 var(--font-serif); letter-spacing: -0.01em; }
 .home-section h2::before { content: ""; display: inline-block; width: 12px; height: 12px; margin-right: 16px; vertical-align: 0.2em; background: var(--klein); }

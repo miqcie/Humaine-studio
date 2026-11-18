@@ -35,7 +35,7 @@ Humaine Studio is the applied-AI studio for Chris McConnell. The system is squar
 
 **Rules over boxes.** Separate things with a 1px `rule` hairline and whitespace. A bordered box appears only where it means something: a diagram node, an input, the docs sidebar edge.
 
-**Section breaks that survive a small view.** The `rule` hairline is only 1.2:1 on linen, so it vanishes when a page is seen small. Between page sections use a ranked set instead: a 2px `ink` rule on top of each section, about 96px of space, and every other section on a full-bleed `sunken` band. Section headings are 48px Fraunces with a 12px `klein` square before them. Hairlines stay for rows inside a section.
+**Section breaks that survive a small view.** The `rule` hairline is only 1.2:1 on linen, so it vanishes when a page is seen small. Between page sections use a ranked set instead: a 2px `ink` rule on top of each section, about 96px of space, and every other section on a full-bleed `surface` band. Section headings are 48px Fraunces with a 12px `klein` square before them. Hairlines stay for rows inside a section.
 
 **Corners and elevation.** `radius-0` everywhere. No shadows. Depth comes from `surface` vs `sunken`, not from elevation.
 

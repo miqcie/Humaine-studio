@@ -120,17 +120,17 @@ a{color:inherit}
 
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"rule":{"editor":"enum","options":["ink 2px","hairline","none"],"default":"ink 2px","section":"Separation"},"gap":{"editor":"enum","options":["72","96","120"],"default":"96","section":"Separation"},"band":{"editor":"enum","options":["sunken","klein-wash","none"],"default":"sunken","section":"Separation"},"bigHeadings":{"editor":"boolean","default":true,"section":"Separation"},"marker":{"editor":"boolean","default":true,"section":"Separation"},"theme":{"editor":"enum","options":["klein-linen","klein-night"],"default":"klein-linen"},"$preview":{"width":1440,"height":3600}}'>
+<script type="text/x-dc" data-dc-script data-props='{"rule":{"editor":"enum","options":["ink 2px","hairline","none"],"default":"ink 2px","section":"Separation"},"gap":{"editor":"enum","options":["72","96","120"],"default":"96","section":"Separation"},"band":{"editor":"enum","options":["surface","sunken","klein-wash","none"],"default":"surface","section":"Separation"},"bigHeadings":{"editor":"boolean","default":true,"section":"Separation"},"marker":{"editor":"boolean","default":true,"section":"Separation"},"theme":{"editor":"enum","options":["klein-linen","klein-night"],"default":"klein-linen"},"$preview":{"width":1440,"height":3600}}'>
 class Component extends DCLogic {
 renderVals() {
 const p = this.props;
 const rule = p.rule ?? 'ink 2px';
 const gap = Number(p.gap ?? 96);
-const band = p.band ?? 'sunken';
+const band = p.band ?? 'surface';
 const big = p.bigHeadings ?? true;
 const marker = p.marker ?? true;
 const line = rule === 'ink 2px' ? '2px solid var(--ink)' : rule === 'hairline' ? '1px solid var(--rule)' : '0';
-const shade = band === 'none' ? 'transparent' : band === 'klein-wash' ? 'var(--klein-wash)' : 'var(--sunken)';
+const shade = band === 'none' ? 'transparent' : 'var(--' + band + ')';
 const half = Math.round(gap / 2);
 return {
 theme: p.theme ?? 'klein-linen',
