@@ -223,7 +223,7 @@
 .slider-value {
     font-size: 16px;
     font-weight: 700;
-    font-family: 'Monaco', 'Consolas', monospace;
+    font-family: var(--font-mono);
     color: var(--text-dark);
     min-width: 70px;
     text-align: right;
@@ -272,7 +272,7 @@
 }
 
 .calculation-value {
-    font-family: 'Monaco', 'Consolas', monospace;
+    font-family: var(--font-mono);
     color: var(--text-dark);
     white-space: nowrap;
     margin-left: 16px;

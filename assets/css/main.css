@@ -135,28 +135,6 @@ body {
     margin-bottom: 100px;
 }
 
-.hero-title {
-    font-size: 48px;
-    font-weight: 300;
-    line-height: 1.2;
-    margin-bottom: 20px;
-    color: var(--text-dark);
-}
-
-.hero-subtitle {
-    font-size: 20px;
-    color: var(--text-light);
-    margin-bottom: 40px;
-    font-weight: 300;
-}
-
-.hero-description {
-    font-size: 16px;
-    color: var(--text-light);
-    line-height: 1.7;
-    max-width: 600px;
-}
-
 .section {
     margin-bottom: 80px;
 }
@@ -168,74 +146,6 @@ body {
     color: var(--text-dark);
 }
 
-.section-content {
-    font-size: 16px;
-    line-height: 1.7;
-    color: var(--text-light);
-}
-
-.section-content p {
-    margin-bottom: 20px;
-}
-
-.section-content h3 {
-    font-size: 18px;
-    font-weight: 500;
-    color: var(--text-dark);
-    margin: 30px 0 15px;
-}
-
-.section-content ul {
-    margin: 20px 0;
-    padding-left: 20px;
-}
-
-.section-content li {
-    margin-bottom: 8px;
-}
-
-/* Writing section */
-.posts-list {
-    list-style: none;
-    padding: 0;
-}
-
-.post-item {
-    margin-bottom: 40px;
-    padding-bottom: 40px;
-    border-bottom: 1px solid var(--border-light);
-}
-
-.post-item:last-child {
-    border-bottom: none;
-}
-
-.post-item-title {
-    font-size: 20px;
-    font-weight: 500;
-    margin-bottom: 8px;
-}
-
-.post-item-title a {
-    color: var(--text-dark);
-    text-decoration: none;
-}
-
-.post-item-title a:hover {
-    color: var(--text-light);
-}
-
-.post-item-date {
-    font-size: 14px;
-    color: var(--text-lighter);
-    margin-bottom: 12px;
-}
-
-.post-item-excerpt {
-    font-size: 15px;
-    color: var(--text-light);
-    line-height: 1.6;
-}
 
 /* Post page */
 .post {
@@ -348,7 +258,7 @@ body {
     padding: 2px 6px;
     border-radius: 0;
     font-size: 14px;
-    font-family: 'Monaco', 'Consolas', monospace;
+    font-family: var(--font-mono);
 }
 
 .post-content pre {
@@ -618,14 +528,6 @@ body {
         border-bottom: none;
     }
     
-    .hero-title {
-        font-size: 36px;
-    }
-    
-    .hero-subtitle {
-        font-size: 18px;
-    }
-    
     .section-title {
         font-size: 24px;
     }
@@ -645,9 +547,6 @@ body {
 }
 
 @media (max-width: 480px) {
-    .hero-title {
-        font-size: 28px;
-    }
     
     .section {
         margin-bottom: 60px;

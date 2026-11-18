@@ -7,7 +7,10 @@
 <meta name="author" content="{{ site.author.name }}">
 <meta name="keywords" content="{% if page.tags %}{{ page.tags | join: ', ' }}{% else %}AI research, human-machine collaboration, artificial intelligence, applied AI{% endif %}">
 
-<!-- Favicon (Mondrian block mark, built by design-system/build_brand.py) -->
+<!-- Theme before first paint, so dark-mode visitors never see a light flash (main.js keeps it in sync later) -->
+<script>try{var t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+
+<!-- Favicon (the curlew, built by design-system/build_brand.py) -->
 <link rel="icon" type="image/svg+xml" href="{{ '/assets/images/favicon.svg' | relative_url }}">
 <link rel="icon" type="image/x-icon" href="{{ '/favicon.ico' | relative_url }}">
 <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/images/favicon-32x32.png' | relative_url }}">

@@ -5,7 +5,7 @@ Run:  uv run --with fonttools --with brotli --with uharfbuzz --with pillow --wit
 Writes:
   design-system/project/assets/Logos/humaine-wordmark-ink.svg    ink wordmark, for linen and paper grounds
   design-system/project/assets/Logos/humaine-wordmark-linen.svg  linen wordmark, for Klein and night grounds
-  favicon.ico, assets/images/favicon.svg, favicon-32x32.png, apple-touch-icon.png, icon-512.png
+  favicon.ico, assets/images/favicon.svg, favicon-32x32.png, apple-touch-icon.png
   assets/fonts/*.woff2  self-hosted fonts with the brand axes baked in (SOFT 100 / MONO 1, CASL 0.5)
 Fonts are downloaded once into ~/.cache/humaine-brand (not committed).
 """
@@ -27,8 +27,10 @@ from PIL import Image
 HERE = pathlib.Path(__file__).parent
 REPO = HERE.parent
 LOGOS = HERE / "project" / "assets" / "Logos"
-CACHE = pathlib.Path.home() / ".cache" / "humaine-brand"
-RAW = "https://raw.githubusercontent.com/google/fonts/main/ofl/"
+# Pinned google/fonts commit: the sources cannot change under us. Bump deliberately to update the fonts.
+FONTS_SHA = "5bd87dfc525c8a0d1d8529d3684716e00c3fc59a"
+CACHE = pathlib.Path.home() / ".cache" / "humaine-brand" / FONTS_SHA[:12]
+RAW = f"https://raw.githubusercontent.com/google/fonts/{FONTS_SHA}/ofl/"
 SOURCES = {
     "fraunces": RAW + "fraunces/Fraunces%5BSOFT,WONK,opsz,wght%5D.ttf",
     "schibsted": RAW + "schibstedgrotesk/SchibstedGrotesk%5Bwght%5D.ttf",
@@ -38,20 +40,26 @@ SOURCES = {
 
 tokens = {t["name"]: t["value"] for t in json.loads((HERE / "project" / "tokens.json").read_text())["color"]["tokens"]}
 INK, PAPER = tokens["mark-line"], tokens["mark-field"]
-LINEN = tokens["ground"]["klein-linen"]
 
 # Latin, punctuation and the few symbols the system uses (− → · ⌘ etc.).
 # None of the three fonts draws box-drawing lines, ↩, ▶, ⚠ or emoji; those fall back to the system font.
 UNICODES = "U+0000-00FF,U+0131,U+0152-0153,U+02C6,U+02DA,U+02DC,U+2013-2014,U+2018-201E,U+2022,U+2026,U+2030,U+2039-203A,U+20AC,U+2122,U+2190-2193,U+2212,U+2318,U+00B7"
 
 
-def font(name):
+def fetch(url, filename):
+    """Download once into the cache; write to a temp file and rename, so an interrupted download is never reused."""
     CACHE.mkdir(parents=True, exist_ok=True)
-    path = CACHE / f"{name}.ttf"
+    path = CACHE / filename
     if not path.exists():
-        with urllib.request.urlopen(SOURCES[name], timeout=60) as r:
-            path.write_bytes(r.read())
-    return TTFont(path)
+        with urllib.request.urlopen(url, timeout=60) as r:
+            tmp = path.with_suffix(".part")
+            tmp.write_bytes(r.read())
+            tmp.rename(path)
+    return path
+
+
+def font(name):
+    return TTFont(fetch(SOURCES[name], f"{name}.ttf"))
 
 
 def instance(name, axes):
@@ -113,7 +121,6 @@ def favicons():
     img = REPO / "assets" / "images"
     curlew_png(32).save(img / "favicon-32x32.png")
     curlew_png(180).save(img / "apple-touch-icon.png")
-    curlew_png(512).save(img / "icon-512.png")
     ico = [curlew_png(n) for n in (16, 32, 48)]
     ico[-1].save(REPO / "favicon.ico", append_images=ico[:-1], sizes=[(16, 16), (32, 32), (48, 48)])
     (img / "favicon.svg").write_text((LOGOS / "humaine-curlew.svg").read_text())
@@ -139,8 +146,7 @@ def webfonts():
     out.mkdir(exist_ok=True)
     # OFL 1.1: each redistributed copy carries its license and copyright notice.
     for name, folder in LICENSES.items():
-        with urllib.request.urlopen(f"{RAW}{folder}/OFL.txt", timeout=60) as r:
-            text = r.read().decode()
+        text = fetch(f"{RAW}{folder}/OFL.txt", f"{name}-OFL.txt").read_text()
         assert "SIL OPEN FONT LICENSE" in text.upper()
         header = text.split("PREAMBLE")[0]  # an RFN is declared here; the phrase also appears in the license body
         assert "Reserved Font Name" not in header, f"{name} has a Reserved Font Name; a subset must be renamed"

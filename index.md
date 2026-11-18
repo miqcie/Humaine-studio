@@ -15,12 +15,10 @@ permalink: /
       <a class="hs-btn hs-btn--text" href="{{ '/tools/' | relative_url }}">See the tools</a>
     </div>
     {% assign post_count = site.posts | size %}
-    {% if post_count <= 12 %}
     <div class="hs-ticks">
-      <div class="hs-ticks__row" role="img" aria-label="{{ post_count }} posts">{% for i in (1..post_count) %}<i></i>{% endfor %}</div>
+      <div class="hs-ticks__row" role="img" aria-label="{{ post_count }} posts">{% for i in (1..post_count) limit:12 %}<i></i>{% endfor %}</div>
       <span class="hs-ticks__stat">{{ post_count }} posts since {{ site.posts.last.date | date: "%Y" }}</span>
     </div>
-    {% endif %}
   </div>
   <img class="home-hero-art" src="{{ '/assets/images/humaine-curlew.svg' | relative_url }}" alt="" width="377" height="372">
 </section>
@@ -93,8 +91,8 @@ permalink: /
     {% assign shown = 0 %}
     {% for group in site.data.showcase.groups %}{% for p in group.projects %}{% if shown < 3 %}
     <article class="home-item">
-      <span class="hs-pill {% if p.status == 'Live' %}hs-pill--ok{% else %}hs-pill--quiet{% endif %}">{{ p.status }}</span>
-      <h3>{{ p.title }}</h3>
+      <span class="hs-pill {% if p.status == 'Live' %}hs-pill--ok{% else %}hs-pill--quiet{% endif %}">{{ p.status | escape }}</span>
+      <h3>{{ p.title | escape }}</h3>
       <p>{{ p.what | markdownify | strip_html | strip }}</p>
     </article>
     {% assign shown = shown | plus: 1 %}{% endif %}{% endfor %}{% endfor %}
