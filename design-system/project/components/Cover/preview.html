@@ -1,0 +1,41 @@
+<!-- @dsCard height=288 -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,100..900,0..100,0..1;1,9..144,100..900,0..100,0..1&family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&family=Recursive:wght,CASL,MONO@300..1000,0..1,0..1&display=swap">
+<div class="cover">
+  <style>
+    .cover { position: relative; width: 960px; height: 288px; background: var(--ground); overflow: hidden; }
+    .cover svg { position: absolute; inset: 0; }
+    .cover .line { fill: var(--mark-line); }
+    .cover .blue { fill: var(--mark-blue); }
+    .cover .yellow { fill: var(--mark-yellow); }
+    .cover .red { fill: var(--mark-red); }
+    .cover .field { fill: var(--mark-field); }
+    .cover .tick { fill: var(--mark-line); }
+    .cover .tick-on { fill: var(--mark-blue); }
+    .cover .tile { rx: var(--radius-0); }
+    .cover__text { position: absolute; left: 40px; bottom: 32px; max-width: 420px; }
+    .cover__name { margin: 0; font: 800 96px/0.95 var(--font-serif); font-variation-settings: var(--soft); letter-spacing: -0.02em; color: var(--ink); }
+    .cover__tag { margin: 16px 0 0; font: 400 14px/1.4 var(--font-sans); color: var(--mute); }
+  </style>
+  <svg viewBox="0 0 960 288" width="960" height="288" aria-hidden="true">
+    <!--
+      blocks: mark-blue 240x176 slab, mark-yellow 208x160, mark-red 96x96 (space-12 x2), mark-field 208x112 and 128x96, on a mark-line frame
+      arrangement: flush Mondrian grid right of x=480, bleeding off top, right and bottom like the mark's own fields
+      pattern: tiles cut by radius-0 with space-4 (16px) ink gutters, plus 12 tick squares (tick 10px, space-4 pitch); the README calls the system square and modular, and the tick row is its own glyph
+      scales: space-4 gutters and tick pitch, space-12 vermilion side, radius-0 corners
+    -->
+    <rect class="line" x="480" y="0" width="480" height="288"/>
+    <rect class="blue tile" x="496" y="0" width="240" height="176"/>
+    <rect class="field tile" x="752" y="0" width="208" height="112"/>
+    <rect class="yellow tile" x="752" y="128" width="208" height="160"/>
+    <rect class="red tile" x="496" y="192" width="96" height="96"/>
+    <rect class="field tile" x="608" y="192" width="128" height="96"/>
+    <g>
+      <rect class="tick" x="776" y="36" width="10" height="10"/><rect class="tick" x="802" y="36" width="10" height="10"/><rect class="tick" x="828" y="36" width="10" height="10"/><rect class="tick" x="854" y="36" width="10" height="10"/><rect class="tick" x="880" y="36" width="10" height="10"/><rect class="tick" x="906" y="36" width="10" height="10"/>
+      <rect class="tick" x="776" y="62" width="10" height="10"/><rect class="tick" x="802" y="62" width="10" height="10"/><rect class="tick" x="828" y="62" width="10" height="10"/><rect class="tick" x="854" y="62" width="10" height="10"/><rect class="tick" x="880" y="62" width="10" height="10"/><rect class="tick-on" x="906" y="62" width="10" height="10"/>
+    </g>
+  </svg>
+  <div class="cover__text">
+    <p class="cover__name">Humaine<br>Studio</p>
+    <p class="cover__tag">Applied AI for human-machine collaboration.</p>
+  </div>
+</div>
