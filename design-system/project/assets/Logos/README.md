@@ -1,23 +1,16 @@
 # Logos
 
-Two marks that share one frame. The Mondrian block mark is the logo. The curlew is the studio's character.
-
-## Block mark
-
-A framed field split into a large open field, a yellow block, a small colored block and a small open block. Same geometry as the favicon in `assets/images/icons/`, measured from the 512px PNG; only the colors changed.
-
-- `humaine-mark.svg`: primary. Klein blue block. `mark-line` #0E1230, `mark-field` #FAF6EE, `mark-yellow` #F7B902, `mark-blue` #002FA7.
-- `humaine-mark-vermilion.svg`: alternate. `mark-red` #C7301C in place of the blue.
-- Use it for the favicon, the Lockup, and anywhere under 32px. Smallest size 16px.
+The curlew is the logo. The wordmark sets the name for places without the font.
 
 ## Curlew
 
-A curlew's head and shoulders inside the same ink frame. It is traced from draft 5 of the twelve October drafts (`design-system/sources/curlew-draft.png`) by `design-system/trace_curlew.py`. The script reads its colors from `tokens.json`, so rerun it after a palette change.
+A curlew's head and shoulders inside an ink frame. It is traced from draft 5 of the twelve October drafts (`design-system/sources/curlew-draft.png`) by `design-system/trace_curlew.py`. The script reads its colors from `tokens.json`, so rerun it after a palette change.
 
 - `humaine-curlew.svg`: primary. A Klein blue bird (`mark-blue`) with a chrome wing on a paper field in an ink frame. The bird reads 10:1 on paper; the wing reads 6:1 on the bird. The bird is blue, not black, because ink on Klein is only 1.7:1.
-- `humaine-curlew-vermilion.svg`: alternate. An ink bird with a chrome wing on a vermilion field (3.4:1).
-- Use it for avatars, social cards, talk title slides, stickers and a page hero. Smallest size 32px: below that the beak and eye blur, so use the block mark.
-- One curlew per view. Do not put it beside the block mark at the same size; the block mark goes in the header, the curlew in the content.
+- `humaine-curlew-vermilion.svg`: alternate, for a second voice (a talk, a sticker). An ink bird with a chrome wing on a vermilion field (3.4:1).
+- Uses: the header lockup (32px), the favicon set, the social card, avatars, title slides, a page hero.
+- Sizes: comfortable from 32px up. At 16px (the smallest favicon) the eye and beak soften; a hand-tuned 16px version is a planned iteration.
+- The favicons (`favicon.svg`, `.ico`, 32, 180 and 512px PNGs) are rendered from this file by `design-system/build_brand.py`, squared off with the frame's ink.
 
 ## Wordmark
 
@@ -27,9 +20,8 @@ A curlew's head and shoulders inside the same ink frame. It is traced from draft
 - `humaine-wordmark-linen.svg`: paper, for Klein and Klein Night grounds.
 - Use it where live text is not available: social cards, email signatures, slides, print. On the web, set the name in type with the `Lockup` component instead.
 
-## Rules for all marks
+## Rules
 
-- Fixed colors in both themes. On the Klein Night ground the blue-black frame merges into the background and the colored fields carry the mark. That is intended; there is no inverted file.
-- Do not recolor, rotate, crop, add a shadow or round the corners. Do not put text on a mark.
-- On the web the name is set in type next to the block mark (the Lockup component); the outlined wordmark is for places without the font.
-- The other curlew drafts and the "Humane Studio" concept image are not part of the system.
+- Fixed colors in both themes. On the Klein Night ground the curlew's ink frame merges into the background; where it sits large (a hero), give it a 1px `rule` outline so it does not float.
+- Do not recolor, rotate, crop, add a shadow or round the corners. Do not put text on the curlew.
+- The Mondrian block mark is retired; the other curlew drafts and the "Humane Studio" concept image are not part of the system.

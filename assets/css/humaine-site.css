@@ -11,7 +11,7 @@
 .site-footer { margin-top: 72px; }
 
 /* Header */
-.nav-logo.hs-lockup img { width: 24px; height: 24px; }
+.nav-logo.hs-lockup img { width: 32px; height: auto; }
 .nav-link { font: 500 15px/1.5 var(--font-sans); color: var(--ink); }
 .nav-link:hover { color: var(--ink); text-decoration: underline; text-decoration-thickness: max(1px, 0.0625em); text-underline-offset: 0.18em; }
 .theme-toggle { font: 500 12px/1 var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); border-color: var(--ink-soft); }

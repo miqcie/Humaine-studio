@@ -31,11 +31,11 @@ html, body { background: var(--ground); color: var(--ink); font-family: var(--fo
 .hs-link:hover { color: var(--klein-press); text-decoration-thickness: max(1.5px, 0.1em); }
 .hs-link--quiet { color: inherit; }
 
-/* Lockup: mark + the wordmark, Fraunces 800 at full softness. */
+/* Lockup: the curlew + the wordmark, Fraunces 800 at full softness. */
 .hs-lockup { display: inline-flex; align-items: center; gap: var(--space-2); color: var(--ink); text-decoration: none; font: 800 18px/1 var(--font-serif); letter-spacing: -0.02em; }
-.hs-lockup img { width: 24px; height: 24px; display: block; }
+.hs-lockup img { width: 32px; height: auto; display: block; }
 .hs-lockup--lg { font-size: 32px; gap: var(--space-3); }
-.hs-lockup--lg img { width: 44px; height: 44px; }
+.hs-lockup--lg img { width: 56px; }
 
 /* Top nav. */
 .hs-nav { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-4); padding-block: var(--space-6); }

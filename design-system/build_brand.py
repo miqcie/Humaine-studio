@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build the Humaine Studio brand files from the three OFL variable fonts and the block-mark geometry.
 
-Run:  uv run --with fonttools --with brotli --with uharfbuzz --with pillow python design-system/build_brand.py
+Run:  uv run --with fonttools --with brotli --with uharfbuzz --with pillow --with resvg-py python design-system/build_brand.py
 Writes:
   design-system/project/assets/Logos/humaine-wordmark-ink.svg    ink wordmark, for linen and paper grounds
   design-system/project/assets/Logos/humaine-wordmark-linen.svg  linen wordmark, for Klein and night grounds
@@ -21,7 +21,8 @@ from fontTools.pens.svgPathPen import SVGPathPen
 from fontTools.pens.transformPen import TransformPen
 from fontTools.ttLib import TTFont
 from fontTools.varLib.instancer import instantiateVariableFont
-from PIL import Image, ImageDraw
+import resvg_py
+from PIL import Image
 
 HERE = pathlib.Path(__file__).parent
 REPO = HERE.parent
@@ -36,7 +37,7 @@ SOURCES = {
 }
 
 tokens = {t["name"]: t["value"] for t in json.loads((HERE / "project" / "tokens.json").read_text())["color"]["tokens"]}
-INK, PAPER, BLUE, CHROME = tokens["mark-line"], tokens["mark-field"], tokens["mark-blue"], tokens["chrome"]
+INK, PAPER = tokens["mark-line"], tokens["mark-field"]
 LINEN = tokens["ground"]["klein-linen"]
 
 # Latin, punctuation and the few symbols the system uses (− → · ⌘ etc.).
@@ -98,47 +99,25 @@ def wordmark():
     print("wordmark", vb, len(d), "chars")
 
 
-# ---------- favicons: the block mark, drawn from its exact 512px geometry ----------
-MARK = [  # (x, y, w, h, fill) on a 512 grid, from humaine-mark.svg
-    (0, 0, 512, 512, INK), (24, 24, 465, 273, PAPER), (24, 313, 273, 176, CHROME),
-    (313, 313, 176, 80, BLUE), (313, 409, 176, 80, PAPER),
-]
-
-
-def snapped(size):
-    """Small icons: put every edge on a whole pixel, lines at least 1px, so the grid stays crisp."""
-    edges = [0, 24, 297, 313, 393, 409, 489, 512]
-    px = [round(e * size / 512) for e in edges]
-    for a, b in ((0, 1), (2, 3), (4, 5), (6, 7)):  # the four line bands must stay at least 1px
-        px[b] = max(px[b], px[a] + 1)
-    e = dict(zip(edges, px))
-    im = Image.new("RGB", (size, size), INK)
-    dr = ImageDraw.Draw(im)
-    for x, y, w, h, fill in MARK[1:]:
-        dr.rectangle([e[x], e[y], e[x + w] - 1 if x + w in e else e[489] - 1, e[y + h] - 1 if y + h in e else e[489] - 1], fill=fill)
-    return im
-
-
-def mark_png(size):
-    if size <= 64:
-        return snapped(size)
-    s = 8  # draw large, then downsample for clean edges
-    im = Image.new("RGB", (512 * s, 512 * s))
-    dr = ImageDraw.Draw(im)
-    for x, y, w, h, fill in MARK:
-        dr.rectangle([x * s, y * s, (x + w) * s - 1, (y + h) * s - 1], fill=fill)
-    return im.resize((size, size), Image.LANCZOS)
+# ---------- favicons: the curlew (the logo since 2026-11-18) ----------
+def curlew_png(size):
+    """Render the curlew large, square it off with its own ink frame color, then downsample."""
+    big = Image.open(io.BytesIO(bytes(resvg_py.svg_to_bytes(svg_path=str(LOGOS / "humaine-curlew.svg"), width=1024)))).convert("RGB")
+    side = max(big.size)
+    sq = Image.new("RGB", (side, side), INK)  # the frame is 422x417; pad in frame ink so it reads as one square
+    sq.paste(big, ((side - big.width) // 2, (side - big.height) // 2))
+    return sq.resize((size, size), Image.LANCZOS)
 
 
 def favicons():
     img = REPO / "assets" / "images"
-    mark_png(32).save(img / "favicon-32x32.png")
-    mark_png(180).save(img / "apple-touch-icon.png")
-    mark_png(512).save(img / "icon-512.png")
-    ico = [mark_png(n) for n in (16, 32, 48)]
+    curlew_png(32).save(img / "favicon-32x32.png")
+    curlew_png(180).save(img / "apple-touch-icon.png")
+    curlew_png(512).save(img / "icon-512.png")
+    ico = [curlew_png(n) for n in (16, 32, 48)]
     ico[-1].save(REPO / "favicon.ico", append_images=ico[:-1], sizes=[(16, 16), (32, 32), (48, 48)])
-    (img / "favicon.svg").write_text((LOGOS / "humaine-mark.svg").read_text())
-    (img / "humaine-curlew.svg").write_text((LOGOS / "humaine-curlew.svg").read_text())  # home page hero
+    (img / "favicon.svg").write_text((LOGOS / "humaine-curlew.svg").read_text())
+    (img / "humaine-curlew.svg").write_text((LOGOS / "humaine-curlew.svg").read_text())  # header lockup and home hero
     print("favicons written")
 
 
