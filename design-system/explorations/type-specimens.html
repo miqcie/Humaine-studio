@@ -1,0 +1,146 @@
+<meta charset="utf-8">
+<title>Humaine Type Specimens</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400&family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&family=Cormorant+Garamond:wght@300;400&family=Hanken+Grotesk:wght@300;400;500&family=Fraunces:opsz,wght@9..144,300;9..144,400&family=Schibsted+Grotesk:wght@400;500&family=DM+Mono:wght@400;500&family=Bodoni+Moda:opsz,wght@6..96,400&family=Geist:wght@300;400;500&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+  /* Layout: one stacked specimen per pairing; a narrow notes column beside a wide specimen. Colors are the Klein & Linen tokens. */
+  :root {
+    --ground: #f3ece0; --surface: #faf6ee; --sunken: #eae2d4; --rule: #dcd3c3;
+    --ink: #0e1230; --ink-soft: #2e3352; --mute: #5e6178;
+    --klein: #002fa7; --on-klein: #faf6ee; --chrome: #f7b902;
+    --ui: "IBM Plex Sans", system-ui, sans-serif; --ui-mono: "IBM Plex Mono", ui-monospace, monospace;
+  }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+    --ground: #0b0f24; --surface: #12173a; --sunken: #1a2048; --rule: #262b4a;
+    --ink: #f1eadc; --ink-soft: #cfc8b8; --mute: #9c9aae; --klein: #8da6ff; --on-klein: #0b0f24; color-scheme: dark } }
+  :root[data-theme="dark"] {
+    --ground: #0b0f24; --surface: #12173a; --sunken: #1a2048; --rule: #262b4a;
+    --ink: #f1eadc; --ink-soft: #cfc8b8; --mute: #9c9aae; --klein: #8da6ff; --on-klein: #0b0f24; color-scheme: dark }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--ground); color: var(--ink); font-family: var(--ui); }
+  .wrap { max-width: 68rem; margin: 0 auto; padding-block: 48px 72px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  header { display: grid; gap: 12px; padding-bottom: 32px; border-bottom: 1px solid var(--rule); }
+  .eyebrow { font: 500 12px/1.4 var(--ui-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft); margin: 0; }
+  h1 { font: 500 28px/1.2 var(--ui); margin: 0; text-wrap: balance; }
+  header p { margin: 0; max-width: 42rem; font-size: 16px; line-height: 1.6; color: var(--ink-soft); }
+  .crit { display: flex; flex-wrap: wrap; gap: 8px 24px; margin: 8px 0 0; padding: 0; list-style: none; font: 400 13px/1.5 var(--ui); color: var(--ink-soft); }
+  .crit b { color: var(--ink); font-weight: 500; }
+  section { display: grid; grid-template-columns: 15rem minmax(0, 1fr); gap: 32px; padding-block: 40px; border-bottom: 1px solid var(--rule); }
+  .meta { display: grid; gap: 10px; align-content: start; }
+  .letter { display: inline-grid; place-items: center; width: 28px; height: 28px; background: var(--ink); color: var(--ground); font: 500 14px/1 var(--ui-mono); }
+  .rec .letter { background: var(--klein); color: var(--on-klein); }
+  .meta h2 { font: 500 17px/1.3 var(--ui); margin: 0; }
+  .meta dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; font: 400 13px/1.5 var(--ui); }
+  .meta dt { color: var(--mute); }
+  .meta dd { margin: 0; color: var(--ink); }
+  .meta p { margin: 0; font: 400 13px/1.55 var(--ui); color: var(--ink-soft); }
+  .tag { justify-self: start; padding: 1px 6px; background: var(--klein); color: var(--on-klein); font: 500 11px/1.5 var(--ui-mono); letter-spacing: .06em; text-transform: uppercase; }
+  .spec { min-width: 0; display: grid; gap: 18px; }
+  .spec .d { margin: 0; font-family: var(--d); font-weight: var(--dw); font-size: clamp(36px, 6vw, 60px); line-height: 1.05; letter-spacing: var(--dt, -0.01em); text-wrap: balance; }
+  .spec .lede { margin: 0; font-family: var(--s); font-weight: 300; font-size: 20px; line-height: 1.45; color: var(--ink-soft); max-width: 38rem; }
+  .spec .body { margin: 0; font-family: var(--s); font-size: 16.5px; line-height: 1.6; max-width: 40rem; }
+  .spec .body a { color: var(--klein); text-underline-offset: .18em; text-decoration-thickness: max(1px, .0625em); }
+  .row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px; }
+  .lbl { font-family: var(--m); font-weight: 500; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft); }
+  .btn { font-family: var(--s); font-size: 16.5px; line-height: 1.5; padding: 0 .25em; background: var(--klein); color: var(--on-klein); }
+  .nums { font-family: var(--s); font-size: 15px; font-variant-numeric: tabular-nums lining-nums; }
+  .code { margin: 0; padding: 10px 14px; background: var(--sunken); font-family: var(--m); font-size: 14px; line-height: 1.6; overflow-x: auto; }
+  .code .k { color: var(--klein); }
+  .small-d { font-family: var(--d); font-weight: var(--dw); font-size: 24px; line-height: 1.2; margin: 0; }
+  @media (max-width: 720px) { section { grid-template-columns: minmax(0, 1fr); gap: 20px; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <p class="eyebrow">Humaine Studio · type exploration · 18 Nov 2026</p>
+    <h1>Five free pairings to replace SID's licensed fonts</h1>
+    <p>SID sets headlines in Sirca, a light lowercase serif, and text in ABC Walter Neue; both are paid licenses. Each pairing below is free on Google Fonts and is set with the same Humaine copy, in the Klein &amp; Linen palette. Pick one by letter.</p>
+    <ul class="crit">
+      <li><b>Display</b> light, reads well lowercase at 48–64px</li>
+      <li><b>Text</b> clear at 13–17px, plain numerals</li>
+      <li><b>Mono</b> labels and code</li>
+      <li><b>Family</b> how much it shares with Eagle Ridge</li>
+    </ul>
+  </header>
+
+  <section style="--d:'Newsreader',Georgia,serif;--dw:300;--s:'IBM Plex Sans',sans-serif;--m:'IBM Plex Mono',monospace">
+    <div class="meta">
+      <span class="letter">A</span>
+      <h2>Newsreader · IBM Plex Sans · IBM Plex Mono</h2>
+      <dl><dt>Now</dt><dd>In the system today</dd><dt>Eagle Ridge</dt><dd>Identical type</dd></dl>
+      <p>Calm, editorial and very readable. With the shared palette it makes Humaine and Eagle Ridge look like one brand.</p>
+    </div>
+    <div class="spec">
+      <p class="d">applied ai for human-machine collaboration</p>
+      <p class="lede">Applied AI explorations that keep humans in command.</p>
+      <p class="body">I focus on the missing middle: systems that help us think better without taking decisions away. Read <a href="#">How I Work with Agents</a> for the loop.</p>
+      <div class="row"><span class="lbl">Field note 014</span><span class="btn">Get in touch</span><span class="nums">12 posts · 1,152 words · −3 · 2026-11-16</span></div>
+      <pre class="code"><span class="k">import</span> httpx  # 0O 1lI</pre>
+    </div>
+  </section>
+
+  <section style="--d:'Instrument Serif',Georgia,serif;--dw:400;--dt:-0.02em;--s:'Instrument Sans',sans-serif;--m:'JetBrains Mono',monospace">
+    <div class="meta">
+      <span class="letter">B</span>
+      <h2>Instrument Serif · Instrument Sans · JetBrains Mono</h2>
+      <dl><dt>Eagle Ridge</dt><dd>Nothing shared</dd><dt>Weights</dt><dd>Serif in one weight, with italic</dd></dl>
+      <p>A narrow, sharp display serif with a matching sans. Modern and confident. The serif's single weight limits it to headlines.</p>
+    </div>
+    <div class="spec">
+      <p class="d">applied ai for human-machine collaboration</p>
+      <p class="lede">Applied AI explorations that keep humans in command.</p>
+      <p class="body">I focus on the missing middle: systems that help us think better without taking decisions away. Read <a href="#">How I Work with Agents</a> for the loop.</p>
+      <div class="row"><span class="lbl">Field note 014</span><span class="btn">Get in touch</span><span class="nums">12 posts · 1,152 words · −3 · 2026-11-16</span></div>
+      <pre class="code"><span class="k">import</span> httpx  # 0O 1lI</pre>
+    </div>
+  </section>
+
+  <section class="rec" style="--d:'Fraunces',Georgia,serif;--dw:300;--s:'Schibsted Grotesk',sans-serif;--m:'DM Mono',monospace">
+    <div class="meta">
+      <span class="letter">C</span>
+      <h2>Fraunces · Schibsted Grotesk · DM Mono</h2>
+      <span class="tag">Recommended</span>
+      <dl><dt>Eagle Ridge</dt><dd>Nothing shared</dd><dt>Weights</dt><dd>Serif 100–900, optical sizes</dd></dl>
+      <p>A soft, slightly quirky serif with warmth; set light, it reads close to SID's thin lowercase headline. The grotesk is plain and sturdy at small sizes. It is clearly not Eagle Ridge, while the palette keeps the two related. One flaw: its tabular comma is wide ("1 , 152"), so tables would use proportional figures.</p>
+    </div>
+    <div class="spec">
+      <p class="d">applied ai for human-machine collaboration</p>
+      <p class="lede">Applied AI explorations that keep humans in command.</p>
+      <p class="body">I focus on the missing middle: systems that help us think better without taking decisions away. Read <a href="#">How I Work with Agents</a> for the loop.</p>
+      <div class="row"><span class="lbl">Field note 014</span><span class="btn">Get in touch</span><span class="nums">12 posts · 1,152 words · −3 · 2026-11-16</span></div>
+      <pre class="code"><span class="k">import</span> httpx  # 0O 1lI</pre>
+    </div>
+  </section>
+
+  <section style="--d:'Cormorant Garamond',Georgia,serif;--dw:300;--s:'Hanken Grotesk',sans-serif;--m:'IBM Plex Mono',monospace">
+    <div class="meta">
+      <span class="letter">D</span>
+      <h2>Cormorant Garamond · Hanken Grotesk · IBM Plex Mono</h2>
+      <dl><dt>Eagle Ridge</dt><dd>Mono only</dd><dt>Weights</dt><dd>Serif 300–700</dd></dl>
+      <p>The most delicate display: high contrast and airy, closest to a luxury feel. Its thin strokes break up below about 28px, so it is for headlines only.</p>
+    </div>
+    <div class="spec">
+      <p class="d">applied ai for human-machine collaboration</p>
+      <p class="lede">Applied AI explorations that keep humans in command.</p>
+      <p class="body">I focus on the missing middle: systems that help us think better without taking decisions away. Read <a href="#">How I Work with Agents</a> for the loop.</p>
+      <div class="row"><span class="lbl">Field note 014</span><span class="btn">Get in touch</span><span class="nums">12 posts · 1,152 words · −3 · 2026-11-16</span></div>
+      <pre class="code"><span class="k">import</span> httpx  # 0O 1lI</pre>
+    </div>
+  </section>
+
+  <section style="--d:'Bodoni Moda',Georgia,serif;--dw:400;--s:'Geist',sans-serif;--m:'Geist Mono',monospace">
+    <div class="meta">
+      <span class="letter">E</span>
+      <h2>Bodoni Moda · Geist · Geist Mono</h2>
+      <dl><dt>Eagle Ridge</dt><dd>Nothing shared</dd><dt>Weights</dt><dd>Serif 400–900, optical sizes</dd></dl>
+      <p>A sharp Didone over a crisp, technical sans. The most "modernist poster" of the five, and the strongest echo of the Mondrian era. Heavier than SID at display size.</p>
+    </div>
+    <div class="spec">
+      <p class="d">applied ai for human-machine collaboration</p>
+      <p class="lede">Applied AI explorations that keep humans in command.</p>
+      <p class="body">I focus on the missing middle: systems that help us think better without taking decisions away. Read <a href="#">How I Work with Agents</a> for the loop.</p>
+      <div class="row"><span class="lbl">Field note 014</span><span class="btn">Get in touch</span><span class="nums">12 posts · 1,152 words · −3 · 2026-11-16</span></div>
+      <pre class="code"><span class="k">import</span> httpx  # 0O 1lI</pre>
+    </div>
+  </section>
+</div>
