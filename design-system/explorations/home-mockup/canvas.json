@@ -1,0 +1,17 @@
+{
+  "v": 3,
+  "createdOnFiles": { "v": 1, "at": "2026-11-18T19:40:00Z" },
+  "title": "humaine.studio Home Mockup",
+  "launch": { "view": "canvas" },
+  "pages": [],
+  "boards": {
+    "Main.dc.html": { "x": 0, "y": 0, "w": 1440, "h": 3000, "title": "Home · desktop · Klein & Linen", "expand": "fill" },
+    "Dark.dc.html": { "x": 1520, "y": 0, "w": 1440, "h": 3000, "title": "Home · desktop · Klein Night", "expand": "fill" },
+    "Phone.dc.html": { "x": 3040, "y": 0, "w": 390, "h": 5200, "title": "Home · phone 390 · Klein & Linen" }
+  },
+  "order": ["Main.dc.html", "Dark.dc.html", "Phone.dc.html"],
+  "notes": {},
+  "designSystems": [
+    { "title": "Humaine Studio Design System", "namespace": "humainestudio", "artifact": "https://claude.ai/artifact/ES1ThCt8R3T8itN88QwtRD", "version": "1795030894-24de", "copiedAt": "2026-11-18T19:40:00Z" }
+  ]
+}

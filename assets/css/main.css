@@ -1,34 +1,19 @@
-/* CSS Custom Properties for Theme */
+/* Site variables, mapped onto the Humaine Studio tokens (assets/css/humaine-tokens.css,
+   generated from the design system). Both themes switch through the tokens. */
 :root {
-    --bg-color: #fff;
-    --text-color: #333;
-    --text-light: #666;
-    --text-lighter: #999;
-    --text-dark: #000;
-    --border-color: #eee;
-    --border-light: #f0f0f0;
-    --code-bg: #f5f5f5;
-    --pre-bg: #f8f8f8;
-    --pre-border: #eee;
-    --tag-bg: #f0f0f0;
-    --blockquote-border: #ddd;
-    --link-underline: #ddd;
-}
-
-[data-theme="dark"] {
-    --bg-color: #1a1a1a;
-    --text-color: #e4e4e4;
-    --text-light: #b4b4b4;
-    --text-lighter: #8a8a8a;
-    --text-dark: #f0f0f0;
-    --border-color: #333;
-    --border-light: #2a2a2a;
-    --code-bg: #2a2a2a;
-    --pre-bg: #242424;
-    --pre-border: #333;
-    --tag-bg: #2a2a2a;
-    --blockquote-border: #444;
-    --link-underline: #555;
+    --bg-color: var(--ground);
+    --text-color: var(--ink);
+    --text-light: var(--ink-soft);
+    --text-lighter: var(--mute);
+    --text-dark: var(--ink);
+    --border-color: var(--rule);
+    --border-light: var(--rule);
+    --code-bg: var(--sunken);
+    --pre-bg: var(--sunken);
+    --pre-border: var(--rule);
+    --tag-bg: var(--sunken);
+    --blockquote-border: var(--klein);
+    --link-underline: var(--rule);
 }
 
 /* Reset and base styles */
@@ -39,8 +24,8 @@
 }
 
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    font-size: 16px;
+    font-family: var(--font-sans);
+    font-size: 16.5px;
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--bg-color);
@@ -70,8 +55,6 @@ body {
 }
 
 .nav-logo {
-    font-size: 20px;
-    font-weight: 600;
     color: var(--text-dark);
     text-decoration: none;
 }
@@ -97,7 +80,7 @@ body {
 .theme-toggle {
     background: none;
     border: 1px solid var(--border-color);
-    border-radius: 6px;
+    border-radius: 0;
     padding: 8px 12px;
     cursor: pointer;
     font-size: 14px;
@@ -116,9 +99,9 @@ body {
     border-color: var(--text-light);
 }
 
-.theme-toggle:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px var(--border-color);
+.theme-toggle:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
 }
 
 /* GitHub icon */
@@ -126,7 +109,7 @@ body {
     display: flex;
     align-items: center;
     padding: 8px;
-    border-radius: 4px;
+    border-radius: 0;
     transition: background-color 0.2s ease;
 }
 
@@ -298,7 +281,7 @@ body {
     display: block;
     margin: 1.5em auto;
     background: #fff;
-    border-radius: 4px;
+    border-radius: 0;
 }
 
 [data-theme="dark"] .post-content img {
@@ -363,7 +346,7 @@ body {
 .post-content code {
     background: var(--code-bg);
     padding: 2px 6px;
-    border-radius: 3px;
+    border-radius: 0;
     font-size: 14px;
     font-family: 'Monaco', 'Consolas', monospace;
 }
@@ -371,7 +354,7 @@ body {
 .post-content pre {
     background: var(--pre-bg);
     border: 1px solid var(--pre-border);
-    border-radius: 4px;
+    border-radius: 0;
     padding: 20px;
     overflow-x: auto;
     margin: 30px 0;
@@ -398,7 +381,7 @@ body {
     background: var(--tag-bg);
     color: var(--text-light);
     padding: 4px 12px;
-    border-radius: 15px;
+    border-radius: 0;
     font-size: 12px;
     margin-right: 8px;
     margin-bottom: 8px;
@@ -491,7 +474,7 @@ body {
     text-decoration: none;
     font-size: 14px;
     padding: 8px 12px;
-    border-radius: 6px;
+    border-radius: 0;
     transition: all 0.2s ease;
 }
 
@@ -530,7 +513,7 @@ body {
     background: var(--text-color);
     height: 2px;
     width: 20px;
-    border-radius: 2px;
+    border-radius: 0;
     position: relative;
     transition: background 0.3s ease;
 }
@@ -780,7 +763,7 @@ body {
 .showcase-filter label,
 .showcase-badge {
     border: 1px solid var(--border-color);
-    border-radius: 999px;
+    border-radius: 0;
     white-space: nowrap;
 }
 
@@ -901,7 +884,7 @@ body {
     object-fit: cover;
     object-position: top;
     border: 1px solid var(--border-color);
-    border-radius: 4px;
+    border-radius: 0;
     background: var(--bg-color);
 }
 
@@ -944,7 +927,7 @@ body {
 .showcase summary:focus-visible {
     outline: 2px solid var(--text-dark);
     outline-offset: 3px;
-    border-radius: 2px;
+    border-radius: 0;
 }
 
 .showcase-more {
@@ -1007,7 +990,7 @@ body {
     font-size: 0.9em;
     background: var(--code-bg);
     padding-inline: 0.3em;
-    border-radius: 3px;
+    border-radius: 0;
 }
 
 .showcase-footer {

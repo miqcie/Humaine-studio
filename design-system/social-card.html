@@ -1,0 +1,29 @@
+<!doctype html>
+<!-- Source for assets/images/social-card.png (1200x630). Render: serve the repo root, open this page at 1200x630, screenshot. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Humaine Studio social card</title>
+<link rel="stylesheet" href="../assets/css/humaine-tokens.css">
+<style>
+  html, body { margin: 0; }
+  .card { position: relative; width: 1200px; height: 630px; display: grid; grid-template-columns: 1fr 430px; background: var(--klein); overflow: hidden; }
+  .text { display: flex; flex-direction: column; justify-content: space-between; padding: 72px 64px 64px 80px; }
+  .wordmark { width: 520px; height: auto; display: block; }
+  .line { margin: 0; font: 500 64px/1.05 var(--font-serif); letter-spacing: -0.01em; color: var(--on-klein); max-width: 620px; }
+  .url { margin: 0; font: 500 20px/1 var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--on-klein); }
+  .art { display: grid; place-items: center; background: var(--surface); border-left: 16px solid var(--mark-line); }
+  .art img { width: 300px; height: auto; display: block; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="text">
+    <img class="wordmark" src="project/assets/Logos/humaine-wordmark-linen.svg" alt="Humaine Studio">
+    <p class="line">applied ai for<br>human-machine<br>collaboration</p>
+    <p class="url">humaine.studio</p>
+  </div>
+  <div class="art"><img src="project/assets/Logos/humaine-curlew.svg" alt=""></div>
+</div>
+</body>
+</html>

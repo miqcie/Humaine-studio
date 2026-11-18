@@ -39,6 +39,7 @@ defaults:
       path: ""
     values:
       layout: "default"
+      image: "/assets/images/social-card.png"
 
 # SEO settings
 twitter:

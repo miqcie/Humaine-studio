@@ -7,7 +7,8 @@
 <meta name="author" content="{{ site.author.name }}">
 <meta name="keywords" content="{% if page.tags %}{{ page.tags | join: ', ' }}{% else %}AI research, human-machine collaboration, artificial intelligence, applied AI{% endif %}">
 
-<!-- Favicon -->
+<!-- Favicon (Mondrian block mark, built by design-system/build_brand.py) -->
+<link rel="icon" type="image/svg+xml" href="{{ '/assets/images/favicon.svg' | relative_url }}">
 <link rel="icon" type="image/x-icon" href="{{ '/favicon.ico' | relative_url }}">
 <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/images/favicon-32x32.png' | relative_url }}">
 <link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/images/apple-touch-icon.png' | relative_url }}">
@@ -15,13 +16,15 @@
 <!-- Feed -->
 {% feed_meta %}
 
-<!-- Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<!-- Fonts: self-hosted, brand axes baked in (Fraunces SOFT 100, Recursive MONO 1 / CASL 0.5) -->
+<link rel="preload" href="{{ '/assets/fonts/fraunces-soft.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ '/assets/fonts/schibsted-grotesk.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
 
-<!-- CSS -->
+<!-- CSS: design-system tokens and components (generated), then site styles -->
+<link rel="stylesheet" href="{{ '/assets/css/humaine-tokens.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/humaine-components.css' | relative_url }}">
 <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/humaine-site.css' | relative_url }}">
 
 <!-- Page-specific CSS -->
 {% if page.custom_css %}

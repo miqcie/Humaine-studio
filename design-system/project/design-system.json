@@ -26,6 +26,18 @@
           "name": "humaine-curlew-vermilion.svg",
           "size": 5075,
           "type": "image/svg+xml"
+        },
+        "humaine-wordmark-ink.svg": {
+          "blob": "ed5a0c120bd99a578e3af95b9926756c",
+          "name": "humaine-wordmark-ink.svg",
+          "size": 39807,
+          "type": "image/svg+xml"
+        },
+        "humaine-wordmark-linen.svg": {
+          "blob": "e5f845661e3ccce7b3f9b81776d004be",
+          "name": "humaine-wordmark-linen.svg",
+          "size": 39807,
+          "type": "image/svg+xml"
         }
       },
       "name": "Logos",
@@ -33,7 +45,9 @@
         "humaine-mark.svg",
         "humaine-mark-vermilion.svg",
         "humaine-curlew.svg",
-        "humaine-curlew-vermilion.svg"
+        "humaine-curlew-vermilion.svg",
+        "humaine-wordmark-ink.svg",
+        "humaine-wordmark-linen.svg"
       ]
     }
   },
@@ -50,9 +64,9 @@
     "Logos"
   ],
   "lastChange": {
-    "at": "2026-11-18T19:10:00Z",
+    "at": "2026-11-18T20:00:00Z",
     "by": "Chris McConnell",
-    "note": "Type decided: Fraunces (SOFT 100; wordmark 800, headlines 500), Schibsted Grotesk, Recursive Mono (MONO 1, CASL 0.5).",
+    "note": "Add the outlined wordmark (ink and linen), built by design-system/build_brand.py.",
     "via": "Claude Code"
   },
   "layout": "files",

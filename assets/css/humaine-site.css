@@ -1,0 +1,62 @@
+/* Humaine Studio brand layer for the site. Hand-written; loads after main.css.
+   Tokens and components come from humaine-tokens.css and humaine-components.css (generated). */
+
+/* Layout */
+.container { max-width: var(--canvas); padding-left: max(16px, 4vw, env(safe-area-inset-left, 0px)); padding-right: max(16px, 4vw, env(safe-area-inset-right, 0px)); }
+@media (min-width: 1200px) { .container { padding-left: 48px; padding-right: 48px; } }
+.site-header { padding: 24px 0; border-bottom: 0; margin-bottom: 48px; }
+.site-footer { margin-top: 72px; }
+
+/* Header */
+.nav-logo.hs-lockup img { width: 24px; height: 24px; }
+.nav-link { font: 500 15px/1.5 var(--font-sans); color: var(--ink); }
+.nav-link:hover { color: var(--ink); text-decoration: underline; text-decoration-thickness: max(1px, 0.0625em); text-underline-offset: 0.18em; }
+.theme-toggle { font: 500 12px/1 var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); border-color: var(--ink-soft); }
+.theme-toggle:hover { color: var(--ink); border-color: var(--ink); }
+
+/* Type: Fraunces for headings (the self-hosted file has SOFT 100 baked in), Recursive for code */
+h1, h2, h3, h4, .post-title, .section-title { font-family: var(--font-serif); }
+h1, .post-title { font-weight: 500; }
+h2, h3, h4 { font-weight: 400; }
+code, pre, kbd, samp { font-family: var(--font-mono); }
+.post-content code { font-family: var(--font-mono); }
+
+/* Posts */
+.post-header { text-align: left; }
+.post-title { font-size: clamp(32px, 5vw, 48px); line-height: 1.1; letter-spacing: -0.01em; }
+.post-content { font-size: 17px; line-height: 1.7; }
+.post-content a, .section-content a { color: var(--klein); text-underline-offset: 0.18em; text-decoration-thickness: max(1px, 0.0625em); }
+.post-content a:hover, .section-content a:hover { color: var(--klein-press); }
+.post-tag { font: 500 11px/1.5 var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; }
+.post-content blockquote { font-style: normal; }
+
+/* Home */
+.home-hero { display: flex; flex-wrap: wrap; align-items: center; gap: 48px; margin-bottom: 72px; }
+.home-hero-text { flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 24px; }
+.home-eyebrow { margin: 0; color: var(--ink-soft); text-transform: uppercase; }
+.home-display { margin: 0; font-size: clamp(40px, 6vw, 64px); text-wrap: balance; }
+.home-lede { margin: 0; color: var(--ink-soft); max-width: 36rem; }
+.home-hero-art { flex: 1 1 240px; max-width: 360px; min-width: 0; height: auto; }
+@media (max-width: 640px) { .home-hero-art { flex-basis: auto; max-width: 200px; } }
+.home-section { display: flex; flex-direction: column; gap: 20px; padding-top: 24px; border-top: 1px solid var(--rule); margin-bottom: 72px; }
+.home-section h2 { margin: 0; }
+.home-prose { max-width: var(--measure); }
+.home-prose p { margin: 0 0 16px; }
+.home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); gap: 32px 40px; }
+.home-item { display: flex; flex-direction: column; gap: 8px; padding-top: 16px; border-top: 1px solid var(--rule); }
+.home-item h3 { margin: 0; font: 400 22px/1.2 var(--font-serif); }
+.home-item p { margin: 0; color: var(--ink-soft); }
+.home-item .hs-pill { align-self: flex-start; }
+.home-section > .hs-link { align-self: flex-start; }
+.post-rows { list-style: none; margin: 0; padding: 0; }
+.post-row { display: flex; flex-wrap: wrap; gap: 4px 24px; padding: 16px 0; border-top: 1px solid var(--rule); }
+.post-row:last-child { border-bottom: 1px solid var(--rule); }
+.post-row-date { flex: 0 0 8rem; color: var(--mute); padding-top: 6px; }
+.post-row-text { flex: 1 1 20rem; min-width: 0; }
+.post-row h3 { margin: 0 0 6px; font: 400 22px/1.3 var(--font-serif); }
+.post-row h3 a { color: var(--ink); text-decoration: none; }
+.post-row h3 a:hover { color: var(--klein); text-decoration: underline; text-underline-offset: 0.18em; }
+.post-row p { margin: 0; color: var(--ink-soft); font-size: 15px; }
+.contact-info a { color: var(--klein); border-bottom: 0; text-decoration: underline; text-underline-offset: 0.18em; }
+.contact-info a:hover { color: var(--klein-press); }
+.footer-colophon { font-size: 13px; }

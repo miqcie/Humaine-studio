@@ -19,9 +19,17 @@ A curlew's head and shoulders inside the same ink frame. It is traced from draft
 - Use it for avatars, social cards, talk title slides, stickers and a page hero. Smallest size 32px: below that the beak and eye blur, so use the block mark.
 - One curlew per view. Do not put it beside the block mark at the same size; the block mark goes in the header, the curlew in the content.
 
-## Rules for both
+## Wordmark
+
+"Humaine Studio" in Fraunces 800 at full softness (`"SOFT" 100, "WONK" 0`), letter-spacing −0.02em, converted to outlines by `design-system/build_brand.py`, so it renders the same without the font.
+
+- `humaine-wordmark-ink.svg`: `mark-line` ink, for linen, paper and other light grounds.
+- `humaine-wordmark-linen.svg`: paper, for Klein and Klein Night grounds.
+- Use it where live text is not available: social cards, email signatures, slides, print. On the web, set the name in type with the `Lockup` component instead.
+
+## Rules for all marks
 
 - Fixed colors in both themes. On the Klein Night ground the blue-black frame merges into the background and the colored fields carry the mark. That is intended; there is no inverted file.
 - Do not recolor, rotate, crop, add a shadow or round the corners. Do not put text on a mark.
-- The name is set in type next to the block mark (see the Lockup component), not drawn into a file.
+- On the web the name is set in type next to the block mark (the Lockup component); the outlined wordmark is for places without the font.
 - The other curlew drafts and the "Humane Studio" concept image are not part of the system.
