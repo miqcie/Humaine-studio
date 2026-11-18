@@ -12,4 +12,5 @@
 - 2026-11-16: new-post PR #54 → link-check failed on the post's own canonical URL, which 404s until deploy (fixed in #55)
 - 2026-11-17: fixing link-check → a lychee CLI `--exclude` replaces lychee.toml's exclude list instead of adding to it
 - 2026-11-17: main link-check after #55 → a github.com blob URL returned 503 to the Actions runner twice; the third run passed
+- 2026-11-18: design-system PR #58 → local Jekyll build again impossible in a worktree (no Ruby 3; second time, see 2026-11-16), so the `_config.yml` exclude was verified only by CI
 - **Sanding target (2026-11-17):** three link-check entries above share one cause, lychee depending on live network responses (an undeployed URL, a flaky host). Next step: miqcie/Humaine-studio#56 (check internal links against the PR build).

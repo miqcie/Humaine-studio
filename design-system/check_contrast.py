@@ -21,6 +21,7 @@ PAIRS = [
     ("ink", "klein-wash", 4.5), ("klein", "klein-wash", 4.5), ("ink-soft", "klein-wash", 4.5),
     ("klein", "sunken", 4.5), ("mute", "sunken", 4.5),  # code keywords and comments
     ("on-ink", "ink-soft", 4.5),  # ink button hover
+    ("ink", "ground", 3.0),  # TickRow: the ring that marks the signal square (chrome vs klein is 1.3:1 in dark)
     *[("focus", bg, 3.0) for bg in ("ground", "surface", "sunken")],
 ]
 

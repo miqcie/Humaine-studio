@@ -1,4 +1,4 @@
-Humaine Studio is Chris McConnell's applied-AI studio and the parent of Eagle Ridge and Caldris. This system takes its structure from SID (sid.ai and its docs): square corners, solid block buttons, hairline rules, dashed optional steps. It takes its color from Yves Klein blue on linen, the palette eagleridge.io adopted on 14 Nov 2026, so the family reads as one. The Mondrian block mark carries the studio's own yellow and vermilion.
+Humaine Studio is Chris McConnell's applied-AI studio. The system is square and quiet: square corners, solid block buttons, hairline rules, dashed optional steps. Its color is Yves Klein blue on linen, the same palette eagleridge.io uses. The Mondrian block mark carries the studio's own yellow and vermilion.
 
 ## Content fundamentals
 
