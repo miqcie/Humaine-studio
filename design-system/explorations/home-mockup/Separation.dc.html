@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Home, section separation</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/humainestudio/tokens.css">
+<link rel="stylesheet" href="ds/humainestudio/components/bundle.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,100..900,0..100,0..1;1,9..144,100..900,0..100,0..1&amp;family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&amp;family=Recursive:wght,CASL,MONO@300..1000,0..1,0..1&amp;display=swap">
+<style>
+body{margin:0}
+a{color:inherit}
+</style>
+</helmet>
+<div data-theme="{{theme}}" style="--font-serif: 'Fraunces', Georgia, serif; --font-sans: 'Schibsted Grotesk', Helvetica, Arial, sans-serif; --font-mono: 'Recursive', ui-monospace, monospace; background: var(--ground); color: var(--ink); font-family: var(--font-sans); min-height: 100%;">
+
+<div style="max-width: 68rem; margin: 0 auto; padding: 0 clamp(16px, 4vw, 48px); box-sizing: border-box;">
+<nav class="hs-nav" aria-label="Main">
+<a class="hs-lockup" href="#"><img src="/_blob/ddc495bbaac1bb0d67ce144ed01057b1" alt="">Humaine Studio</a>
+<ul>
+<li><a href="#">Philosophy</a></li>
+<li><a href="#">Research</a></li>
+<li><a href="#" aria-current="page">Writing</a></li>
+<li><a href="#">Tools</a></li>
+<li><a href="#">Contact</a></li>
+</ul>
+<button class="hs-btn hs-btn--text" type="button" style="font: 500 12px/1 var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase;">Dark</button>
+</nav>
+<section style="display: flex; flex-wrap: wrap; align-items: center; gap: 48px; padding: 48px 0 {{heroBottom}};">
+<div style="flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 24px;">
+<p class="label" style="margin: 0; color: var(--ink-soft); text-transform: uppercase;">Chris McConnell · Humaine Studio</p>
+<h1 class="display" style="margin: 0; font-weight: 500; font-size: clamp(40px, 6vw, 64px); text-wrap: balance;">applied ai for <span style="white-space: nowrap;">human-machine</span> collaboration</h1>
+<p class="body-lg" style="margin: 0; font-weight: 400; color: var(--ink-soft); max-width: 36rem;">Humaine Studio explores how AI augments human capability. The work is grounded in Zero Trust security and clean, reliable data, focusing on safe, steerable use cases and transparent workflows that keep people in command.</p>
+<div class="hs-actions">
+<a class="hs-btn" href="#">Read the writing</a>
+<a class="hs-btn hs-btn--text" href="#">See the tools</a>
+</div>
+<div class="hs-ticks">
+<div class="hs-ticks__row" role="img" aria-label="12 posts"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<span class="hs-ticks__stat">12 posts since 2021</span>
+</div>
+</div>
+<img src="/_blob/ddc495bbaac1bb0d67ce144ed01057b1" alt="" style="flex: 0 0 300px; width: 300px; max-width: 100%; height: auto; display: block;">
+</section>
+</div>
+
+<section style="{{bandOff}}">
+<div style="{{inner}}">
+<p class="label" style="margin: 0; color: var(--ink-soft); text-transform: uppercase; display: flex; align-items: center; gap: 10px;"><i style="{{marker}}"></i>Philosophy</p>
+<h2 style="{{h2}}">philosophy</h2>
+<div style="display: flex; flex-direction: column; gap: 16px; max-width: 42rem;">
+<p class="body" style="margin: 0;">I focus on the "missing middle": systems that help us think better without taking decisions away. The goal is oversight and augmentation, not replacement. That means building tools that teach as they assist, leaving people more capable than when they started.</p>
+<p class="body" style="margin: 0;">Augmentation only works if the systems we connect to are trustworthy. My background in Zero Trust security informs everything here—permissions are explicit, access is scoped, and actions are auditable.</p>
+</div>
+</div>
+</section>
+
+<section style="{{bandOn}}">
+<div style="{{inner}}">
+<p class="label" style="margin: 0; color: var(--ink-soft); text-transform: uppercase; display: flex; align-items: center; gap: 10px;"><i style="{{marker}}"></i>Research</p>
+<h2 style="{{h2}}">research areas</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); gap: 32px 40px;">
+<div style="display: flex; flex-direction: column; gap: 8px; padding-top: 16px; border-top: 1px solid var(--rule);"><h3 style="margin: 0; font: 400 22px/1.2 var(--font-serif); font-variation-settings: var(--soft);">Leadership in the Age of AI Agents</h3><p class="body" style="margin: 0; color: var(--ink-soft);">How leadership models adapt when executives oversee both human teams and autonomous AI systems.</p></div>
+<div style="display: flex; flex-direction: column; gap: 8px; padding-top: 16px; border-top: 1px solid var(--rule);"><h3 style="margin: 0; font: 400 22px/1.2 var(--font-serif); font-variation-settings: var(--soft);">Workflow Patterns for Human–AI Teams</h3><p class="body" style="margin: 0; color: var(--ink-soft);">Where to place humans in the loop, and how to hand off work between people and machines.</p></div>
+<div style="display: flex; flex-direction: column; gap: 8px; padding-top: 16px; border-top: 1px solid var(--rule);"><h3 style="margin: 0; font: 400 22px/1.2 var(--font-serif); font-variation-settings: var(--soft);">Trust, Transparency, and Control</h3><p class="body" style="margin: 0; color: var(--ink-soft);">Making capabilities visible, boundaries clear, and decisions accountable.</p></div>
+<div style="display: flex; flex-direction: column; gap: 8px; padding-top: 16px; border-top: 1px solid var(--rule);"><h3 style="margin: 0; font: 400 22px/1.2 var(--font-serif); font-variation-settings: var(--soft);">From Prototype to Production</h3><p class="body" style="margin: 0; color: var(--ink-soft);">Moving from exploratory systems to rule-bound automation that can be trusted in production.</p></div>
+<div style="display: flex; flex-direction: column; gap: 8px; padding-top: 16px; border-top: 1px solid var(--rule);"><h3 style="margin: 0; font: 400 22px/1.2 var(--font-serif); font-variation-settings: var(--soft);">Augmenting Knowledge Work</h3><p class="body" style="margin: 0; color: var(--ink-soft);">Using AI to make professionals faster, sharper, and better informed.</p></div>
+<div style="display: flex; flex-direction: column; gap: 8px; padding-top: 16px; border-top: 1px solid var(--rule);"><h3 style="margin: 0; font: 400 22px/1.2 var(--font-serif); font-variation-settings: var(--soft);">Automation, Work, and Human Dignity</h3><p class="body" style="margin: 0; color: var(--ink-soft);">Removing the dumb, dirty, dangerous and tedious work while creating new, meaningful roles.</p></div>
+</div>
+</div>
+</section>
+
+<section style="{{bandOff}}">
+<div style="{{inner}}">
+<p class="label" style="margin: 0; color: var(--ink-soft); text-transform: uppercase; display: flex; align-items: center; gap: 10px;"><i style="{{marker}}"></i>Writing</p>
+<h2 style="{{h2}}">writing</h2>
+<div style="display: flex; flex-direction: column;">
+<a href="#" style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 24px; padding: 14px 0; border-top: 1px solid var(--rule); text-decoration: none;"><span class="label" style="flex: 0 0 8rem; color: var(--mute);">2026-11-16</span><span style="flex: 1 1 20rem; min-width: 0; font: 400 22px/1.3 var(--font-serif); font-variation-settings: var(--soft);">How I Work with Agents</span></a>
+<a href="#" style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 24px; padding: 14px 0; border-top: 1px solid var(--rule); text-decoration: none;"><span class="label" style="flex: 0 0 8rem; color: var(--mute);">2026-09-28</span><span style="flex: 1 1 20rem; min-width: 0; font: 400 22px/1.3 var(--font-serif); font-variation-settings: var(--soft);">I Hired Deirdre McCloskey to Edit My Writing (Sort Of)</span></a>
+<a href="#" style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 24px; padding: 14px 0; border-top: 1px solid var(--rule); text-decoration: none;"><span class="label" style="flex: 0 0 8rem; color: var(--mute);">2026-07-31</span><span style="flex: 1 1 20rem; min-width: 0; font: 400 22px/1.3 var(--font-serif); font-variation-settings: var(--soft);">Fewer Rules, Better Agent: Testing Anthropic's Context Advice on My Own Setup</span></a>
+<a href="#" style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 24px; padding: 14px 0; border-top: 1px solid var(--rule); text-decoration: none;"><span class="label" style="flex: 0 0 8rem; color: var(--mute);">2026-02-02</span><span style="flex: 1 1 20rem; min-width: 0; font: 400 22px/1.3 var(--font-serif); font-variation-settings: var(--soft);">The Security Poverty Line: Why Startups Can't Compete on Compliance</span></a>
+<a href="#" style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 24px; padding: 14px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); text-decoration: none;"><span class="label" style="flex: 0 0 8rem; color: var(--mute);">2026-01-11</span><span style="flex: 1 1 20rem; min-width: 0; font: 400 22px/1.3 var(--font-serif); font-variation-settings: var(--soft);">Experiments in Building a GRC Tool in a Weekend</span></a>
+</div>
+<a class="hs-link" href="#" style="align-self: flex-start;">All writing</a>
+</div>
+</section>
+
+<section style="{{bandOn}}">
+<div style="{{inner}}">
+<p class="label" style="margin: 0; color: var(--ink-soft); text-transform: uppercase; display: flex; align-items: center; gap: 10px;"><i style="{{marker}}"></i>Tools</p>
+<h2 style="{{h2}}">tools</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); gap: 32px 40px;">
+<article style="display: flex; flex-direction: column; gap: 10px; padding-top: 16px; border-top: 1px solid var(--rule);"><span class="hs-pill hs-pill--ok" style="align-self: flex-start;">Live</span><h3 style="margin: 0; font: 400 22px/1.2 var(--font-serif); font-variation-settings: var(--soft);">Notes From the Back Row</h3><p class="body" style="margin: 0; color: var(--ink-soft);">A live, plain-English play-by-play of a county planning hearing, so neighbors can follow without sitting through four hours of video.</p></article>
+<article style="display: flex; flex-direction: column; gap: 10px; padding-top: 16px; border-top: 1px solid var(--rule);"><span class="hs-pill hs-pill--ok" style="align-self: flex-start;">Live</span><h3 style="margin: 0; font: 400 22px/1.2 var(--font-serif); font-variation-settings: var(--soft);">Two Clicks to City Hall</h3><p class="body" style="margin: 0; color: var(--ink-soft);">A one-page kit that turns "I should say something" into a ready email to the county Planning Commission.</p></article>
+<article style="display: flex; flex-direction: column; gap: 10px; padding-top: 16px; border-top: 1px solid var(--rule);"><span class="hs-pill hs-pill--quiet" style="align-self: flex-start;">Open source</span><h3 style="margin: 0; font: 400 22px/1.2 var(--font-serif); font-variation-settings: var(--soft);">Gilfoyle, The Grumpy Reviewer</h3><p class="body" style="margin: 0; color: var(--ink-soft);">A smart, and rude, code reviewer with a dry wit.</p></article>
+</div>
+<a class="hs-link" href="#" style="align-self: flex-start;">See all tools</a>
+</div>
+</section>
+
+<section style="{{bandOff}}">
+<div style="{{inner}}">
+<p class="label" style="margin: 0; color: var(--ink-soft); text-transform: uppercase; display: flex; align-items: center; gap: 10px;"><i style="{{marker}}"></i>Contact</p>
+<h2 style="{{h2}}">contact</h2>
+<p class="body" style="margin: 0; max-width: 42rem;">I'm interested in conversations about applied AI, human–AI workflow design, Zero Trust security, the future of work, and leadership in AI-driven organizations.</p>
+<p class="body" style="margin: 0;">chris@humaine.studio · <a class="hs-link" href="#">Medium</a> · <a class="hs-link" href="#">LinkedIn</a></p>
+</div>
+</section>
+
+<footer style="max-width: 68rem; margin: 0 auto; padding: 24px clamp(16px, 4vw, 48px) 48px; box-sizing: border-box;">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px 24px; padding-top: 24px; border-top: {{footerRule}};">
+<a class="hs-lockup" href="#"><img src="/_blob/ddc495bbaac1bb0d67ce144ed01057b1" alt="">Humaine Studio</a>
+<p class="detail" style="margin: 0; color: var(--mute);">© 2026 · Set in Fraunces, Schibsted Grotesk and Recursive · <a class="hs-link hs-link--quiet" href="#">Privacy</a></p>
+</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"rule":{"editor":"enum","options":["ink 2px","hairline","none"],"default":"ink 2px","section":"Separation"},"gap":{"editor":"enum","options":["72","96","120"],"default":"96","section":"Separation"},"band":{"editor":"enum","options":["sunken","klein-wash","none"],"default":"sunken","section":"Separation"},"bigHeadings":{"editor":"boolean","default":true,"section":"Separation"},"marker":{"editor":"boolean","default":true,"section":"Separation"},"theme":{"editor":"enum","options":["klein-linen","klein-night"],"default":"klein-linen"},"$preview":{"width":1440,"height":3600}}'>
+class Component extends DCLogic {
+renderVals() {
+const p = this.props;
+const rule = p.rule ?? 'ink 2px';
+const gap = Number(p.gap ?? 96);
+const band = p.band ?? 'sunken';
+const big = p.bigHeadings ?? true;
+const marker = p.marker ?? true;
+const line = rule === 'ink 2px' ? '2px solid var(--ink)' : rule === 'hairline' ? '1px solid var(--rule)' : '0';
+const shade = band === 'none' ? 'transparent' : band === 'klein-wash' ? 'var(--klein-wash)' : 'var(--sunken)';
+const half = Math.round(gap / 2);
+return {
+theme: p.theme ?? 'klein-linen',
+heroBottom: half + 'px',
+bandOff: 'display: block; padding: ' + half + 'px 0;',
+bandOn: 'display: block; padding: ' + half + 'px 0; background: ' + shade + ';',
+inner: 'max-width: 68rem; margin: 0 auto; padding: 24px clamp(16px, 4vw, 48px) 0; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px; border-top: ' + line + ';',
+h2: 'margin: 0; font: ' + (big ? '500 48px' : '400 32px') + '/1.1 var(--font-serif); font-variation-settings: var(--soft); letter-spacing: -0.01em;',
+marker: marker ? 'display: inline-block; width: 10px; height: 10px; background: var(--klein);' : 'display: none;',
+footerRule: line === '0' ? '1px solid var(--rule)' : line
+};
+}
+}
+</script>
+</body>
+</html>

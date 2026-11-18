@@ -37,7 +37,7 @@ code, pre, kbd, samp { font-family: var(--font-mono); }
 .post-content th, .post-content td { overflow-wrap: anywhere; }
 
 /* Home */
-.home-hero { display: flex; flex-wrap: wrap; align-items: center; gap: 48px; margin-bottom: 72px; }
+.home-hero { display: flex; flex-wrap: wrap; align-items: center; gap: 48px; margin-bottom: 96px; }
 .home-hero-text { flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 24px; }
 .home-eyebrow { margin: 0; color: var(--ink-soft); text-transform: uppercase; }
 .home-display { margin: 0; font-size: clamp(40px, 6vw, 64px); text-wrap: balance; }
@@ -47,8 +47,13 @@ code, pre, kbd, samp { font-family: var(--font-mono); }
 /* On night blue the mark's ink frame disappears; a hairline keeps the square from floating. */
 [data-theme="dark"] .home-hero-art { outline: 1px solid var(--rule); outline-offset: 0; }
 @media (max-width: 640px) { .home-hero-art { flex-basis: 200px; width: 200px; } }
-.home-section { display: flex; flex-direction: column; gap: 20px; padding-top: 24px; border-top: 1px solid var(--rule); margin-bottom: 72px; }
-.home-section h2 { margin: 0; }
+/* Section separation that survives a small view: a 2px ink rule, about 96px of air,
+   a full-bleed sunken band on alternate sections, 48px headings with a Klein square. */
+.home-section { display: flex; flex-direction: column; gap: 20px; padding: 24px 0 48px; border-top: 2px solid var(--ink); margin-bottom: 48px; }
+.home-section.is-band { border-top: 0; padding-top: 48px; background: var(--sunken); box-shadow: 0 0 0 100vmax var(--sunken); clip-path: inset(0 -100vmax); }
+.home-section.is-band > h2 { border-top: 2px solid var(--ink); padding-top: 24px; }
+.home-section h2 { margin: 0; font: 500 clamp(32px, 5vw, 48px)/1.1 var(--font-serif); letter-spacing: -0.01em; }
+.home-section h2::before { content: ""; display: inline-block; width: 12px; height: 12px; margin-right: 16px; vertical-align: 0.2em; background: var(--klein); }
 .home-prose { max-width: var(--measure); }
 .home-prose p { margin: 0 0 16px; }
 .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); gap: 32px 40px; }

@@ -34,7 +34,7 @@ permalink: /
   </div>
 </section>
 
-<section id="research" class="home-section">
+<section id="research" class="home-section is-band">
   <h2 class="headline-sm">research areas</h2>
   <div class="home-grid">
     <div class="home-item">
@@ -85,7 +85,7 @@ permalink: /
   {% endif %}
 </section>
 
-<section id="tools" class="home-section">
+<section id="tools" class="home-section is-band">
   <h2 class="headline-sm">tools</h2>
   <div class="home-grid">
     {% assign shown = 0 %}
