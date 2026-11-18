@@ -1,6 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&family=Newsreader:opsz,wght@6..72,300;6..72,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,100..900,0..100,0..1;1,9..144,100..900,0..100,0..1&family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&family=Recursive:wght,CASL,MONO@300..1000,0..1,0..1&display=swap");
 
 /* Humaine Studio components. Every color, size and radius comes from tokens.css. */
+
+/* Variable-font axes. Kept here because token values cannot hold quotes.
+   font-variation-settings does not merge: set the whole list, always through these. */
+:root { --soft: "SOFT" 100, "WONK" 0; --mono-axes: "MONO" 1, "CASL" 0.5; }
 
 html, body { background: var(--ground); color: var(--ink); font-family: var(--font-sans); }
 ::selection { background: var(--klein-wash); color: var(--ink); }
@@ -10,7 +14,7 @@ html, body { background: var(--ground); color: var(--ink); font-family: var(--fo
 .hs-btn {
   display: inline-flex; align-items: center; gap: var(--space-1);
   padding: 0 0.25em; border: 0; border-radius: var(--radius-0);
-  font: 400 16.5px/1.5 var(--font-sans); text-decoration: none; cursor: pointer;
+  font: 500 16.5px/1.5 var(--font-sans); text-decoration: none; cursor: pointer;
   background: var(--klein); color: var(--on-klein);
   transition: background-color 150ms ease;
 }
@@ -27,8 +31,8 @@ html, body { background: var(--ground); color: var(--ink); font-family: var(--fo
 .hs-link:hover { color: var(--klein-press); text-decoration-thickness: max(1.5px, 0.1em); }
 .hs-link--quiet { color: inherit; }
 
-/* Lockup: mark + name set in type. */
-.hs-lockup { display: inline-flex; align-items: center; gap: var(--space-2); color: var(--ink); text-decoration: none; font: 600 18px/1 var(--font-sans); letter-spacing: -0.01em; }
+/* Lockup: mark + the wordmark, Fraunces 800 at full softness. */
+.hs-lockup { display: inline-flex; align-items: center; gap: var(--space-2); color: var(--ink); text-decoration: none; font: 800 18px/1 var(--font-serif); letter-spacing: -0.02em; }
 .hs-lockup img { width: 24px; height: 24px; display: block; }
 .hs-lockup--lg { font-size: 32px; gap: var(--space-3); }
 .hs-lockup--lg img { width: 44px; height: 44px; }
@@ -81,10 +85,11 @@ html, body { background: var(--ground); color: var(--ink); font-family: var(--fo
 code.hs-inline { padding: 0 0.25em; background: var(--sunken); font: 400 0.9em/1 var(--font-mono); }
 
 /* Data table: rules, not boxes; tabular figures. */
-.hs-table { width: 100%; border-collapse: collapse; font: 400 13px/1.5 var(--font-sans); font-variant-numeric: tabular-nums lining-nums; color: var(--ink); }
+.hs-table { width: 100%; border-collapse: collapse; font: 400 13px/1.5 var(--font-sans); color: var(--ink); }
 .hs-table th { padding: var(--space-2) var(--space-3); background: var(--sunken); color: var(--ink-soft); text-align: left; font: 500 12px/1.4 var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; }
 .hs-table td { padding: var(--space-2) var(--space-3); border-bottom: var(--hairline) solid var(--rule); }
-.hs-table .num { text-align: right; }
+/* Tabular figures on number cells only: Schibsted's tabular comma is wide and would spread commas in text. */
+.hs-table .num { text-align: right; font-variant-numeric: tabular-nums lining-nums; }
 .hs-table tr.is-current td { background: var(--klein-wash); }
 
 /* Status pill: a word on a square fill. */
@@ -95,3 +100,9 @@ code.hs-inline { padding: 0 0.25em; background: var(--sunken); font: 400 0.9em/1
 .hs-pill--quiet { box-shadow: inset 0 0 0 1px var(--ink-soft); color: var(--ink-soft); }
 
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* Variable-font axes. Last in the file on purpose: the `font` shorthand above resets
+   font-variation-settings, so these must come after every rule that uses it.
+   Fraunces defaults to sharp (SOFT 0); Recursive defaults to proportional (MONO 0). */
+.display, .headline, .headline-sm, .hs-lockup { font-variation-settings: var(--soft); }
+.label, .code, .hs-kbd, .hs-code, .hs-code__head, code.hs-inline, .hs-table th, .hs-pill { font-variation-settings: var(--mono-axes); }

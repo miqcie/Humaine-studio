@@ -17,7 +17,7 @@
 - **Tools Showcase**: `/tools/` = `tools.html` looping `_data/showcase.yml` through `_includes/showcase-card.html`; edit cards in the YAML (Markdown values), screenshots in `assets/images/showcase/`
 - **Educational Tools**: T1D insulin calculator with localStorage persistence
 - **Experiments**: React/Vite applications under `/experiments/` directory
-- **Design system**: source in `design-system/project/` (excluded from the Jekyll build), published as the claude.ai artifact https://claude.ai/artifact/ES1ThCt8R3T8itN88QwtRD. Palette "Klein & Linen" (Yves Klein blue `#002FA7` on linen, shared with eagleridge.io). After any color change run `python3 design-system/check_contrast.py`, then republish the changed files to that artifact URL. The live site does not use these tokens yet.
+- **Design system**: source in `design-system/project/` (excluded from the Jekyll build), published as the claude.ai artifact https://claude.ai/artifact/ES1ThCt8R3T8itN88QwtRD. Palette "Klein & Linen" (Yves Klein blue `#002FA7` on linen, shared with eagleridge.io). After any color change run `python3 design-system/check_contrast.py`, then republish the changed files to that artifact URL. Type (decided 2026-11-18, `design-system/explorations/type-system-report-2026-11-18.md`): Fraunces with `--soft` ("SOFT" 100, "WONK" 0; wordmark 800, headlines 500), Schibsted Grotesk, Recursive with `--mono-axes` ("MONO" 1, "CASL" 0.5); the axis variables live in `components/bundle.css`. The live site does not use these tokens yet.
 
 ## CRITICAL Jekyll/Markdown Rules
 

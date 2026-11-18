@@ -1,4 +1,4 @@
-Humaine Studio is Chris McConnell's applied-AI studio. The system is square and quiet: square corners, solid block buttons, hairline rules, dashed optional steps. Its color is Yves Klein blue on linen, the same palette eagleridge.io uses. The Mondrian block mark carries the studio's own yellow and vermilion.
+Humaine Studio is the applied-AI studio for Chris McConnell. The system is square and quiet: square corners, solid block buttons, hairline rules, dashed optional steps. Its primary hero color is Yves Klein blue on linen, the same palette eagleridge.io uses. The Mondrian block mark carries the studio's own yellow and vermilion.
 
 ## Content fundamentals
 
@@ -8,6 +8,11 @@ Humaine Studio is Chris McConnell's applied-AI studio. The system is square and 
 - **No hype, no emoji, no exclamation marks.** Banned: revolutionary, seamless, cutting-edge, supercharge, unlock. Use parentheses for asides; use em dashes rarely.
 - **Numbers are exact** and set in tabular figures: "12 posts since 2021", "1,152 words". Use a true minus sign (−).
 - **Name the brand "Humaine Studio".** Never "Humane".
+- The Curlew:
+
+## The Icon
+
+Curlews
 
 ## Visual foundations
 
@@ -22,10 +27,12 @@ Humaine Studio is Chris McConnell's applied-AI studio. The system is square and 
 - **Status has no green.** `status-ok` is Klein, `status-warn` is chrome, `status-err` is vermilion, and a word always goes with the color.
 
 **Type.**
-- `serif` Newsreader 300 for `display`, `headline` and `headline-sm`. It stands in for SID's licensed Sirca.
-- `sans` IBM Plex Sans for UI and running text (`title`, `title-sm`, `body-lg`, `body`, `detail`). It stands in for SID's licensed ABC Walter Neue.
-- `mono` IBM Plex Mono for `label` eyebrows, data and `code`.
-- All three load from Google Fonts (see the top of `components/bundle.css`).
+- `serif` **Fraunces**, always with `--soft` (`"SOFT" 100, "WONK" 0`). The wordmark is Fraunces 800, letter-spacing −0.02em (the `Lockup`). Headlines `display` and `headline` are 500, so the wordmark stays the heaviest thing on a page; subheads `headline-sm` are 400; a quiet line is 300 at 40px or more, once a page; 700–900 only for a word or two of emphasis.
+- `sans` **Schibsted Grotesk** for UI and running text (`title`, `title-sm`, `body-lg`, `body`, `detail`): body and ledes 400, buttons and nav 500.
+- `mono` **Recursive**, always with `--mono-axes` (`"MONO" 1, "CASL" 0.5`), for `label` eyebrows, data and `code`. Keep `CASL` at 0.6 or below.
+- `font-variation-settings` does not merge: a later rule replaces the whole list, and the `font:` shorthand resets it. Set it only through `--soft` and `--mono-axes` (declared in `components/bundle.css`, since token values cannot hold quotes), after any `font:` shorthand on the same element.
+- Numbers in table columns use Schibsted with tabular figures. Its tabular comma is wide, so running text keeps proportional figures, and Fraunces numerals stay out of tables.
+- All three are free (OFL 1.1) and load from Google Fonts (see the top of `components/bundle.css`). Eagle Ridge keeps Newsreader and IBM Plex; the palette is the only shared part.
 - Body is 16.5px / 1.6 and held to `measure` (42rem). Ledes use `body-lg` in `ink-soft`.
 
 **Layout.** Content max `canvas` (68rem); text max `measure`. 4px base spacing (`space-1` … `space-28`); sections are `space-18` apart. Front-load meaning at the top and left. Body text is left-aligned, never justified.
@@ -79,7 +86,7 @@ Every path named below is under `project/` in this design system: read `project/
 
 **Icons and assets**
 
-- `api/assets/Logos.md` — 2 files, by asset id. (1.9k)
+- `api/assets/Logos.md` — 4 files, by asset id. (3.1k)
 
 **Components** (`api/components/<Comp>.md`, 10)
 

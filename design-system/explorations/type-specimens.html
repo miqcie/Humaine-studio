@@ -1,67 +1,378 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <meta charset="utf-8">
 <title>Humaine Type Specimens</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400&family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&family=Cormorant+Garamond:wght@300;400&family=Hanken+Grotesk:wght@300;400;500&family=Fraunces:opsz,wght@9..144,300;9..144,400&family=Schibsted+Grotesk:wght@400;500&family=DM+Mono:wght@400;500&family=Bodoni+Moda:opsz,wght@6..96,400&family=Geist:wght@300;400;500&family=Geist+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400&family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&family=Cormorant+Garamond:wght@300;400&family=Hanken+Grotesk:wght@300;400;500&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,100..900,0..100,0..1;1,9..144,100..900,0..100,0..1&family=Schibsted+Grotesk:wght@400..900&family=DM+Mono:wght@400;500&family=Bodoni+Moda:opsz,wght@6..96,400&family=Geist:wght@300;400;500&family=Geist+Mono:wght@400;500&family=Recursive:slnt,wght,CASL,CRSV,MONO@-15..0,300..1000,0..1,0..1,0..1&family=Grenze+Gotisch:wght@300..700&family=Grenze:wght@300;400;500&family=Courier+Prime&family=Syne:wght@700..800&family=Spectral:wght@300;400;500&family=Space+Mono&display=swap">
 <style>
-  /* Layout: one stacked specimen per pairing; a narrow notes column beside a wide specimen. Colors are the Klein & Linen tokens. */
+  /* Layout: one stacked specimen per pairing; a narrow notes column beside a wide specimen. Free part, then paid part with a price table and trial-file slots. Colors are the Klein & Linen tokens. */
   :root {
     --ground: #f3ece0; --surface: #faf6ee; --sunken: #eae2d4; --rule: #dcd3c3;
     --ink: #0e1230; --ink-soft: #2e3352; --mute: #5e6178;
-    --klein: #002fa7; --on-klein: #faf6ee; --chrome: #f7b902;
+    --klein: #002fa7; --on-klein: #faf6ee; --chrome: #f7b902; --on-chrome: #0e1230; --warn: #8a3b00;
     --ui: "IBM Plex Sans", system-ui, sans-serif; --ui-mono: "IBM Plex Mono", ui-monospace, monospace;
   }
   @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
     --ground: #0b0f24; --surface: #12173a; --sunken: #1a2048; --rule: #262b4a;
-    --ink: #f1eadc; --ink-soft: #cfc8b8; --mute: #9c9aae; --klein: #8da6ff; --on-klein: #0b0f24; color-scheme: dark } }
+    --ink: #f1eadc; --ink-soft: #cfc8b8; --mute: #9c9aae; --klein: #8da6ff; --on-klein: #0b0f24; --warn: #ffb27a; color-scheme: dark } }
   :root[data-theme="dark"] {
     --ground: #0b0f24; --surface: #12173a; --sunken: #1a2048; --rule: #262b4a;
-    --ink: #f1eadc; --ink-soft: #cfc8b8; --mute: #9c9aae; --klein: #8da6ff; --on-klein: #0b0f24; color-scheme: dark }
+    --ink: #f1eadc; --ink-soft: #cfc8b8; --mute: #9c9aae; --klein: #8da6ff; --on-klein: #0b0f24; --warn: #ffb27a; color-scheme: dark }
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--ground); color: var(--ink); font-family: var(--ui); }
+  a { color: var(--klein); text-underline-offset: .18em; text-decoration-thickness: max(1px, .0625em); }
+  a:focus-visible, input:focus-visible + span, .slot:focus-within { outline: 2px solid var(--klein); outline-offset: 2px; }
   .wrap { max-width: 68rem; margin: 0 auto; padding-block: 48px 72px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
   header { display: grid; gap: 12px; padding-bottom: 32px; border-bottom: 1px solid var(--rule); }
   .eyebrow { font: 500 12px/1.4 var(--ui-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft); margin: 0; }
   h1 { font: 500 28px/1.2 var(--ui); margin: 0; text-wrap: balance; }
-  header p { margin: 0; max-width: 42rem; font-size: 16px; line-height: 1.6; color: var(--ink-soft); }
+  header p, .part p.lead { margin: 0; max-width: 42rem; font-size: 16px; line-height: 1.6; color: var(--ink-soft); }
   .crit { display: flex; flex-wrap: wrap; gap: 8px 24px; margin: 8px 0 0; padding: 0; list-style: none; font: 400 13px/1.5 var(--ui); color: var(--ink-soft); }
   .crit b { color: var(--ink); font-weight: 500; }
+
+  .part { display: grid; gap: 14px; padding-block: 56px 32px; border-bottom: 1px solid var(--rule); }
+  .part h2 { font: 500 24px/1.25 var(--ui); margin: 0; text-wrap: balance; }
+  .part p.lead b { color: var(--ink); font-weight: 500; }
+  .part .aside { display: grid; gap: 8px; max-width: 42rem; padding: 14px 16px; background: var(--surface); border-left: 3px solid var(--klein); }
+  .part .aside h3 { margin: 0; font: 500 14px/1.4 var(--ui); }
+  .part .aside p { margin: 0; font: 400 14px/1.6 var(--ui); color: var(--ink-soft); }
+  .tablewrap { overflow-x: auto; margin-top: 8px; }
+  table { border-collapse: collapse; min-width: 44rem; width: 100%; font: 400 13.5px/1.5 var(--ui); }
+  th, td { text-align: left; vertical-align: top; padding: 9px 12px 9px 0; border-bottom: 1px solid var(--rule); }
+  th { font: 500 11.5px/1.4 var(--ui-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--mute); }
+  td:first-child { font-weight: 500; white-space: nowrap; }
+  td .n { font-variant-numeric: tabular-nums lining-nums; }
+  tr.rec td:first-child { color: var(--klein); }
+
   section { display: grid; grid-template-columns: 15rem minmax(0, 1fr); gap: 32px; padding-block: 40px; border-bottom: 1px solid var(--rule); }
   .meta { display: grid; gap: 10px; align-content: start; }
   .letter { display: inline-grid; place-items: center; width: 28px; height: 28px; background: var(--ink); color: var(--ground); font: 500 14px/1 var(--ui-mono); }
-  .rec .letter { background: var(--klein); color: var(--on-klein); }
+  .paid .letter { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--ink); }
+  .rec .letter, .paid.rec .letter { background: var(--klein); color: var(--on-klein); box-shadow: none; }
   .meta h2 { font: 500 17px/1.3 var(--ui); margin: 0; }
   .meta dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; font: 400 13px/1.5 var(--ui); }
   .meta dt { color: var(--mute); }
   .meta dd { margin: 0; color: var(--ink); }
   .meta p { margin: 0; font: 400 13px/1.55 var(--ui); color: var(--ink-soft); }
+  .meta .links { font: 400 13px/1.6 var(--ui); }
   .tag { justify-self: start; padding: 1px 6px; background: var(--klein); color: var(--on-klein); font: 500 11px/1.5 var(--ui-mono); letter-spacing: .06em; text-transform: uppercase; }
-  .spec { min-width: 0; display: grid; gap: 18px; }
+  sup { font: 500 10px/0 var(--ui-mono); }
+  sup a { text-decoration: none; }
+
+  .spec { min-width: 0; display: grid; gap: 18px; align-content: start; }
   .spec .d { margin: 0; font-family: var(--d); font-weight: var(--dw); font-size: clamp(36px, 6vw, 60px); line-height: 1.05; letter-spacing: var(--dt, -0.01em); text-wrap: balance; }
   .spec .lede { margin: 0; font-family: var(--s); font-weight: 300; font-size: 20px; line-height: 1.45; color: var(--ink-soft); max-width: 38rem; }
   .spec .body { margin: 0; font-family: var(--s); font-size: 16.5px; line-height: 1.6; max-width: 40rem; }
-  .spec .body a { color: var(--klein); text-underline-offset: .18em; text-decoration-thickness: max(1px, .0625em); }
   .row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px; }
   .lbl { font-family: var(--m); font-weight: 500; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft); }
   .btn { font-family: var(--s); font-size: 16.5px; line-height: 1.5; padding: 0 .25em; background: var(--klein); color: var(--on-klein); }
   .nums { font-family: var(--s); font-size: 15px; font-variant-numeric: tabular-nums lining-nums; }
   .code { margin: 0; padding: 10px 14px; background: var(--sunken); font-family: var(--m); font-size: 14px; line-height: 1.6; overflow-x: auto; }
   .code .k { color: var(--klein); }
-  .small-d { font-family: var(--d); font-weight: var(--dw); font-size: 24px; line-height: 1.2; margin: 0; }
+
+  .trial { display: grid; gap: 10px; padding: 12px 14px; background: var(--surface); border: 1px dashed var(--rule); }
+  .standin { margin: 0; font: 400 12.5px/1.5 var(--ui); color: var(--mute); }
+  .standin.live { color: var(--klein); }
+  .slots { display: flex; flex-wrap: wrap; gap: 8px; }
+  .slot { position: relative; display: inline-flex; align-items: baseline; gap: 6px; padding: 5px 10px; background: var(--ground); border: 1px solid var(--rule); font: 500 12px/1.4 var(--ui-mono); letter-spacing: .04em; text-transform: uppercase; color: var(--ink); cursor: pointer; min-width: 0; max-width: 100%; }
+  .slot:hover { border-color: var(--klein); }
+  .slot input { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; }
+  .slot em { font: 400 12px/1.4 var(--ui); text-transform: none; letter-spacing: 0; color: var(--mute); font-style: normal; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 14rem; }
+  .slot.ok em { color: var(--klein); }
+  .slot.bad em { color: var(--warn); }
+
+  .notes { padding-block: 40px 0; display: grid; gap: 10px; }
+  .notes h2 { font: 500 17px/1.3 var(--ui); margin: 0; }
+  .notes ol { margin: 0; padding-left: 1.4em; display: grid; gap: 6px; font: 400 13px/1.55 var(--ui); color: var(--ink-soft); max-width: 48rem; }
+  .notes .conf { font: 500 11px/1 var(--ui-mono); letter-spacing: .05em; text-transform: uppercase; color: var(--mute); }
+  /* Data block: a spreadsheet grid and a one-series bar chart, both set in the pairing's own text and mono faces. */
+  .data { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 21rem), 1fr)); gap: 20px 24px; align-items: start; }
+  .data > * { min-width: 0; }
+  .fx { display: flex; align-items: center; gap: 0; border: 1px solid var(--rule); border-bottom: 0; background: var(--surface); font: 400 12.5px/1.4 var(--m); }
+  .fx span { padding: 5px 10px; border-right: 1px solid var(--rule); color: var(--mute); min-width: 3.4em; text-align: center; }
+  .fx i { padding: 5px 8px; border-right: 1px solid var(--rule); color: var(--mute); font-style: italic; font-family: var(--d); }
+  .fx code { padding: 5px 10px; font: inherit; color: var(--ink); white-space: nowrap; overflow-x: auto; }
+  .sheetwrap { overflow-x: auto; }
+  .sheet { min-width: 21rem; width: 100%; border-collapse: collapse; background: var(--surface); font: 400 13.5px/1.35 var(--s); font-variant-numeric: tabular-nums lining-nums; }
+  .sheet th, .sheet td { padding: 5px 8px; border: 1px solid var(--rule); text-align: right; vertical-align: baseline; white-space: nowrap; }
+  .sheet thead th, .sheet th.rn { font: 400 11px/1.3 var(--m); letter-spacing: .02em; text-transform: none; color: var(--mute); background: var(--sunken); text-align: center; }
+  .sheet th.rn { width: 2.2em; }
+  .sheet td:first-child, .sheet td.t { text-align: left; font-weight: 400; }
+  .sheet td.h { font-weight: 500; color: var(--ink-soft); }
+  .sheet tr.tot td { font-weight: 500; border-top: 2px solid var(--ink-soft); }
+  .sheet td.sel { outline: 2px solid var(--klein); outline-offset: -2px; background: var(--ground); }
+  .chart { margin: 0; display: grid; gap: 8px; }
+  .chart figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; font: 500 14px/1.4 var(--s); }
+  .chart .ex { font: 400 11px/1.4 var(--m); letter-spacing: .06em; text-transform: uppercase; color: var(--mute); align-self: center; }
+  .plot { position: relative; }
+  .plot svg { display: block; width: 100%; height: auto; max-width: 30rem; overflow: visible; }
+  .plot .grid { stroke: var(--rule); stroke-width: 1; }
+  .plot .base { stroke: var(--mute); stroke-width: 1; }
+  .plot .bar { fill: var(--klein); transition: opacity .15s; }
+  .plot.hovering .bar { opacity: .45; }
+  .plot.hovering .bar.on { opacity: 1; }
+  .plot .hit { fill: transparent; cursor: default; }
+  .plot .tick, .plot .xl { font-family: var(--s); font-size: 11px; fill: var(--mute); font-variant-numeric: tabular-nums lining-nums; }
+  .plot .val { font-family: var(--s); font-size: 12px; font-weight: 500; fill: var(--ink); font-variant-numeric: tabular-nums lining-nums; }
+  .tip { position: absolute; pointer-events: none; transform: translate(-50%, -100%); padding: 5px 8px; background: var(--ink); color: var(--ground); font: 400 12.5px/1.35 var(--s); font-variant-numeric: tabular-nums lining-nums; white-space: nowrap; }
+  .tip b { font-weight: 500; }
+  .md { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 21rem), 1fr)); gap: 12px 24px; align-items: start; }
+  .md > * { min-width: 0; }
+  .md .cap { grid-column: 1 / -1; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; font: 500 14px/1.4 var(--s); }
+  .md .cap .ex { font: 400 11px/1.4 var(--m); letter-spacing: .06em; text-transform: uppercase; color: var(--mute); align-self: center; }
+  .md pre { margin: 0; padding: 10px 14px; background: var(--sunken); font: 400 13px/1.6 var(--m); color: var(--ink); overflow-x: auto; }
+  .md pre .p { color: var(--mute); }
+  .md .rendered { overflow-x: auto; }
+  .prose-t { width: 100%; min-width: 18rem; border-collapse: collapse; font: 400 15px/1.45 var(--s); font-variant-numeric: tabular-nums lining-nums; }
+  .prose-t th, .prose-t td { padding: 6px 12px 6px 0; border: 0; border-bottom: 1px solid var(--rule); text-align: left; vertical-align: baseline; white-space: nowrap; }
+  .prose-t th { font: 500 13px/1.4 var(--s); letter-spacing: 0; text-transform: none; color: var(--ink-soft); border-bottom: 1.5px solid var(--ink-soft); }
+  .prose-t td:first-child { font-weight: 400; }
+  .prose-t .r { text-align: right; }
+  .prose-t td:last-child, .prose-t th:last-child { padding-right: 0; }
+  /* Left field: K is one variable font on a human-machine dial; L rubricates its blackletter; M sets its headline in a solid band. */
+  .lf .letter { background: var(--chrome); color: var(--on-chrome); box-shadow: none; }
+  .meta .risk { color: var(--ink); }
+  .meta .risk b { font-weight: 500; }
+  .k .d { font-variation-settings: "CASL" var(--h), "MONO" calc(1 - var(--h)), "CRSV" 1, "slnt" calc(var(--h) * -9); }
+  .k .spec :is(.lede, .body, .btn, .nums, .sheet td, .prose-t, .chart figcaption > span:first-child, .plot text, .tip) { font-variation-settings: "CASL" 0, "MONO" 0; }
+  .k :is(.lbl, .code, .fx, .md pre, .sheet thead th, .sheet th.rn, .ex) { font-variation-settings: "MONO" 1, "CASL" 0; }
+  .dial { display: grid; gap: 6px; padding: 10px 12px; background: var(--surface); border: 1px solid var(--rule); }
+  .dial label { font: 500 12px/1.4 var(--ui-mono); letter-spacing: .04em; text-transform: uppercase; color: var(--ink-soft); }
+  .dial input { width: 100%; accent-color: var(--klein); margin: 0; }
+  .dial .ends { display: flex; justify-content: space-between; font: 400 12px/1.3 var(--ui); color: var(--mute); }
+  .l .d::first-letter { color: var(--klein); }
+  .m .d { justify-self: start; padding: .1em .22em .16em; background: var(--ink); color: var(--ground); line-height: 1; }
+  /* Decision block: the wordmark in two lockups, a roles table, and the starter code. */
+  .decision { display: grid; gap: 20px; padding-block: 48px 40px; border-bottom: 1px solid var(--rule); }
+  .decision h2 { font: 500 24px/1.25 var(--ui); margin: 0; text-wrap: balance; }
+  .decision > p { margin: 0; max-width: 42rem; font-size: 16px; line-height: 1.6; color: var(--ink-soft); }
+  .lockups { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: 12px; }
+  .lockup { display: grid; place-items: center start; min-height: 9rem; padding: 28px 24px; background: var(--surface); border: 1px solid var(--rule); }
+  .lockup.on-klein { background: var(--klein); border-color: var(--klein); }
+  .wordmark { margin: 0; font-family: "Fraunces", Georgia, serif; font-weight: 800; font-variation-settings: "SOFT" 100, "WONK" 0; font-size: clamp(40px, 6.4vw, 64px); line-height: 1; letter-spacing: -0.02em; color: var(--ink); }
+  .on-klein .wordmark { color: var(--on-klein); }
+  .lockup small { display: block; margin-top: 10px; font: 400 11px/1.4 var(--ui-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--mute); }
+  .on-klein small { color: var(--on-klein); opacity: .8; }
+  .roles td.sample { font-family: "Fraunces", Georgia, serif; font-variation-settings: "SOFT" 100, "WONK" 0; font-size: 20px; line-height: 1.2; white-space: nowrap; }
+  .roles td.sample.t { font-family: "Schibsted Grotesk", sans-serif; font-variation-settings: normal; font-size: 16px; }
+  .roles td.sample.mono { font-family: "Recursive", monospace; font-variation-settings: "MONO" 1, "CASL" 0.5; font-size: 13px; }
+  .n :is(.lbl, .code, .fx, .md pre, .sheet thead th, .sheet th.rn, .ex) { font-variation-settings: "MONO" 1, "CASL" 0.5; }
+  .starter { display: grid; gap: 8px; }
+  .starter-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; }
+  .starter-head h3 { margin: 0; font: 500 15px/1.4 var(--ui); }
+  .copy { font: 500 12px/1 var(--ui-mono); letter-spacing: .05em; text-transform: uppercase; padding: 7px 10px; background: var(--klein); color: var(--on-klein); border: 0; cursor: pointer; }
+  .copy:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+  .starter pre { margin: 0; padding: 12px 14px; background: var(--sunken); font: 400 12.5px/1.6 var(--ui-mono); color: var(--ink); overflow-x: auto; }
+
+  /* Mono comparison: one card per candidate, each set in the chosen system (Fraunces Soft title, Schibsted text). */
+  .monos { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 23rem), 1fr)); gap: 12px; }
+  .mono-card { display: grid; gap: 10px; align-content: start; padding: 18px; background: var(--surface); border: 1px solid var(--rule); min-width: 0; }
+  .mono-card.pick { border-color: var(--klein); box-shadow: inset 0 0 0 1px var(--klein); }
+  .mono-card .top { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
+  .mono-card h3 { margin: 0; font: 500 16px/1.3 var(--ui); }
+  .mono-card .tag.quiet { background: var(--sunken); color: var(--ink-soft); }
+  .mono-card .lab { margin: 0; font-family: var(--mf); font-weight: 500; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft); }
+  .mono-card .ttl { margin: 0; font-family: "Fraunces", Georgia, serif; font-weight: 500; font-variation-settings: "SOFT" 100, "WONK" 0; font-size: 24px; line-height: 1.15; }
+  .mono-card .txt { margin: 0; font: 400 15px/1.5 "Schibsted Grotesk", sans-serif; }
+  .mono-card pre { margin: 0; padding: 10px 12px; background: var(--sunken); font-family: var(--mf); font-size: 13.5px; line-height: 1.6; color: var(--ink); overflow-x: auto; }
+  .mono-card :is(.lab, pre) { font-variation-settings: var(--mv, normal); }
+  .mono-card .k { color: var(--klein); }
+  .mono-card .c { color: var(--mute); }
+  .mono-card .why { margin: 0; font: 400 14px/1.55 var(--ui); color: var(--ink-soft); }
+  .mono-card .why b { color: var(--ink); font-weight: 500; }
+  .mono-card dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; font: 400 13px/1.5 var(--ui); }
+  .mono-card dt { color: var(--mute); }
+  .mono-card dd { margin: 0; }
+
+  /* N: Fraunces with its Softness axis, a weight ladder, and a slot for the Pavonia trial. */
+  .n .d, .n .ladder p { font-variation-settings: "SOFT" var(--soft), "WONK" 0; }
+  .ladder { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); gap: 2px 24px; padding-block: 4px 8px; border-block: 1px solid var(--rule); }
+  .ladder p { margin: 0; font-family: var(--d); font-size: clamp(24px, 3.2vw, 34px); line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--ink-soft); }
+  .ladder p.on { color: var(--klein); }
+  .ladder .w { font: 400 11px/1 var(--ui-mono); color: var(--mute); margin-left: .6em; vertical-align: .5em; font-style: normal; }
+  .ladder p.on .w { color: var(--klein); }
+  .cmp-line { margin: 0; font-size: clamp(30px, 5vw, 52px); line-height: 1.08; text-wrap: balance; }
+  .cmp-line.empty { font: 400 14px/1.5 var(--ui); color: var(--mute); }
+  .cmp-line:not(.empty) { font-family: var(--cmp, Georgia), Georgia, serif; }
+  @media (prefers-reduced-motion: reduce) { .plot .bar { transition: none; } }
   @media (max-width: 720px) { section { grid-template-columns: minmax(0, 1fr); gap: 20px; } }
 </style>
 
 <div class="wrap">
   <header>
     <p class="eyebrow">Humaine Studio · type exploration · 18 Nov 2026</p>
-    <h1>Five free pairings to replace SID's licensed fonts</h1>
-    <p>SID sets headlines in Sirca, a light lowercase serif, and text in ABC Walter Neue; both are paid licenses. Each pairing below is free on Google Fonts and is set with the same Humaine copy, in the Klein &amp; Linen palette. Pick one by letter.</p>
+    <h1>Fourteen pairings to replace SID's licensed fonts</h1>
+    <p>SID sets headlines in Sirca, a light lowercase serif, and text in ABC Walter Neue; both are paid licenses. N, first, is the free twin of Pavonia. Pairings A to E are free on Google Fonts. Pairings F to J are paid, with prices and terms. K to M are free and deliberately left field. Each is set with the same Humaine copy, in the Klein &amp; Linen palette. Pick one by letter.</p>
     <ul class="crit">
       <li><b>Display</b> light, reads well lowercase at 48–64px</li>
       <li><b>Text</b> clear at 13–17px, plain numerals</li>
       <li><b>Mono</b> labels and code</li>
+      <li><b>Data</b> a sheet and a chart, tabular figures at 11–14px</li>
       <li><b>Family</b> how much it shares with Eagle Ridge</li>
     </ul>
   </header>
+
+  <div class="decision" id="decision">
+    <p class="eyebrow">Decision · 18 Nov 2026</p>
+    <h2>Card N: Fraunces Soft, with the wordmark at 800</h2>
+    <p>Humaine Studio sets its name in Fraunces Heavy (800) at full softness. Headlines step down to Medium so the wordmark stays the heaviest thing on the page. Schibsted Grotesk carries the text. Recursive Mono, set half-casual, carries the labels, code and data, with corners as soft as the wordmark's. All three are free and open source.</p>
+    <div class="lockups">
+      <div class="lockup"><div><p class="wordmark">Humaine Studio</p><small>Fraunces 800 · Softness 100 · on linen</small></div></div>
+      <div class="lockup on-klein"><div><p class="wordmark">Humaine Studio</p><small>Fraunces 800 · Softness 100 · on Klein</small></div></div>
+    </div>
+    <div class="tablewrap">
+      <table class="roles">
+        <thead><tr><th>Role</th><th>Font</th><th>Weight</th><th>Size</th><th>Sample</th></tr></thead>
+        <tbody>
+          <tr><td>Wordmark</td><td>Fraunces</td><td><span class="n">800</span> Heavy</td><td>by placement</td><td class="sample" style="font-weight:800">Humaine Studio</td></tr>
+          <tr><td>Headline</td><td>Fraunces</td><td><span class="n">500</span> Medium</td><td><span class="n">48–64px</span></td><td class="sample" style="font-weight:500">applied ai for people</td></tr>
+          <tr><td>Subhead</td><td>Fraunces</td><td><span class="n">400</span> Regular</td><td><span class="n">24–32px</span></td><td class="sample" style="font-weight:400">How I work with agents</td></tr>
+          <tr><td>Quiet line</td><td>Fraunces</td><td><span class="n">300</span> Light</td><td><span class="n">40px+</span>, once a page</td><td class="sample" style="font-weight:300">keep humans in command</td></tr>
+          <tr><td>Emphasis</td><td>Fraunces</td><td><span class="n">700–900</span></td><td>a word or two</td><td class="sample" style="font-weight:400">the <b style="font-weight:900">missing</b> middle</td></tr>
+          <tr><td>Body and lede</td><td>Schibsted Grotesk</td><td><span class="n">400</span></td><td><span class="n">16–20px</span></td><td class="sample t">Systems that help us think better.</td></tr>
+          <tr><td>Buttons, nav</td><td>Schibsted Grotesk</td><td><span class="n">500</span></td><td><span class="n">15–17px</span></td><td class="sample t" style="font-weight:500">Get in touch</td></tr>
+          <tr><td>Labels, code, data</td><td>Recursive Mono, Casual 0.5</td><td><span class="n">400–500</span></td><td><span class="n">12–14px</span></td><td class="sample mono">FIELD NOTE 014 · 0O 1lI</td></tr>
+          <tr><td>Numbers in tables</td><td>Schibsted Grotesk</td><td><span class="n">400</span></td><td>tabular in columns only; its tabular comma runs wide</td><td class="sample t"><span style="display:inline-block;text-align:right;font-variant-numeric:tabular-nums lining-nums;line-height:1.35">1,152<br>13,018<br>−4.9%</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="starter">
+      <div class="starter-head"><h3>Starter code for humaine.studio</h3><button class="copy" id="copy-starter" type="button">Copy code</button></div>
+<pre id="starter-code">&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+&lt;link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,100..900,0..100,0..1;1,9..144,100..900,0..100,0..1&amp;family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&amp;family=Recursive:wght,CASL,MONO@300..1000,0..1,0..1&amp;display=swap"&gt;
+
+:root {
+  --font-display: "Fraunces", Georgia, serif;
+  --font-text: "Schibsted Grotesk", system-ui, sans-serif;
+  --font-mono: "Recursive", ui-monospace, monospace;
+  --soft: "SOFT" 100, "WONK" 0;
+  --mono: "MONO" 1, "CASL" 0.5;
+}
+.wordmark { font-family: var(--font-display); font-weight: 800; font-variation-settings: var(--soft); letter-spacing: -0.02em; }
+h1        { font-family: var(--font-display); font-weight: 500; font-variation-settings: var(--soft); }
+h2, h3    { font-family: var(--font-display); font-weight: 400; font-variation-settings: var(--soft); }
+.quiet    { font-family: var(--font-display); font-weight: 300; font-variation-settings: var(--soft); }
+body      { font-family: var(--font-text); font-weight: 400; }
+button, nav { font-family: var(--font-text); font-weight: 500; }
+code, pre, .label { font-family: var(--font-mono); font-variation-settings: var(--mono); }
+table     { font-family: var(--font-text); font-variant-numeric: tabular-nums lining-nums; }</pre>
+    </div>
+  </div>
+
+  <div class="decision" id="mono">
+    <p class="eyebrow">Decided 18 Nov 2026 · the mono · free and open source</p>
+    <h2>Recursive Mono at half-casual, chosen over DM Mono, Plex and JetBrains</h2>
+    <p><b>Recursive Mono at half-casual is the choice.</b> It is the only mono here that rounds its corners the way Fraunces Soft does, so the smallest type and the wordmark share one hand. Choose IBM Plex Mono instead if you want Humaine and Eagle Ridge tied together in the small print. Choose JetBrains Mono if field notes will carry long blocks of real code. All three use the SIL Open Font License and load free from Google Fonts.</p>
+    <div class="monos">
+      <article class="mono-card" style="--mf:'DM Mono',ui-monospace,monospace">
+        <div class="top"><h3>DM Mono</h3><span class="tag quiet">Replaced</span></div>
+        <p class="lab">Field note 014 · Draft</p>
+        <p class="ttl">How I work with agents</p>
+        <p class="txt">The loop keeps a person at the review step.</p>
+<pre><span class="k">from</span> humaine <span class="k">import</span> loop
+loop.run(task, review=<span class="k">"human"</span>)  <span class="c"># 0O 1lI</span>
+<span class="c"># 1,152 tokens · 0.84 s · $0.012</span></pre>
+        <p class="why">Light and friendly, with a curly f and r. Its range stops at Medium, so labels cannot go heavier than 500. It has no softness to echo Fraunces.</p>
+        <dl><dt>Weights</dt><dd>300–500, with italics</dd></dl>
+      </article>
+
+      <article class="mono-card pick" style="--mf:'Recursive',ui-monospace,monospace;--mv:'MONO' 1,'CASL' 0.5">
+        <div class="top"><h3>Recursive Mono, Casual 0.5</h3><span class="tag">Chosen</span></div>
+        <p class="lab">Field note 014 · Draft</p>
+        <p class="ttl">How I work with agents</p>
+        <p class="txt">The loop keeps a person at the review step.</p>
+<pre><span class="k">from</span> humaine <span class="k">import</span> loop
+loop.run(task, review=<span class="k">"human"</span>)  <span class="c"># 0O 1lI</span>
+<span class="c"># 1,152 tokens · 0.84 s · $0.012</span></pre>
+        <p class="why"><b>Why.</b> One variable font runs from Linear to Casual and from proportional to fixed width.<sup><a href="#n22">22</a></sup> Set it half-casual and its terminals soften to match Fraunces Soft. It was built for code and UI, so it holds up at 12px. <b>Risk.</b> Above Casual 0.6 it gets brushy at label size.</p>
+        <dl><dt>Weights</dt><dd>300–1000, with slant</dd><dt>Setting</dt><dd><code>"MONO" 1, "CASL" 0.5</code></dd></dl>
+      </article>
+
+      <article class="mono-card" style="--mf:'IBM Plex Mono',ui-monospace,monospace">
+        <div class="top"><h3>IBM Plex Mono</h3><span class="tag quiet">Family tie</span></div>
+        <p class="lab">Field note 014 · Draft</p>
+        <p class="ttl">How I work with agents</p>
+        <p class="txt">The loop keeps a person at the review step.</p>
+<pre><span class="k">from</span> humaine <span class="k">import</span> loop
+loop.run(task, review=<span class="k">"human"</span>)  <span class="c"># 0O 1lI</span>
+<span class="c"># 1,152 tokens · 0.84 s · $0.012</span></pre>
+        <p class="why"><b>Why.</b> Eagle Ridge already sets its labels in Plex. Sharing the mono ties the two brands together in the small print, while Fraunces keeps Humaine's face its own. It has true italics.<sup><a href="#n23">23</a></sup> <b>Risk.</b> It reads engineered and a little corporate beside soft Fraunces.</p>
+        <dl><dt>Weights</dt><dd>Thin to Bold, with italics</dd></dl>
+      </article>
+
+      <article class="mono-card" style="--mf:'JetBrains Mono',ui-monospace,monospace">
+        <div class="top"><h3>JetBrains Mono</h3><span class="tag quiet">Code reader</span></div>
+        <p class="lab">Field note 014 · Draft</p>
+        <p class="ttl">How I work with agents</p>
+        <p class="txt">The loop keeps a person at the review step.</p>
+<pre><span class="k">from</span> humaine <span class="k">import</span> loop
+loop.run(task, review=<span class="k">"human"</span>)  <span class="c"># 0O 1lI</span>
+<span class="c"># 1,152 tokens · 0.84 s · $0.012</span></pre>
+        <p class="why"><b>Why.</b> Drawn for reading code all day. It has a tall lowercase at standard widths, a dotted zero, a clear 1, l and I, and a comma shaped unlike the period.<sup><a href="#n24">24</a></sup> Its ligatures are optional. <b>Risk.</b> Tall and dense, so at label size it looks busier than the rest.</p>
+        <dl><dt>Weights</dt><dd>Thin to ExtraBold, with italics</dd></dl>
+      </article>
+    </div>
+  </div>
+
+  <div class="part" id="pavonia">
+    <p class="eyebrow">Closest so far · free</p>
+    <h2>Pavonia's free twin is Fraunces, set soft and heavier</h2>
+    <p class="lead"><b>Yes, there is a free option.</b> Fraunces grows from the same roots as Pavonia: Old Style, with Cooper's soft roundness. Two settings make it match. Turn its Softness up to full, and set headlines at Medium (500), not Light. Card C used Fraunces at Light with softness off, which is why it read thin and sharp. Use the two dials on card N to find your weight.</p>
+  </div>
+
+  <section class="rec n" data-id="n" style="--d:'Fraunces',Georgia,serif;--dw:500;--dt:-0.015em;--s:'Schibsted Grotesk',sans-serif;--m:'Recursive',ui-monospace,monospace;--soft:100">
+    <div class="meta">
+      <span class="letter">N</span>
+      <h2>Fraunces Soft · Schibsted Grotesk · Recursive Mono</h2>
+      <span class="tag">Chosen · free twin of Pavonia</span>
+      <dl><dt>Pavonia</dt><dd>$325 family, from $50 a style, one-time<sup><a href="#n20">20</a></sup></dd><dt>Fraunces</dt><dd>Free; Thin to Black, with italics</dd><dt>Shared roots</dt><dd>Old Style and Cooper</dd></dl>
+      <p>Pavonia blends Century Old Style and Cooper Black into gently inflated forms.<sup><a href="#n20">20</a></sup> Fraunces is an Old Style soft serif drawn after Windsor, Souvenir and the Cooper series.<sup><a href="#n21">21</a></sup> Its Softness setting rounds every corner; at full softness it sits close to Pavonia.</p>
+      <p class="risk"><b>Weights.</b> The Cooper charm lives in the middle. Set headlines at Medium (500) and subheads at Regular (400). Keep Light for one large, quiet line. Save Bold and Black for a word or two.</p>
+      <div class="dial">
+        <label for="n-w">Headline weight <output id="n-w-out" for="n-w">500</output></label>
+        <input type="range" id="n-w" min="100" max="900" step="100" value="500">
+        <div class="ends"><span>Thin</span><span>Black</span></div>
+      </div>
+      <div class="dial">
+        <label for="n-soft">Softness <output id="n-soft-out" for="n-soft">100</output></label>
+        <input type="range" id="n-soft" min="0" max="100" step="1" value="100">
+        <div class="ends"><span>Sharp</span><span>Soft</span></div>
+      </div>
+    </div>
+    <div class="spec">
+      <p class="d">applied ai for human-machine collaboration</p>
+      <div class="ladder" aria-label="Fraunces weight ladder, uprights and italics">
+        <p data-w="300" style="font-weight:300">Fraunces Light<span class="w">300</span></p>
+        <p data-w="300" style="font-weight:300;font-style:italic">Light Italic<span class="w">300</span></p>
+        <p data-w="400" style="font-weight:400">Fraunces Regular<span class="w">400</span></p>
+        <p data-w="400" style="font-weight:400;font-style:italic">Regular Italic<span class="w">400</span></p>
+        <p data-w="500" style="font-weight:500">Fraunces Medium<span class="w">500</span></p>
+        <p data-w="500" style="font-weight:500;font-style:italic">Medium Italic<span class="w">500</span></p>
+        <p data-w="700" style="font-weight:700">Fraunces Bold<span class="w">700</span></p>
+        <p data-w="700" style="font-weight:700;font-style:italic">Bold Italic<span class="w">700</span></p>
+        <p data-w="800" style="font-weight:800">Fraunces Heavy<span class="w">800</span></p>
+        <p data-w="800" style="font-weight:800;font-style:italic">Heavy Italic<span class="w">800</span></p>
+        <p data-w="900" style="font-weight:900">Fraunces Black<span class="w">900</span></p>
+        <p data-w="900" style="font-weight:900;font-style:italic">Black Italic<span class="w">900</span></p>
+      </div>
+      <p class="lede">Applied AI explorations that keep humans in command.</p>
+      <p class="body">I focus on the missing middle: systems that help us think better without taking decisions away. Read <a href="#">How I Work with Agents</a> for the loop.</p>
+      <div class="row"><span class="lbl">Field note 014</span><span class="btn">Get in touch</span><span class="nums">12 posts · 1,152 words · −3 · 2026-11-16</span></div>
+      <pre class="code"><span class="k">import</span> httpx  # 0O 1lI</pre>
+      <div class="trial">
+        <p class="standin">Compare with the real thing: download the Pavonia trial from Commercial Type, then pick one weight here. The file stays in this tab.</p>
+        <div class="slots">
+          <label class="slot">Pavonia <em>trial file</em><input type="file" id="n-cmp" class="cmp" accept=".otf,.ttf,.woff,.woff2"></label>
+        </div>
+        <p class="cmp-line empty" id="n-cmp-line">This line will show the headline in your Pavonia file.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="part">
+    <p class="eyebrow">Free · Google Fonts</p>
+    <h2>A to E cost nothing to license</h2>
+  </div>
 
   <section style="--d:'Newsreader',Georgia,serif;--dw:300;--s:'IBM Plex Sans',sans-serif;--m:'IBM Plex Mono',monospace">
     <div class="meta">
@@ -99,7 +410,7 @@
     <div class="meta">
       <span class="letter">C</span>
       <h2>Fraunces · Schibsted Grotesk · DM Mono</h2>
-      <span class="tag">Recommended</span>
+      <span class="tag">Recommended free</span>
       <dl><dt>Eagle Ridge</dt><dd>Nothing shared</dd><dt>Weights</dt><dd>Serif 100–900, optical sizes</dd></dl>
       <p>A soft, slightly quirky serif with warmth; set light, it reads close to SID's thin lowercase headline. The grotesk is plain and sturdy at small sizes. It is clearly not Eagle Ridge, while the palette keeps the two related. One flaw: its tabular comma is wide ("1 , 152"), so tables would use proportional figures.</p>
     </div>
@@ -143,4 +454,446 @@
       <pre class="code"><span class="k">import</span> httpx  # 0O 1lI</pre>
     </div>
   </section>
+
+  <div class="part" id="paid">
+    <p class="eyebrow">Paid · prices read 18 Nov 2026</p>
+    <h2>Buy one headline style, not a whole system</h2>
+    <p class="lead"><b>Pay only for the face the eye lands on.</b> Canela Light from Commercial Type costs from $50 a style, once, and you own it.<sup><a href="#n5">5</a></sup> Set light and lowercase, it gives Humaine the thin voice SID gets from Sirca. Keep the free Schibsted Grotesk and DM Mono from pairing C for text and labels. That is pairing G. Body text earns little from a license; a headline earns a lot.</p>
+    <div class="aside">
+      <h3>SID's two fonts share one teacher</h3>
+      <p>Sirca is Alan Madić's re-reading of Walter Käch's 1949 serif display models.<sup><a href="#n1">1</a></sup> ABC Walter is drawn from the tool Käch built to teach students to draw letters.<sup><a href="#n2">2</a></sup> So SID's pair fits because both faces come from one hand. No free pairing above copies that. Pairing F buys it outright. The others replace it with a single foundry's own fit, or with a deliberate contrast.</p>
+    </div>
+    <div class="aside">
+      <h3>How to see the real fonts here</h3>
+      <p>Paid fonts cannot load from Google Fonts, so each paid specimen starts in a free stand-in, named on the card. Download the foundry's free trial files, then pick them in the Display, Text and Mono slots. The card then sets the Humaine copy in your files. The files stay in this browser tab; nothing is uploaded. Trial licenses cover testing like this, not use on a live site.</p>
+    </div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Pairing</th><th>Entry price</th><th>Full family</th><th>Terms</th><th>Trial</th></tr></thead>
+        <tbody>
+          <tr><td>F · Sirca + Walter Neue</td><td>Sirca: not published where I could read it. Walter Neue: rent <span class="n">€9</span>/month a style<sup><a href="#n3">3</a></sup></td><td>Walter Neue: rent <span class="n">€44</span>/month; to buy, priced by company size, <span class="n">45–65%</span> off a family<sup><a href="#n4">4</a></sup></td><td>Dinamo sells by company size and media</td><td>Fontstand 3-hour trial</td></tr>
+          <tr class="rec"><td>G · Canela Light</td><td>from <span class="n">$50</span> a style<sup><a href="#n5">5</a></sup></td><td>Canela <span class="n">$325</span>; whole collection <span class="n">$800</span></td><td>One-time fee, perpetual</td><td>Yes</td></tr>
+          <tr><td>H · Signifier + Founders</td><td>about <span class="n">$60</span> a first style, less after<sup><a href="#n6">6</a></sup></td><td>Not read</td><td>One-off, no expiry; smallest tiers 5 desktop users, <span class="n">5,000</span> web users a month<sup><a href="#n7">7</a></sup></td><td>Yes</td></tr>
+          <tr><td>I · GT Super + GT America</td><td>from <span class="n">$80</span> a style<sup><a href="#n9">9</a></sup></td><td>Display set from <span class="n">$660</span>; GT Super family from <span class="n">$745</span></td><td>No recurring costs; web priced by monthly unique visitors<sup><a href="#n10">10</a></sup></td><td>Yes</td></tr>
+          <tr><td>J · Editorial New + Neue Montreal</td><td>from <span class="n">$40</span> a style<sup><a href="#n12">12</a></sup></td><td><span class="n">$430</span> per license, as shown for Neue Montreal Mono</td><td>Company licenses run one year<sup><a href="#n13">13</a></sup></td><td>Free for personal use</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <section class="paid" data-id="f" style="--d:'Cormorant Garamond',Georgia,serif;--dw:300;--s:'Hanken Grotesk',sans-serif;--m:'DM Mono',monospace">
+    <div class="meta">
+      <span class="letter">F</span>
+      <h2>Sirca Display · ABC Walter Neue · DM Mono</h2>
+      <dl><dt>Foundries</dt><dd>Edito; Dinamo</dd><dt>Weights</dt><dd>Sirca 3 weights with italics; Walter Neue 7 weights with italics</dd></dl>
+      <p>SID's own pair, Käch kinship and all. That is the trouble: a studio that copies another studio's type reads as a copy. Edito added Sirca Text in September 2026, so Sirca can now carry body text too.<sup><a href="#n1">1</a></sup> Rent Walter Neue for a month to learn what you like in it, then decide.</p>
+      <p class="links"><a href="https://fontsinuse.com/foundry/5366/edito" target="_blank" rel="noopener">Edito on Fonts In Use</a> · <a href="https://abcdinamo.com/typefaces/walter" target="_blank" rel="noopener">Dinamo Walter</a> · <a href="https://fontstand.com/fonts/abc-walter-neue" target="_blank" rel="noopener">Fontstand rental</a></p>
+    </div>
+    <div class="spec">
+      <p class="d">applied ai for human-machine collaboration</p>
+      <p class="lede">Applied AI explorations that keep humans in command.</p>
+      <p class="body">I focus on the missing middle: systems that help us think better without taking decisions away. Read <a href="#">How I Work with Agents</a> for the loop.</p>
+      <div class="row"><span class="lbl">Field note 014</span><span class="btn">Get in touch</span><span class="nums">12 posts · 1,152 words · −3 · 2026-11-16</span></div>
+      <pre class="code"><span class="k">import</span> httpx  # 0O 1lI</pre>
+      <div class="trial">
+        <p class="standin" aria-live="polite">Stand-in until you load trial files: Cormorant Garamond · Hanken Grotesk · DM Mono</p>
+        <div class="slots">
+          <label class="slot">Display <em>Sirca</em><input type="file" id="f-d" data-role="d" data-fallback="Georgia,serif" accept=".otf,.ttf,.woff,.woff2"></label>
+          <label class="slot">Text <em>Walter Neue</em><input type="file" id="f-s" data-role="s" data-fallback="sans-serif" accept=".otf,.ttf,.woff,.woff2"></label>
+          <label class="slot">Mono <em>DM Mono</em><input type="file" id="f-m" data-role="m" data-fallback="monospace" accept=".otf,.ttf,.woff,.woff2"></label>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="paid rec" data-id="g" style="--d:'Fraunces',Georgia,serif;--dw:300;--s:'Schibsted Grotesk',sans-serif;--m:'DM Mono',monospace">
+    <div class="meta">
+      <span class="letter">G</span>
+      <h2>Canela Light · Schibsted Grotesk · DM Mono</h2>
+      <span class="tag">Recommended paid</span>
+      <dl><dt>Foundry</dt><dd>Commercial Type (headline only)</dd><dt>Paid</dt><dd>1 style; text and mono stay free</dd><dt>Eagle Ridge</dt><dd>Nothing shared</dd></dl>
+      <p>Pairing C with a paid headline. Canela sits between serif and sans, soft and sharp, and is delicate in its lightest weights.<sup><a href="#n5">5</a></sup> It reaches SID's quiet, lowercase luxury without copying Sirca. One style plus a web license is the whole bill.</p>
+      <p class="links"><a href="https://commercialtype.com/catalog/canela" target="_blank" rel="noopener">Canela at Commercial Type</a> (trial on the same page)</p>
+    </div>
+    <div class="spec">
+      <p class="d">applied ai for human-machine collaboration</p>
+      <p class="lede">Applied AI explorations that keep humans in command.</p>
+      <p class="body">I focus on the missing middle: systems that help us think better without taking decisions away. Read <a href="#">How I Work with Agents</a> for the loop.</p>
+      <div class="row"><span class="lbl">Field note 014</span><span class="btn">Get in touch</span><span class="nums">12 posts · 1,152 words · −3 · 2026-11-16</span></div>
+      <pre class="code"><span class="k">import</span> httpx  # 0O 1lI</pre>
+      <div class="trial">
+        <p class="standin" aria-live="polite">Stand-in until you load a trial file: Fraunces for Canela. Text and mono are the real fonts.</p>
+        <div class="slots">
+          <label class="slot">Display <em>Canela Light</em><input type="file" id="g-d" data-role="d" data-fallback="Georgia,serif" accept=".otf,.ttf,.woff,.woff2"></label>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="paid" data-id="h" style="--d:'Newsreader',Georgia,serif;--dw:300;--s:'Hanken Grotesk',sans-serif;--m:'IBM Plex Mono',monospace">
+    <div class="meta">
+      <span class="letter">H</span>
+      <h2>Signifier Light · Founders Grotesk · Founders Grotesk Mono</h2>
+      <dl><dt>Foundry</dt><dd>Klim Type Foundry</dd><dt>Weights</dt><dd>Signifier Thin to Black, 14 styles</dd></dl>
+      <p>Signifier recasts the 17th-century Fell Types with sharp, machine-drawn curves.<sup><a href="#n8">8</a></sup> Its range lets it carry text as well as headlines. One foundry makes all three faces, so they fit by design. Klim prices each style, so a lean set of four or five styles keeps the bill sane.</p>
+      <p class="links"><a href="https://klim.co.nz/fonts/signifier" target="_blank" rel="noopener">Signifier</a> · <a href="https://klim.co.nz/fonts/" target="_blank" rel="noopener">Founders Grotesk</a> · <a href="https://klim.co.nz/licences/" target="_blank" rel="noopener">Klim licences</a></p>
+    </div>
+    <div class="spec">
+      <p class="d">applied ai for human-machine collaboration</p>
+      <p class="lede">Applied AI explorations that keep humans in command.</p>
+      <p class="body">I focus on the missing middle: systems that help us think better without taking decisions away. Read <a href="#">How I Work with Agents</a> for the loop.</p>
+      <div class="row"><span class="lbl">Field note 014</span><span class="btn">Get in touch</span><span class="nums">12 posts · 1,152 words · −3 · 2026-11-16</span></div>
+      <pre class="code"><span class="k">import</span> httpx  # 0O 1lI</pre>
+      <div class="trial">
+        <p class="standin" aria-live="polite">Stand-in until you load trial files: Newsreader · Hanken Grotesk · IBM Plex Mono</p>
+        <div class="slots">
+          <label class="slot">Display <em>Signifier</em><input type="file" id="h-d" data-role="d" data-fallback="Georgia,serif" accept=".otf,.ttf,.woff,.woff2"></label>
+          <label class="slot">Text <em>Founders Grotesk</em><input type="file" id="h-s" data-role="s" data-fallback="sans-serif" accept=".otf,.ttf,.woff,.woff2"></label>
+          <label class="slot">Mono <em>Founders Mono</em><input type="file" id="h-m" data-role="m" data-fallback="monospace" accept=".otf,.ttf,.woff,.woff2"></label>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="paid" data-id="i" style="--d:'Bodoni Moda',Georgia,serif;--dw:400;--s:'Geist',sans-serif;--m:'Geist Mono',monospace">
+    <div class="meta">
+      <span class="letter">I</span>
+      <h2>GT Super Display Light · GT America · GT America Mono</h2>
+      <dl><dt>Foundry</dt><dd>Grilli Type</dd><dt>Weights</dt><dd>GT Super Display Light to Super, with italics</dd></dl>
+      <p>A warm, high-contrast serif with its own Display cut and a Light weight.<sup><a href="#n11">11</a></sup> Rounder and heavier than Sirca. GT America and its mono make a complete system from one shop. Strong, and the loudest of the paid five. Grilli sells self-hosted files only.<sup><a href="#n10">10</a></sup></p>
+      <p class="links"><a href="https://www.grillitype.com/typeface/gt-super" target="_blank" rel="noopener">GT Super</a> · <a href="https://www.grillitype.com/free-trial-fonts" target="_blank" rel="noopener">Grilli trial fonts</a></p>
+    </div>
+    <div class="spec">
+      <p class="d">applied ai for human-machine collaboration</p>
+      <p class="lede">Applied AI explorations that keep humans in command.</p>
+      <p class="body">I focus on the missing middle: systems that help us think better without taking decisions away. Read <a href="#">How I Work with Agents</a> for the loop.</p>
+      <div class="row"><span class="lbl">Field note 014</span><span class="btn">Get in touch</span><span class="nums">12 posts · 1,152 words · −3 · 2026-11-16</span></div>
+      <pre class="code"><span class="k">import</span> httpx  # 0O 1lI</pre>
+      <div class="trial">
+        <p class="standin" aria-live="polite">Stand-in until you load trial files: Bodoni Moda · Geist · Geist Mono</p>
+        <div class="slots">
+          <label class="slot">Display <em>GT Super</em><input type="file" id="i-d" data-role="d" data-fallback="Georgia,serif" accept=".otf,.ttf,.woff,.woff2"></label>
+          <label class="slot">Text <em>GT America</em><input type="file" id="i-s" data-role="s" data-fallback="sans-serif" accept=".otf,.ttf,.woff,.woff2"></label>
+          <label class="slot">Mono <em>GT America Mono</em><input type="file" id="i-m" data-role="m" data-fallback="monospace" accept=".otf,.ttf,.woff,.woff2"></label>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="paid" data-id="j" style="--d:'Instrument Serif',Georgia,serif;--dw:400;--dt:-0.02em;--s:'Instrument Sans',sans-serif;--m:'JetBrains Mono',monospace">
+    <div class="meta">
+      <span class="letter">J</span>
+      <h2>Editorial New Ultralight · Neue Montreal · Neue Montreal Mono</h2>
+      <dl><dt>Foundry</dt><dd>Pangram Pangram</dd><dt>Weights</dt><dd>Editorial New Thin to Heavy, 16 styles</dd></dl>
+      <p>A narrow serif whose light weights are refined and fashion-minded.<sup><a href="#n14">14</a></sup> The mono adds coding ligatures.<sup><a href="#n15">15</a></sup> Cheapest to start, but a company license runs one year, so the cost comes back.<sup><a href="#n13">13</a></sup> Free to try for personal use and pitches.</p>
+      <p class="links"><a href="https://pangrampangram.com/products/editorial-new" target="_blank" rel="noopener">Editorial New</a> · <a href="https://pangrampangram.com/products/neue-montreal" target="_blank" rel="noopener">Neue Montreal</a> · <a href="https://pangrampangram.com/products/neue-montreal-mono" target="_blank" rel="noopener">Mono</a></p>
+    </div>
+    <div class="spec">
+      <p class="d">applied ai for human-machine collaboration</p>
+      <p class="lede">Applied AI explorations that keep humans in command.</p>
+      <p class="body">I focus on the missing middle: systems that help us think better without taking decisions away. Read <a href="#">How I Work with Agents</a> for the loop.</p>
+      <div class="row"><span class="lbl">Field note 014</span><span class="btn">Get in touch</span><span class="nums">12 posts · 1,152 words · −3 · 2026-11-16</span></div>
+      <pre class="code"><span class="k">import</span> httpx  # 0O 1lI</pre>
+      <div class="trial">
+        <p class="standin" aria-live="polite">Stand-in until you load trial files: Instrument Serif · Instrument Sans · JetBrains Mono</p>
+        <div class="slots">
+          <label class="slot">Display <em>Editorial New</em><input type="file" id="j-d" data-role="d" data-fallback="Georgia,serif" accept=".otf,.ttf,.woff,.woff2"></label>
+          <label class="slot">Text <em>Neue Montreal</em><input type="file" id="j-s" data-role="s" data-fallback="sans-serif" accept=".otf,.ttf,.woff,.woff2"></label>
+          <label class="slot">Mono <em>Neue Montreal Mono</em><input type="file" id="j-m" data-role="m" data-fallback="monospace" accept=".otf,.ttf,.woff,.woff2"></label>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="part" id="left-field">
+    <p class="eyebrow">Left field · three subversions · free on Google Fonts</p>
+    <h2>Break the rule the other ten obey</h2>
+    <p class="lead">Every pairing above follows one formula: a light serif headline, a plain grotesk for text, a mono for code. Each of these three breaks a piece of it. <b>K</b> drops the pairing for one font that moves between human and machine. <b>L</b> trades modern for the type of Gutenberg's press. <b>M</b> turns the hierarchy upside down.</p>
+  </div>
+
+  <section class="lf k" data-id="k" style="--d:'Recursive',sans-serif;--dw:500;--dt:-0.02em;--s:'Recursive',sans-serif;--m:'Recursive',ui-monospace,monospace;--h:1">
+    <div class="meta">
+      <span class="letter">K</span>
+      <h2>Recursive, alone</h2>
+      <dl><dt>Breaks</dt><dd>The pairing itself</dd><dt>Eagle Ridge</dt><dd>Nothing shared</dd><dt>Axes</dt><dd>Casual, Mono, Weight, Slant, Cursive</dd></dl>
+      <p>One variable font runs from Linear to Casual and from proportional to Mono.<sup><a href="#n16">16</a></sup> So one family plays all three roles. The headline sits at the human end, the text stays linear, the code goes full mono. That is Humaine's thesis drawn in letters: one voice, moved between human and machine. Drag the dial.</p>
+      <div class="dial">
+        <label for="k-h">Headline</label>
+        <input type="range" id="k-h" min="0" max="1" step="0.01" value="1" aria-valuetext="Human">
+        <div class="ends"><span>Machine</span><span>Human</span></div>
+      </div>
+      <p class="risk"><b>Risk.</b> Casual reads playful in long text. Keep it to headlines.</p>
+    </div>
+    <div class="spec">
+      <p class="d">applied ai for human-machine collaboration</p>
+      <p class="lede">Applied AI explorations that keep humans in command.</p>
+      <p class="body">I focus on the missing middle: systems that help us think better without taking decisions away. Read <a href="#">How I Work with Agents</a> for the loop.</p>
+      <div class="row"><span class="lbl">Field note 014</span><span class="btn">Get in touch</span><span class="nums">12 posts · 1,152 words · −3 · 2026-11-16</span></div>
+      <pre class="code"><span class="k">import</span> httpx  # 0O 1lI</pre>
+    </div>
+  </section>
+
+  <section class="lf l" data-id="l" style="--d:'Grenze Gotisch',Georgia,serif;--dw:400;--dt:0;--s:'Grenze',Georgia,serif;--m:'Courier Prime',ui-monospace,monospace">
+    <div class="meta">
+      <span class="letter">L</span>
+      <h2>Grenze Gotisch · Grenze · Courier Prime</h2>
+      <dl><dt>Breaks</dt><dd>Modern and minimal</dd><dt>Eagle Ridge</dt><dd>Nothing shared</dd><dt>Mood</dt><dd>A manuscript with a typewriter</dd></dl>
+      <p>Blackletter was the type of Gutenberg's press and the first information revolution. Setting an AI studio in it lays claim to the second. Grenze Gotisch is the blackletter cut of Grenze, a plainer sibling that stays readable as text.<sup><a href="#n17">17</a></sup> The first letter is rubricated in Klein blue, the way scribes marked a page in red. Courier Prime adds the typewriter, the next machine in the line.</p>
+      <p class="risk"><b>Risk.</b> Blackletter carries baggage: heavy metal and, for some readers, Nazi Germany, though that regime banned it in 1941.<sup><a href="#n18">18</a></sup> Use it for a few words at a time.</p>
+    </div>
+    <div class="spec">
+      <p class="d">applied ai for human-machine collaboration</p>
+      <p class="lede">Applied AI explorations that keep humans in command.</p>
+      <p class="body">I focus on the missing middle: systems that help us think better without taking decisions away. Read <a href="#">How I Work with Agents</a> for the loop.</p>
+      <div class="row"><span class="lbl">Field note 014</span><span class="btn">Get in touch</span><span class="nums">12 posts · 1,152 words · −3 · 2026-11-16</span></div>
+      <pre class="code"><span class="k">import</span> httpx  # 0O 1lI</pre>
+    </div>
+  </section>
+
+  <section class="lf m" data-id="m" style="--d:'Syne',sans-serif;--dw:800;--dt:-0.04em;--s:'Spectral',Georgia,serif;--m:'Space Mono',ui-monospace,monospace">
+    <div class="meta">
+      <span class="letter">M</span>
+      <h2>Syne · Spectral · Space Mono</h2>
+      <dl><dt>Breaks</dt><dd>Serif on top, sans below</dd><dt>Eagle Ridge</dt><dd>Nothing shared</dd><dt>Mood</dt><dd>Gallery poster</dd></dl>
+      <p>Flip the hierarchy. A heavy, loud grotesk takes the headline, set in a solid band; a quiet book serif carries the reading. Syne was first drawn in 2017 for Synesthésie, an art centre near Paris,<sup><a href="#n19">19</a></sup> and it still looks like an exhibition poster. Spectral is a serif made for screens. Space Mono keeps the code a little odd.</p>
+      <p class="risk"><b>Risk.</b> The band is the loudest thing on the site. Use it once a page.</p>
+    </div>
+    <div class="spec">
+      <p class="d">applied ai for human-machine collaboration</p>
+      <p class="lede">Applied AI explorations that keep humans in command.</p>
+      <p class="body">I focus on the missing middle: systems that help us think better without taking decisions away. Read <a href="#">How I Work with Agents</a> for the loop.</p>
+      <div class="row"><span class="lbl">Field note 014</span><span class="btn">Get in touch</span><span class="nums">12 posts · 1,152 words · −3 · 2026-11-16</span></div>
+      <pre class="code"><span class="k">import</span> httpx  # 0O 1lI</pre>
+    </div>
+  </section>
+
+  <div class="notes">
+    <h2>Sources</h2>
+    <ol>
+      <li id="n1"><a href="https://fontsinuse.com/typefaces/246144/sirca" target="_blank" rel="noopener">Fonts In Use, Sirca</a>: designer, foundry, Käch source, Sirca Text added Sept 2026. <span class="conf">High</span></li>
+      <li id="n2"><a href="https://abcdinamo.com/news/walter-release-notes" target="_blank" rel="noopener">Dinamo, Walter release notes</a>: based on Käch's teaching tool; Walter Neue has 7 weights, 14 styles. <span class="conf">High</span></li>
+      <li id="n3"><a href="https://fontstand.com/fonts/abc-walter-neue" target="_blank" rel="noopener">Fontstand, ABC Walter Neue</a>: €9/month a style, €44/month complete, desktop and web, excl. VAT. <span class="conf">High</span></li>
+      <li id="n4"><a href="https://abcdinamo.com/discounts-and-pricing" target="_blank" rel="noopener">Dinamo, Discounts and Pricing</a>: priced by company size; family 45–65% off. No figures published there. <span class="conf">High</span></li>
+      <li id="n5"><a href="https://commercialtype.com/catalog/canela" target="_blank" rel="noopener">Commercial Type, Canela</a>: $800 collection, styles from $50, Canela family $325, one-time and perpetual. The exact total depends on the desktop and web tiers chosen. <span class="conf">High</span></li>
+      <li id="n6"><a href="https://typecase.dev/fonts/soehne" target="_blank" rel="noopener">Typecase, Söhne</a>: $60 base for a first Klim style, read from Klim's FAQ on 2026-09-05. Used here as a proxy for Signifier and Founders. <span class="conf">Medium</span></li>
+      <li id="n7"><a href="https://klim.co.nz/licences/" target="_blank" rel="noopener">Klim, Font licences</a> and <a href="https://klim.co.nz/buy/tiempos/" target="_blank" rel="noopener">Klim buy page</a>: fees one-off, no expiry; smallest tiers 5 desktop users, 5,000 monthly unique web users. <span class="conf">High</span></li>
+      <li id="n8"><a href="https://klim.co.nz/fonts/signifier" target="_blank" rel="noopener">Klim, Signifier</a>: Fell Types source, 14 styles. <span class="conf">High</span></li>
+      <li id="n9"><a href="https://www.grillitype.com/shops/gt-super" target="_blank" rel="noopener">Grilli Type, GT Super shop</a>: style from $80, Display collection from $660, full family from $745. Tier for those prices not stated. <span class="conf">Medium</span></li>
+      <li id="n10"><a href="https://www.grillitype.com/information" target="_blank" rel="noopener">Grilli Type, Licensing information</a>: no recurring costs; web by monthly unique visitors; self-hosted only. <span class="conf">High</span></li>
+      <li id="n11"><a href="https://www.grillitype.com/typeface/gt-super" target="_blank" rel="noopener">Grilli Type, GT Super</a>: Text and Display cuts; Display Light exists. <span class="conf">High</span></li>
+      <li id="n12"><a href="https://pangrampangram.com/products/neue-montreal-mono" target="_blank" rel="noopener">Pangram Pangram, Neue Montreal Mono</a>: full family $430 for web up to 10k pageviews a month, $430 for one print workstation; licenses from $40. Editorial New's family price was not read. <span class="conf">Medium</span></li>
+      <li id="n13"><a href="https://pangrampangram.com/faq" target="_blank" rel="noopener">Pangram Pangram, FAQ</a>: companies get 1-year licenses, longer on request; free personal-use trial. <span class="conf">Medium</span></li>
+      <li id="n14"><a href="https://pangrampangram.com/products/editorial-new" target="_blank" rel="noopener">Pangram Pangram, Editorial New</a>: 16 styles, Thin to Heavy. <span class="conf">High</span></li>
+      <li id="n15"><a href="https://pangrampangram.com/products/neue-montreal-mono" target="_blank" rel="noopener">Pangram Pangram, Neue Montreal Mono</a>: coding ligatures. <span class="conf">High</span></li>
+      <li id="n16"><a href="https://www.recursive.design/" target="_blank" rel="noopener">Recursive, by ArrowType</a>: axes Mono 0–1, Casual 0–1, Weight 300–1000, Slant −15–0, Cursive 0–1. <span class="conf">High</span></li>
+      <li id="n17"><a href="https://fonts.google.com/specimen/Grenze+Gotisch/about" target="_blank" rel="noopener">Google Fonts, Grenze Gotisch</a>: "a Blackletter version of Grenze." <span class="conf">High</span></li>
+      <li id="n18"><a href="https://en.wikipedia.org/wiki/Antiqua%E2%80%93Fraktur_dispute" target="_blank" rel="noopener">Wikipedia, Antiqua–Fraktur dispute</a>: the 1941 decree that ended official use of blackletter. Not re-read today. <span class="conf">Medium</span></li>
+      <li id="n20"><a href="https://commercialtype.com/catalog/pavonia" target="_blank" rel="noopener">Commercial Type, Pavonia</a>: read from your screenshot of the page, 18 Nov 2026. Designer Christian Schwartz; $325 family, styles from $50, one-time; six weights with italics. <span class="conf">High</span></li>
+      <li id="n21"><a href="https://fonts.google.com/specimen/Fraunces/about" target="_blank" rel="noopener">Google Fonts, Fraunces</a>: "Old Style" soft serif after Windsor, Souvenir and the Cooper series. Axis ranges confirmed by a working Google Fonts request. <span class="conf">High</span></li>
+      <li id="n22"><a href="https://github.com/arrowtype/recursive" target="_blank" rel="noopener">ArrowType, Recursive on GitHub</a>: SIL OFL 1.1; MONO and CASL axes; "built for better code &amp; UI." <span class="conf">High</span></li>
+      <li id="n23"><a href="https://github.com/IBM/plex" target="_blank" rel="noopener">IBM, Plex on GitHub</a>: OFL 1.1; Roman and true italics. Weight range from <a href="https://fonts.google.com/specimen/IBM+Plex+Mono" target="_blank" rel="noopener">Google Fonts</a>. <span class="conf">High</span></li>
+      <li id="n24"><a href="https://www.jetbrains.com/lp/mono/" target="_blank" rel="noopener">JetBrains, JetBrains Mono</a>: OFL 1.1; eight weights with italics; dotted zero; distinct comma and period; optional ligatures. The x-height claim is the maker's own. <span class="conf">High</span></li>
+      <li id="n19"><a href="https://fonts.google.com/specimen/Syne/about" target="_blank" rel="noopener">Google Fonts, Syne</a>: first made in 2017 for the Synesthésie art centre, Saint-Denis. <span class="conf">High</span></li>
+    </ol>
+  </div>
 </div>
+
+<script>
+  /* Example data, the same in every card: field notes per week. Reads change = this week / last week - 1 (W39 had 283 reads). */
+  (function () {
+    var rows = [
+      ['W40', 2, 1152, 318], ['W41', 1, 864, 402], ['W42', 3, 2409, 377],
+      ['W43', 2, 1736, 511], ['W44', 0, 0, 486], ['W45', 4, 3018, 1047]
+    ];
+    var fmt = new Intl.NumberFormat('en-US');
+    function pct(now, before) {
+      var v = (now / before - 1) * 100;
+      return (v < 0 ? '−' : '+') + Math.abs(v).toFixed(1) + '%';
+    }
+    var prev = 283, body = '', tot = [0, 0, 0];
+    rows.forEach(function (r, i) {
+      var sel = i === rows.length - 1 ? ' class="sel"' : '';
+      body += '<tr><th class="rn">' + (i + 2) + '</th><td class="t">' + r[0] + '</td><td>' + r[1] + '</td><td>' + fmt.format(r[2]) +
+        '</td><td>' + fmt.format(r[3]) + '</td><td' + sel + '>' + pct(r[3], prev) + '</td></tr>';
+      prev = r[3]; tot[0] += r[1]; tot[1] += r[2]; tot[2] += r[3];
+    });
+    var sheet =
+      '<div><div class="fx"><span>E7</span><i>fx</i><code>=D7/D6-1</code></div><div class="sheetwrap"><table class="sheet">' +
+      '<caption class="sr" style="position:absolute;left:-9999px">Field notes per week, example data</caption>' +
+      '<thead><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th></tr></thead><tbody>' +
+      '<tr><th class="rn">1</th><td class="h">Week</td><td class="h">Posts</td><td class="h">Words</td><td class="h">Reads</td><td class="h">Change</td></tr>' +
+      body +
+      '<tr class="tot"><th class="rn">8</th><td class="t">Total</td><td>' + tot[0] + '</td><td>' + fmt.format(tot[1]) + '</td><td>' + fmt.format(tot[2]) + '</td><td></td></tr>' +
+      '</tbody></table></div></div>';
+
+    // Bar chart of reads, one scale: 0 to 1,200.
+    var W = 320, H = 184, L = 40, R = 6, T = 20, B = 24, max = 1200;
+    var pw = W - L - R, ph = H - T - B, slot = pw / rows.length, bw = 24;
+    var y = function (v) { return T + ph - (v / max) * ph; };
+    var svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Bar chart of reads per week, W40 to W45, rising to 1,047 in W45">';
+    [400, 800, 1200].forEach(function (t) {
+      svg += '<line class="grid" x1="' + L + '" x2="' + (W - R) + '" y1="' + y(t) + '" y2="' + y(t) + '"/>' +
+        '<text class="tick" x="' + (L - 6) + '" y="' + (y(t) + 4) + '" text-anchor="end">' + fmt.format(t) + '</text>';
+    });
+    svg += '<text class="tick" x="' + (L - 6) + '" y="' + (y(0) + 4) + '" text-anchor="end">0</text>';
+    rows.forEach(function (r, i) {
+      var cx = L + slot * i + slot / 2, x0 = cx - bw / 2, top = y(r[3]), base = y(0), rr = 4;
+      svg += '<path class="bar" data-i="' + i + '" d="M' + x0 + ' ' + base + 'V' + (top + rr) + 'Q' + x0 + ' ' + top + ' ' + (x0 + rr) + ' ' + top +
+        'H' + (x0 + bw - rr) + 'Q' + (x0 + bw) + ' ' + top + ' ' + (x0 + bw) + ' ' + (top + rr) + 'V' + base + 'Z"/>' +
+        '<text class="xl" x="' + cx + '" y="' + (H - 6) + '" text-anchor="middle">' + r[0] + '</text>';
+      if (i === rows.length - 1) svg += '<text class="val" x="' + cx + '" y="' + (top - 6) + '" text-anchor="middle">' + fmt.format(r[3]) + '</text>';
+    });
+    svg += '<line class="base" x1="' + L + '" x2="' + (W - R) + '" y1="' + y(0) + '" y2="' + y(0) + '"/>';
+    rows.forEach(function (r, i) {
+      svg += '<rect class="hit" data-i="' + i + '" x="' + (L + slot * i) + '" y="' + T + '" width="' + slot + '" height="' + ph + '"/>';
+    });
+    svg += '</svg>';
+    var chart = '<figure class="chart"><figcaption><span>Reads per week</span><span class="ex">Example data</span></figcaption>' +
+      '<div class="plot">' + svg + '<div class="tip" hidden></div></div></figure>';
+
+    // Markdown table: minutes per step of one agent loop. 12 + 41 + 18 + 6 = 77; shares round to 100.0%.
+    var mdSrc = [
+      '| Step   | Owner | Minutes | Share |',
+      '| :----- | :---- | ------: | ----: |',
+      '| Frame  | Human |      12 | 15.6% |',
+      '| Draft  | Agent |      41 | 53.2% |',
+      '| Review | Human |      18 | 23.4% |',
+      '| Ship   | Human |       6 |  7.8% |'
+    ].join('\n').replace(/\|/g, '<span class="p">|</span>');
+    var mdRows = [['Frame', 'Human', 12, '15.6%'], ['Draft', 'Agent', 41, '53.2%'], ['Review', 'Human', 18, '23.4%'], ['Ship', 'Human', 6, '7.8%']];
+    var md = '<div class="md"><div class="cap"><span>Minutes per step, one agent loop</span><span class="ex">Markdown · example data</span></div>' +
+      '<pre aria-label="Markdown source">' + mdSrc + '</pre>' +
+      '<div class="rendered"><table class="prose-t"><thead><tr><th>Step</th><th>Owner</th><th class="r">Minutes</th><th class="r">Share</th></tr></thead><tbody>' +
+      mdRows.map(function (r) { return '<tr><td>' + r[0] + '</td><td>' + r[1] + '</td><td class="r">' + r[2] + '</td><td class="r">' + r[3] + '</td></tr>'; }).join('') +
+      '</tbody></table></div></div>';
+
+    var prevReads = [283].concat(rows.map(function (r) { return r[3]; }));
+    document.querySelectorAll('section .spec').forEach(function (spec) {
+      var block = document.createElement('div');
+      block.className = 'data';
+      block.innerHTML = sheet + chart + md;
+      var trial = spec.querySelector('.trial');
+      spec.insertBefore(block, trial || null);
+      var plot = block.querySelector('.plot'), tip = plot.querySelector('.tip');
+      var bars = plot.querySelectorAll('.bar');
+      plot.querySelectorAll('.hit').forEach(function (hit) {
+        hit.addEventListener('pointerenter', function () {
+          var i = +hit.dataset.i, r = rows[i], bar = bars[i];
+          bars.forEach(function (b) { b.classList.toggle('on', b === bar); });
+          plot.classList.add('hovering');
+          var pr = plot.getBoundingClientRect(), br = bar.getBoundingClientRect();
+          tip.innerHTML = '<b>' + r[0] + '</b> · ' + fmt.format(r[3]) + ' reads · ' + pct(r[3], prevReads[i]);
+          tip.style.left = (br.left - pr.left + br.width / 2) + 'px';
+          tip.style.top = (br.top - pr.top - 8) + 'px';
+          tip.hidden = false;
+        });
+      });
+      plot.addEventListener('pointerleave', function () {
+        plot.classList.remove('hovering'); tip.hidden = true;
+      });
+    });
+  })();
+
+  /* Copy the starter code; fall back to selecting it where the clipboard is refused. */
+  (function () {
+    var btn = document.getElementById('copy-starter'), pre = document.getElementById('starter-code');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      function select() {
+        var r = document.createRange(); r.selectNodeContents(pre);
+        var s = getSelection(); s.removeAllRanges(); s.addRange(r);
+        btn.textContent = 'Selected · press copy';
+      }
+      try {
+        navigator.clipboard.writeText(pre.textContent).then(function () { btn.textContent = 'Copied'; }, select);
+      } catch (e) { select(); }
+      setTimeout(function () { btn.textContent = 'Copy code'; }, 2500);
+    });
+  })();
+
+  /* Card N: weight and softness dials, ladder highlight, Pavonia compare line. */
+  (function () {
+    var sec = document.querySelector('section.n');
+    if (!sec) return;
+    var w = document.getElementById('n-w'), s = document.getElementById('n-soft');
+    var wo = document.getElementById('n-w-out'), so = document.getElementById('n-soft-out');
+    function set() {
+      sec.style.setProperty('--dw', w.value);
+      sec.style.setProperty('--soft', s.value);
+      wo.textContent = w.value; so.textContent = s.value;
+      sec.querySelectorAll('.ladder p').forEach(function (p) { p.classList.toggle('on', p.dataset.w === w.value); });
+    }
+    w.addEventListener('input', set); s.addEventListener('input', set); set();
+
+    var cmp = document.getElementById('n-cmp'), line = document.getElementById('n-cmp-line');
+    cmp.addEventListener('change', async function () {
+      var file = cmp.files && cmp.files[0];
+      if (!file) return;
+      var slot = cmp.closest('.slot'), label = slot.querySelector('em');
+      slot.classList.remove('ok', 'bad');
+      try {
+        var fam = 'pavonia-trial-' + Date.now();
+        var face = new FontFace(fam, await file.arrayBuffer());
+        await face.load();
+        document.fonts.add(face);
+        sec.style.setProperty('--cmp', '"' + fam + '"');
+        line.textContent = 'applied ai for human-machine collaboration';
+        line.classList.remove('empty');
+        label.textContent = file.name;
+        slot.classList.add('ok');
+      } catch (e) {
+        label.textContent = 'Not a font file. Use .otf, .ttf, .woff or .woff2';
+        slot.classList.add('bad');
+      }
+    });
+  })();
+
+  (function () {
+    var dial = document.getElementById('k-h');
+    if (!dial) return;
+    function set() {
+      dial.closest('section').style.setProperty('--h', dial.value);
+      var v = +dial.value;
+      dial.setAttribute('aria-valuetext', v > 0.66 ? 'Human' : v < 0.34 ? 'Machine' : 'Between');
+    }
+    dial.addEventListener('input', set);
+    set();
+  })();
+
+  (function () {
+    var names = { d: 'Display', s: 'Text', m: 'Mono' };
+    document.querySelectorAll('.slot input[type=file]:not(.cmp)').forEach(function (inp) {
+      inp.addEventListener('change', async function () {
+        var file = inp.files && inp.files[0];
+        if (!file) return;
+        var slot = inp.closest('.slot');
+        var label = slot.querySelector('em');
+        var sec = inp.closest('section');
+        var role = inp.dataset.role;
+        var fam = 'trial-' + sec.dataset.id + '-' + role + '-' + Date.now();
+        slot.classList.remove('ok', 'bad');
+        try {
+          var face = new FontFace(fam, await file.arrayBuffer());
+          await face.load();
+          document.fonts.add(face);
+          sec.style.setProperty('--' + role, '"' + fam + '", ' + inp.dataset.fallback);
+          if (role === 'd') sec.style.setProperty('--dw', '400');
+          label.textContent = file.name;
+          slot.classList.add('ok');
+          var loaded = Array.prototype.filter.call(sec.querySelectorAll('.slot'), function (s) { return s.classList.contains('ok'); }).length;
+          var total = sec.querySelectorAll('.slot').length;
+          var note = sec.querySelector('.standin');
+          note.textContent = loaded === total
+            ? 'Showing your trial files. They stay in this tab and leave when you close it.'
+            : 'Showing your trial file for ' + names[role] + '. The other slots still use the stand-in.';
+          note.classList.add('live');
+        } catch (e) {
+          label.textContent = 'Not a font file. Use .otf, .ttf, .woff or .woff2';
+          slot.classList.add('bad');
+        }
+      });
+    });
+  })();
+</script>
+
+</body></html>

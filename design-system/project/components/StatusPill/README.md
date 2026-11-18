@@ -12,4 +12,4 @@ A short uppercase word on a square fill that states a status.
 | `hs-pill--quiet` | outline `ink-soft` | Neutral: draft, archived |
 
 - There is no green. Klein and vermilion stay apart for color-blind readers, and the word carries the meaning.
-- Square corners, Plex Mono 500 at 11px, letter spacing 0.06em.
+- Square corners, Recursive 500 with `--mono-axes` at 11px, letter spacing 0.06em.
