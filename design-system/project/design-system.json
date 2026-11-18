@@ -64,9 +64,9 @@
     "Logos"
   ],
   "lastChange": {
-    "at": "2026-11-18T20:00:00Z",
+    "at": "2026-11-18T20:30:00Z",
     "by": "Chris McConnell",
-    "note": "Add the outlined wordmark (ink and linen), built by design-system/build_brand.py.",
+    "note": "Buttons are 44px touch targets; SID is now inspiration, not a spec.",
     "via": "Claude Code"
   },
   "layout": "files",

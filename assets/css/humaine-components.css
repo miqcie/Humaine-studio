@@ -10,10 +10,10 @@ html, body { background: var(--ground); color: var(--ink); font-family: var(--fo
 ::selection { background: var(--klein-wash); color: var(--ink); }
 :where(a, button, input, [tabindex]):focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
 
-/* Button: a solid block that fits tight to its label (SID's highlight button). */
+/* Button: a solid square block, 44px tall so it is a real touch target. */
 .hs-btn {
   display: inline-flex; align-items: center; gap: var(--space-1);
-  padding: 0 0.25em; border: 0; border-radius: var(--radius-0);
+  min-height: 44px; padding: 0 var(--space-4); border: 0; border-radius: var(--radius-0); box-sizing: border-box;
   font: 500 16.5px/1.5 var(--font-sans); text-decoration: none; cursor: pointer;
   background: var(--klein); color: var(--on-klein);
   transition: background-color 150ms ease;
@@ -21,7 +21,7 @@ html, body { background: var(--ground); color: var(--ink); font-family: var(--fo
 .hs-btn:hover { background: var(--klein-press); }
 .hs-btn--ink { background: var(--ink); color: var(--on-ink); }
 .hs-btn--ink:hover { background: var(--ink-soft); }
-.hs-btn--text { background: none; color: var(--ink); padding: 0; text-decoration: underline; text-decoration-thickness: max(0.75px, 0.0625em); text-underline-offset: 0.18em; }
+.hs-btn--text { background: none; color: var(--ink); padding: 0 var(--space-1); text-decoration: underline; text-decoration-thickness: max(0.75px, 0.0625em); text-underline-offset: 0.18em; }
 .hs-btn--text:hover { background: none; color: var(--klein); text-decoration-thickness: max(1.5px, 0.1em); }
 .hs-btn[disabled] { opacity: 0.4; cursor: not-allowed; }
 .hs-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-6); }
@@ -82,6 +82,7 @@ html, body { background: var(--ground); color: var(--ink); font-family: var(--fo
 .hs-code .s { color: var(--ink-soft); }
 .hs-code .c { color: var(--mute); font-style: italic; }
 .hs-code__head { display: flex; justify-content: space-between; align-items: center; padding: var(--space-1) var(--space-4); border-bottom: var(--hairline) solid var(--rule); background: var(--sunken); color: var(--ink-soft); font: 500 12px/1.6 var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; }
+.hs-code__head .hs-btn { min-height: 0; } /* a small inline action in a dense header */
 code.hs-inline { padding: 0 0.25em; background: var(--sunken); font: 400 0.9em/1 var(--font-mono); }
 
 /* Data table: rules, not boxes; tabular figures. */

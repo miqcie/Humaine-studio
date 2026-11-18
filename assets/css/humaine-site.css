@@ -42,8 +42,11 @@ code, pre, kbd, samp { font-family: var(--font-mono); }
 .home-eyebrow { margin: 0; color: var(--ink-soft); text-transform: uppercase; }
 .home-display { margin: 0; font-size: clamp(40px, 6vw, 64px); text-wrap: balance; }
 .home-lede { margin: 0; color: var(--ink-soft); max-width: 36rem; }
-.home-hero-art { flex: 1 1 240px; max-width: 360px; min-width: 0; height: auto; }
-@media (max-width: 640px) { .home-hero-art { flex-basis: auto; max-width: 200px; } }
+.nowrap { white-space: nowrap; }
+.home-hero-art { flex: 0 0 300px; width: 300px; max-width: 100%; height: auto; }
+/* On night blue the mark's ink frame disappears; a hairline keeps the square from floating. */
+[data-theme="dark"] .home-hero-art { outline: 1px solid var(--rule); outline-offset: 0; }
+@media (max-width: 640px) { .home-hero-art { flex-basis: 200px; width: 200px; } }
 .home-section { display: flex; flex-direction: column; gap: 20px; padding-top: 24px; border-top: 1px solid var(--rule); margin-bottom: 72px; }
 .home-section h2 { margin: 0; }
 .home-prose { max-width: var(--measure); }
