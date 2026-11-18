@@ -420,8 +420,7 @@ private/               # Private files
   - microTracker embedded inline
   - Privacy policy disclosure in privacy.md
 
-- Google Fonts (Inter font family)
-  - CDN: fonts.googleapis.com, fonts.gstatic.com
+- Fonts: Fraunces, Schibsted Grotesk, Recursive, self-hosted in assets/fonts/ (no third-party font requests)
 
 # ✅ Safe for static sites (examples)
 - Formspree for contact forms

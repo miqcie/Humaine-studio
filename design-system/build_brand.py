@@ -40,6 +40,7 @@ INK, PAPER, BLUE, CHROME = tokens["mark-line"], tokens["mark-field"], tokens["ma
 LINEN = tokens["ground"]["klein-linen"]
 
 # Latin, punctuation and the few symbols the system uses (− → · ⌘ etc.).
+# None of the three fonts draws box-drawing lines, ↩, ▶, ⚠ or emoji; those fall back to the system font.
 UNICODES = "U+0000-00FF,U+0131,U+0152-0153,U+02C6,U+02DA,U+02DC,U+2013-2014,U+2018-201E,U+2022,U+2026,U+2030,U+2039-203A,U+20AC,U+2122,U+2190-2193,U+2212,U+2318,U+00B7"
 
 
@@ -53,7 +54,9 @@ def font(name):
 
 
 def instance(name, axes):
-    return instantiateVariableFont(font(name), axes, inplace=False, updateFontNames=False)
+    tt = instantiateVariableFont(font(name), axes, inplace=False, updateFontNames=False)
+    tt.recalcTimestamp = False  # keep the source's head.modified so rebuilds are byte-identical
+    return tt
 
 
 def to_bytes(tt):
@@ -168,7 +171,7 @@ def webfonts():
     opts.layout_features = ["*"]
     opts.unicodes = subset.parse_unicodes(UNICODES)
     for fname, (src, axes) in WEBFONTS.items():
-        tt = TTFont(io.BytesIO(to_bytes(instance(src, axes))))  # reload: subsetting a lazily loaded instance fails
+        tt = TTFont(io.BytesIO(to_bytes(instance(src, axes))), recalcTimestamp=False)  # reload: subsetting a lazily loaded instance fails
         sub = subset.Subsetter(opts)
         sub.populate(unicodes=opts.unicodes)
         sub.subset(tt)

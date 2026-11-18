@@ -123,7 +123,6 @@ This site uses:
 | GitHub Pages | Website hosting | [github.com/site/privacy](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement) |
 | PostHog | Product analytics | [posthog.com/privacy](https://posthog.com/privacy) |
 | Apollo.io | Visitor intelligence | [apollo.io/privacy](https://www.apollo.io/privacy) |
-| Google Fonts | Typography | [policies.google.com/privacy](https://policies.google.com/privacy) |
 
 ## Why This Transparency Matters
 
