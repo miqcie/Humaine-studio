@@ -8,3 +8,8 @@
 - 2026-10-23: Chris checking screenshots → the agent stopped the local preview server while his tab was open, so lazy images showed as broken; keep the preview up or say when it stops
 - 2026-10-23: building in a worktree → no gems there; build with BUNDLE_GEMFILE and BUNDLE_APP_CONFIG pointed at the main checkout
 - **Sanding target (2026-10-23):** five Roughdraft entries share one cause, the CLI's blocking wait plus autosave conflicts. Fix: install roughdraft-wait.sh and update the roughdraft skill (Linear follow-up).
+- 2026-11-16: local Jekyll build in a worktree → the Bash shell resolves system Ruby 2.6 and no Ruby 3 exists (brew, rbenv, chruby, mise all absent), so the build ran only in CI
+- 2026-11-16: new-post PR #54 → link-check failed on the post's own canonical URL, which 404s until deploy (fixed in #55)
+- 2026-11-17: fixing link-check → a lychee CLI `--exclude` replaces lychee.toml's exclude list instead of adding to it
+- 2026-11-17: main link-check after #55 → a github.com blob URL returned 503 to the Actions runner twice; the third run passed
+- **Sanding target (2026-11-17):** three link-check entries above share one cause, lychee depending on live network responses (an undeployed URL, a flaky host). Next step: miqcie/Humaine-studio#56 (check internal links against the PR build).
