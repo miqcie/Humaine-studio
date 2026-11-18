@@ -28,6 +28,12 @@ jobs:
     - name: Build Jekyll site
       run: bundle exec jekyll build
 
+    # A new post's own URL 404s until it deploys. Main and weekly runs still check humaine.studio links.
+    # Added to lychee.toml, not passed as --exclude: a CLI --exclude replaces the config's list.
+    - name: Skip humaine.studio links on PRs
+      if: github.event_name == 'pull_request'
+      run: sed -i "s|^exclude = \[|exclude = [\n    '^https://humaine[.]studio/',|" lychee.toml
+
     - name: Link Checker
       uses: lycheeverse/lychee-action@v1.10.0
       with:
