@@ -82,4 +82,5 @@ exclude:
   - lychee.toml
   - scripts/
   - docs/
+  - design-system/
   - writing-topics/

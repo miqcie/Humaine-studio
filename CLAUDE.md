@@ -17,6 +17,7 @@
 - **Tools Showcase**: `/tools/` = `tools.html` looping `_data/showcase.yml` through `_includes/showcase-card.html`; edit cards in the YAML (Markdown values), screenshots in `assets/images/showcase/`
 - **Educational Tools**: T1D insulin calculator with localStorage persistence
 - **Experiments**: React/Vite applications under `/experiments/` directory
+- **Design system**: source in `design-system/project/` (excluded from the Jekyll build), published as the claude.ai artifact https://claude.ai/artifact/ES1ThCt8R3T8itN88QwtRD. Palette "Klein & Linen" (Yves Klein blue `#002FA7` on linen, shared with eagleridge.io). After any color change run `python3 design-system/check_contrast.py`, then republish the changed files to that artifact URL. The live site does not use these tokens yet.
 
 ## CRITICAL Jekyll/Markdown Rules
 

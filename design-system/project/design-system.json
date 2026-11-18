@@ -1,0 +1,24 @@
+{
+  "v": 3,
+  "layout": "files",
+  "createdOnFiles": { "v": 1, "at": "2026-11-18T14:40:00Z" },
+  "title": "Humaine Studio Design System",
+  "namespace": "HumaineStudio",
+  "libraries": [],
+  "sections": {},
+  "groups": ["Logos"],
+  "assetGroups": {
+    "Logos": {
+      "name": "Logos",
+      "tile": "m",
+      "order": ["humaine-mark.svg", "humaine-mark-vermilion.svg"],
+      "files": {
+        "humaine-mark.svg": { "name": "humaine-mark.svg", "blob": "b09af8b6f68cce8fffa43576f2d9cefa", "size": 459, "type": "image/svg+xml" },
+        "humaine-mark-vermilion.svg": { "name": "humaine-mark-vermilion.svg", "blob": "bac4027d78a40d220151a70623f61dfe", "size": 459, "type": "image/svg+xml" }
+      }
+    }
+  },
+  "blobs": {},
+  "docs": { "readme": "project/README.md", "sections": [] },
+  "lastChange": { "by": "Chris McConnell", "at": "2026-11-18T14:40:00Z", "via": "Claude Code", "note": "First version: Klein & Linen palette, SID structure, Mondrian mark recolored to Klein blue." }
+}

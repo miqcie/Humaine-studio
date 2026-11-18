@@ -1,0 +1,11 @@
+<!-- @dsCard group="Content" height=200 subtitle="Header, highlighted code, inline code" -->
+<div style="display:grid;gap:16px;padding:24px;max-width:42rem">
+  <figure style="margin:0">
+    <div class="hs-code__head"><span>Python</span><button class="hs-btn hs-btn--text" type="button" style="font-size:12px">Copy</button></div>
+    <pre class="hs-code"><code><span class="c"># fetch the site's notes for agents</span>
+<span class="k">import</span> httpx
+resp = httpx.get(<span class="s">"https://humaine.studio/llm.txt"</span>)
+<span class="k">print</span>(resp.status_code)</code></pre>
+  </figure>
+  <p class="body" style="margin:0">Set <code class="hs-inline">person_profiles</code> to <code class="hs-inline">identified_only</code>.</p>
+</div>
