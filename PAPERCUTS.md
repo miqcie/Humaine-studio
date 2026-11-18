@@ -15,3 +15,7 @@
 - 2026-11-18: design-system PR #58 → local Jekyll build again impossible in a worktree (no Ruby 3; second time, see 2026-11-16), so the `_config.yml` exclude was verified only by CI
 - 2026-11-18: SANDED the local-Jekyll papercut above: `brew install ruby@3.3` + `BUNDLE_PATH=~/.cache/humaine-bundle` builds in any worktree (command in CLAUDE.md). Ruby 4.0 fails: github-pages pins Ruby < 4.
 - **Sanding target (2026-11-17):** three link-check entries above share one cause, lychee depending on live network responses (an undeployed URL, a flaky host). Next step: miqcie/Humaine-studio#56 (check internal links against the PR build).
+- 2026-11-18: swapping band colors in the worktree → the Bash guard rejected a sed + jekyll command because the worktree path (contains "GitHub") sat in a variable; ran it from a script file (known, see global CLAUDE.md)
+- 2026-11-18: republishing the home mockup canvas with a design-system reinstall → refused until the canvas's own copies of tokens.json/tokens.css/bundle.css were read first
+- 2026-11-18: page-side edit of the Separation artboard → it replaced the templated `{{bandOn}}` style with a literal one (dropping padding and the Tweaks binding), and the next publish was refused as a conflict; had to re-read and merge
+- 2026-11-18: main Link Check after merging #59 → it raced the Pages deploy, so the new social-card.png 404'd; rerun passed. Fourth link-check entry with the same root cause: miqcie/Humaine-studio#56 is the sanding target

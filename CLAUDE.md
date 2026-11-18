@@ -255,6 +255,7 @@ This repository includes automated checks across three workflow files:
 - `mondrian.dev/*` (temporary unreliable)
 - Font CDNs, medical journals, specific pages
 - PR runs only: `humaine.studio/*` (a new post's own URL 404s until it deploys; main and weekly runs check it)
+- Main runs can race the Pages deploy: a file the merge added 404s until the deploy lands. Rerun the Link Check after the deploy succeeds (miqcie/Humaine-studio#56)
 
 **Accepted Status Codes**: 200-308, 403, 429, 999
 
