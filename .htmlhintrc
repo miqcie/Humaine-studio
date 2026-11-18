@@ -11,7 +11,7 @@
   "title-require": false,
   "alt-require": true,
   "doctype-html5": true,
-  "id-class-value": "dash",
+  "id-class-value": { "regex": "^[a-z0-9]+(?:(?:-{1,2}|__)[a-z0-9]+)*$", "message": "Use lowercase dashed names; design-system BEM (hs-btn--ink, hs-ticks__row) is allowed." },
   "style-disabled": false,
   "inline-style-disabled": false,
   "inline-script-disabled": false,

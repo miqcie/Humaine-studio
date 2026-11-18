@@ -1,4 +1,4 @@
-Humaine Studio is the applied-AI studio for Chris McConnell. The system is square and quiet: square corners, solid block buttons, hairline rules, dashed optional steps. Its primary hero color is Yves Klein blue on linen, the same palette eagleridge.io uses. The Mondrian block mark carries the studio's own yellow and vermilion.
+Humaine Studio is the applied-AI studio for Chris McConnell. The system is square and quiet: square corners, solid block buttons, hairline rules, dashed optional steps. Its primary hero color is Yves Klein blue on linen, the same palette eagleridge.io uses. The curlew, the studio's logo, carries its own yellow and vermilion.
 
 ## Content fundamentals
 
@@ -8,11 +8,7 @@ Humaine Studio is the applied-AI studio for Chris McConnell. The system is squar
 - **No hype, no emoji, no exclamation marks.** Banned: revolutionary, seamless, cutting-edge, supercharge, unlock. Use parentheses for asides; use em dashes rarely.
 - **Numbers are exact** and set in tabular figures: "12 posts since 2021", "1,152 words". Use a true minus sign (−).
 - **Name the brand "Humaine Studio".** Never "Humane".
-- The Curlew:
-
-## The Icon
-
-Curlews
+- The Curlew is the brand icon.
 
 ## Visual foundations
 
@@ -39,6 +35,8 @@ Curlews
 
 **Rules over boxes.** Separate things with a 1px `rule` hairline and whitespace. A bordered box appears only where it means something: a diagram node, an input, the docs sidebar edge.
 
+**Section breaks that survive a small view.** The `rule` hairline is only 1.2:1 on linen, so it vanishes when a page is seen small. Between page sections use a ranked set instead: a 2px `ink` rule on top of each section, about 96px of space, and every other section on a full-bleed `surface` band. Section headings are 48px Fraunces with a 12px `klein` square before them. Hairlines stay for rows inside a section.
+
 **Corners and elevation.** `radius-0` everywhere. No shadows. Depth comes from `surface` vs `sunken`, not from elevation.
 
 **States.**
@@ -60,11 +58,11 @@ Curlews
 
 ## Marks
 
-- **Primary:** `assets/Logos/humaine-mark.svg`, the Mondrian block mark with a Klein blue field. **Alternate:** `humaine-mark-vermilion.svg`.
-- Both keep the original geometry. The colors moved: cream became paper, black became blue-black ink, the blue became Klein, and the yellow moved onto Klein's complement.
-- Set the name in type beside the mark with the `Lockup` component; there is no drawn wordmark file.
-- **Character:** `assets/Logos/humaine-curlew.svg`, a Klein blue curlew with a chrome wing inside the same ink frame, and `humaine-curlew-vermilion.svg`, an ink curlew on vermilion. Use it for avatars, social cards, title slides and a page hero, at 32px or larger. The block mark stays the logo: header, favicon, anything smaller.
-- Regenerate the curlew with `design-system/trace_curlew.py`. It reads its colors from `tokens.json`.
+- **Logo: the curlew.** `assets/Logos/humaine-curlew.svg`, a Klein blue curlew with a chrome wing on paper inside an ink frame. **Alternate:** `humaine-curlew-vermilion.svg`, an ink curlew on vermilion.
+- It is the header lockup, the favicon, the social card and the page hero. Birds are welcome: one curlew per view in content, plus the one in the header.
+- Set the name beside it with the `Lockup` component. For places without the font, use the outlined wordmark (`humaine-wordmark-ink.svg`, `humaine-wordmark-linen.svg`).
+- Regenerate the curlew with `design-system/trace_curlew.py` and the favicons with `design-system/build_brand.py`. Both read their colors from `tokens.json`.
+- The Mondrian block mark is retired. Its colors and frame live on in the palette and the cover.
 
 ---
 
@@ -82,15 +80,15 @@ Every path named below is under `project/` in this design system: read `project/
 
 **Tokens**
 
-- `api/tokens.md` — Every token: surface, text, fill, palette, type, spacing, radius, layout. (11.8k)
+- `api/tokens.md` — Every token: surface, text, fill, palette, type, spacing, radius, layout. (12.1k)
 
 **Icons and assets**
 
-- `api/assets/Logos.md` — 4 files, by asset id. (3.1k)
+- `api/assets/Logos.md` — 4 files, by asset id. (3.7k)
 
 **Components** (`api/components/<Comp>.md`, 10)
 
-- **Actions**: `Button` — A solid square block that fits tight to its label, taken from SID's "highlight" button · `Link` — An underlined inline link whose underline thickness follows the text weight, and thickens on hover
+- **Actions**: `Button` — A solid square block, 44px tall, with the label set in Schibsted Grotesk 500 · `Link` — An underlined inline link whose underline thickness follows the text weight, and thickens on hover
 - **Content**: `CodeBlock` — A square code block on sunken, with an optional mono header that names the language or file · `Diagram` — A left-to-right flow of square nodes joined by arrows, where a solid border is a step you build and a dashed border is optional
 - **Data**: `DataTable` — A table separated by hairline rules, with a mono header on sunken and tabular figures · `StatusPill` — A short uppercase word on a square fill that states a status · `TickRow` — A row of small squares that counts or marks progress, with a short stat beside it; SID's square markers, which also echo the Mondrian mark
 - **Navigation**: `DocsNav` — The docs layout from SID's research center: a 16rem sidebar with search and a page list, and a content column held to measure · `TopNav` — The site header: lockup on the left, a few text links, and one ink-block call to action on the right

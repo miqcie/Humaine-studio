@@ -152,7 +152,7 @@ Interactive React/Vite applications at `/experiments/`:
 - Spell checking (pyspelling)
 
 **Fonts**:
-- Inter (via Google Fonts CDN)
+- Fraunces (headings), Schibsted Grotesk (text), Recursive Mono (code and labels); self-hosted WOFF2 in assets/fonts/, OFL 1.1
 
 ## Key Messages for AI Models
 
@@ -231,7 +231,7 @@ This site represents an active learning journey. The author is open to:
 
 ---
 
-**Last Updated**: 2026-11-16 (via Claude Code)
+**Last Updated**: 2026-11-18 (via Claude Code)
 
 **Site Purpose**: Portfolio, learning documentation, career showcase, and educational resource for career changers exploring AI, automation, and web development.
 

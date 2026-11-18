@@ -1,0 +1,90 @@
+{
+  "v": 3,
+  "attachments": {},
+  "boards": {
+    "Archive.dc.html": {
+      "expand": "fill",
+      "h": 3600,
+      "title": "Idea B · Archive (after Shahnameh Forever)",
+      "w": 1440,
+      "x": 0,
+      "y": 5640
+    },
+    "Bands.dc.html": {
+      "expand": "fill",
+      "h": 3200,
+      "title": "Idea C · Bands (Klein header, night footer)",
+      "w": 1440,
+      "x": 1520,
+      "y": 5640
+    },
+    "Dark.dc.html": {
+      "expand": "fill",
+      "h": 3000,
+      "title": "Home · desktop · Klein Night",
+      "w": 1440,
+      "x": 1520,
+      "y": 0
+    },
+    "Main.dc.html": {
+      "expand": "fill",
+      "h": 3000,
+      "title": "Home · desktop · Klein & Linen",
+      "w": 1440,
+      "x": 0,
+      "y": 0
+    },
+    "Phone.dc.html": {
+      "h": 5200,
+      "title": "Home · phone 390 · Klein & Linen",
+      "w": 390,
+      "x": 3040,
+      "y": 0
+    },
+    "Separation.dc.html": {
+      "expand": "fill",
+      "h": 3600,
+      "title": "Home · separation tweaks (open Tweaks)",
+      "w": 1440,
+      "x": 3510,
+      "y": 0,
+      "is_interactive": true
+    }
+  },
+  "createdOnFiles": {
+    "at": "2026-11-18T19:40:00Z",
+    "v": 1
+  },
+  "designSystems": [
+    {
+      "artifact": "https://claude.ai/artifact/ES1ThCt8R3T8itN88QwtRD",
+      "copiedAt": "2026-11-18T21:10:00Z",
+      "namespace": "humainestudio",
+      "title": "Humaine Studio Design System",
+      "version": "1795033730-8a96"
+    }
+  ],
+  "launch": {
+    "view": "canvas"
+  },
+  "notes": {
+    "ideas": {
+      "kind": "title1",
+      "maxW": 2960,
+      "text": "Two more directions",
+      "w": 240,
+      "x": 0,
+      "y": 5320
+    }
+  },
+  "order": [
+    "Main.dc.html",
+    "Dark.dc.html",
+    "Phone.dc.html",
+    "Archive.dc.html",
+    "Bands.dc.html",
+    "Separation.dc.html"
+  ],
+  "pages": [],
+  "title": "humaine.studio Home Mockup"
+}

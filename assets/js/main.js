@@ -57,7 +57,7 @@ class ThemeManager {
 
     updateToggleIcon() {
         if (this.themeIcon) {
-            this.themeIcon.textContent = this.currentTheme === 'dark' ? '☀️' : '🌙';
+            this.themeIcon.textContent = this.currentTheme === 'dark' ? 'Light' : 'Dark';
             this.themeToggle.setAttribute('aria-label', 
                 `Switch to ${this.currentTheme === 'dark' ? 'light' : 'dark'} mode`);
         }
