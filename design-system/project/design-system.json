@@ -1,24 +1,63 @@
 {
   "v": 3,
-  "layout": "files",
-  "createdOnFiles": { "v": 1, "at": "2026-11-18T14:40:00Z" },
-  "title": "Humaine Studio Design System",
-  "namespace": "HumaineStudio",
-  "libraries": [],
-  "sections": {},
-  "groups": ["Logos"],
   "assetGroups": {
     "Logos": {
-      "name": "Logos",
-      "tile": "m",
-      "order": ["humaine-mark.svg", "humaine-mark-vermilion.svg"],
       "files": {
-        "humaine-mark.svg": { "name": "humaine-mark.svg", "blob": "b09af8b6f68cce8fffa43576f2d9cefa", "size": 459, "type": "image/svg+xml" },
-        "humaine-mark-vermilion.svg": { "name": "humaine-mark-vermilion.svg", "blob": "bac4027d78a40d220151a70623f61dfe", "size": 459, "type": "image/svg+xml" }
-      }
+        "humaine-mark-vermilion.svg": {
+          "blob": "bac4027d78a40d220151a70623f61dfe",
+          "name": "humaine-mark-vermilion.svg",
+          "size": 459,
+          "type": "image/svg+xml"
+        },
+        "humaine-mark.svg": {
+          "blob": "b09af8b6f68cce8fffa43576f2d9cefa",
+          "name": "humaine-mark.svg",
+          "size": 459,
+          "type": "image/svg+xml"
+        },
+        "humaine-curlew.svg": {
+          "blob": "e492943b3afc280b7e50b72939c6fa40",
+          "name": "humaine-curlew.svg",
+          "size": 22048,
+          "type": "image/svg+xml"
+        },
+        "humaine-curlew-vermilion.svg": {
+          "blob": "7c37f63619be9fa78eb33e1503d6a56f",
+          "name": "humaine-curlew-vermilion.svg",
+          "size": 22048,
+          "type": "image/svg+xml"
+        }
+      },
+      "name": "Logos",
+      "order": [
+        "humaine-mark.svg",
+        "humaine-mark-vermilion.svg",
+        "humaine-curlew.svg",
+        "humaine-curlew-vermilion.svg"
+      ]
     }
   },
   "blobs": {},
-  "docs": { "readme": "project/README.md", "sections": [] },
-  "lastChange": { "by": "Chris McConnell", "at": "2026-11-18T14:40:00Z", "via": "Claude Code", "note": "First version: Klein & Linen palette, SID structure, Mondrian mark recolored to Klein blue." }
+  "createdOnFiles": {
+    "at": "2026-11-18T14:40:00Z",
+    "v": 1
+  },
+  "docs": {
+    "readme": "project/README.md",
+    "sections": []
+  },
+  "groups": [
+    "Logos"
+  ],
+  "lastChange": {
+    "at": "2026-11-18T14:35:00Z",
+    "by": "Chris McConnell",
+    "note": "Add the curlew character mark, traced from draft 5 and recolored to Klein & Linen.",
+    "via": "Claude Code"
+  },
+  "layout": "files",
+  "libraries": [],
+  "namespace": "HumaineStudio",
+  "sections": {},
+  "title": "Humaine Studio Design System"
 }

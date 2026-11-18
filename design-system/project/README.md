@@ -47,7 +47,7 @@ Humaine Studio is Chris McConnell's applied-AI studio. The system is square and 
 ## Iconography
 
 - **No icon set ships yet.** Where an icon is needed, use [Lucide](https://lucide.dev) at 1.5px stroke, 16–20px, in `currentColor`, always with a text label. This is a recommendation, not a Humaine asset.
-- **Square tick marks** (`TickRow`) are the system's own glyph: a 10px `ink` square, `klein` when on, one `chrome` square for the thing to look at.
+- **Square tick marks** (`TickRow`) are the system's own glyph: a 10px square. Solid `ink` for a count, solid `klein` for done, hollow for not yet, and one `chrome` square inside an `ink` ring for the thing to look at.
 - **Unicode glyphs:** − for negatives, → for flow, · as a separator, ⌘K for the search shortcut.
 - **No emoji, ever.**
 
@@ -56,4 +56,35 @@ Humaine Studio is Chris McConnell's applied-AI studio. The system is square and 
 - **Primary:** `assets/Logos/humaine-mark.svg`, the Mondrian block mark with a Klein blue field. **Alternate:** `humaine-mark-vermilion.svg`.
 - Both keep the original geometry. The colors moved: cream became paper, black became blue-black ink, the blue became Klein, and the yellow moved onto Klein's complement.
 - Set the name in type beside the mark with the `Lockup` component; there is no drawn wordmark file.
-- The curlew bird drafts are not part of the system.
+- **Character:** `assets/Logos/humaine-curlew.svg`, a Klein blue curlew with a chrome wing inside the same ink frame, and `humaine-curlew-vermilion.svg`, an ink curlew on vermilion. Use it for avatars, social cards, title slides and a page hero, at 32px or larger. The block mark stays the logo: header, favicon, anything smaller.
+- Regenerate the curlew with `design-system/trace_curlew.py`. It reads its colors from `tokens.json`.
+
+---
+
+## Consuming this system (generated — do not edit)
+
+Every path named below is under `project/` in this design system: read `project/api/tokens.md`, not `api/tokens.md`.
+
+10 components are documented without a runnable `components/bundle.js`: read each component’s card, and its README where it has one (`components/<Comp>/README.md`), and build to those guidelines. Tokens: the values are on `api/tokens.md`; a Slides deck or Design canvas also takes `tokens.json` by file path. On a Design canvas, also copy `tokens.css` to `project/ds/<folder>/tokens.css` in the call that installs this system, and link it in each artboard that uses this system, right after the `support.js` line and before the system’s other stylesheets: `<link rel="stylesheet" href="ds/<folder>/tokens.css">` (with one `../` in front for each folder the artboard is in).
+
+**Read, per thing:** a component’s props, parts and examples: `api/components/<Comp>.md`; token values: `api/tokens.md`; stored assets and their paths: `api/assets/<Group>.md`. After this README, fetch the cards and fonts you need in ONE message as parallel calls — none depends on another.
+
+**Two rules.** Before you use a thing — a component, a token group, an icon, an asset — read its card from the index below; a value you did not read from a card is a guess. `tokens.json`, `manifest.json` and `design-system.json` are sources for tools: hand them over. `components/<Comp>/README.md` and `assets/<Group>/README.md` are the long-form second read a card links to; `SKILL.md` and `artifact-type/` beside them are authoring guidance, not needed to consume the system.
+
+## Index (generated — do not edit)
+
+**Tokens**
+
+- `api/tokens.md` — Every token: surface, text, fill, palette, type, spacing, radius, layout. (11.8k)
+
+**Icons and assets**
+
+- `api/assets/Logos.md` — 2 files, by asset id. (1.9k)
+
+**Components** (`api/components/<Comp>.md`, 10)
+
+- **Actions**: `Button` — A solid square block that fits tight to its label, taken from SID's "highlight" button · `Link` — An underlined inline link whose underline thickness follows the text weight, and thickens on hover
+- **Content**: `CodeBlock` — A square code block on sunken, with an optional mono header that names the language or file · `Diagram` — A left-to-right flow of square nodes joined by arrows, where a solid border is a step you build and a dashed border is optional
+- **Data**: `DataTable` — A table separated by hairline rules, with a mono header on sunken and tabular figures · `StatusPill` — A short uppercase word on a square fill that states a status · `TickRow` — A row of small squares that counts or marks progress, with a short stat beside it; SID's square markers, which also echo the Mondrian mark
+- **Navigation**: `DocsNav` — The docs layout from SID's research center: a 16rem sidebar with search and a page list, and a content column held to measure · `TopNav` — The site header: lockup on the left, a few text links, and one ink-block call to action on the right
+- **Brand**: `Lockup` — The mark beside the name "Humaine Studio" set in type; the brand's signature in headers and footers
