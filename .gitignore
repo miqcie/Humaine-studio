@@ -43,3 +43,6 @@ yarn-error.log*
 .specstory/
 # AI session logs (can contain personal data)
 .specstory/
+
+# Bird reference photos (iNaturalist CC0/CC BY): fetched by design-system/birds/refs.py, credits committed
+design-system/birds/refs/

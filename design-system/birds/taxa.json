@@ -1,0 +1,212 @@
+{
+  "whimbrel": {
+    "name": "Whimbrel",
+    "inat_name": "Hudsonian Whimbrel",
+    "taxon_id": 1188213,
+    "scientific": "Numenius hudsonicus",
+    "inat": "https://www.inaturalist.org/taxa/1188213"
+  },
+  "marbled-godwit": {
+    "name": "Marbled Godwit",
+    "inat_name": "Marbled Godwit",
+    "taxon_id": 3954,
+    "scientific": "Limosa fedoa",
+    "inat": "https://www.inaturalist.org/taxa/3954"
+  },
+  "american-oystercatcher": {
+    "name": "American Oystercatcher",
+    "inat_name": "American Oystercatcher",
+    "taxon_id": 4840,
+    "scientific": "Haematopus palliatus",
+    "inat": "https://www.inaturalist.org/taxa/4840"
+  },
+  "brown-pelican": {
+    "name": "Brown Pelican",
+    "inat_name": "Brown Pelican",
+    "taxon_id": 4328,
+    "scientific": "Pelecanus occidentalis",
+    "inat": "https://www.inaturalist.org/taxa/4328"
+  },
+  "black-skimmer": {
+    "name": "Black Skimmer",
+    "inat_name": "Black Skimmer",
+    "taxon_id": 4496,
+    "scientific": "Rynchops niger",
+    "inat": "https://www.inaturalist.org/taxa/4496"
+  },
+  "eastern-bluebird": {
+    "name": "Eastern Bluebird",
+    "inat_name": "Eastern Bluebird",
+    "taxon_id": 12942,
+    "scientific": "Sialia sialis",
+    "inat": "https://www.inaturalist.org/taxa/12942"
+  },
+  "eastern-meadowlark": {
+    "name": "Eastern Meadowlark",
+    "inat_name": "Eastern Meadowlark",
+    "taxon_id": 9528,
+    "scientific": "Sturnella magna",
+    "inat": "https://www.inaturalist.org/taxa/9528"
+  },
+  "indigo-bunting": {
+    "name": "Indigo Bunting",
+    "inat_name": "Indigo Bunting",
+    "taxon_id": 10227,
+    "scientific": "Passerina cyanea",
+    "inat": "https://www.inaturalist.org/taxa/10227"
+  },
+  "northern-bobwhite": {
+    "name": "Northern Bobwhite",
+    "inat_name": "Northern Bobwhite",
+    "taxon_id": 1280,
+    "scientific": "Colinus virginianus",
+    "inat": "https://www.inaturalist.org/taxa/1280"
+  },
+  "red-headed-woodpecker": {
+    "name": "Red-headed Woodpecker",
+    "inat_name": "Red-headed Woodpecker",
+    "taxon_id": 18204,
+    "scientific": "Melanerpes erythrocephalus",
+    "inat": "https://www.inaturalist.org/taxa/18204"
+  },
+  "common-raven": {
+    "name": "Common Raven",
+    "inat_name": "Common Raven",
+    "taxon_id": 8010,
+    "scientific": "Corvus corax",
+    "inat": "https://www.inaturalist.org/taxa/8010"
+  },
+  "scarlet-tanager": {
+    "name": "Scarlet Tanager",
+    "inat_name": "Scarlet Tanager",
+    "taxon_id": 9921,
+    "scientific": "Piranga olivacea",
+    "inat": "https://www.inaturalist.org/taxa/9921"
+  },
+  "cerulean-warbler": {
+    "name": "Cerulean Warbler",
+    "inat_name": "Cerulean Warbler",
+    "taxon_id": 145232,
+    "scientific": "Setophaga cerulea",
+    "inat": "https://www.inaturalist.org/taxa/145232"
+  },
+  "peregrine-falcon": {
+    "name": "Peregrine Falcon",
+    "inat_name": "Peregrine Falcon",
+    "taxon_id": 4647,
+    "scientific": "Falco peregrinus",
+    "inat": "https://www.inaturalist.org/taxa/4647"
+  },
+  "rose-breasted-grosbeak": {
+    "name": "Rose-breasted Grosbeak",
+    "inat_name": "Rose-breasted Grosbeak",
+    "taxon_id": 10271,
+    "scientific": "Pheucticus ludovicianus",
+    "inat": "https://www.inaturalist.org/taxa/10271"
+  },
+  "american-kestrel": {
+    "name": "American Kestrel",
+    "inat_name": "American Kestrel",
+    "taxon_id": 4665,
+    "scientific": "Falco sparverius",
+    "inat": "https://www.inaturalist.org/taxa/4665"
+  },
+  "american-barn-owl": {
+    "name": "American Barn Owl",
+    "inat_name": "American Barn Owl",
+    "taxon_id": 1578502,
+    "scientific": "Tyto furcata",
+    "inat": "https://www.inaturalist.org/taxa/1578502"
+  },
+  "eastern-screech-owl": {
+    "name": "Eastern Screech-Owl",
+    "inat_name": "Eastern Screech-Owl",
+    "taxon_id": 19765,
+    "scientific": "Megascops asio",
+    "inat": "https://www.inaturalist.org/taxa/19765"
+  },
+  "belted-kingfisher": {
+    "name": "Belted Kingfisher",
+    "inat_name": "Belted Kingfisher",
+    "taxon_id": 2548,
+    "scientific": "Megaceryle alcyon",
+    "inat": "https://www.inaturalist.org/taxa/2548"
+  },
+  "wild-turkey": {
+    "name": "Wild Turkey",
+    "inat_name": "Wild Turkey",
+    "taxon_id": 906,
+    "scientific": "Meleagris gallopavo",
+    "inat": "https://www.inaturalist.org/taxa/906"
+  },
+  "hooded-warbler": {
+    "name": "Hooded Warbler",
+    "inat_name": "Hooded Warbler",
+    "taxon_id": 145229,
+    "scientific": "Setophaga citrina",
+    "inat": "https://www.inaturalist.org/taxa/145229"
+  },
+  "blackburnian-warbler": {
+    "name": "Blackburnian Warbler",
+    "inat_name": "Blackburnian Warbler",
+    "taxon_id": 145237,
+    "scientific": "Setophaga fusca",
+    "inat": "https://www.inaturalist.org/taxa/145237"
+  },
+  "black-and-white-warbler": {
+    "name": "Black-and-white Warbler",
+    "inat_name": "Black-and-white Warbler",
+    "taxon_id": 10286,
+    "scientific": "Mniotilta varia",
+    "inat": "https://www.inaturalist.org/taxa/10286"
+  },
+  "swainsons-warbler": {
+    "name": "Swainson’s Warbler",
+    "inat_name": "Swainson's Warbler",
+    "taxon_id": 10442,
+    "scientific": "Limnothlypis swainsonii",
+    "inat": "https://www.inaturalist.org/taxa/10442"
+  },
+  "ruffed-grouse": {
+    "name": "Ruffed Grouse",
+    "inat_name": "Ruffed Grouse",
+    "taxon_id": 890,
+    "scientific": "Bonasa umbellus",
+    "inat": "https://www.inaturalist.org/taxa/890"
+  },
+  "great-blue-heron": {
+    "name": "Great Blue Heron",
+    "inat_name": "Great Blue Heron",
+    "taxon_id": 4956,
+    "scientific": "Ardea herodias",
+    "inat": "https://www.inaturalist.org/taxa/4956"
+  },
+  "osprey": {
+    "name": "Osprey",
+    "inat_name": "Osprey",
+    "taxon_id": 116999,
+    "scientific": "Pandion haliaetus",
+    "inat": "https://www.inaturalist.org/taxa/116999"
+  },
+  "double-crested-cormorant": {
+    "name": "Double-crested Cormorant",
+    "inat_name": "Double-crested Cormorant",
+    "taxon_id": 1454382,
+    "scientific": "Nannopterum auritum",
+    "inat": "https://www.inaturalist.org/taxa/1454382"
+  },
+  "wood-duck": {
+    "name": "Wood Duck",
+    "inat_name": "Wood Duck",
+    "taxon_id": 7107,
+    "scientific": "Aix sponsa",
+    "inat": "https://www.inaturalist.org/taxa/7107"
+  },
+  "chimney-swift": {
+    "name": "Chimney Swift",
+    "inat_name": "Chimney Swift",
+    "taxon_id": 6571,
+    "scientific": "Chaetura pelagica",
+    "inat": "https://www.inaturalist.org/taxa/6571"
+  }
+}

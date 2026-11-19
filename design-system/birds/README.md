@@ -33,6 +33,13 @@ You need `rsvg-convert` (`brew install librsvg`). The labels are converted to ou
 - **Navy.** The icons use `#0B0F24` (Klein Night ground), as the brief's palette table gives. The live logo frame is `#0E1230` (`mark-line`). To change it, edit `N` in `species.py`.
 - **Weakest forms:** American Kestrel (the face reads as a helmet), Peregrine Falcon and Osprey (similar structure, told apart only by crown color), Ruffed Grouse (small crest).
 
+## References and the bake-off (2026-11-19)
+
+- `refs.py` resolves the 30 species on iNaturalist (`taxa.json`) and fetches up to 12 **CC0 or CC BY** photos per species into `refs/` (git-ignored), with a numbered contact sheet. `reference-credits.csv` (committed) credits every photo. NC, ND and SA licenses are refused.
+- `references.json` records the chosen photo, the Audubon page, measured ratios (for example the Black Skimmer's lower mandible is 1.45 times the head length) and the field marks for each pilot bird. Audubon photos are read only, never downloaded, traced or given to a model.
+- `trace_icon.py` turns any raster bird into the house frame and exact palette (it finds the source frame by itself).
+- `bakeoff/run.sh check | gen | trace | sheets` runs the blind generator test on 6 pilot birds: Recraft V4 Styles vector, Recraft V4 Styles raster, and OpenAI gpt-image, with the same style references, palette and prompt. A ledger stops spending at $5. `key.json` maps the sheet letters to contestants; do not open it before picking.
+
 ## Not done yet (after a direction is chosen)
 
 Dark Klein Night versions, clean master SVGs (the keylines are clipped strokes now; expand them to paths), transparent PNGs, separate favicon designs at 16, 32, 64 and 128 px, and ICO files.
