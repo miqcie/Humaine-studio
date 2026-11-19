@@ -6,7 +6,7 @@
   run.sh trace                      normalize every raw output with trace_icon.py
   run.sh sheets                     blind judging sheets + key.json
 
-Contestants: R-vec (Recraft V4 Styles, SVG), R-ras (Recraft V4 Styles, raster), O-ras (OpenAI gpt-image, raster).
+Contestants: R-vec (Recraft V4 Styles, SVG), R-ras (Recraft V4 Styles, raster), O-ras (OpenAI image generation via Codex CLI).
 All three get the same style references, palette and prompt; all outputs go through the same tracer.
 """
 import base64
@@ -35,7 +35,7 @@ LEDGER, STYLE = HERE / "ledger.json", HERE / "style.json"
 BUDGET = 5.00
 SEEDS = [11, 23]
 PILOTS = ["black-skimmer", "american-kestrel", "brown-pelican", "northern-bobwhite", "eastern-screech-owl", "great-blue-heron"]
-COST = {"R-vec": 0.05, "R-ras": 0.035, "O-ras": 0.07, "style": 0.005}  # O-ras: medium quality 1024 plus image inputs, estimate
+COST = {"R-vec": 0.05, "R-ras": 0.035, "O-ras": 0.0, "style": 0.005}  # O-ras runs on the ChatGPT plan via Codex
 RECRAFT = "https://external.api.recraft.ai/v1"
 PALETTE = [S.N, S.F, S.Y, S.R, S.B, S.M]
 
@@ -135,14 +135,17 @@ def data_url(b):
     return "data:image/png;base64," + base64.b64encode(b).decode()
 
 
-def recraft_style(token):
-    if STYLE.exists():
-        return json.loads(STYLE.read_text())["style_id"]
-    spend("recraft style", COST["style"])
-    r = call(f"{RECRAFT}/styles", token=token, multipart=[("model", "recraftv4_styles")] + [("files", (f"ref{i}.png", b)) for i, b in enumerate(style_refs())])
-    record("recraft style", COST["style"])
-    STYLE.write_text(json.dumps({"style_id": r["id"], "credits": r.get("credits")}, indent=1) + "\n")
-    return r["id"]
+def recraft_style(token, model):
+    """One Recraft style per model (a raster style cannot drive the vector model)."""
+    styles = json.loads(STYLE.read_text()) if STYLE.exists() else {}
+    styles = styles if "style_id" not in styles else {"recraftv4_styles": styles}  # first run stored a single style
+    if model not in styles:
+        spend("recraft style", COST["style"])
+        r = call(f"{RECRAFT}/styles", token=token, multipart=[("model", model)] + [("files", (f"ref{i}.png", b)) for i, b in enumerate(style_refs())])
+        record(f"recraft style {model}", COST["style"])
+        styles[model] = {"style_id": r["id"], "credits": r.get("credits")}
+        STYLE.write_text(json.dumps(styles, indent=1) + "\n")
+    return styles[model]["style_id"]
 
 
 # ---------- contestants ----------
@@ -150,8 +153,8 @@ def recraft_style(token):
 def gen_recraft(slug, seed, vector):
     token = os.environ["RECRAFT_API_TOKEN"]
     key = "R-vec" if vector else "R-ras"
-    body = {"prompt": prompt(slug), "model": "recraftv4_styles_vector" if vector else "recraftv4_styles",
-            "style_id": recraft_style(token), "size": "1:1", "random_seed": seed,
+    model = "recraftv4_styles_vector" if vector else "recraftv4_styles"
+    body = {"prompt": prompt(slug), "model": model, "style_id": recraft_style(token, model), "size": "1:1", "random_seed": seed,
             "controls": {"colors": [{"rgb": list(trace_icon.rgb(c))} for c in PALETTE], "background_color": {"rgb": list(trace_icon.rgb(S.F))}}}
     spend(f"{key} {slug} {seed}", COST[key])
     r = call(f"{RECRAFT}/images/generations", token=token, body=body)
@@ -160,13 +163,24 @@ def gen_recraft(slug, seed, vector):
 
 
 def gen_openai(slug, seed):
-    token = os.environ.get("OPENAI_API_KEY", "")
-    fields = [("model", "gpt-image-1"), ("prompt", prompt(slug) + f"\n(variation {seed})"), ("size", "1024x1024"), ("quality", "medium")]
-    fields += [("image[]", (f"ref{i}.png", b)) for i, b in enumerate(style_refs())]
-    spend(f"O-ras {slug} {seed}", COST["O-ras"])
-    r = call("https://api.openai.com/v1/images/edits", token=token, multipart=fields)
-    record(f"O-ras {slug} {seed}", COST["O-ras"])
-    return base64.b64decode(r["data"][0]["b64_json"]), "png", {k: v for k, v in fields if not isinstance(v, tuple)}, r.get("usage")
+    """OpenAI image generation through the local Codex CLI (ChatGPT plan; no API key, no dollar cost here)."""
+    import tempfile
+    style = [str(RAW / "_style" / f"{n}.png") for n in ("curlew", "wood-duck", "great-blue-heron", "hooded-warbler")]
+    style_refs()
+    ask = ("Use your built-in image generation tool to create ONE square 1024x1024 image. The attached images are STYLE "
+           "references only (frame, flat shapes, palette); do not copy their birds. Save the generated PNG into the current "
+           f"working directory as out.png and reply with only its path. This is variation {seed}; vary the composition a little. "
+           f"Image brief:\n{prompt(slug)}")
+    with tempfile.TemporaryDirectory() as td:
+        cmd = ["codex", "exec", "--ignore-user-config", "--skip-git-repo-check", "--sandbox", "workspace-write"]
+        cmd += [a for f in style for a in ("-i", f)]  # -i takes many values, so the prompt goes in on stdin
+        r = subprocess.run(cmd, cwd=td, input=ask, capture_output=True, text=True, timeout=900)
+        out = pathlib.Path(td) / "out.png"
+        if r.returncode or not out.exists():
+            raise SystemExit(f"codex {slug} {seed}: exit {r.returncode}, no image. {r.stderr[-300:]}")
+        img = out.read_bytes()
+    record(f"O-ras {slug} {seed}", 0.0)
+    return img, "png", {"via": "codex exec (ChatGPT plan)", "prompt": ask}, "ChatGPT plan"
 
 
 CONTESTANTS = {"R-vec": lambda s, n: gen_recraft(s, n, True), "R-ras": lambda s, n: gen_recraft(s, n, False), "O-ras": gen_openai}
@@ -204,7 +218,7 @@ def check():
 def trace():
     stats = {}
     for f in sorted(RAW.glob("*/*-*.*")):
-        if f.parent.name.startswith("_") or f.suffix not in (".png", ".svg"):
+        if f.parent.name.startswith("_") or f.suffix not in (".png", ".svg") or f.name.endswith(".render.png"):
             continue
         src = f
         if f.suffix == ".svg":  # rasterize the vector first; the raw SVG is kept as-is for comparison

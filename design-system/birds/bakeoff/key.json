@@ -1,0 +1,50 @@
+{
+ "black-skimmer": {
+  "A": "R-ras-11",
+  "B": "R-vec-23",
+  "C": "O-ras-11",
+  "D": "O-ras-23",
+  "E": "R-vec-11",
+  "F": "R-ras-23"
+ },
+ "american-kestrel": {
+  "A": "R-vec-23",
+  "B": "O-ras-23",
+  "C": "O-ras-11",
+  "D": "R-ras-11",
+  "E": "R-ras-23",
+  "F": "R-vec-11"
+ },
+ "brown-pelican": {
+  "A": "R-vec-23",
+  "B": "R-ras-23",
+  "C": "R-ras-11",
+  "D": "O-ras-23",
+  "E": "O-ras-11",
+  "F": "R-vec-11"
+ },
+ "northern-bobwhite": {
+  "A": "R-vec-23",
+  "B": "O-ras-23",
+  "C": "R-ras-11",
+  "D": "R-ras-23",
+  "E": "R-vec-11",
+  "F": "O-ras-11"
+ },
+ "eastern-screech-owl": {
+  "A": "R-ras-23",
+  "B": "R-vec-23",
+  "C": "O-ras-11",
+  "D": "O-ras-23",
+  "E": "R-vec-11",
+  "F": "R-ras-11"
+ },
+ "great-blue-heron": {
+  "A": "R-vec-11",
+  "B": "R-ras-11",
+  "C": "O-ras-11",
+  "D": "R-ras-23",
+  "E": "R-vec-23",
+  "F": "O-ras-23"
+ }
+}
