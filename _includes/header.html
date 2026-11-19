@@ -2,14 +2,13 @@
     <nav class="nav">
         <a href="{{ '/' | relative_url }}" class="nav-logo hs-lockup"><img src="{{ '/assets/images/humaine-curlew.svg' | relative_url }}" alt="" width="32" height="32">{{ site.title }}</a>
         
-        <!-- Hamburger menu button (mobile only) -->
-        <input type="checkbox" id="nav-toggle" class="nav-toggle">
-        <label for="nav-toggle" class="nav-toggle-label">
+        <!-- Hamburger menu button (mobile only); main.js toggles aria-expanded -->
+        <button type="button" class="nav-toggle-label" aria-expanded="false" aria-controls="nav-menu" aria-label="Menu">
             <span></span>
-        </label>
-        
+        </button>
+
         <!-- Navigation menu -->
-        <div class="nav-menu">
+        <div class="nav-menu" id="nav-menu">
             <div class="nav-links">
                 <a href="{{ '/#philosophy' | relative_url }}" class="nav-link">Philosophy</a>
                 <a href="{{ '/#research' | relative_url }}" class="nav-link">Research</a>
@@ -19,9 +18,10 @@
             </div>
         </div>
         
-        <!-- Dark mode toggle -->
-        <button class="theme-toggle" aria-label="Toggle dark mode">
-            <span class="theme-toggle-icon">Dark</span>
+        <!-- Dark mode switch; main.js sets aria-checked -->
+        <button type="button" class="theme-toggle" role="switch" aria-checked="false" aria-label="Dark mode">
+            <svg class="theme-toggle-moon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false"><path d="M13.5 10.2A6 6 0 0 1 5.8 2.5a6 6 0 1 0 7.7 7.7z"/></svg>
+            <span class="theme-toggle-track"><span class="theme-toggle-thumb"></span></span>
         </button>
     </nav>
 </header>

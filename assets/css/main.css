@@ -76,27 +76,58 @@ body {
     color: var(--text-dark);
 }
 
-/* Theme toggle button */
+/* Theme switch: square track (the system has no radius); the thumb slides right
+   and the track fills Klein when dark mode is on, so state is not color alone. */
 .theme-toggle {
-    background: none;
-    border: 1px solid var(--border-color);
-    border-radius: 0;
-    padding: 8px 12px;
-    cursor: pointer;
-    font-size: 14px;
-    color: var(--text-light);
-    transition: all 0.2s ease;
     margin-left: auto;
-    min-width: 44px;
     min-height: 44px;
+    padding: 0 4px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    gap: 8px;
+    background: none;
+    border: 0;
+    border-radius: 0;
+    color: var(--ink-soft);
+    cursor: pointer;
 }
 
 .theme-toggle:hover {
-    color: var(--text-dark);
-    border-color: var(--text-light);
+    color: var(--ink);
+}
+
+.theme-toggle-moon {
+    flex: none;
+    fill: currentColor;
+}
+
+.theme-toggle-track {
+    position: relative;
+    box-sizing: border-box;
+    width: 36px;
+    height: 20px;
+    border: 2px solid currentColor;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.theme-toggle-thumb {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 12px;
+    height: 12px;
+    background: currentColor;
+    transition: transform 0.15s ease;
+}
+
+.theme-toggle[aria-checked="true"] .theme-toggle-track {
+    background: var(--klein);
+    border-color: var(--klein);
+}
+
+.theme-toggle[aria-checked="true"] .theme-toggle-thumb {
+    background: var(--surface);
+    transform: translateX(16px);
 }
 
 .theme-toggle:focus-visible {
@@ -402,14 +433,14 @@ body {
 }
 
 /* Hamburger menu styles */
-.nav-toggle {
-    display: none;
-}
-
 .nav-toggle-label {
     position: relative;
     height: 44px;
     width: 44px;
+    padding: 0;
+    background: none;
+    border: 0;
+    border-radius: 0;
     cursor: pointer;
     display: none;
     align-items: center;
@@ -444,17 +475,17 @@ body {
     top: -6px;
 }
 
-/* Hamburger animation when checked */
-.nav-toggle:checked + .nav-toggle-label span {
+/* Hamburger turns into an X while the menu is open */
+.nav-toggle-label[aria-expanded="true"] span {
     background: transparent;
 }
 
-.nav-toggle:checked + .nav-toggle-label span::before {
+.nav-toggle-label[aria-expanded="true"] span::before {
     transform: rotate(45deg);
     top: 0;
 }
 
-.nav-toggle:checked + .nav-toggle-label span::after {
+.nav-toggle-label[aria-expanded="true"] span::after {
     transform: rotate(-45deg);
     top: 0;
 }
@@ -474,26 +505,19 @@ body {
         position: relative;
         justify-content: space-between;
         align-items: center;
+        gap: 8px;
     }
-    
+
+    /* Header row on phones: logo, then theme switch, then menu button */
+    .theme-toggle {
+        order: 1;
+    }
+
     .nav-toggle-label {
         display: flex;
-        order: 1;
-        margin-right: 60px; /* Space for theme toggle */
+        order: 2;
     }
-    
-    .theme-toggle {
-        position: fixed;
-        top: 16px;
-        right: 16px;
-        transform: none;
-        margin-left: 0;
-        min-width: 44px;
-        min-height: 44px;
-        padding: 10px;
-        z-index: 1001;
-    }
-    
+
     .nav-menu {
         position: absolute;
         top: 100%;
@@ -503,12 +527,16 @@ body {
         border-top: 1px solid var(--border-color);
         transform: scale(1, 0);
         transform-origin: top;
-        transition: transform 0.3s ease;
+        /* visibility keeps closed-menu links out of the tab order; it flips after the close animation */
+        visibility: hidden;
+        transition: transform 0.3s ease, visibility 0s linear 0.3s;
         z-index: 1000;
     }
-    
-    .nav-toggle:checked ~ .nav-menu {
+
+    .nav-menu.is-open {
         transform: scale(1, 1);
+        visibility: visible;
+        transition-delay: 0s;
     }
     
     .nav-links {
@@ -650,13 +678,6 @@ body {
     scrollbar-width: none;
     /* Fade the cut-off edge so the row reads as scrollable */
     mask-image: linear-gradient(to right, #000 calc(100% - 2rem), transparent);
-}
-
-/* The theme toggle is fixed top-right below 768px; keep the sticky bar clear of it */
-@media (max-width: 768px) {
-    .showcase-bar {
-        padding-inline-end: 3.5rem;
-    }
 }
 
 .showcase-filter label,

@@ -30,8 +30,7 @@ class ThemeManager {
 
     setupToggle() {
         this.themeToggle = document.querySelector('.theme-toggle');
-        this.themeIcon = document.querySelector('.theme-toggle-icon');
-        
+
         if (this.themeToggle) {
             this.updateToggleIcon();
             this.themeToggle.addEventListener('click', () => this.toggleTheme());
@@ -56,10 +55,8 @@ class ThemeManager {
     }
 
     updateToggleIcon() {
-        if (this.themeIcon) {
-            this.themeIcon.textContent = this.currentTheme === 'dark' ? 'Light' : 'Dark';
-            this.themeToggle.setAttribute('aria-label', 
-                `Switch to ${this.currentTheme === 'dark' ? 'light' : 'dark'} mode`);
+        if (this.themeToggle) {
+            this.themeToggle.setAttribute('aria-checked', String(this.currentTheme === 'dark'));
         }
     }
 
@@ -77,6 +74,24 @@ class ThemeManager {
 
 // Initialize theme manager
 const themeManager = new ThemeManager();
+
+// Mobile menu: a real button, so keyboard and screen-reader users can open it
+(() => {
+    const button = document.querySelector('.nav-toggle-label');
+    const menu = document.getElementById('nav-menu');
+    if (!button || !menu) return;
+    const isOpen = () => button.getAttribute('aria-expanded') === 'true';
+    const setOpen = (open) => {
+        button.setAttribute('aria-expanded', String(open));
+        menu.classList.toggle('is-open', open);
+    };
+    button.addEventListener('click', () => setOpen(!isOpen()));
+    // Nav links are mostly same-page anchors, so close the menu after a tap
+    menu.addEventListener('click', (e) => { if (e.target.closest('a')) setOpen(false); });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && isOpen()) { setOpen(false); button.focus(); }
+    });
+})();
 
 // Smooth scrolling for navigation links
 document.addEventListener('DOMContentLoaded', function() {
