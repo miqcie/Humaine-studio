@@ -1,0 +1,362 @@
+{
+ "american-barn-owl": {
+  "frame": true,
+  "colors": 3,
+  "share": {
+   "#FAF6EE": 0.588,
+   "#0B0F24": 0.309,
+   "#F7B902": 0.095,
+   "#C7301C": 0.002,
+   "#002FA7": 0.0,
+   "#5E6178": 0.006
+  }
+ },
+ "american-kestrel": {
+  "frame": true,
+  "colors": 4,
+  "share": {
+   "#FAF6EE": 0.585,
+   "#0B0F24": 0.277,
+   "#F7B902": 0.088,
+   "#C7301C": 0.044,
+   "#002FA7": 0.0,
+   "#5E6178": 0.005
+  }
+ },
+ "american-oystercatcher": {
+  "frame": true,
+  "colors": 3,
+  "share": {
+   "#FAF6EE": 0.714,
+   "#0B0F24": 0.23,
+   "#F7B902": 0.0,
+   "#C7301C": 0.053,
+   "#002FA7": 0.0,
+   "#5E6178": 0.003
+  }
+ },
+ "belted-kingfisher": {
+  "frame": true,
+  "colors": 4,
+  "share": {
+   "#FAF6EE": 0.669,
+   "#0B0F24": 0.271,
+   "#F7B902": 0.0,
+   "#C7301C": 0.0,
+   "#002FA7": 0.051,
+   "#5E6178": 0.008
+  }
+ },
+ "black-and-white-warbler": {
+  "frame": true,
+  "colors": 3,
+  "share": {
+   "#FAF6EE": 0.7,
+   "#0B0F24": 0.282,
+   "#F7B902": 0.0,
+   "#C7301C": 0.0,
+   "#002FA7": 0.0,
+   "#5E6178": 0.018
+  }
+ },
+ "black-skimmer": {
+  "frame": true,
+  "colors": 3,
+  "share": {
+   "#FAF6EE": 0.812,
+   "#0B0F24": 0.138,
+   "#F7B902": 0.0,
+   "#C7301C": 0.045,
+   "#002FA7": 0.0,
+   "#5E6178": 0.004
+  }
+ },
+ "blackburnian-warbler": {
+  "frame": true,
+  "colors": 3,
+  "share": {
+   "#FAF6EE": 0.501,
+   "#0B0F24": 0.233,
+   "#F7B902": 0.258,
+   "#C7301C": 0.004,
+   "#002FA7": 0.0,
+   "#5E6178": 0.005
+  }
+ },
+ "brown-pelican": {
+  "frame": true,
+  "colors": 4,
+  "share": {
+   "#FAF6EE": 0.611,
+   "#0B0F24": 0.213,
+   "#F7B902": 0.03,
+   "#C7301C": 0.0,
+   "#002FA7": 0.0,
+   "#5E6178": 0.146
+  }
+ },
+ "cerulean-warbler": {
+  "frame": true,
+  "colors": 3,
+  "share": {
+   "#FAF6EE": 0.696,
+   "#0B0F24": 0.036,
+   "#F7B902": 0.0,
+   "#C7301C": 0.0,
+   "#002FA7": 0.258,
+   "#5E6178": 0.009
+  }
+ },
+ "chimney-swift": {
+  "frame": true,
+  "colors": 3,
+  "share": {
+   "#FAF6EE": 0.783,
+   "#0B0F24": 0.209,
+   "#F7B902": 0.0,
+   "#C7301C": 0.0,
+   "#002FA7": 0.0,
+   "#5E6178": 0.007
+  }
+ },
+ "common-raven": {
+  "frame": true,
+  "colors": 3,
+  "share": {
+   "#FAF6EE": 0.475,
+   "#0B0F24": 0.517,
+   "#F7B902": 0.0,
+   "#C7301C": 0.0,
+   "#002FA7": 0.0,
+   "#5E6178": 0.008
+  }
+ },
+ "double-crested-cormorant": {
+  "frame": true,
+  "colors": 4,
+  "share": {
+   "#FAF6EE": 0.668,
+   "#0B0F24": 0.233,
+   "#F7B902": 0.032,
+   "#C7301C": 0.0,
+   "#002FA7": 0.0,
+   "#5E6178": 0.067
+  }
+ },
+ "eastern-bluebird": {
+  "frame": true,
+  "colors": 4,
+  "share": {
+   "#FAF6EE": 0.519,
+   "#0B0F24": 0.019,
+   "#F7B902": 0.0,
+   "#C7301C": 0.208,
+   "#002FA7": 0.25,
+   "#5E6178": 0.004
+  }
+ },
+ "eastern-meadowlark": {
+  "frame": true,
+  "colors": 4,
+  "share": {
+   "#FAF6EE": 0.511,
+   "#0B0F24": 0.243,
+   "#F7B902": 0.238,
+   "#C7301C": 0.003,
+   "#002FA7": 0.0,
+   "#5E6178": 0.004
+  }
+ },
+ "eastern-screech-owl": {
+  "frame": true,
+  "colors": 3,
+  "share": {
+   "#FAF6EE": 0.55,
+   "#0B0F24": 0.315,
+   "#F7B902": 0.0,
+   "#C7301C": 0.0,
+   "#002FA7": 0.0,
+   "#5E6178": 0.135
+  }
+ },
+ "great-blue-heron": {
+  "frame": true,
+  "colors": 5,
+  "share": {
+   "#FAF6EE": 0.73,
+   "#0B0F24": 0.148,
+   "#F7B902": 0.024,
+   "#C7301C": 0.001,
+   "#002FA7": 0.087,
+   "#5E6178": 0.01
+  }
+ },
+ "hooded-warbler": {
+  "frame": true,
+  "colors": 3,
+  "share": {
+   "#FAF6EE": 0.485,
+   "#0B0F24": 0.38,
+   "#F7B902": 0.129,
+   "#C7301C": 0.001,
+   "#002FA7": 0.0,
+   "#5E6178": 0.004
+  }
+ },
+ "indigo-bunting": {
+  "frame": true,
+  "colors": 3,
+  "share": {
+   "#FAF6EE": 0.54,
+   "#0B0F24": 0.022,
+   "#F7B902": 0.0,
+   "#C7301C": 0.0,
+   "#002FA7": 0.435,
+   "#5E6178": 0.004
+  }
+ },
+ "marbled-godwit": {
+  "frame": true,
+  "colors": 4,
+  "share": {
+   "#FAF6EE": 0.738,
+   "#0B0F24": 0.158,
+   "#F7B902": 0.0,
+   "#C7301C": 0.02,
+   "#002FA7": 0.0,
+   "#5E6178": 0.084
+  }
+ },
+ "northern-bobwhite": {
+  "frame": true,
+  "colors": 3,
+  "share": {
+   "#FAF6EE": 0.593,
+   "#0B0F24": 0.22,
+   "#F7B902": 0.0,
+   "#C7301C": 0.0,
+   "#002FA7": 0.0,
+   "#5E6178": 0.186
+  }
+ },
+ "osprey": {
+  "frame": true,
+  "colors": 3,
+  "share": {
+   "#FAF6EE": 0.667,
+   "#0B0F24": 0.228,
+   "#F7B902": 0.0,
+   "#C7301C": 0.0,
+   "#002FA7": 0.0,
+   "#5E6178": 0.105
+  }
+ },
+ "peregrine-falcon": {
+  "frame": true,
+  "colors": 3,
+  "share": {
+   "#FAF6EE": 0.622,
+   "#0B0F24": 0.228,
+   "#F7B902": 0.141,
+   "#C7301C": 0.0,
+   "#002FA7": 0.0,
+   "#5E6178": 0.008
+  }
+ },
+ "red-headed-woodpecker": {
+  "frame": true,
+  "colors": 3,
+  "share": {
+   "#FAF6EE": 0.67,
+   "#0B0F24": 0.124,
+   "#F7B902": 0.001,
+   "#C7301C": 0.203,
+   "#002FA7": 0.0,
+   "#5E6178": 0.002
+  }
+ },
+ "rose-breasted-grosbeak": {
+  "frame": true,
+  "colors": 3,
+  "share": {
+   "#FAF6EE": 0.601,
+   "#0B0F24": 0.33,
+   "#F7B902": 0.0,
+   "#C7301C": 0.063,
+   "#002FA7": 0.0,
+   "#5E6178": 0.007
+  }
+ },
+ "ruffed-grouse": {
+  "frame": true,
+  "colors": 3,
+  "share": {
+   "#FAF6EE": 0.667,
+   "#0B0F24": 0.303,
+   "#F7B902": 0.0,
+   "#C7301C": 0.0,
+   "#002FA7": 0.0,
+   "#5E6178": 0.03
+  }
+ },
+ "scarlet-tanager": {
+  "frame": true,
+  "colors": 3,
+  "share": {
+   "#FAF6EE": 0.473,
+   "#0B0F24": 0.18,
+   "#F7B902": 0.001,
+   "#C7301C": 0.346,
+   "#002FA7": 0.0,
+   "#5E6178": 0.001
+  }
+ },
+ "swainsons-warbler": {
+  "frame": true,
+  "colors": 3,
+  "share": {
+   "#FAF6EE": 0.677,
+   "#0B0F24": 0.004,
+   "#F7B902": 0.0,
+   "#C7301C": 0.0,
+   "#002FA7": 0.0,
+   "#5E6178": 0.319
+  }
+ },
+ "whimbrel": {
+  "frame": true,
+  "colors": 4,
+  "share": {
+   "#FAF6EE": 0.68,
+   "#0B0F24": 0.207,
+   "#F7B902": 0.104,
+   "#C7301C": 0.001,
+   "#002FA7": 0.0,
+   "#5E6178": 0.008
+  }
+ },
+ "wild-turkey": {
+  "frame": true,
+  "colors": 3,
+  "share": {
+   "#FAF6EE": 0.64,
+   "#0B0F24": 0.202,
+   "#F7B902": 0.001,
+   "#C7301C": 0.156,
+   "#002FA7": 0.0,
+   "#5E6178": 0.001
+  }
+ },
+ "wood-duck": {
+  "frame": true,
+  "colors": 3,
+  "share": {
+   "#FAF6EE": 0.549,
+   "#0B0F24": 0.287,
+   "#F7B902": 0.0,
+   "#C7301C": 0.156,
+   "#002FA7": 0.0,
+   "#5E6178": 0.008
+  }
+ }
+}
