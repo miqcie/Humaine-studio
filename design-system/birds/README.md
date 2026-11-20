@@ -40,6 +40,12 @@ You need `rsvg-convert` (`brew install librsvg`). The labels are converted to ou
 - `trace_icon.py` turns any raster bird into the house frame and exact palette (it finds the source frame by itself).
 - `bakeoff/run.sh check | gen | trace | sheets` runs the blind generator test on 6 pilot birds: Recraft V4 Styles vector, Recraft V4 Styles raster, and OpenAI gpt-image, with the same style references, palette and prompt. A ledger stops spending at $5. `key.json` maps the sheet letters to contestants; do not open it before picking. Vote on the private page https://claude.ai/artifact/VgN4nGuFEpHpV1ST72KdDi (built by `bakeoff/vote_page.py` from `vote_template.html`; votes land in its `votes` collection).
 
+## Likeness check (TypeSafe Jev, 2026-11-20)
+
+- `qa.sh run openai30|bakeoff36`, then `qa.sh report SET` and `qa.sh calibrate`. It asks Jev image questions per icon: species (30-way Choice at 480 px and 64 px), one Noul per brief feature, colors and head shape true to species, style match to the curlew (Score), and a bill/head Box. Code turns the answers into PASS / UNSURE / FLAG and a likeness score. Raw answers are kept in `qa/_cache/`.
+- Calibration (`qa/CALIBRATION.md`): it ranked Chris's blind best pick first for 5 of 5 birds and flagged all 6 rejected screech-owls; it flagged 6 of 6 known OpenAI errors (5 of 6 from generic questions alone), but also 11 of the other 24 icons, mostly "colors not true to species", which the deliberate palette causes. Use it to rank variations before a vote, not as a pass/fail gate.
+- Images and Box are experimental at TypeSafe. The key is `op://Developer Vault/TYPESAFE_API_KEY_CLAUDE/credential`; requests need the header `TypeSafe-Danger-Zone-Images: true`.
+
 ## Not done yet (after a direction is chosen)
 
 Dark Klein Night versions, clean master SVGs (the keylines are clipped strokes now; expand them to paths), transparent PNGs, separate favicon designs at 16, 32, 64 and 128 px, and ICO files.

@@ -8,3 +8,5 @@
 - **Do not add rules that are not in the brief.** "Pale plumage never touches the field" added keylines and rings. The brief does not ask for it, and negative-space white lines read better.
 - **Checks prove compliance, not likeness.** Palette, clearance and label asserts passing is not progress on the art. Look at the images at 96 px against references before reporting.
 - **Show the style pilots before scaling up.** Style is the user's decision. Present 3 to 6 pilots, then draw the rest.
+- **An image judge ranks better than it gates.** TypeSafe Jev put Chris's blind best pick first for 5 of 5 birds, but flagged 11 of 24 good icons, mostly "colors not true to species": a fixed brand palette looks wrong next to real plumage. Use it to sort variations; tell the model about the palette before trusting color questions.
+- **Keep calibration questions generic.** The "avoid" lists were written from the review of the known errors, so hits on them are partly built in. Report the verdict without them too (5 of 6 versus 6 of 6).

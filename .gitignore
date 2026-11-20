@@ -49,3 +49,4 @@ design-system/birds/refs/
 design-system/birds/bakeoff/raw/*/*.png
 !design-system/birds/bakeoff/raw/_style/*.png
 design-system/birds/bakeoff/vote/
+design-system/birds/qa/_cache/renders/

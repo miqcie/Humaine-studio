@@ -1,0 +1,645 @@
+[
+ {
+  "id": "concepts/openai-traced/american-barn-owl.svg",
+  "slug": "american-barn-owl",
+  "variant": "american-barn-owl",
+  "verdict": "FLAG",
+  "flag_generic": true,
+  "reasons": [
+   "colors not true to species",
+   "head shape not true to species"
+  ],
+  "unsure": [
+   "small central bill"
+  ],
+  "p_species": 0.97,
+  "p_species_64": 0.96,
+  "top": "american_barn_owl",
+  "style": 2.48,
+  "likeness": 0.72,
+  "bill_head": null,
+  "ref_ratio": null,
+  "matches_reference": null
+ },
+ {
+  "id": "concepts/openai-traced/american-kestrel.svg",
+  "slug": "american-kestrel",
+  "variant": "american-kestrel",
+  "verdict": "FLAG",
+  "flag_generic": true,
+  "reasons": [
+   "reads as red headed woodpecker (0.36)",
+   "missing: two dark vertical face stripes",
+   "shows: toucan-like shapes",
+   "colors not true to species",
+   "head shape not true to species"
+  ],
+  "unsure": [
+   "small hooked bill",
+   "only one face stripe",
+   "large or long bill",
+   "a crest"
+  ],
+  "p_species": 0.04,
+  "p_species_64": 0.13,
+  "top": "red_headed_woodpecker",
+  "style": 2.77,
+  "likeness": 0.188,
+  "bill_head": 0.26,
+  "ref_ratio": 0.25,
+  "matches_reference": 0.04
+ },
+ {
+  "id": "concepts/openai-traced/american-oystercatcher.svg",
+  "slug": "american-oystercatcher",
+  "variant": "american-oystercatcher",
+  "verdict": "UNSURE",
+  "flag_generic": false,
+  "reasons": [],
+  "unsure": [
+   "head shape"
+  ],
+  "p_species": 1.0,
+  "p_species_64": 1.0,
+  "top": "american_oystercatcher",
+  "style": 2.82,
+  "likeness": 0.91,
+  "bill_head": 0.93,
+  "ref_ratio": null,
+  "matches_reference": null
+ },
+ {
+  "id": "concepts/openai-traced/belted-kingfisher.svg",
+  "slug": "belted-kingfisher",
+  "variant": "belted-kingfisher",
+  "verdict": "UNSURE",
+  "flag_generic": false,
+  "reasons": [],
+  "unsure": [
+   "colors",
+   "head shape"
+  ],
+  "p_species": 0.95,
+  "p_species_64": 0.94,
+  "top": "belted_kingfisher",
+  "style": 2.48,
+  "likeness": 0.85,
+  "bill_head": 0.33,
+  "ref_ratio": null,
+  "matches_reference": null
+ },
+ {
+  "id": "concepts/openai-traced/black-and-white-warbler.svg",
+  "slug": "black-and-white-warbler",
+  "variant": "black-and-white-warbler",
+  "verdict": "FLAG",
+  "flag_generic": true,
+  "reasons": [
+   "reads as wood duck (0.46)"
+  ],
+  "unsure": [
+   "head shape"
+  ],
+  "p_species": 0.4,
+  "p_species_64": 0.52,
+  "top": "wood_duck",
+  "style": 2.31,
+  "likeness": 0.714,
+  "bill_head": 0.22,
+  "ref_ratio": null,
+  "matches_reference": null
+ },
+ {
+  "id": "concepts/openai-traced/black-skimmer.svg",
+  "slug": "black-skimmer",
+  "variant": "black-skimmer",
+  "verdict": "UNSURE",
+  "flag_generic": false,
+  "reasons": [],
+  "unsure": [
+   "colors",
+   "head shape",
+   "bill longer than 1.5x head"
+  ],
+  "p_species": 0.9,
+  "p_species_64": 0.9,
+  "top": "black_skimmer",
+  "style": 2.37,
+  "likeness": 0.676,
+  "bill_head": 0.52,
+  "ref_ratio": 1.45,
+  "matches_reference": 0.4
+ },
+ {
+  "id": "concepts/openai-traced/blackburnian-warbler.svg",
+  "slug": "blackburnian-warbler",
+  "variant": "blackburnian-warbler",
+  "verdict": "FLAG",
+  "flag_generic": true,
+  "reasons": [
+   "reads as eastern meadowlark (0.33)",
+   "head shape not true to species"
+  ],
+  "unsure": [
+   "fine pointed bill",
+   "colors"
+  ],
+  "p_species": 0.11,
+  "p_species_64": 0.14,
+  "top": "eastern_meadowlark",
+  "style": 2.82,
+  "likeness": 0.579,
+  "bill_head": 0.22,
+  "ref_ratio": null,
+  "matches_reference": null
+ },
+ {
+  "id": "concepts/openai-traced/brown-pelican.svg",
+  "slug": "brown-pelican",
+  "variant": "brown-pelican",
+  "verdict": "FLAG",
+  "flag_generic": false,
+  "reasons": [
+   "shows: any plume or crest on the head",
+   "shows: an oversized bulging pouch"
+  ],
+  "unsure": [
+   "colors",
+   "head shape"
+  ],
+  "p_species": 0.98,
+  "p_species_64": 0.98,
+  "top": "brown_pelican",
+  "style": 2.66,
+  "likeness": 0.583,
+  "bill_head": 1.41,
+  "ref_ratio": 4.5,
+  "matches_reference": 0.18
+ },
+ {
+  "id": "concepts/openai-traced/cerulean-warbler.svg",
+  "slug": "cerulean-warbler",
+  "variant": "cerulean-warbler",
+  "verdict": "FLAG",
+  "flag_generic": true,
+  "reasons": [
+   "head shape not true to species"
+  ],
+  "unsure": [
+   "fine bill",
+   "colors"
+  ],
+  "p_species": 0.66,
+  "p_species_64": 0.69,
+  "top": "cerulean_warbler",
+  "style": 2.38,
+  "likeness": 0.743,
+  "bill_head": 0.21,
+  "ref_ratio": null,
+  "matches_reference": null
+ },
+ {
+  "id": "concepts/openai-traced/chimney-swift.svg",
+  "slug": "chimney-swift",
+  "variant": "chimney-swift",
+  "verdict": "UNSURE",
+  "flag_generic": false,
+  "reasons": [],
+  "unsure": [
+   "compact body",
+   "short tail",
+   "colors",
+   "head shape"
+  ],
+  "p_species": 1.0,
+  "p_species_64": 1.0,
+  "top": "chimney_swift",
+  "style": 2.62,
+  "likeness": 0.821,
+  "bill_head": 0.29,
+  "ref_ratio": null,
+  "matches_reference": null
+ },
+ {
+  "id": "concepts/openai-traced/common-raven.svg",
+  "slug": "common-raven",
+  "variant": "common-raven",
+  "verdict": "PASS",
+  "flag_generic": false,
+  "reasons": [],
+  "unsure": [],
+  "p_species": 0.98,
+  "p_species_64": 0.95,
+  "top": "common_raven",
+  "style": 2.47,
+  "likeness": 0.897,
+  "bill_head": 0.38,
+  "ref_ratio": null,
+  "matches_reference": null
+ },
+ {
+  "id": "concepts/openai-traced/double-crested-cormorant.svg",
+  "slug": "double-crested-cormorant",
+  "variant": "double-crested-cormorant",
+  "verdict": "UNSURE",
+  "flag_generic": false,
+  "reasons": [],
+  "unsure": [
+   "colors",
+   "head shape"
+  ],
+  "p_species": 0.71,
+  "p_species_64": 0.79,
+  "top": "double_crested_cormorant",
+  "style": 2.66,
+  "likeness": 0.783,
+  "bill_head": 0.61,
+  "ref_ratio": null,
+  "matches_reference": null
+ },
+ {
+  "id": "concepts/openai-traced/eastern-bluebird.svg",
+  "slug": "eastern-bluebird",
+  "variant": "eastern-bluebird",
+  "verdict": "UNSURE",
+  "flag_generic": false,
+  "reasons": [],
+  "unsure": [
+   "head shape"
+  ],
+  "p_species": 0.81,
+  "p_species_64": 0.93,
+  "top": "eastern_bluebird",
+  "style": 2.76,
+  "likeness": 0.844,
+  "bill_head": 0.25,
+  "ref_ratio": null,
+  "matches_reference": null
+ },
+ {
+  "id": "concepts/openai-traced/eastern-meadowlark.svg",
+  "slug": "eastern-meadowlark",
+  "variant": "eastern-meadowlark",
+  "verdict": "UNSURE",
+  "flag_generic": false,
+  "reasons": [],
+  "unsure": [
+   "head shape"
+  ],
+  "p_species": 0.78,
+  "p_species_64": 0.83,
+  "top": "eastern_meadowlark",
+  "style": 2.75,
+  "likeness": 0.819,
+  "bill_head": 0.36,
+  "ref_ratio": null,
+  "matches_reference": null
+ },
+ {
+  "id": "concepts/openai-traced/eastern-screech-owl.svg",
+  "slug": "eastern-screech-owl",
+  "variant": "eastern-screech-owl",
+  "verdict": "FLAG",
+  "flag_generic": true,
+  "reasons": [
+   "colors not true to species",
+   "head shape not true to species"
+  ],
+  "unsure": [
+   "compact head",
+   "tall ear tufts like a Great Horned Owl"
+  ],
+  "p_species": 0.93,
+  "p_species_64": 0.94,
+  "top": "eastern_screech_owl",
+  "style": 2.69,
+  "likeness": 0.564,
+  "bill_head": 0.09,
+  "ref_ratio": 0.25,
+  "matches_reference": 0.07
+ },
+ {
+  "id": "concepts/openai-traced/great-blue-heron.svg",
+  "slug": "great-blue-heron",
+  "variant": "great-blue-heron",
+  "verdict": "FLAG",
+  "flag_generic": true,
+  "reasons": [
+   "colors not true to species"
+  ],
+  "unsure": [
+   "head shape"
+  ],
+  "p_species": 0.97,
+  "p_species_64": 0.97,
+  "top": "great_blue_heron",
+  "style": 2.4,
+  "likeness": 0.769,
+  "bill_head": 0.64,
+  "ref_ratio": 1.05,
+  "matches_reference": 0.38
+ },
+ {
+  "id": "concepts/openai-traced/hooded-warbler.svg",
+  "slug": "hooded-warbler",
+  "variant": "hooded-warbler",
+  "verdict": "FLAG",
+  "flag_generic": true,
+  "reasons": [
+   "reads as american oystercatcher (0.55)",
+   "colors not true to species",
+   "head shape not true to species"
+  ],
+  "unsure": [],
+  "p_species": 0.27,
+  "p_species_64": 0.32,
+  "top": "american_oystercatcher",
+  "style": 2.86,
+  "likeness": 0.591,
+  "bill_head": 0.26,
+  "ref_ratio": null,
+  "matches_reference": null
+ },
+ {
+  "id": "concepts/openai-traced/indigo-bunting.svg",
+  "slug": "indigo-bunting",
+  "variant": "indigo-bunting",
+  "verdict": "UNSURE",
+  "flag_generic": false,
+  "reasons": [],
+  "unsure": [
+   "colors",
+   "head shape"
+  ],
+  "p_species": 0.71,
+  "p_species_64": 0.67,
+  "top": "indigo_bunting",
+  "style": 2.79,
+  "likeness": 0.782,
+  "bill_head": 0.23,
+  "ref_ratio": null,
+  "matches_reference": null
+ },
+ {
+  "id": "concepts/openai-traced/marbled-godwit.svg",
+  "slug": "marbled-godwit",
+  "variant": "marbled-godwit",
+  "verdict": "FLAG",
+  "flag_generic": true,
+  "reasons": [
+   "reads as marbled godwit (0.46)"
+  ],
+  "unsure": [
+   "very long, slightly upturned bill",
+   "colors",
+   "head shape"
+  ],
+  "p_species": 0.46,
+  "p_species_64": 0.13,
+  "top": "marbled_godwit",
+  "style": 2.78,
+  "likeness": 0.657,
+  "bill_head": 1.31,
+  "ref_ratio": null,
+  "matches_reference": null
+ },
+ {
+  "id": "concepts/openai-traced/northern-bobwhite.svg",
+  "slug": "northern-bobwhite",
+  "variant": "northern-bobwhite",
+  "verdict": "FLAG",
+  "flag_generic": true,
+  "reasons": [
+   "shows: a tall plume or topknot (that is a California or Gambel's quail)",
+   "colors not true to species"
+  ],
+  "unsure": [
+   "compact neck",
+   "head shape"
+  ],
+  "p_species": 0.94,
+  "p_species_64": 0.91,
+  "top": "northern_bobwhite",
+  "style": 2.75,
+  "likeness": 0.57,
+  "bill_head": 0.16,
+  "ref_ratio": 0.3,
+  "matches_reference": 0.48
+ },
+ {
+  "id": "concepts/openai-traced/osprey.svg",
+  "slug": "osprey",
+  "variant": "osprey",
+  "verdict": "FLAG",
+  "flag_generic": true,
+  "reasons": [
+   "reads as osprey (0.44)",
+   "missing: bold dark eye stripe"
+  ],
+  "unsure": [
+   "colors",
+   "head shape"
+  ],
+  "p_species": 0.44,
+  "p_species_64": 0.43,
+  "top": "osprey",
+  "style": 2.57,
+  "likeness": 0.637,
+  "bill_head": 0.23,
+  "ref_ratio": null,
+  "matches_reference": null
+ },
+ {
+  "id": "concepts/openai-traced/peregrine-falcon.svg",
+  "slug": "peregrine-falcon",
+  "variant": "peregrine-falcon",
+  "verdict": "FLAG",
+  "flag_generic": true,
+  "reasons": [
+   "reads as american oystercatcher (0.33)",
+   "colors not true to species",
+   "head shape not true to species"
+  ],
+  "unsure": [
+   "strong cheek stripe"
+  ],
+  "p_species": 0.17,
+  "p_species_64": 0.14,
+  "top": "american_oystercatcher",
+  "style": 2.43,
+  "likeness": 0.523,
+  "bill_head": 0.19,
+  "ref_ratio": null,
+  "matches_reference": null
+ },
+ {
+  "id": "concepts/openai-traced/red-headed-woodpecker.svg",
+  "slug": "red-headed-woodpecker",
+  "variant": "red-headed-woodpecker",
+  "verdict": "UNSURE",
+  "flag_generic": false,
+  "reasons": [],
+  "unsure": [
+   "sharply divided body and wing fields",
+   "head shape"
+  ],
+  "p_species": 0.97,
+  "p_species_64": 0.97,
+  "top": "red_headed_woodpecker",
+  "style": 2.82,
+  "likeness": 0.853,
+  "bill_head": 0.51,
+  "ref_ratio": null,
+  "matches_reference": null
+ },
+ {
+  "id": "concepts/openai-traced/rose-breasted-grosbeak.svg",
+  "slug": "rose-breasted-grosbeak",
+  "variant": "rose-breasted-grosbeak",
+  "verdict": "UNSURE",
+  "flag_generic": false,
+  "reasons": [],
+  "unsure": [
+   "head shape"
+  ],
+  "p_species": 0.98,
+  "p_species_64": 0.96,
+  "top": "rose_breasted_grosbeak",
+  "style": 2.3,
+  "likeness": 0.883,
+  "bill_head": 0.33,
+  "ref_ratio": null,
+  "matches_reference": null
+ },
+ {
+  "id": "concepts/openai-traced/ruffed-grouse.svg",
+  "slug": "ruffed-grouse",
+  "variant": "ruffed-grouse",
+  "verdict": "FLAG",
+  "flag_generic": true,
+  "reasons": [
+   "colors not true to species"
+  ],
+  "unsure": [
+   "small crest",
+   "short bill",
+   "rounded body",
+   "head shape"
+  ],
+  "p_species": 0.61,
+  "p_species_64": 0.58,
+  "top": "ruffed_grouse",
+  "style": 2.33,
+  "likeness": 0.642,
+  "bill_head": 0.22,
+  "ref_ratio": null,
+  "matches_reference": null
+ },
+ {
+  "id": "concepts/openai-traced/scarlet-tanager.svg",
+  "slug": "scarlet-tanager",
+  "variant": "scarlet-tanager",
+  "verdict": "UNSURE",
+  "flag_generic": false,
+  "reasons": [],
+  "unsure": [
+   "head shape"
+  ],
+  "p_species": 0.82,
+  "p_species_64": 0.92,
+  "top": "scarlet_tanager",
+  "style": 2.85,
+  "likeness": 0.856,
+  "bill_head": 0.34,
+  "ref_ratio": null,
+  "matches_reference": null
+ },
+ {
+  "id": "concepts/openai-traced/swainsons-warbler.svg",
+  "slug": "swainsons-warbler",
+  "variant": "swainsons-warbler",
+  "verdict": "FLAG",
+  "flag_generic": true,
+  "reasons": [
+   "reads as wood duck (0.33)"
+  ],
+  "unsure": [
+   "low forehead",
+   "colors",
+   "head shape"
+  ],
+  "p_species": 0.16,
+  "p_species_64": 0.15,
+  "top": "wood_duck",
+  "style": 2.52,
+  "likeness": 0.585,
+  "bill_head": 0.27,
+  "ref_ratio": null,
+  "matches_reference": null
+ },
+ {
+  "id": "concepts/openai-traced/whimbrel.svg",
+  "slug": "whimbrel",
+  "variant": "whimbrel",
+  "verdict": "FLAG",
+  "flag_generic": true,
+  "reasons": [
+   "colors not true to species"
+  ],
+  "unsure": [
+   "head shape"
+  ],
+  "p_species": 0.96,
+  "p_species_64": 0.99,
+  "top": "whimbrel",
+  "style": 2.54,
+  "likeness": 0.835,
+  "bill_head": 0.96,
+  "ref_ratio": null,
+  "matches_reference": null
+ },
+ {
+  "id": "concepts/openai-traced/wild-turkey.svg",
+  "slug": "wild-turkey",
+  "variant": "wild-turkey",
+  "verdict": "FLAG",
+  "flag_generic": true,
+  "reasons": [
+   "reads as double crested cormorant (0.46)",
+   "missing: small bare head",
+   "missing: distinct wattle and snood"
+  ],
+  "unsure": [
+   "colors",
+   "head shape"
+  ],
+  "p_species": 0.15,
+  "p_species_64": 0.18,
+  "top": "double_crested_cormorant",
+  "style": 2.76,
+  "likeness": 0.491,
+  "bill_head": 0.47,
+  "ref_ratio": null,
+  "matches_reference": null
+ },
+ {
+  "id": "concepts/openai-traced/wood-duck.svg",
+  "slug": "wood-duck",
+  "variant": "wood-duck",
+  "verdict": "UNSURE",
+  "flag_generic": false,
+  "reasons": [],
+  "unsure": [
+   "colors",
+   "head shape"
+  ],
+  "p_species": 1.0,
+  "p_species_64": 0.99,
+  "top": "wood_duck",
+  "style": 2.63,
+  "likeness": 0.879,
+  "bill_head": 0.25,
+  "ref_ratio": null,
+  "matches_reference": null
+ }
+]
