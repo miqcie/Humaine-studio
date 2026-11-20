@@ -43,7 +43,7 @@ You need `rsvg-convert` (`brew install librsvg`). The labels are converted to ou
 ## Likeness check (TypeSafe Jev, 2026-11-20)
 
 - `qa.sh run openai30|bakeoff36`, then `qa.sh report SET` and `qa.sh calibrate`. It asks Jev image questions per icon: species (30-way Choice at 480 px and 64 px), one Noul per brief feature, colors and head shape true to species, style match to the curlew (Score), and a bill/head Box. Code turns the answers into PASS / UNSURE / FLAG and a likeness score. Raw answers are kept in `qa/_cache/`.
-- Calibration (`qa/CALIBRATION.md`): it ranked Chris's blind best pick first for 5 of 5 birds and flagged all 6 rejected screech-owls; it flagged 6 of 6 known OpenAI errors (5 of 6 from generic questions alone), but also 11 of the other 24 icons, mostly "colors not true to species", which the deliberate palette causes. Use it to rank variations before a vote, not as a pass/fail gate.
+- Calibration (`qa/CALIBRATION.md`): ranked by likeness, Chris's blind best pick came first for 5 of 5 birds (4 of 5 without the review-derived avoid lists; chance is 1 in 6 per bird), and all 6 rejected screech-owls were flagged. As a pass/fail gate it is noisy in both directions: it flags 16 of 30 icons, caught 5 of 6 major known errors (4 from generic questions) but only 1 of 5 minor ones, and 9 of its 10 other flags were false alarms or the deliberate palette when checked by eye. Use it to sort variations before a vote; never hide a tile because of its verdict.
 - Images and Box are experimental at TypeSafe. The key is `op://Developer Vault/TYPESAFE_API_KEY_CLAUDE/credential`; requests need the header `TypeSafe-Danger-Zone-Images: true`.
 
 ## Not done yet (after a direction is chosen)

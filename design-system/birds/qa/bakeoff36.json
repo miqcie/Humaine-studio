@@ -6,11 +6,11 @@
   "verdict": "FLAG",
   "flag_generic": true,
   "reasons": [
-   "reads as american kestrel (0.49)",
    "colors not true to species",
    "head shape not true to species"
   ],
   "unsure": [
+   "species only 0.49",
    "only one face stripe",
    "large or long bill",
    "a crest",
@@ -21,6 +21,7 @@
   "top": "american_kestrel",
   "style": 2.7,
   "likeness": 0.511,
+  "likeness_generic": 0.525,
   "bill_head": 0.28,
   "ref_ratio": 0.25,
   "matches_reference": 0.31
@@ -43,6 +44,7 @@
   "top": "american_kestrel",
   "style": 2.74,
   "likeness": 0.597,
+  "likeness_generic": 0.63,
   "bill_head": 0.18,
   "ref_ratio": 0.25,
   "matches_reference": 0.43
@@ -51,12 +53,11 @@
   "id": "bakeoff/traced/american-kestrel/R-ras-11.svg",
   "slug": "american-kestrel",
   "variant": "R-ras-11",
-  "verdict": "FLAG",
-  "flag_generic": true,
-  "reasons": [
-   "reads as american kestrel (0.41)"
-  ],
+  "verdict": "UNSURE",
+  "flag_generic": false,
+  "reasons": [],
   "unsure": [
+   "species only 0.41",
    "two dark vertical face stripes",
    "colors",
    "head shape",
@@ -70,6 +71,7 @@
   "top": "american_kestrel",
   "style": 2.55,
   "likeness": 0.471,
+  "likeness_generic": 0.462,
   "bill_head": 0.21,
   "ref_ratio": 0.25,
   "matches_reference": 0.19
@@ -97,6 +99,7 @@
   "top": "rose_breasted_grosbeak",
   "style": 2.69,
   "likeness": 0.136,
+  "likeness_generic": 0.152,
   "bill_head": 0.37,
   "ref_ratio": 0.25,
   "matches_reference": 0.04
@@ -124,6 +127,7 @@
   "top": "rose_breasted_grosbeak",
   "style": 2.55,
   "likeness": 0.349,
+  "likeness_generic": 0.322,
   "bill_head": 0.24,
   "ref_ratio": 0.25,
   "matches_reference": 0.18
@@ -152,6 +156,7 @@
   "top": "red_headed_woodpecker",
   "style": 2.58,
   "likeness": 0.269,
+  "likeness_generic": 0.238,
   "bill_head": 0.38,
   "ref_ratio": 0.25,
   "matches_reference": 0.11
@@ -173,6 +178,7 @@
   "top": "black_skimmer",
   "style": 2.56,
   "likeness": 0.813,
+  "likeness_generic": 0.784,
   "bill_head": 0.6,
   "ref_ratio": 1.45,
   "matches_reference": 0.6
@@ -194,6 +200,7 @@
   "top": "black_skimmer",
   "style": 2.81,
   "likeness": 0.739,
+  "likeness_generic": 0.748,
   "bill_head": 0.72,
   "ref_ratio": 1.45,
   "matches_reference": 0.48
@@ -216,6 +223,7 @@
   "top": "black_skimmer",
   "style": 2.48,
   "likeness": 0.739,
+  "likeness_generic": 0.792,
   "bill_head": 0.94,
   "ref_ratio": 1.45,
   "matches_reference": 0.64
@@ -236,6 +244,7 @@
   "top": "black_skimmer",
   "style": 2.74,
   "likeness": 0.792,
+  "likeness_generic": 0.77,
   "bill_head": 0.68,
   "ref_ratio": 1.45,
   "matches_reference": 0.68
@@ -257,6 +266,7 @@
   "top": "black_skimmer",
   "style": 2.44,
   "likeness": 0.776,
+  "likeness_generic": 0.812,
   "bill_head": 0.95,
   "ref_ratio": 1.45,
   "matches_reference": 0.64
@@ -278,6 +288,7 @@
   "top": "black_skimmer",
   "style": 2.73,
   "likeness": 0.728,
+  "likeness_generic": 0.771,
   "bill_head": 0.63,
   "ref_ratio": 1.45,
   "matches_reference": 0.61
@@ -300,6 +311,7 @@
   "top": "brown_pelican",
   "style": 2.62,
   "likeness": 0.682,
+  "likeness_generic": 0.753,
   "bill_head": 1.88,
   "ref_ratio": 4.5,
   "matches_reference": 0.49
@@ -322,6 +334,7 @@
   "top": "brown_pelican",
   "style": 2.68,
   "likeness": 0.655,
+  "likeness_generic": 0.75,
   "bill_head": 2.61,
   "ref_ratio": 4.5,
   "matches_reference": 0.27
@@ -344,6 +357,7 @@
   "top": "brown_pelican",
   "style": 2.25,
   "likeness": 0.664,
+  "likeness_generic": 0.769,
   "bill_head": 1.26,
   "ref_ratio": 4.5,
   "matches_reference": 0.3
@@ -366,6 +380,7 @@
   "top": "brown_pelican",
   "style": 2.57,
   "likeness": 0.674,
+  "likeness_generic": 0.705,
   "bill_head": 0.97,
   "ref_ratio": 4.5,
   "matches_reference": 0.28
@@ -389,6 +404,7 @@
   "top": "brown_pelican",
   "style": 2.54,
   "likeness": 0.664,
+  "likeness_generic": 0.736,
   "bill_head": 2.0,
   "ref_ratio": 4.5,
   "matches_reference": 0.35
@@ -410,6 +426,7 @@
   "top": "brown_pelican",
   "style": 2.7,
   "likeness": 0.713,
+  "likeness_generic": 0.808,
   "bill_head": 2.52,
   "ref_ratio": 4.5,
   "matches_reference": 0.4
@@ -432,6 +449,7 @@
   "top": "eastern_screech_owl",
   "style": 2.63,
   "likeness": 0.593,
+  "likeness_generic": 0.654,
   "bill_head": 0.22,
   "ref_ratio": 0.25,
   "matches_reference": 0.07
@@ -455,6 +473,7 @@
   "top": "eastern_screech_owl",
   "style": 2.78,
   "likeness": 0.622,
+  "likeness_generic": 0.662,
   "bill_head": 0.15,
   "ref_ratio": 0.25,
   "matches_reference": 0.06
@@ -479,6 +498,7 @@
   "top": "eastern_screech_owl",
   "style": 2.39,
   "likeness": 0.515,
+  "likeness_generic": 0.579,
   "bill_head": null,
   "ref_ratio": 0.25,
   "matches_reference": 0.12
@@ -503,6 +523,7 @@
   "top": "eastern_screech_owl",
   "style": 2.56,
   "likeness": 0.422,
+  "likeness_generic": 0.437,
   "bill_head": null,
   "ref_ratio": 0.25,
   "matches_reference": 0.05
@@ -526,6 +547,7 @@
   "top": "eastern_screech_owl",
   "style": 2.55,
   "likeness": 0.561,
+  "likeness_generic": 0.645,
   "bill_head": null,
   "ref_ratio": 0.25,
   "matches_reference": 0.17
@@ -550,6 +572,7 @@
   "top": "eastern_screech_owl",
   "style": 2.69,
   "likeness": 0.495,
+  "likeness_generic": 0.503,
   "bill_head": null,
   "ref_ratio": 0.25,
   "matches_reference": 0.12
@@ -570,6 +593,7 @@
   "top": "great_blue_heron",
   "style": 2.46,
   "likeness": 0.836,
+  "likeness_generic": 0.794,
   "bill_head": 0.65,
   "ref_ratio": 1.05,
   "matches_reference": 0.55
@@ -590,6 +614,7 @@
   "top": "great_blue_heron",
   "style": 2.5,
   "likeness": 0.821,
+  "likeness_generic": 0.781,
   "bill_head": 0.67,
   "ref_ratio": 1.05,
   "matches_reference": 0.55
@@ -611,6 +636,7 @@
   "top": "great_blue_heron",
   "style": 2.58,
   "likeness": 0.778,
+  "likeness_generic": 0.737,
   "bill_head": 0.28,
   "ref_ratio": 1.05,
   "matches_reference": 0.38
@@ -632,6 +658,7 @@
   "top": "great_blue_heron",
   "style": 2.6,
   "likeness": 0.793,
+  "likeness_generic": 0.741,
   "bill_head": 0.57,
   "ref_ratio": 1.05,
   "matches_reference": 0.35
@@ -654,6 +681,7 @@
   "top": "great_blue_heron",
   "style": 2.39,
   "likeness": 0.756,
+  "likeness_generic": 0.702,
   "bill_head": 0.26,
   "ref_ratio": 1.05,
   "matches_reference": 0.25
@@ -675,6 +703,7 @@
   "top": "great_blue_heron",
   "style": 2.57,
   "likeness": 0.753,
+  "likeness_generic": 0.737,
   "bill_head": 2.62,
   "ref_ratio": 1.05,
   "matches_reference": 0.25
@@ -699,6 +728,7 @@
   "top": "northern_bobwhite",
   "style": 2.71,
   "likeness": 0.59,
+  "likeness_generic": 0.627,
   "bill_head": 0.25,
   "ref_ratio": 0.3,
   "matches_reference": 0.54
@@ -721,6 +751,7 @@
   "top": "northern_bobwhite",
   "style": 2.68,
   "likeness": 0.693,
+  "likeness_generic": 0.671,
   "bill_head": 0.23,
   "ref_ratio": 0.3,
   "matches_reference": 0.56
@@ -746,6 +777,7 @@
   "top": "red_headed_woodpecker",
   "style": 2.47,
   "likeness": 0.397,
+  "likeness_generic": 0.336,
   "bill_head": 0.18,
   "ref_ratio": 0.3,
   "matches_reference": 0.41
@@ -770,6 +802,7 @@
   "top": "northern_bobwhite",
   "style": 2.48,
   "likeness": 0.449,
+  "likeness_generic": 0.549,
   "bill_head": 0.27,
   "ref_ratio": 0.3,
   "matches_reference": 0.35
@@ -796,6 +829,7 @@
   "top": "red_headed_woodpecker",
   "style": 2.53,
   "likeness": 0.463,
+  "likeness_generic": 0.424,
   "bill_head": 0.24,
   "ref_ratio": 0.3,
   "matches_reference": 0.45
@@ -807,11 +841,11 @@
   "verdict": "FLAG",
   "flag_generic": true,
   "reasons": [
-   "reads as northern bobwhite (0.47)",
    "colors not true to species",
    "head shape not true to species"
   ],
   "unsure": [
+   "species only 0.47",
    "bold face pattern",
    "compact neck",
    "a tall plume or topknot (that is a California or Gambel's quail)",
@@ -822,6 +856,7 @@
   "top": "northern_bobwhite",
   "style": 2.72,
   "likeness": 0.383,
+  "likeness_generic": 0.391,
   "bill_head": 0.32,
   "ref_ratio": 0.3,
   "matches_reference": 0.09

@@ -1,6 +1,6 @@
 # Likeness check: openai30
 
-Model `jev-1.14.0` (image questions are experimental). 30 icons: 1 pass, 12 unsure, 17 flagged.
+Model `jev-1.14.0` (image questions are experimental). 30 icons: 1 pass, 13 unsure, 16 flagged.
 Noul read as yes above 0.7, no below 0.3. Species is read from a 30-way Choice at 480 px and at 64 px.
 
 | Icon | Verdict | Species p (480 / 64) | Style | Likeness | Bill ÷ head (ref) | Why |
@@ -23,9 +23,9 @@ Noul read as yes above 0.7, no below 0.3. Species is read from a 30-way Choice a
 | great-blue-heron | FLAG | 0.97 / 0.97 | 2.4 | 0.769 | 0.64 (1.05) | colors not true to species |
 | hooded-warbler | FLAG | 0.27 / 0.32 | 2.86 | 0.591 | 0.26 | reads as american oystercatcher (0.55); colors not true to species; head shape not true to species |
 | indigo-bunting | UNSURE | 0.71 / 0.67 | 2.79 | 0.782 | 0.23 | unsure: colors, head shape |
-| marbled-godwit | FLAG | 0.46 / 0.13 | 2.78 | 0.657 | 1.31 | reads as marbled godwit (0.46) |
+| marbled-godwit | UNSURE | 0.46 / 0.13 | 2.78 | 0.657 | 1.31 | unsure: species only 0.46, very long, slightly upturned bill, colors, head shape |
 | northern-bobwhite | FLAG | 0.94 / 0.91 | 2.75 | 0.57 | 0.16 (0.3) | shows: a tall plume or topknot (that is a California or Gambel's quail); colors not true to species |
-| osprey | FLAG | 0.44 / 0.43 | 2.57 | 0.637 | 0.23 | reads as osprey (0.44); missing: bold dark eye stripe |
+| osprey | FLAG | 0.44 / 0.43 | 2.57 | 0.637 | 0.23 | missing: bold dark eye stripe |
 | peregrine-falcon | FLAG | 0.17 / 0.14 | 2.43 | 0.523 | 0.19 | reads as american oystercatcher (0.33); colors not true to species; head shape not true to species |
 | red-headed-woodpecker | UNSURE | 0.97 / 0.97 | 2.82 | 0.853 | 0.51 | unsure: sharply divided body and wing fields, head shape |
 | rose-breasted-grosbeak | UNSURE | 0.98 / 0.96 | 2.3 | 0.883 | 0.33 | unsure: head shape |

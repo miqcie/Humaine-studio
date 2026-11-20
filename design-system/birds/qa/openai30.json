@@ -17,6 +17,7 @@
   "top": "american_barn_owl",
   "style": 2.48,
   "likeness": 0.72,
+  "likeness_generic": 0.627,
   "bill_head": null,
   "ref_ratio": null,
   "matches_reference": null
@@ -45,6 +46,7 @@
   "top": "red_headed_woodpecker",
   "style": 2.77,
   "likeness": 0.188,
+  "likeness_generic": 0.19,
   "bill_head": 0.26,
   "ref_ratio": 0.25,
   "matches_reference": 0.04
@@ -64,6 +66,7 @@
   "top": "american_oystercatcher",
   "style": 2.82,
   "likeness": 0.91,
+  "likeness_generic": 0.88,
   "bill_head": 0.93,
   "ref_ratio": null,
   "matches_reference": null
@@ -84,6 +87,7 @@
   "top": "belted_kingfisher",
   "style": 2.48,
   "likeness": 0.85,
+  "likeness_generic": 0.8,
   "bill_head": 0.33,
   "ref_ratio": null,
   "matches_reference": null
@@ -105,6 +109,7 @@
   "top": "wood_duck",
   "style": 2.31,
   "likeness": 0.714,
+  "likeness_generic": 0.618,
   "bill_head": 0.22,
   "ref_ratio": null,
   "matches_reference": null
@@ -126,6 +131,7 @@
   "top": "black_skimmer",
   "style": 2.37,
   "likeness": 0.676,
+  "likeness_generic": 0.704,
   "bill_head": 0.52,
   "ref_ratio": 1.45,
   "matches_reference": 0.4
@@ -149,6 +155,7 @@
   "top": "eastern_meadowlark",
   "style": 2.82,
   "likeness": 0.579,
+  "likeness_generic": 0.439,
   "bill_head": 0.22,
   "ref_ratio": null,
   "matches_reference": null
@@ -172,6 +179,7 @@
   "top": "brown_pelican",
   "style": 2.66,
   "likeness": 0.583,
+  "likeness_generic": 0.767,
   "bill_head": 1.41,
   "ref_ratio": 4.5,
   "matches_reference": 0.18
@@ -194,6 +202,7 @@
   "top": "cerulean_warbler",
   "style": 2.38,
   "likeness": 0.743,
+  "likeness_generic": 0.657,
   "bill_head": 0.21,
   "ref_ratio": null,
   "matches_reference": null
@@ -216,6 +225,7 @@
   "top": "chimney_swift",
   "style": 2.62,
   "likeness": 0.821,
+  "likeness_generic": 0.762,
   "bill_head": 0.29,
   "ref_ratio": null,
   "matches_reference": null
@@ -233,6 +243,7 @@
   "top": "common_raven",
   "style": 2.47,
   "likeness": 0.897,
+  "likeness_generic": 0.862,
   "bill_head": 0.38,
   "ref_ratio": null,
   "matches_reference": null
@@ -253,6 +264,7 @@
   "top": "double_crested_cormorant",
   "style": 2.66,
   "likeness": 0.783,
+  "likeness_generic": 0.711,
   "bill_head": 0.61,
   "ref_ratio": null,
   "matches_reference": null
@@ -272,6 +284,7 @@
   "top": "eastern_bluebird",
   "style": 2.76,
   "likeness": 0.844,
+  "likeness_generic": 0.792,
   "bill_head": 0.25,
   "ref_ratio": null,
   "matches_reference": null
@@ -291,6 +304,7 @@
   "top": "eastern_meadowlark",
   "style": 2.75,
   "likeness": 0.819,
+  "likeness_generic": 0.758,
   "bill_head": 0.36,
   "ref_ratio": null,
   "matches_reference": null
@@ -314,6 +328,7 @@
   "top": "eastern_screech_owl",
   "style": 2.69,
   "likeness": 0.564,
+  "likeness_generic": 0.635,
   "bill_head": 0.09,
   "ref_ratio": 0.25,
   "matches_reference": 0.07
@@ -335,6 +350,7 @@
   "top": "great_blue_heron",
   "style": 2.4,
   "likeness": 0.769,
+  "likeness_generic": 0.725,
   "bill_head": 0.64,
   "ref_ratio": 1.05,
   "matches_reference": 0.38
@@ -356,6 +372,7 @@
   "top": "american_oystercatcher",
   "style": 2.86,
   "likeness": 0.591,
+  "likeness_generic": 0.455,
   "bill_head": 0.26,
   "ref_ratio": null,
   "matches_reference": null
@@ -376,6 +393,7 @@
   "top": "indigo_bunting",
   "style": 2.79,
   "likeness": 0.782,
+  "likeness_generic": 0.709,
   "bill_head": 0.23,
   "ref_ratio": null,
   "matches_reference": null
@@ -384,12 +402,11 @@
   "id": "concepts/openai-traced/marbled-godwit.svg",
   "slug": "marbled-godwit",
   "variant": "marbled-godwit",
-  "verdict": "FLAG",
-  "flag_generic": true,
-  "reasons": [
-   "reads as marbled godwit (0.46)"
-  ],
+  "verdict": "UNSURE",
+  "flag_generic": false,
+  "reasons": [],
   "unsure": [
+   "species only 0.46",
    "very long, slightly upturned bill",
    "colors",
    "head shape"
@@ -399,6 +416,7 @@
   "top": "marbled_godwit",
   "style": 2.78,
   "likeness": 0.657,
+  "likeness_generic": 0.543,
   "bill_head": 1.31,
   "ref_ratio": null,
   "matches_reference": null
@@ -422,6 +440,7 @@
   "top": "northern_bobwhite",
   "style": 2.75,
   "likeness": 0.57,
+  "likeness_generic": 0.699,
   "bill_head": 0.16,
   "ref_ratio": 0.3,
   "matches_reference": 0.48
@@ -433,10 +452,10 @@
   "verdict": "FLAG",
   "flag_generic": true,
   "reasons": [
-   "reads as osprey (0.44)",
    "missing: bold dark eye stripe"
   ],
   "unsure": [
+   "species only 0.44",
    "colors",
    "head shape"
   ],
@@ -445,6 +464,7 @@
   "top": "osprey",
   "style": 2.57,
   "likeness": 0.637,
+  "likeness_generic": 0.517,
   "bill_head": 0.23,
   "ref_ratio": null,
   "matches_reference": null
@@ -468,6 +488,7 @@
   "top": "american_oystercatcher",
   "style": 2.43,
   "likeness": 0.523,
+  "likeness_generic": 0.364,
   "bill_head": 0.19,
   "ref_ratio": null,
   "matches_reference": null
@@ -488,6 +509,7 @@
   "top": "red_headed_woodpecker",
   "style": 2.82,
   "likeness": 0.853,
+  "likeness_generic": 0.803,
   "bill_head": 0.51,
   "ref_ratio": null,
   "matches_reference": null
@@ -507,6 +529,7 @@
   "top": "rose_breasted_grosbeak",
   "style": 2.3,
   "likeness": 0.883,
+  "likeness_generic": 0.843,
   "bill_head": 0.33,
   "ref_ratio": null,
   "matches_reference": null
@@ -531,6 +554,7 @@
   "top": "ruffed_grouse",
   "style": 2.33,
   "likeness": 0.642,
+  "likeness_generic": 0.522,
   "bill_head": 0.22,
   "ref_ratio": null,
   "matches_reference": null
@@ -550,6 +574,7 @@
   "top": "scarlet_tanager",
   "style": 2.85,
   "likeness": 0.856,
+  "likeness_generic": 0.807,
   "bill_head": 0.34,
   "ref_ratio": null,
   "matches_reference": null
@@ -573,6 +598,7 @@
   "top": "wood_duck",
   "style": 2.52,
   "likeness": 0.585,
+  "likeness_generic": 0.446,
   "bill_head": 0.27,
   "ref_ratio": null,
   "matches_reference": null
@@ -594,6 +620,7 @@
   "top": "whimbrel",
   "style": 2.54,
   "likeness": 0.835,
+  "likeness_generic": 0.781,
   "bill_head": 0.96,
   "ref_ratio": null,
   "matches_reference": null
@@ -618,6 +645,7 @@
   "top": "double_crested_cormorant",
   "style": 2.76,
   "likeness": 0.491,
+  "likeness_generic": 0.321,
   "bill_head": 0.47,
   "ref_ratio": null,
   "matches_reference": null
@@ -638,6 +666,7 @@
   "top": "wood_duck",
   "style": 2.63,
   "likeness": 0.879,
+  "likeness_generic": 0.838,
   "bill_head": 0.25,
   "ref_ratio": null,
   "matches_reference": null

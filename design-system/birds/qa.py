@@ -33,10 +33,25 @@ STYLE_REF = HERE / "bakeoff" / "raw" / "_style" / "curlew.png"
 SETS = {"openai30": ("concepts/openai-traced/*.svg", "stem"), "bakeoff36": ("bakeoff/traced/*/*.svg", "parent")}
 
 # Answer keys for calibration (facts recorded before this check existed).
-KNOWN_BAD = {  # OpenAI concept errors found in review, 2026-11-19
+KNOWN_BAD = {  # OpenAI concept errors found in review, 2026-11-19: the six called "drawn wrong"
     "brown-pelican": "invented yellow plume", "american-kestrel": "no face stripes; reads as a toucan",
     "northern-bobwhite": "quail plume topknot", "eastern-screech-owl": "reads as a Great Horned Owl",
     "osprey": "exaggerated spiky crest", "marbled-godwit": "navy body instead of buff"}
+KNOWN_MINOR = {  # the same review's lesser findings
+    "black-skimmer": "bill too long", "double-crested-cormorant": "crests and throat patch too large",
+    "red-headed-woodpecker": "no white wing patch", "ruffed-grouse": "looks like a chicken",
+    "rose-breasted-grosbeak": "bill drawn as an outline only"}
+EYE_CHECK = {  # flagged icons outside both lists, looked at by eye at 96 px against the brief's features, 2026-11-20
+    "american-barn-owl": "arguable: heart disc and bill are right; the navy body is unlike a pale barn owl",
+    "black-and-white-warbler": "false alarm: bold stripes and slender bill are right",
+    "blackburnian-warbler": "false alarm: angular face marks and bright throat are right",
+    "cerulean-warbler": "false alarm: fine bill, wing bars and breast band are right",
+    "great-blue-heron": "palette: navy and ivory stand in for blue-grey; S-neck, plume and bill are right",
+    "hooded-warbler": "false alarm: dark hood around a bright face is right",
+    "peregrine-falcon": "false alarm: hood, cheek stripe and hooked bill are right",
+    "swainsons-warbler": "false alarm: long bill and pale eyebrow are right",
+    "whimbrel": "palette: navy stands in for brown; crown stripes and curved bill are right",
+    "wild-turkey": "false alarm: the bare red head, wattle and snood are clearly drawn"}
 VOTES = {  # bakeoff/RESULTS.md: Chris's blind picks, best first ([] = none works)
     "american-kestrel": ["O-ras-23", "O-ras-11"], "black-skimmer": ["O-ras-11", "O-ras-23"],
     "brown-pelican": ["R-vec-23", "O-ras-23"], "eastern-screech-owl": [],
@@ -179,8 +194,11 @@ def judge(r):
     avoids = {q[k]["label"]: a[k]["noul"] for k in a if k.startswith("avoid_")}
     plaus = {"colors": a["colors_plausible"]["noul"], "head shape": a["head_shape_plausible"]["noul"]}
     reasons, unsure = [], []
-    if top("species")[0] != key or p_big < 0.5:
-        reasons.append(f"reads as {top('species')[0].replace('_', ' ')} ({top('species')[1]:.2f})")
+    top_key, top_p = top("species")
+    if top_key != key:
+        reasons.append(f"reads as {top_key.replace('_', ' ')} ({top_p:.2f})")
+    elif p_big < 0.5:
+        unsure.append(f"species only {p_big:.2f}")
     reasons += [f"missing: {m}" for m, p in marks.items() if p < NO]
     reasons += [f"shows: {m}" for m, p in avoids.items() if p > YES]
     reasons += [f"{k} not true to species" for k, p in plaus.items() if p < NO]
@@ -193,8 +211,9 @@ def judge(r):
         if hw > 0:
             ratio = max(b["right"] - b["left"], b["bottom"] - b["top"]) / hw
     ref_ratio = next(iter(REFS[slug]["ratios"].values()), None) if slug in REFS else None
-    likeness = statistics.mean([p_big, statistics.mean(marks.values()), statistics.mean(plaus.values()),
-                                1 - max(avoids.values(), default=0)])
+    generic_parts = [p_big, statistics.mean(marks.values()), statistics.mean(plaus.values())]
+    likeness = statistics.mean(generic_parts + [1 - max(avoids.values(), default=0)])
+    likeness_generic = statistics.mean(generic_parts)  # without the review-derived avoid lists
     # The "avoid" lists in references.json came from the review of the OpenAI concepts, so a calibration
     # against those known errors also reports the verdict from the generic questions alone.
     generic = [x for x in reasons if not x.startswith("shows: ")]
@@ -202,7 +221,7 @@ def judge(r):
             "verdict": "FLAG" if reasons else "UNSURE" if unsure else "PASS",
             "flag_generic": bool(generic),
             "reasons": reasons, "unsure": unsure, "p_species": round(p_big, 2), "p_species_64": round(p_small, 2),
-            "top": top("species")[0], "style": round(a["style"]["score"], 2), "likeness": round(likeness, 3),
+            "top": top("species")[0], "style": round(a["style"]["score"], 2), "likeness": round(likeness, 3), "likeness_generic": round(likeness_generic, 3),
             "bill_head": round(ratio, 2) if ratio else None, "ref_ratio": ref_ratio,
             "matches_reference": round(a["matches_reference"]["noul"], 2) if "matches_reference" in a else None}
 
@@ -238,34 +257,40 @@ def calibrate():
     lines = ["# Calibration of the likeness check", ""]
     a = {r["slug"]: r for r in load("openai30")}
     if a:
+        known = {**KNOWN_BAD, **KNOWN_MINOR}
         flagged = {s for s, r in a.items() if r["verdict"] == "FLAG"}
-        tp, fn = sorted(flagged & KNOWN_BAD.keys()), sorted(KNOWN_BAD.keys() - flagged)
-        fp = sorted(flagged - KNOWN_BAD.keys())
-        tp_generic = sorted(s for s in KNOWN_BAD if a[s]["flag_generic"])
+        why = lambda s: "; ".join(a[s]["reasons"]) or ("unsure: " + ", ".join(a[s]["unsure"]) if a[s]["unsure"] else "")
+        caught = lambda keys, field="verdict": sum((a[s]["verdict"] == "FLAG") if field == "verdict" else a[s]["flag_generic"] for s in keys)
         lines += ["## 1. Known errors in the 30 OpenAI icons", "",
-                  f"Caught {len(tp)} of {len(KNOWN_BAD)} known errors. Flagged {len(fp)} of the other {len(a) - len(KNOWN_BAD)} icons.",
-                  f"From the generic questions alone (without the review-derived \"avoid\" lists): caught {len(tp_generic)} of {len(KNOWN_BAD)}.", "",
-                  "| Known error | Verdict | Why |", "|---|---|---|"]
-        lines += [f"| {s} ({KNOWN_BAD[s]}) | {a[s]['verdict']} | {'; '.join(a[s]['reasons']) or ', '.join(a[s]['unsure'])} |" for s in sorted(KNOWN_BAD)]
-        lines += ["", "Flagged but not on the known-error list (check by eye: new errors or false alarms):", ""]
-        lines += [f"- {s}: {'; '.join(a[s]['reasons'])}" for s in fp] or ["- none"]
+                  f"Base rate: the check flags {len(flagged)} of {len(a)} icons, so a catch is weak evidence on its own.", "",
+                  f"- Major errors (6): flagged {caught(KNOWN_BAD)}; from generic questions alone, {caught(KNOWN_BAD, 'generic')}.",
+                  f"- Minor errors (5): flagged {caught(KNOWN_MINOR)}; from generic questions alone, {caught(KNOWN_MINOR, 'generic')}.",
+                  f"- Other {len(a) - len(known)} icons: flagged {len(flagged - known.keys())}.", "",
+                  "| Known error | Kind | Verdict | Why (check whether the reason matches the error) |", "|---|---|---|---|"]
+        lines += [f"| {s} ({known[s]}) | {'major' if s in KNOWN_BAD else 'minor'} | {a[s]['verdict']} | {why(s)} |" for s in sorted(known)]
+        lines += ["", "Flagged and not on either list, each looked at by eye at 96 px against the brief's features:", ""]
+        lines += [f"- {s}: {why(s)}. **Eye check:** {EYE_CHECK.get(s, 'not checked yet')}" for s in sorted(flagged - known.keys())] or ["- none"]
         lines.append("")
     b = load("bakeoff36")
     if b:
         lines += ["## 2. Chris's blind votes on the 36 bake-off tiles", "",
-                  "Rank = position of Chris's best pick when the six tiles are sorted by likeness (1 = QA agrees).", "",
-                  "| Bird | Chris's best | QA rank of it | QA's top tile | Tiles flagged |", "|---|---|---|---|---|"]
-        hits = []
+                  "Rank = position of Chris's best pick when the six tiles are sorted by likeness (1 = QA agrees).",
+                  "\"Generic\" ranks by likeness without the review-derived avoid lists. By chance, rank 1 happens 1 time in 6 per bird.", "",
+                  "| Bird | Chris's best | QA rank | QA rank (generic) | Tiles flagged |", "|---|---|---|---|---|"]
+        firsts, firsts_g = [], []
         for slug, picks in VOTES.items():
-            tiles = sorted([r for r in b if r["slug"] == slug], key=lambda r: -r["likeness"])
+            tiles = [r for r in b if r["slug"] == slug]
             flagged = sum(r["verdict"] == "FLAG" for r in tiles)
             if picks:
-                rank = next((i + 1 for i, r in enumerate(tiles) if r["variant"] == picks[0]), None)
-                hits.append(rank is not None and rank <= 2)
-                lines.append(f"| {slug} | {picks[0]} | {rank} | {tiles[0]['variant']} | {flagged} of {len(tiles)} |")
+                rank = lambda field: next(i + 1 for i, r in enumerate(sorted(tiles, key=lambda r: -r[field])) if r["variant"] == picks[0])
+                firsts.append(rank("likeness") == 1)
+                firsts_g.append(rank("likeness_generic") == 1)
+                lines.append(f"| {slug} | {picks[0]} | {rank('likeness')} | {rank('likeness_generic')} | {flagged} of {len(tiles)} |")
             else:
-                lines.append(f"| {slug} | none works | - | {tiles[0]['variant']} | {flagged} of {len(tiles)} (all should fail) |")
-        lines += ["", f"Chris's best pick is in QA's top 2 for {sum(hits)} of {len(hits)} birds."]
+                lines.append(f"| {slug} | none works | - | - | {flagged} of {len(tiles)} (all should fail) |")
+        lines += ["", f"Chris's best pick ranks first for {sum(firsts)} of {len(firsts)} birds ({sum(firsts_g)} of {len(firsts_g)} generic). "
+                  f"n = {len(firsts)}: all five first by chance would be (1/6)^5, about 1 in 7,800.",
+                  "The verdict fails in both directions: it flags good tiles, and it passes tiles Chris rejected (see the skimmer and pelican rows)."]
     (QA / "CALIBRATION.md").write_text("\n".join(lines) + "\n")
     print("\n".join(lines))
 
