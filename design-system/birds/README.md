@@ -46,6 +46,13 @@ You need `rsvg-convert` (`brew install librsvg`). The labels are converted to ou
 - Calibration (`qa/CALIBRATION.md`): ranked by likeness, Chris's blind best pick came first for 5 of 5 birds (4 of 5 without the review-derived avoid lists; chance is 1 in 6 per bird), and all 6 rejected screech-owls were flagged. As a pass/fail gate it is noisy in both directions: it flags 16 of 30 icons, caught 5 of 6 major known errors (4 from generic questions) but only 1 of 5 minor ones, and 9 of its 10 other flags were false alarms or the deliberate palette when checked by eye. Use it to sort variations before a vote; never hide a tile because of its verdict.
 - Images and Box are experimental at TypeSafe. The key is `op://Developer Vault/TYPESAFE_API_KEY_CLAUDE/credential`; requests need the header `TypeSafe-Danger-Zone-Images: true`.
 
+## Round 2 (2026-11-21)
+
+- Eight birds redrawn through Codex with the art director's notes and earlier versions as base images (`round2/config.json`, `references.json` `notes` and `bases`): Brown Pelican, Eastern Screech-Owl (frontal), Osprey, Marbled Godwit, and note variants for Black Skimmer (Klein-blue bill tip), American Kestrel (touch of blue), Great Blue Heron (bolder head with the angular neck) and American Barn Owl (pale body).
+- Each lineup is 4 new drafts plus the current version, blind: `bakeoff/run.sh --dir round2 gen|trace|sheets`, then `bakeoff/vote_page.py --dir round2`. Vote page: https://claude.ai/artifact/Ad6ucxgTt1ff4mv8us65Gv (votes in its `votes` collection; `round2/key.json` holds the answers).
+- Palette-note test of the likeness check, on these 40 fresh tiles: "colors not true to species" fired on 14 of 40 with the note and 14 of 40 without it, so telling the model about the palette did not help (`qa/round2.md`, `qa/round2-palette.md`).
+- `assemble.py` builds `final/` from `final.json` (SVGO at 0.1 precision, or 0.01 where 0.1 moved edges; every icon must render as its source): 30 icons, six regional sheets, confusable strips.
+
 ## Not done yet (after a direction is chosen)
 
 Dark Klein Night versions, clean master SVGs (the keylines are clipped strokes now; expand them to paths), transparent PNGs, separate favicon designs at 16, 32, 64 and 128 px, and ICO files.
