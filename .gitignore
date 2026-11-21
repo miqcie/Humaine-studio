@@ -50,3 +50,5 @@ design-system/birds/bakeoff/raw/*/*.png
 !design-system/birds/bakeoff/raw/_style/*.png
 design-system/birds/bakeoff/vote/
 design-system/birds/qa/_cache/renders/
+design-system/birds/round2/raw/*/*.png
+design-system/birds/round2/vote/

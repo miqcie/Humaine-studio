@@ -30,11 +30,26 @@ sys.path.insert(0, str(BIRDS_DIR))
 import species as S  # noqa: E402
 import trace_icon  # noqa: E402
 
-RAW, TRACED, SHEETS = HERE / "raw", HERE / "traced", HERE / "sheets"
-LEDGER, STYLE = HERE / "ledger.json", HERE / "style.json"
+def _take(flag, default):
+    """Pop `flag value` from argv (so the subcommand parsing below never sees it)."""
+    if flag in sys.argv:
+        i = sys.argv.index(flag)
+        value = sys.argv[i + 1]
+        del sys.argv[i:i + 2]
+        return value
+    return default
+
+
+# A round lives in its own folder (bakeoff/ by default, or e.g. --dir round2) with an optional config.json:
+# {"birds": [...], "seeds": [...], "incumbents": {slug: svg path}}.
+ROOT = BIRDS_DIR / _take("--dir", "bakeoff")
+CONFIG = json.loads((ROOT / "config.json").read_text()) if (ROOT / "config.json").exists() else {}
+RAW, TRACED, SHEETS = ROOT / "raw", ROOT / "traced", ROOT / "sheets"
+LEDGER, STYLE = ROOT / "ledger.json", HERE / "style.json"
+STYLE_DIR = HERE / "raw" / "_style"  # the shared style references, for every round
 BUDGET = 5.00
-SEEDS = [11, 23]
-PILOTS = ["black-skimmer", "american-kestrel", "brown-pelican", "northern-bobwhite", "eastern-screech-owl", "great-blue-heron"]
+SEEDS = CONFIG.get("seeds", [11, 23])
+PILOTS = CONFIG.get("birds", ["black-skimmer", "american-kestrel", "brown-pelican", "northern-bobwhite", "eastern-screech-owl", "great-blue-heron"])
 COST = {"R-vec": 0.05, "R-ras": 0.035, "O-ras": 0.0, "style": 0.005}  # O-ras runs on the ChatGPT plan via Codex
 RECRAFT = "https://external.api.recraft.ai/v1"
 PALETTE = [S.N, S.F, S.Y, S.R, S.B, S.M]
@@ -56,7 +71,21 @@ def prompt(slug):
     return (f"{STYLE_BLOCK}\n\nSpecies: {r['name']} ({r['scientific']}). "
             f"Identifying features to show: {'; '.join(r['marks'])}. "
             f"Proportions measured from a photo: {ratios}. "
-            f"Do not draw: {'; '.join(r['avoid'])}.")
+            f"Do not draw: {'; '.join(r['avoid'])}."
+            + (f"\nArt director's change for this version: {r['notes']}" if r.get("notes") else ""))
+
+
+def base_pngs(slug):
+    """Earlier versions of this bird that the round's notes refer to (references.json `bases`), as PNGs."""
+    r = json.loads((BIRDS_DIR / "references.json").read_text())[slug]
+    out = []
+    for i, rel in enumerate(r.get("bases", [])):
+        png = RAW / "_bases" / f"{slug}-{i}.png"
+        if not png.exists():
+            png.parent.mkdir(parents=True, exist_ok=True)
+            png.write_bytes(subprocess.run(["rsvg-convert", "-w", "512", str(BIRDS_DIR / rel)], capture_output=True, check=True).stdout)
+        out.append(str(png))
+    return out
 
 
 # ---------- ledger: every paid call is recorded; nothing runs past the cap ----------
@@ -111,8 +140,8 @@ def download(url):
 # ---------- style references: the curlew plus three strong OpenAI concept icons ----------
 
 def style_refs():
-    """PNG bytes of the references, cached in raw/_style/."""
-    d = RAW / "_style"
+    """PNG bytes of the references, cached in bakeoff/raw/_style/."""
+    d = STYLE_DIR
     d.mkdir(parents=True, exist_ok=True)
     src = BIRDS_DIR / "concepts" / "OpenAI Astra Concepts"
     crops = {"wood-duck": ("06-rva.png", (387, 720, 855, 1188)), "great-blue-heron": ("06-rva.png", (108, 152, 576, 620)),
@@ -165,12 +194,16 @@ def gen_recraft(slug, seed, vector):
 def gen_openai(slug, seed):
     """OpenAI image generation through the local Codex CLI (ChatGPT plan; no API key, no dollar cost here)."""
     import tempfile
-    style = [str(RAW / "_style" / f"{n}.png") for n in ("curlew", "wood-duck", "great-blue-heron", "hooded-warbler")]
+    style = [str(STYLE_DIR / f"{n}.png") for n in ("curlew", "wood-duck", "great-blue-heron", "hooded-warbler")]
     style_refs()
-    ask = ("Use your built-in image generation tool to create ONE square 1024x1024 image. The attached images are STYLE "
-           "references only (frame, flat shapes, palette); do not copy their birds. Save the generated PNG into the current "
-           f"working directory as out.png and reply with only its path. This is variation {seed}; vary the composition a little. "
-           f"Image brief:\n{prompt(slug)}")
+    bases = base_pngs(slug)
+    ask = ("Use your built-in image generation tool to create ONE square 1024x1024 image. "
+           f"The first {len(style)} attached images are STYLE references only (frame, flat shapes, palette); do not copy their birds. "
+           + (f"The last {len(bases)} attached image(s) are earlier versions of this same bird icon: improve on them as the "
+              "art director's change below says. " if bases else "")
+           + "Save the generated PNG into the current working directory as out.png and reply with only its path. "
+           f"This is variation {seed}; vary the composition a little. Image brief:\n{prompt(slug)}")
+    style += bases
     with tempfile.TemporaryDirectory() as td:
         cmd = ["codex", "exec", "--ignore-user-config", "--skip-git-repo-check", "--sandbox", "workspace-write"]
         cmd += [a for f in style for a in ("-i", f)]  # -i takes many values, so the prompt goes in on stdin
@@ -227,6 +260,12 @@ def trace():
         out = TRACED / f.parent.name / f"{f.stem}.svg"
         out.parent.mkdir(parents=True, exist_ok=True)
         stats[f"{f.parent.name}/{f.stem}"] = trace_icon.convert(str(src), str(out))
+    # The current version of each bird joins the lineup as one more tile, so "keep what I have" is a choice.
+    for slug, rel in CONFIG.get("incumbents", {}).items():
+        out = TRACED / slug / "incumbent.svg"
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text((BIRDS_DIR / rel).read_text())
+    TRACED.mkdir(parents=True, exist_ok=True)
     (TRACED / "stats.json").write_text(json.dumps(stats, indent=1) + "\n")
 
 
@@ -277,7 +316,7 @@ def sheets():
         (SHEETS / f"{slug}.svg").write_text(svg)
         (SHEETS / f"{slug}.png").write_bytes(build.rsvg(svg, W))
         print("sheet", slug, len(tiles), "tiles")
-    (HERE / "key.json").write_text(json.dumps(key, indent=1) + "\n")
+    (ROOT / "key.json").write_text(json.dumps(key, indent=1) + "\n")
 
 
 if __name__ == "__main__":

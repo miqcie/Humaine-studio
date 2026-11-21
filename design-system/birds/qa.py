@@ -30,7 +30,14 @@ FEATURES = {k: v for k, v in json.loads((HERE / "features.json").read_text()).it
 REFS = json.loads((HERE / "references.json").read_text())
 TAXA = json.loads((HERE / "taxa.json").read_text())
 STYLE_REF = HERE / "bakeoff" / "raw" / "_style" / "curlew.png"
-SETS = {"openai30": ("concepts/openai-traced/*.svg", "stem"), "bakeoff36": ("bakeoff/traced/*/*.svg", "parent")}
+SETS = {"openai30": ("concepts/openai-traced/*.svg", "stem"), "bakeoff36": ("bakeoff/traced/*/*.svg", "parent"),
+        "round2": ("round2/traced/*/*.svg", "parent")}
+# Test of a state fix (round 2): tell the model the palette is fixed, so navy for brown is not "wrong colors".
+PALETTE_NOTE = "--palette-note" in sys.argv
+if PALETTE_NOTE:
+    sys.argv.remove("--palette-note")
+PALETTE_TEXT = ("These icons use a fixed six-color brand palette: navy stands in for black, brown and dark grey; ivory for "
+                "white; chrome yellow, vermilion, Klein blue and slate grey for other color fields.")
 
 # Answer keys for calibration (facts recorded before this check existed).
 KNOWN_BAD = {  # OpenAI concept errors found in review, 2026-11-19: the six called "drawn wrong"
@@ -72,7 +79,9 @@ def spec(slug):
     q = {
         "species": {"type": "choice", "instructions": "Which bird species is drawn in the flat icon `icon`?", "criteria": SPECIES},
         "species_small": {"type": "choice", "instructions": "Which bird species is drawn in the small, pixelated icon `icon_small`?", "criteria": SPECIES},
-        "colors_plausible": {"type": "noul", "instructions": f"Are the colors of the bird in `icon` a believable flat-color version of a real {name}'s plumage?"},
+        "colors_plausible": {"type": "noul", "instructions": (
+            f"Using the palette described in `palette_note`, are the colors of the bird in `icon` a believable version of a real {name}'s plumage?"
+            if PALETTE_NOTE else f"Are the colors of the bird in `icon` a believable flat-color version of a real {name}'s plumage?")},
         "head_shape_plausible": {"type": "noul", "instructions": f"Is the shape of the head and bill of the bird in `icon` true to a real {name}?"},
         "style": {"type": "score", "instructions": "How well does `icon` match the style of the brand icon `style_reference`?", "criteria": STYLE_LEVELS},
         "bill_visible": {"type": "noul", "instructions": "Is the bill of the bird in `icon` visible?"},
@@ -150,13 +159,16 @@ def ask(it):
     from typesafe_sdk import Image, TypeSafeClient
     try:
         with TypeSafeClient() as client:
-            r = client.system_one(state={k: Image(p) for k, p in images.items()}, questions=sdk_questions(q),
-                                  model=MODEL, extra_headers=HEADERS)
+            state = {k: Image(p) for k, p in images.items()}
+            if PALETTE_NOTE:
+                state["palette_note"] = PALETTE_TEXT
+            r = client.system_one(state=state, questions=sdk_questions(q), model=MODEL, extra_headers=HEADERS)
     except Exception as e:  # a failed call is an error, never an answer
         return {"id": it["id"], "error": f"{type(e).__name__}: {e}"[:300]}
     out = {"id": it["id"], "slug": it["slug"], "variant": it["variant"], "model": r.model,
            "usage": {"in": r.usage.input_tokens, "out": r.usage.output_tokens},
-           "answers": {k: v.model_dump(mode="json") for k, v in r.answers.items()}, "questions": q}
+           "answers": {k: v.model_dump(mode="json") for k, v in r.answers.items()}, "questions": q,
+           "palette_note": PALETTE_NOTE}
     cache.write_text(json.dumps(out, indent=1))
     return out
 
@@ -210,7 +222,8 @@ def judge(r):
         hw = h["right"] - h["left"]
         if hw > 0:
             ratio = max(b["right"] - b["left"], b["bottom"] - b["top"]) / hw
-    ref_ratio = next(iter(REFS[slug]["ratios"].values()), None) if slug in REFS else None
+    ratios = REFS.get(slug, {}).get("ratios", {})  # only bill measurements compare with the bill box
+    ref_ratio = ratios.get("icon_bill_to_head") or next((v for k, v in ratios.items() if "bill" in k or "mandible" in k), None)
     generic_parts = [p_big, statistics.mean(marks.values()), statistics.mean(plaus.values())]
     likeness = statistics.mean(generic_parts + [1 - max(avoids.values(), default=0)])
     likeness_generic = statistics.mean(generic_parts)  # without the review-derived avoid lists
@@ -227,19 +240,31 @@ def judge(r):
 
 
 def load(set_name):
+    """Answers for each icon: the exact cache entry, or else the newest stored answers for the same icon and palette
+    setting. A later change to references.json changes the questions (and the cache key) but must not drop the
+    answers already collected; each stored entry carries its own questions, so judge() stays consistent."""
+    by_id = {}
+    for f in sorted(CACHE.glob("*.json"), key=lambda p: p.stat().st_mtime):
+        rec = json.loads(f.read_text())
+        if "answers" in rec:
+            by_id[(rec["id"], rec.get("palette_note", False))] = rec
     out = []
     for it in items(set_name):
         _, _, cache = request(it)
-        if cache.exists():
-            out.append(judge(json.loads(cache.read_text())))
+        rec = json.loads(cache.read_text()) if cache.exists() else by_id.get((it["id"], PALETTE_NOTE))
+        if rec:
+            out.append(judge(rec))
     return out
 
 
 def report(set_name):
     rows = load(set_name)
-    (QA / f"{set_name}.json").write_text(json.dumps(rows, indent=1) + "\n")
+    out = set_name + ("-palette" if PALETTE_NOTE else "")
+    (QA / f"{out}.json").write_text(json.dumps(rows, indent=1) + "\n")
     n = {v: sum(r["verdict"] == v for r in rows) for v in ("PASS", "UNSURE", "FLAG")}
-    lines = [f"# Likeness check: {set_name}", "",
+    colors = sum("colors not true to species" in r["reasons"] for r in rows)
+    lines = [f"# Likeness check: {out}", "",
+             f"Palette note in state: {'yes' if PALETTE_NOTE else 'no'}. \"Colors not true to species\" fired on {colors} of {len(rows)} icons.", "",
              f"Model `{MODEL}` (image questions are experimental). {len(rows)} icons: {n['PASS']} pass, {n['UNSURE']} unsure, {n['FLAG']} flagged.",
              f"Noul read as yes above {YES}, no below {NO}. Species is read from a 30-way Choice at 480 px and at 64 px.", "",
              "| Icon | Verdict | Species p (480 / 64) | Style | Likeness | Bill ÷ head (ref) | Why |", "|---|---|---|---|---|---|---|"]
@@ -248,8 +273,8 @@ def report(set_name):
         ratio = f"{r['bill_head']}" + (f" ({r['ref_ratio']})" if r["ref_ratio"] else "") if r["bill_head"] else "-"
         name = r["slug"] if set_name == "openai30" else f"{r['slug']} {r['variant']}"
         lines.append(f"| {name} | {r['verdict']} | {r['p_species']} / {r['p_species_64']} | {r['style']} | {r['likeness']} | {ratio} | {why} |")
-    (QA / f"{set_name}.md").write_text("\n".join(lines) + "\n")
-    print(f"wrote qa/{set_name}.md: {n}")
+    (QA / f"{out}.md").write_text("\n".join(lines) + "\n")
+    print(f"wrote qa/{out}.md: {n}, colors flag on {colors}")
     return rows
 
 

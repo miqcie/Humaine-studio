@@ -21,6 +21,10 @@
       "bill longer than 1.5x head",
       "mandibles gaping wide apart",
       "orange legs or body color"
+    ],
+    "notes": "Keep the design of the base icon. Make the dark outer part of the bill Klein blue (#002FA7) instead of navy.",
+    "bases": [
+      "bakeoff/traced/black-skimmer/O-ras-11.svg"
     ]
   },
   "american-kestrel": {
@@ -46,6 +50,11 @@
       "large or long bill",
       "a crest",
       "toucan-like shapes"
+    ],
+    "notes": "Keep the design of the first base icon, including both face stripes. Add a touch of Klein blue (#002FA7), as in the second base icon.",
+    "bases": [
+      "bakeoff/traced/american-kestrel/O-ras-23.svg",
+      "bakeoff/traced/american-kestrel/R-vec-23.svg"
     ]
   },
   "brown-pelican": {
@@ -70,6 +79,11 @@
       "any plume or crest on the head",
       "an oversized bulging pouch",
       "a short bill"
+    ],
+    "notes": "Use the bill and pouch of the first base icon with the clearer eye of the second. Keep the shapes simple enough to read at 64 px. No plume or crest.",
+    "bases": [
+      "bakeoff/traced/brown-pelican/O-ras-23.svg",
+      "bakeoff/traced/brown-pelican/R-ras-23.svg"
     ]
   },
   "northern-bobwhite": {
@@ -117,7 +131,9 @@
       "tall ear tufts like a Great Horned Owl",
       "heart-shaped face (that is a barn owl)",
       "a long neck"
-    ]
+    ],
+    "notes": "Draw the owl facing straight ahead: a frontal portrait with short triangular ear tufts, a compact square head, facial discs with a dark rim, yellow eyes and slate-grey plumage.",
+    "bases": []
   },
   "great-blue-heron": {
     "name": "Great Blue Heron",
@@ -139,6 +155,85 @@
     "avoid": [
       "a curved bill",
       "a short neck"
+    ],
+    "notes": "Combine the bolder head and plume of the first base icon with the long, angular S-shaped neck of the second.",
+    "bases": [
+      "bakeoff/traced/great-blue-heron/R-ras-11.svg",
+      "bakeoff/traced/great-blue-heron/O-ras-11.svg"
+    ]
+  },
+  "osprey": {
+    "name": "Osprey",
+    "scientific": "Pandion haliaetus",
+    "photo_id": 186142358,
+    "credit": "sadawolk via iNaturalist (CC-BY)",
+    "observation": "https://www.inaturalist.org/observations/110352731",
+    "audubon": "https://www.audubon.org/field-guide/bird/osprey",
+    "ratios": {
+      "bill_to_head": 0.3
+    },
+    "marks": [
+      "white crown",
+      "dark stripe from the eye back to the nape",
+      "hooked dark bill",
+      "white throat and breast",
+      "dark brown-black back",
+      "yellow eye",
+      "at most a small, shaggy crest at the nape"
+    ],
+    "avoid": [
+      "a tall spiky crest"
+    ],
+    "notes": "Only a small, shaggy crest at the back of the head. A dark stripe from the eye back to the nape, white crown and underparts, dark back.",
+    "bases": []
+  },
+  "marbled-godwit": {
+    "name": "Marbled Godwit",
+    "scientific": "Limosa fedoa",
+    "photo_id": 570399406,
+    "credit": "trickykid1 via iNaturalist (CC-BY)",
+    "observation": "https://www.inaturalist.org/observations/315733941",
+    "audubon": "https://www.audubon.org/field-guide/bird/marbled-godwit",
+    "ratios": {
+      "bill_to_head": 2.8
+    },
+    "marks": [
+      "very long bill, slightly upturned",
+      "pink-orange bill base, black outer third",
+      "buff-cinnamon head and neck",
+      "back marbled with dark bars on buff"
+    ],
+    "avoid": [
+      "a navy or black body",
+      "a short bill"
+    ],
+    "notes": "A buff-cinnamon body marbled with dark bars (chrome yellow with navy marks), not a navy body. Long, slightly upturned bill with a pink-orange base and dark tip.",
+    "bases": []
+  },
+  "american-barn-owl": {
+    "name": "American Barn Owl",
+    "scientific": "Tyto furcata",
+    "photo_id": 143704294,
+    "credit": "wildreturn via iNaturalist (CC0)",
+    "observation": "https://www.inaturalist.org/observations/87190484",
+    "audubon": "https://www.audubon.org/field-guide/bird/barn-owl",
+    "ratios": {
+      "face_disc_to_head_width": 0.9
+    },
+    "marks": [
+      "white heart-shaped facial disc with a buff rim",
+      "dark eyes",
+      "small pale bill in the middle of the face",
+      "pale golden-buff back",
+      "white or pale buff front"
+    ],
+    "avoid": [
+      "a dark navy body",
+      "ear tufts"
+    ],
+    "notes": "Keep the design of the base icon (heart-shaped face, slightly turned), but make the body pale: a chrome-yellow buff back and an ivory front instead of navy.",
+    "bases": [
+      "concepts/openai-traced/american-barn-owl.svg"
     ]
   }
 }

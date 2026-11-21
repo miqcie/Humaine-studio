@@ -1,0 +1,20 @@
+{
+  "_note": "Round 2 (2026-11-21): 4 new Codex variations per bird, plus the current version as one more blind tile. Notes and base tiles are in references.json.",
+  "birds": ["brown-pelican", "eastern-screech-owl", "osprey", "marbled-godwit", "black-skimmer", "american-kestrel", "great-blue-heron", "american-barn-owl"],
+  "seeds": [1, 2, 3, 4],
+  "page": {
+    "title": "Bird Bake-off Round 2",
+    "eyebrow": "Humaine Studio · Virginia birds · Blind vote, round 2",
+    "intro": "Eight birds, five tiles each. Four tiles are new drafts made from your notes and the reference photo; one is the version you have now. The letters are shuffled, so nothing tells you which is which. For each bird, pick your best and your second best. Judge it as an icon: is it this species, at a glance and at small size?"
+  },
+  "incumbents": {
+    "brown-pelican": "bakeoff/traced/brown-pelican/R-vec-23.svg",
+    "eastern-screech-owl": "concepts/openai-traced/eastern-screech-owl.svg",
+    "osprey": "concepts/openai-traced/osprey.svg",
+    "marbled-godwit": "concepts/openai-traced/marbled-godwit.svg",
+    "black-skimmer": "bakeoff/traced/black-skimmer/O-ras-11.svg",
+    "american-kestrel": "bakeoff/traced/american-kestrel/O-ras-23.svg",
+    "great-blue-heron": "bakeoff/traced/great-blue-heron/O-ras-11.svg",
+    "american-barn-owl": "concepts/openai-traced/american-barn-owl.svg"
+  }
+}

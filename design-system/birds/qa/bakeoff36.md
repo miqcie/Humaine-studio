@@ -1,5 +1,7 @@
 # Likeness check: bakeoff36
 
+Palette note in state: no. "Colors not true to species" fired on 19 of 36 icons.
+
 Model `jev-1.14.0` (image questions are experimental). 36 icons: 0 pass, 17 unsure, 19 flagged.
 Noul read as yes above 0.7, no below 0.3. Species is read from a 30-way Choice at 480 px and at 64 px.
 
@@ -17,14 +19,14 @@ Noul read as yes above 0.7, no below 0.3. Species is read from a 30-way Choice a
 | black-skimmer O-ras-23 | UNSURE | 0.97 / 0.96 | 2.81 | 0.739 | 0.72 (1.45) | unsure: pale lower face, colors, head shape |
 | black-skimmer R-ras-11 | UNSURE | 1.0 / 1.0 | 2.48 | 0.739 | 0.94 (1.45) | unsure: colors, head shape, bill longer than 1.5x head, mandibles gaping wide apart |
 | black-skimmer R-vec-23 | UNSURE | 0.99 / 0.99 | 2.73 | 0.728 | 0.63 (1.45) | unsure: colors, head shape, mandibles gaping wide apart |
-| brown-pelican R-vec-23 | UNSURE | 0.99 / 0.98 | 2.7 | 0.713 | 2.52 (4.5) | unsure: colors, head shape, an oversized bulging pouch |
-| brown-pelican O-ras-11 | UNSURE | 0.95 / 0.93 | 2.62 | 0.682 | 1.88 (4.5) | unsure: colors, head shape, any plume or crest on the head, an oversized bulging pouch |
-| brown-pelican R-ras-23 | UNSURE | 0.96 / 0.96 | 2.57 | 0.674 | 0.97 (4.5) | unsure: throat pouch, colors, head shape, an oversized bulging pouch |
-| brown-pelican R-ras-11 | UNSURE | 0.97 / 0.97 | 2.25 | 0.664 | 1.26 (4.5) | unsure: colors, head shape, any plume or crest on the head, an oversized bulging pouch |
-| brown-pelican R-vec-11 | FLAG | 0.96 / 0.94 | 2.54 | 0.664 | 2.0 (4.5) | colors not true to species |
-| brown-pelican O-ras-23 | UNSURE | 0.95 / 0.93 | 2.68 | 0.655 | 2.61 (4.5) | unsure: colors, head shape, any plume or crest on the head, an oversized bulging pouch |
-| eastern-screech-owl O-ras-23 | FLAG | 0.98 / 0.99 | 2.78 | 0.622 | 0.15 (0.25) | colors not true to species; head shape not true to species |
-| eastern-screech-owl O-ras-11 | FLAG | 0.98 / 0.93 | 2.63 | 0.593 | 0.22 (0.25) | colors not true to species; head shape not true to species |
+| brown-pelican R-vec-23 | UNSURE | 0.99 / 0.98 | 2.7 | 0.713 | 2.52 (3.2) | unsure: colors, head shape, an oversized bulging pouch |
+| brown-pelican O-ras-11 | UNSURE | 0.95 / 0.93 | 2.62 | 0.682 | 1.88 (3.2) | unsure: colors, head shape, any plume or crest on the head, an oversized bulging pouch |
+| brown-pelican R-ras-23 | UNSURE | 0.96 / 0.96 | 2.57 | 0.674 | 0.97 (3.2) | unsure: throat pouch, colors, head shape, an oversized bulging pouch |
+| brown-pelican R-ras-11 | UNSURE | 0.97 / 0.97 | 2.25 | 0.664 | 1.26 (3.2) | unsure: colors, head shape, any plume or crest on the head, an oversized bulging pouch |
+| brown-pelican R-vec-11 | FLAG | 0.96 / 0.94 | 2.54 | 0.664 | 2.0 (3.2) | colors not true to species |
+| brown-pelican O-ras-23 | UNSURE | 0.95 / 0.93 | 2.68 | 0.655 | 2.61 (3.2) | unsure: colors, head shape, any plume or crest on the head, an oversized bulging pouch |
+| eastern-screech-owl O-ras-23 | FLAG | 0.98 / 0.99 | 2.78 | 0.622 | 0.15 | colors not true to species; head shape not true to species |
+| eastern-screech-owl O-ras-11 | FLAG | 0.98 / 0.93 | 2.63 | 0.593 | 0.22 | colors not true to species; head shape not true to species |
 | eastern-screech-owl R-vec-11 | FLAG | 0.99 / 0.98 | 2.55 | 0.561 | - | colors not true to species; head shape not true to species |
 | eastern-screech-owl R-ras-11 | FLAG | 0.98 / 0.96 | 2.39 | 0.515 | - | colors not true to species; head shape not true to species |
 | eastern-screech-owl R-vec-23 | FLAG | 0.93 / 0.82 | 2.69 | 0.495 | - | missing: strong facial discs; colors not true to species; head shape not true to species |

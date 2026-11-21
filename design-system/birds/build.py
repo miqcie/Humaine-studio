@@ -124,7 +124,9 @@ W, CELL, GAP, MX = 1800, 440, 90, 150
 TOP = 300
 
 
-def sheet(i: int, region: dict) -> str:
+def sheet(i: int, region: dict, art=None) -> str:
+    """One regional sheet. `art(slug)` returns the icon body in 240-unit space; default: the hand-drawn concept."""
+    art = art or (lambda s: icon(s, BIRDS[s]))
     slugs = [s for s, b in BIRDS.items() if b["region"] == region["key"]]
     out = [f'<rect width="{W}" height="0" fill="{S.G}"/>']
     out.append(text(f"HUMAINE STUDIO · VIRGINIA BIRDS · {i} OF 6", MX, 120, 22, "sans", S.M, track=0.12))
@@ -138,7 +140,7 @@ def sheet(i: int, region: dict) -> str:
         x = (W - span) / 2
         for slug in row:
             k = CELL / SIZE
-            out.append(f'<g transform="translate({x},{y}) scale({k})">{icon(slug, BIRDS[slug])}</g>')
+            out.append(f'<g transform="translate({x},{y}) scale({k})">{art(slug)}</g>')
             out.append(text(BIRDS[slug]["name"], x + CELL / 2, y + CELL + 54, 30, "sans", S.N, anchor="middle"))
             x += CELL + GAP
         y += CELL + 130
@@ -147,11 +149,12 @@ def sheet(i: int, region: dict) -> str:
     return f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {h}" width="{W}" height="{h}">{"".join(out)}</svg>'
 
 
-def strip(slugs, px=96) -> str:
+def strip(slugs, px=96, art=None) -> str:
     """Confusable sets side by side at display size."""
+    art = art or (lambda s: icon(s, BIRDS[s]))
     gap = 24
     w = len(slugs) * (px + gap) + gap
-    body = "".join(f'<g transform="translate({gap + n * (px + gap)},{gap}) scale({px / SIZE})">{icon(s, BIRDS[s])}</g>'
+    body = "".join(f'<g transform="translate({gap + n * (px + gap)},{gap}) scale({px / SIZE})">{art(s)}</g>'
                    for n, s in enumerate(slugs))
     return f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {px + 2 * gap}" width="{w}" height="{px + 2 * gap}"><rect width="{w}" height="{px + 2 * gap}" fill="{S.G}"/>{body}</svg>'
 

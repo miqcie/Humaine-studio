@@ -1,4 +1,4 @@
-<title>Bird Bake-off</title>
+<title>__TITLE__</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -86,23 +86,23 @@ footer.done { padding-block: 36px; display: grid; gap: 8px }
 
 <div class="wrap">
   <header class="top">
-    <span class="eyebrow">Humaine Studio · Virginia birds · Blind bake-off</span>
+    <span class="eyebrow">__EYEBROW__</span>
     <h1>Which bird reads best?</h1>
-    <p>Six birds, six tiles each. Every tile came from one of three image generators and was traced into the same frame and palette. The letters are shuffled, so nothing tells you which tool made which. For each bird, pick your best and your second best. Judge it as an icon: is it this species, at a glance and at small size?</p>
+    <p>__INTRO__</p>
   </header>
 
   <div class="bar" role="navigation" aria-label="Progress">
     <div class="ticks" id="ticks"></div>
-    <span class="count" id="count">0 of 6 birds voted</span>
+    <span class="count" id="count">0 birds voted</span>
     <span class="notice" id="notice" role="status"></span>
   </div>
 
   <main id="ballots"></main>
 
   <footer class="done" id="done" hidden>
-    <span class="eyebrow">All six voted</span>
+    <span class="eyebrow">All birds voted</span>
     <h2>Thanks. Tell Claude you have voted.</h2>
-    <p>Claude reads the votes from this page, reveals which tool made each letter, and records the winner.</p>
+    <p>Claude reads the votes from this page, reveals what each letter was, and records the picks.</p>
   </footer>
 </div>
 
@@ -135,7 +135,8 @@ function build() {
         <div><img src="ref/${b.slug}.jpg" alt="Reference photo of a ${esc(b.name)}" loading="lazy">
           <p class="credit">Photo: <a href="${esc(b.obs)}" target="_blank" rel="noopener">${esc(b.credit)}</a></p></div>
         <div><ul class="marks">${b.marks.map(m => `<li>${esc(m)}</li>`).join("")}</ul>
-          <p class="marks src">Field marks checked against <a href="${esc(b.audubon)}" target="_blank" rel="noopener">Audubon</a>.</p></div>
+          <p class="marks src">Field marks checked against <a href="${esc(b.audubon)}" target="_blank" rel="noopener">Audubon</a>.</p>
+          ${b.notes ? `<p class="marks src"><strong>Asked for this round:</strong> ${esc(b.notes)}</p>` : ""}</div>
       </div>
       <p class="how">Tap your best, then your second best. Tap a pick again to remove it.</p>
       <div class="tiles">${b.letters.map(L => `
