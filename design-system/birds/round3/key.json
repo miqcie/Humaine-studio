@@ -1,0 +1,23 @@
+{
+ "eastern-screech-owl": {
+  "A": "O-ras-3",
+  "B": "incumbent",
+  "C": "O-ras-1",
+  "D": "O-ras-2",
+  "E": "O-ras-4"
+ },
+ "american-barn-owl": {
+  "A": "O-ras-3",
+  "B": "O-ras-1",
+  "C": "O-ras-2",
+  "D": "O-ras-4",
+  "E": "incumbent"
+ },
+ "american-kestrel": {
+  "A": "O-ras-2",
+  "B": "O-ras-4",
+  "C": "incumbent",
+  "D": "O-ras-1",
+  "E": "O-ras-3"
+ }
+}

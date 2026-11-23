@@ -1,0 +1,301 @@
+{
+ "id": "concepts/openai-traced/brown-pelican.svg",
+ "slug": "brown-pelican",
+ "variant": "brown-pelican",
+ "model": "jev-1.14.0",
+ "usage": {
+  "in": 5039,
+  "out": 943
+ },
+ "answers": {
+  "species": {
+   "type": "choice",
+   "choice": "brown_pelican",
+   "confidence": 0.98,
+   "probabilities": {
+    "whimbrel": 0.0,
+    "marbled_godwit": 0.0,
+    "american_oystercatcher": 0.0,
+    "brown_pelican": 0.98,
+    "black_skimmer": 0.0,
+    "eastern_bluebird": 0.0,
+    "eastern_meadowlark": 0.0,
+    "indigo_bunting": 0.0,
+    "northern_bobwhite": 0.0,
+    "red_headed_woodpecker": 0.0,
+    "common_raven": 0.0,
+    "scarlet_tanager": 0.0,
+    "cerulean_warbler": 0.0,
+    "peregrine_falcon": 0.0,
+    "rose_breasted_grosbeak": 0.0,
+    "american_kestrel": 0.0,
+    "american_barn_owl": 0.0,
+    "eastern_screech_owl": 0.0,
+    "belted_kingfisher": 0.01,
+    "wild_turkey": 0.0,
+    "hooded_warbler": 0.0,
+    "blackburnian_warbler": 0.0,
+    "black_and_white_warbler": 0.0,
+    "swainsons_warbler": 0.0,
+    "ruffed_grouse": 0.0,
+    "great_blue_heron": 0.01,
+    "osprey": 0.0,
+    "double_crested_cormorant": 0.0,
+    "wood_duck": 0.0,
+    "chimney_swift": 0.0
+   }
+  },
+  "species_small": {
+   "type": "choice",
+   "choice": "brown_pelican",
+   "confidence": 0.98,
+   "probabilities": {
+    "whimbrel": 0.0,
+    "marbled_godwit": 0.0,
+    "american_oystercatcher": 0.0,
+    "brown_pelican": 0.98,
+    "black_skimmer": 0.0,
+    "eastern_bluebird": 0.0,
+    "eastern_meadowlark": 0.0,
+    "indigo_bunting": 0.0,
+    "northern_bobwhite": 0.0,
+    "red_headed_woodpecker": 0.0,
+    "common_raven": 0.0,
+    "scarlet_tanager": 0.0,
+    "cerulean_warbler": 0.0,
+    "peregrine_falcon": 0.0,
+    "rose_breasted_grosbeak": 0.0,
+    "american_kestrel": 0.0,
+    "american_barn_owl": 0.0,
+    "eastern_screech_owl": 0.0,
+    "belted_kingfisher": 0.01,
+    "wild_turkey": 0.0,
+    "hooded_warbler": 0.0,
+    "blackburnian_warbler": 0.0,
+    "black_and_white_warbler": 0.0,
+    "swainsons_warbler": 0.0,
+    "ruffed_grouse": 0.0,
+    "great_blue_heron": 0.01,
+    "osprey": 0.0,
+    "double_crested_cormorant": 0.0,
+    "wood_duck": 0.0,
+    "chimney_swift": 0.0
+   }
+  },
+  "colors_plausible": {
+   "type": "noul",
+   "noul": 0.3
+  },
+  "head_shape_plausible": {
+   "type": "noul",
+   "noul": 0.49
+  },
+  "style": {
+   "type": "score",
+   "score": 2.66,
+   "confidence": 0.67,
+   "legend": {
+    "0": "A photo, a sketch, or a detailed illustration with shading or texture.",
+    "1": "A flat illustration in a different style from `style_reference`: thin outlines, other colors, or no square frame.",
+    "2": "Flat colors and a square frame like `style_reference`, but the shapes are fussier or less bold.",
+    "3": "It looks like part of the same set as `style_reference`: bold flat shapes, a thick square frame, few colors and a simple round eye."
+   },
+   "probabilities": {
+    "0": 0.0,
+    "1": 0.06,
+    "2": 0.21,
+    "3": 0.73
+   }
+  },
+  "bill_visible": {
+   "type": "noul",
+   "noul": 0.97
+  },
+  "bill": {
+   "type": "box",
+   "box": {
+    "top": 0.41,
+    "bottom": 0.52,
+    "left": 0.34,
+    "right": 0.89
+   },
+   "confidence": 0.4
+  },
+  "head": {
+   "type": "box",
+   "box": {
+    "top": 0.24,
+    "bottom": 0.47,
+    "left": 0.08,
+    "right": 0.47
+   },
+   "confidence": 0.26
+  },
+  "mark_0": {
+   "type": "noul",
+   "noul": 0.95
+  },
+  "mark_1": {
+   "type": "noul",
+   "noul": 0.95
+  },
+  "mark_2": {
+   "type": "noul",
+   "noul": 0.88
+  },
+  "avoid_0": {
+   "type": "noul",
+   "noul": 0.97
+  },
+  "avoid_1": {
+   "type": "noul",
+   "noul": 0.92
+  },
+  "avoid_2": {
+   "type": "noul",
+   "noul": 0.09
+  },
+  "matches_reference": {
+   "type": "noul",
+   "noul": 0.18
+  }
+ },
+ "questions": {
+  "species": {
+   "type": "choice",
+   "instructions": "Which bird species is drawn in the flat icon `icon`?",
+   "criteria": {
+    "whimbrel": "Whimbrel: striped crown, pale eyebrow, long downward-curved bill",
+    "marbled_godwit": "Marbled Godwit: very long, slightly upturned bill, bill with a contrasting base and tip",
+    "american_oystercatcher": "American Oystercatcher: heavy straight bill, bold dark head, distinctive eye ring",
+    "brown_pelican": "Brown Pelican: long bill, throat pouch, sweeping neck",
+    "black_skimmer": "Black Skimmer: blade-like bill with a visibly longer lower mandible, dark cap, pale lower face",
+    "eastern_bluebird": "Eastern Bluebird: rounded head, short bill, contrasting breast",
+    "eastern_meadowlark": "Eastern Meadowlark: pointed bill, yellow breast, dark breast chevron",
+    "indigo_bunting": "Indigo Bunting: compact form, conical bill, strong blue color field",
+    "northern_bobwhite": "Northern Bobwhite: small crest, bold face pattern, compact neck",
+    "red_headed_woodpecker": "Red-headed Woodpecker: solid contrasting head, straight chisel-shaped bill, sharply divided body and wing fields",
+    "common_raven": "Common Raven: heavy bill, strong forehead, shaggy throat",
+    "scarlet_tanager": "Scarlet Tanager: broad head, stout bill, red body, dark wing",
+    "cerulean_warbler": "Cerulean Warbler: fine bill, pale wing bars, dark breast band",
+    "peregrine_falcon": "Peregrine Falcon: hooked bill, dark hood, strong cheek stripe",
+    "rose_breasted_grosbeak": "Rose-breasted Grosbeak: large triangular bill, dark head, pale breast with a bold red patch",
+    "american_kestrel": "American Kestrel: small hooked bill, two dark vertical face stripes",
+    "american_barn_owl": "American Barn Owl: heart-shaped facial disc, small central bill",
+    "eastern_screech_owl": "Eastern Screech-Owl: ear tufts, compact head, strong facial discs",
+    "belted_kingfisher": "Belted Kingfisher: shaggy crest, long straight bill, breast band",
+    "wild_turkey": "Wild Turkey: small bare head, long neck, distinct wattle and snood",
+    "hooded_warbler": "Hooded Warbler: dark hood surrounding a bright face",
+    "blackburnian_warbler": "Blackburnian Warbler: fine pointed bill, angular face markings, bright throat",
+    "black_and_white_warbler": "Black-and-white Warbler: bold crown and face stripes, slender bill",
+    "swainsons_warbler": "Swainson\u2019s Warbler: long pointed bill, low forehead, strong pale eyebrow",
+    "ruffed_grouse": "Ruffed Grouse: small crest, short bill, dark neck ruff, rounded body",
+    "great_blue_heron": "Great Blue Heron: long pointed bill, dark head plume, angular S-shaped neck",
+    "osprey": "Osprey: hooked bill, pale crown, bold dark eye stripe",
+    "double_crested_cormorant": "Double-crested Cormorant: slender hooked bill, long neck, contrasting throat patch",
+    "wood_duck": "Wood Duck: swept-back crest, bold face stripes, distinctive eye",
+    "chimney_swift": "Chimney Swift: compact body, tiny bill, short tail, long swept wings, seen in flight"
+   }
+  },
+  "species_small": {
+   "type": "choice",
+   "instructions": "Which bird species is drawn in the small, pixelated icon `icon_small`?",
+   "criteria": {
+    "whimbrel": "Whimbrel: striped crown, pale eyebrow, long downward-curved bill",
+    "marbled_godwit": "Marbled Godwit: very long, slightly upturned bill, bill with a contrasting base and tip",
+    "american_oystercatcher": "American Oystercatcher: heavy straight bill, bold dark head, distinctive eye ring",
+    "brown_pelican": "Brown Pelican: long bill, throat pouch, sweeping neck",
+    "black_skimmer": "Black Skimmer: blade-like bill with a visibly longer lower mandible, dark cap, pale lower face",
+    "eastern_bluebird": "Eastern Bluebird: rounded head, short bill, contrasting breast",
+    "eastern_meadowlark": "Eastern Meadowlark: pointed bill, yellow breast, dark breast chevron",
+    "indigo_bunting": "Indigo Bunting: compact form, conical bill, strong blue color field",
+    "northern_bobwhite": "Northern Bobwhite: small crest, bold face pattern, compact neck",
+    "red_headed_woodpecker": "Red-headed Woodpecker: solid contrasting head, straight chisel-shaped bill, sharply divided body and wing fields",
+    "common_raven": "Common Raven: heavy bill, strong forehead, shaggy throat",
+    "scarlet_tanager": "Scarlet Tanager: broad head, stout bill, red body, dark wing",
+    "cerulean_warbler": "Cerulean Warbler: fine bill, pale wing bars, dark breast band",
+    "peregrine_falcon": "Peregrine Falcon: hooked bill, dark hood, strong cheek stripe",
+    "rose_breasted_grosbeak": "Rose-breasted Grosbeak: large triangular bill, dark head, pale breast with a bold red patch",
+    "american_kestrel": "American Kestrel: small hooked bill, two dark vertical face stripes",
+    "american_barn_owl": "American Barn Owl: heart-shaped facial disc, small central bill",
+    "eastern_screech_owl": "Eastern Screech-Owl: ear tufts, compact head, strong facial discs",
+    "belted_kingfisher": "Belted Kingfisher: shaggy crest, long straight bill, breast band",
+    "wild_turkey": "Wild Turkey: small bare head, long neck, distinct wattle and snood",
+    "hooded_warbler": "Hooded Warbler: dark hood surrounding a bright face",
+    "blackburnian_warbler": "Blackburnian Warbler: fine pointed bill, angular face markings, bright throat",
+    "black_and_white_warbler": "Black-and-white Warbler: bold crown and face stripes, slender bill",
+    "swainsons_warbler": "Swainson\u2019s Warbler: long pointed bill, low forehead, strong pale eyebrow",
+    "ruffed_grouse": "Ruffed Grouse: small crest, short bill, dark neck ruff, rounded body",
+    "great_blue_heron": "Great Blue Heron: long pointed bill, dark head plume, angular S-shaped neck",
+    "osprey": "Osprey: hooked bill, pale crown, bold dark eye stripe",
+    "double_crested_cormorant": "Double-crested Cormorant: slender hooked bill, long neck, contrasting throat patch",
+    "wood_duck": "Wood Duck: swept-back crest, bold face stripes, distinctive eye",
+    "chimney_swift": "Chimney Swift: compact body, tiny bill, short tail, long swept wings, seen in flight"
+   }
+  },
+  "colors_plausible": {
+   "type": "noul",
+   "instructions": "Are the colors of the bird in `icon` a believable flat-color version of a real Brown Pelican's plumage?"
+  },
+  "head_shape_plausible": {
+   "type": "noul",
+   "instructions": "Is the shape of the head and bill of the bird in `icon` true to a real Brown Pelican?"
+  },
+  "style": {
+   "type": "score",
+   "instructions": "How well does `icon` match the style of the brand icon `style_reference`?",
+   "criteria": [
+    "A photo, a sketch, or a detailed illustration with shading or texture.",
+    "A flat illustration in a different style from `style_reference`: thin outlines, other colors, or no square frame.",
+    "Flat colors and a square frame like `style_reference`, but the shapes are fussier or less bold.",
+    "It looks like part of the same set as `style_reference`: bold flat shapes, a thick square frame, few colors and a simple round eye."
+   ]
+  },
+  "bill_visible": {
+   "type": "noul",
+   "instructions": "Is the bill of the bird in `icon` visible?"
+  },
+  "bill": {
+   "type": "box",
+   "instructions": "the bill of the bird in `icon`"
+  },
+  "head": {
+   "type": "box",
+   "instructions": "the head of the bird in `icon`"
+  },
+  "mark_0": {
+   "type": "noul",
+   "instructions": "Does the bird drawn in `icon` show this feature: long bill?",
+   "label": "long bill"
+  },
+  "mark_1": {
+   "type": "noul",
+   "instructions": "Does the bird drawn in `icon` show this feature: throat pouch?",
+   "label": "throat pouch"
+  },
+  "mark_2": {
+   "type": "noul",
+   "instructions": "Does the bird drawn in `icon` show this feature: sweeping neck?",
+   "label": "sweeping neck"
+  },
+  "avoid_0": {
+   "type": "noul",
+   "instructions": "Does `icon` show this: any plume or crest on the head?",
+   "label": "any plume or crest on the head"
+  },
+  "avoid_1": {
+   "type": "noul",
+   "instructions": "Does `icon` show this: an oversized bulging pouch?",
+   "label": "an oversized bulging pouch"
+  },
+  "avoid_2": {
+   "type": "noul",
+   "instructions": "Does `icon` show this: a short bill?",
+   "label": "a short bill"
+  },
+  "matches_reference": {
+   "type": "noul",
+   "instructions": "Does the bird drawn in `icon` show the same field marks as the Brown Pelican in the photo `reference`?"
+  }
+ }
+}

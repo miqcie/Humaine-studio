@@ -1,0 +1,7 @@
+{
+ "request": {
+  "via": "codex exec (ChatGPT plan)",
+  "prompt": "Use your built-in image generation tool to create ONE square 1024x1024 image. The attached images are STYLE references only (frame, flat shapes, palette); do not copy their birds. Save the generated PNG into the current working directory as out.png and reply with only its path. This is variation 23; vary the composition a little. Image brief:\nFlat geometric bird icon in a Mondrian / De Stijl spirit, matching the reference images. A thick navy square frame (#0B0F24) around an ivory field (#FAF6EE). Right-facing head-and-upper-breast portrait. The bird is a bold navy silhouette with a few flat color fields; it may run off the bottom and left edges of the frame only, and leaves clear ivory space between the bill tip, crest and the frame. One simple round eye. Use only these colors: navy #0B0F24, ivory #FAF6EE, chrome yellow #F7B902, vermilion #C7301C, Klein blue #002FA7, slate #5E6178. Three or four colors in total. No gradients, shading, texture, outlines of feather detail, scenery, text or labels. Simple shapes that stay readable at 32 pixels.\n\nSpecies: Great Blue Heron (Ardea herodias). Identifying features to show: long straight dagger bill, yellow; black stripe above the eye running back into a long plume; white face and crown centre; long S-shaped neck, angled; blue-grey body. Proportions measured from a photo: bill to head = 1.05. Do not draw: a curved bill; a short neck."
+ },
+ "billed": "ChatGPT plan"
+}

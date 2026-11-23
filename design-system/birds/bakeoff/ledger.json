@@ -1,0 +1,150 @@
+[
+ {
+  "item": "recraft style",
+  "cost": 0.005
+ },
+ {
+  "item": "recraft style recraftv4_styles_vector",
+  "cost": 0.005
+ },
+ {
+  "item": "R-vec black-skimmer 11",
+  "cost": 0.05
+ },
+ {
+  "item": "R-vec black-skimmer 23",
+  "cost": 0.05
+ },
+ {
+  "item": "R-ras black-skimmer 11",
+  "cost": 0.035
+ },
+ {
+  "item": "R-ras black-skimmer 23",
+  "cost": 0.035
+ },
+ {
+  "item": "R-vec american-kestrel 11",
+  "cost": 0.05
+ },
+ {
+  "item": "R-vec american-kestrel 23",
+  "cost": 0.05
+ },
+ {
+  "item": "R-ras american-kestrel 11",
+  "cost": 0.035
+ },
+ {
+  "item": "R-ras american-kestrel 23",
+  "cost": 0.035
+ },
+ {
+  "item": "R-vec brown-pelican 11",
+  "cost": 0.05
+ },
+ {
+  "item": "R-vec brown-pelican 23",
+  "cost": 0.05
+ },
+ {
+  "item": "R-ras brown-pelican 11",
+  "cost": 0.035
+ },
+ {
+  "item": "R-ras brown-pelican 23",
+  "cost": 0.035
+ },
+ {
+  "item": "R-vec northern-bobwhite 11",
+  "cost": 0.05
+ },
+ {
+  "item": "R-vec northern-bobwhite 23",
+  "cost": 0.05
+ },
+ {
+  "item": "R-ras northern-bobwhite 11",
+  "cost": 0.035
+ },
+ {
+  "item": "R-ras northern-bobwhite 23",
+  "cost": 0.035
+ },
+ {
+  "item": "R-vec eastern-screech-owl 11",
+  "cost": 0.05
+ },
+ {
+  "item": "R-vec eastern-screech-owl 23",
+  "cost": 0.05
+ },
+ {
+  "item": "R-ras eastern-screech-owl 11",
+  "cost": 0.035
+ },
+ {
+  "item": "R-ras eastern-screech-owl 23",
+  "cost": 0.035
+ },
+ {
+  "item": "R-vec great-blue-heron 11",
+  "cost": 0.05
+ },
+ {
+  "item": "R-vec great-blue-heron 23",
+  "cost": 0.05
+ },
+ {
+  "item": "R-ras great-blue-heron 11",
+  "cost": 0.035
+ },
+ {
+  "item": "R-ras great-blue-heron 23",
+  "cost": 0.035
+ },
+ {
+  "item": "O-ras black-skimmer 23",
+  "cost": 0.0
+ },
+ {
+  "item": "O-ras american-kestrel 11",
+  "cost": 0.0
+ },
+ {
+  "item": "O-ras american-kestrel 23",
+  "cost": 0.0
+ },
+ {
+  "item": "O-ras brown-pelican 11",
+  "cost": 0.0
+ },
+ {
+  "item": "O-ras brown-pelican 23",
+  "cost": 0.0
+ },
+ {
+  "item": "O-ras northern-bobwhite 11",
+  "cost": 0.0
+ },
+ {
+  "item": "O-ras northern-bobwhite 23",
+  "cost": 0.0
+ },
+ {
+  "item": "O-ras eastern-screech-owl 11",
+  "cost": 0.0
+ },
+ {
+  "item": "O-ras eastern-screech-owl 23",
+  "cost": 0.0
+ },
+ {
+  "item": "O-ras great-blue-heron 11",
+  "cost": 0.0
+ },
+ {
+  "item": "O-ras great-blue-heron 23",
+  "cost": 0.0
+ }
+]

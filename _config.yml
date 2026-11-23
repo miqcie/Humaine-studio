@@ -84,4 +84,5 @@ exclude:
   - scripts/
   - docs/
   - design-system/
+  - tasks/
   - writing-topics/

@@ -1,0 +1,236 @@
+{
+  "black-skimmer": {
+    "name": "Black Skimmer",
+    "scientific": "Rynchops niger",
+    "photo_id": 139647263,
+    "credit": "ninawenoli via iNaturalist (CC0)",
+    "observation": "https://www.inaturalist.org/observations/84926718",
+    "audubon": "https://www.audubon.org/field-guide/bird/black-skimmer",
+    "ratios": {
+      "lower_mandible_to_head": 1.45,
+      "upper_mandible_to_head": 1.15,
+      "bill_depth_at_base_to_head_height": 0.4
+    },
+    "marks": [
+      "black cap down to eye level; white lower face, throat and breast",
+      "bill red-orange on the base 55%, black tip",
+      "lower mandible clearly longer than upper; bill blade-thin, angled slightly down",
+      "black back"
+    ],
+    "avoid": [
+      "bill longer than 1.5x head",
+      "mandibles gaping wide apart",
+      "orange legs or body color"
+    ],
+    "notes": "Keep the design of the base icon. Make the dark outer part of the bill Klein blue (#002FA7) instead of navy.",
+    "bases": [
+      "bakeoff/traced/black-skimmer/O-ras-11.svg"
+    ]
+  },
+  "american-kestrel": {
+    "name": "American Kestrel",
+    "scientific": "Falco sparverius",
+    "photo_id": 175711425,
+    "credit": "sambiology via iNaturalist (CC-BY)",
+    "observation": "https://www.inaturalist.org/observations/104813087",
+    "audubon": "https://www.audubon.org/field-guide/bird/american-kestrel",
+    "ratios": {
+      "bill_to_head": 0.25
+    },
+    "marks": [
+      "two dark vertical face stripes: one below the eye, one behind it on the ear",
+      "blue-grey crown with a small rufous spot",
+      "white cheeks and throat",
+      "rufous nape and back",
+      "yellow eye-ring and cere",
+      "small hooked bill"
+    ],
+    "avoid": [
+      "only one face stripe",
+      "large or long bill",
+      "a crest",
+      "toucan-like shapes"
+    ],
+    "notes": "No Klein blue anywhere. Exactly two dark vertical face stripes: one below the eye, one behind it on the ear. A slate-grey crown (slate #5E6178) with a small rufous spot, white cheeks and throat, rufous nape and back, a yellow eye-ring and a small hooked bill.",
+    "bases": []
+  },
+  "brown-pelican": {
+    "name": "Brown Pelican",
+    "scientific": "Pelecanus occidentalis",
+    "photo_id": 179753525,
+    "credit": "hkibak via iNaturalist (CC-BY)",
+    "observation": "https://www.inaturalist.org/observations/106936959",
+    "audubon": "https://www.audubon.org/field-guide/bird/brown-pelican",
+    "ratios": {
+      "bill_to_head": 4.5,
+      "icon_bill_to_head": 3.2
+    },
+    "marks": [
+      "very long flat bill with a small hook at the tip",
+      "dark throat pouch under the bill, slim when closed",
+      "white head with a pale yellow crown",
+      "dark chestnut-black hindneck; white stripe down the foreneck",
+      "pale eye in a pink-red bare patch"
+    ],
+    "avoid": [
+      "any plume or crest on the head",
+      "an oversized bulging pouch",
+      "a short bill"
+    ],
+    "notes": "Use the bill and pouch of the first base icon with the clearer eye of the second. Keep the shapes simple enough to read at 64 px. No plume or crest.",
+    "bases": [
+      "bakeoff/traced/brown-pelican/O-ras-23.svg",
+      "bakeoff/traced/brown-pelican/R-ras-23.svg"
+    ]
+  },
+  "northern-bobwhite": {
+    "name": "Northern Bobwhite",
+    "scientific": "Colinus virginianus",
+    "photo_id": 236825046,
+    "credit": "wildreturn via iNaturalist (CC0)",
+    "observation": "https://www.inaturalist.org/observations/138546291",
+    "audubon": "https://www.audubon.org/field-guide/bird/northern-bobwhite",
+    "ratios": {
+      "bill_to_head": 0.3
+    },
+    "marks": [
+      "white eyebrow from the bill over the eye to the nape",
+      "black stripe through the eye, running down the neck",
+      "large white throat bordered by black below",
+      "dark crown with a small, low peak at the back, not a plume",
+      "short stout bill",
+      "rufous-brown body with black and white mottling on the neck"
+    ],
+    "avoid": [
+      "a tall plume or topknot (that is a California or Gambel's quail)",
+      "a long neck"
+    ]
+  },
+  "eastern-screech-owl": {
+    "name": "Eastern Screech-Owl",
+    "scientific": "Megascops asio",
+    "photo_id": 72648469,
+    "credit": "henrya via iNaturalist (CC0)",
+    "observation": "https://www.inaturalist.org/observations/45808682",
+    "audubon": "https://www.audubon.org/field-guide/bird/eastern-screech-owl",
+    "ratios": {
+      "ear_tuft_height_to_head_height": 0.25
+    },
+    "marks": [
+      "short triangular ear tufts",
+      "compact, nearly square head on a compact body",
+      "facial discs rimmed dark at the sides",
+      "yellow eyes",
+      "small pale bill between the eyes",
+      "grey plumage"
+    ],
+    "avoid": [
+      "tall ear tufts like a Great Horned Owl",
+      "heart-shaped face (that is a barn owl)",
+      "a long neck"
+    ],
+    "notes": "Face straight ahead, fully symmetric. Eyes: a yellow iris ring around a large black pupil, both eyes exactly the same size, each with a dark brow line over it that gives the stern look of the attached photo. Short ear tufts angled outward, a streaked crown, facial discs rimmed dark, a small pale bill, and a pale breast with dark vertical streaks. Slate-grey plumage.",
+    "bases": [
+      "refs/eastern-screech-owl/chris-supplied.jpg"
+    ]
+  },
+  "great-blue-heron": {
+    "name": "Great Blue Heron",
+    "scientific": "Ardea herodias",
+    "photo_id": 310538174,
+    "credit": "phylogenomics via iNaturalist (CC-BY)",
+    "observation": "https://www.inaturalist.org/observations/178457642",
+    "audubon": "https://www.audubon.org/field-guide/bird/great-blue-heron",
+    "ratios": {
+      "bill_to_head": 1.05
+    },
+    "marks": [
+      "long straight dagger bill, yellow",
+      "black stripe above the eye running back into a long plume",
+      "white face and crown centre",
+      "long S-shaped neck, angled",
+      "blue-grey body"
+    ],
+    "avoid": [
+      "a curved bill",
+      "a short neck"
+    ],
+    "notes": "Combine the bolder head and plume of the first base icon with the long, angular S-shaped neck of the second.",
+    "bases": [
+      "bakeoff/traced/great-blue-heron/R-ras-11.svg",
+      "bakeoff/traced/great-blue-heron/O-ras-11.svg"
+    ]
+  },
+  "osprey": {
+    "name": "Osprey",
+    "scientific": "Pandion haliaetus",
+    "photo_id": 186142358,
+    "credit": "sadawolk via iNaturalist (CC-BY)",
+    "observation": "https://www.inaturalist.org/observations/110352731",
+    "audubon": "https://www.audubon.org/field-guide/bird/osprey",
+    "ratios": {
+      "bill_to_head": 0.3
+    },
+    "marks": [
+      "white crown",
+      "dark stripe from the eye back to the nape",
+      "hooked dark bill",
+      "white throat and breast",
+      "dark brown-black back",
+      "yellow eye",
+      "at most a small, shaggy crest at the nape"
+    ],
+    "avoid": [
+      "a tall spiky crest"
+    ],
+    "notes": "Only a small, shaggy crest at the back of the head. A dark stripe from the eye back to the nape, white crown and underparts, dark back.",
+    "bases": []
+  },
+  "marbled-godwit": {
+    "name": "Marbled Godwit",
+    "scientific": "Limosa fedoa",
+    "photo_id": 570399406,
+    "credit": "trickykid1 via iNaturalist (CC-BY)",
+    "observation": "https://www.inaturalist.org/observations/315733941",
+    "audubon": "https://www.audubon.org/field-guide/bird/marbled-godwit",
+    "ratios": {
+      "bill_to_head": 2.8
+    },
+    "marks": [
+      "very long bill, slightly upturned",
+      "pink-orange bill base, black outer third",
+      "buff-cinnamon head and neck",
+      "back marbled with dark bars on buff"
+    ],
+    "avoid": [
+      "a navy or black body",
+      "a short bill"
+    ],
+    "notes": "A buff-cinnamon body marbled with dark bars (chrome yellow with navy marks), not a navy body. Long, slightly upturned bill with a pink-orange base and dark tip.",
+    "bases": []
+  },
+  "american-barn-owl": {
+    "name": "American Barn Owl",
+    "scientific": "Tyto furcata",
+    "photo_id": 143704294,
+    "credit": "wildreturn via iNaturalist (CC0)",
+    "observation": "https://www.inaturalist.org/observations/87190484",
+    "audubon": "https://www.audubon.org/field-guide/bird/barn-owl",
+    "ratios": {
+      "face_disc_to_head_width": 0.9
+    },
+    "marks": [
+      "white heart-shaped facial disc with a buff rim",
+      "dark eyes",
+      "small pale bill in the middle of the face",
+      "pale golden-buff back",
+      "white or pale buff front"
+    ],
+    "avoid": [
+      "a dark navy body",
+      "ear tufts"
+    ],
+    "notes": "Face straight ahead, fully symmetric. Both eyes exactly the same size: dark eyes (black pupils), each with a short dark brow line over it. A white heart-shaped facial disc with a buff rim, a small pale bill in the middle, a pale golden-buff back and an ivory front. No mismatched eyes, no ear tufts.",
+    "bases": []
+  }
+}

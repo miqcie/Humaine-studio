@@ -1,0 +1,63 @@
+{
+ "request": {
+  "prompt": "Flat geometric bird icon in a Mondrian / De Stijl spirit, matching the reference images. A thick navy square frame (#0B0F24) around an ivory field (#FAF6EE). Right-facing head-and-upper-breast portrait. The bird is a bold navy silhouette with a few flat color fields; it may run off the bottom and left edges of the frame only, and leaves clear ivory space between the bill tip, crest and the frame. One simple round eye. Use only these colors: navy #0B0F24, ivory #FAF6EE, chrome yellow #F7B902, vermilion #C7301C, Klein blue #002FA7, slate #5E6178. Three or four colors in total. No gradients, shading, texture, outlines of feather detail, scenery, text or labels. Simple shapes that stay readable at 32 pixels.\n\nSpecies: Brown Pelican (Pelecanus occidentalis). Identifying features to show: very long flat bill with a small hook at the tip; dark throat pouch under the bill, slim when closed; white head with a pale yellow crown; dark chestnut-black hindneck; white stripe down the foreneck; pale eye in a pink-red bare patch. Proportions measured from a photo: bill to head = 4.5; icon bill to head = 3.2. Do not draw: any plume or crest on the head; an oversized bulging pouch; a short bill.",
+  "model": "recraftv4_styles",
+  "style_id": "dd2f0602-24a0-4f50-a754-4e5639a43c40",
+  "size": "1:1",
+  "random_seed": 23,
+  "controls": {
+   "colors": [
+    {
+     "rgb": [
+      11,
+      15,
+      36
+     ]
+    },
+    {
+     "rgb": [
+      250,
+      246,
+      238
+     ]
+    },
+    {
+     "rgb": [
+      247,
+      185,
+      2
+     ]
+    },
+    {
+     "rgb": [
+      199,
+      48,
+      28
+     ]
+    },
+    {
+     "rgb": [
+      0,
+      47,
+      167
+     ]
+    },
+    {
+     "rgb": [
+      94,
+      97,
+      120
+     ]
+    }
+   ],
+   "background_color": {
+    "rgb": [
+     250,
+     246,
+     238
+    ]
+   }
+  }
+ },
+ "billed": 35
+}

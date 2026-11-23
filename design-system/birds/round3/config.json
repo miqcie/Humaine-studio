@@ -1,0 +1,15 @@
+{
+  "_note": "Round 3 (2026-11-23): both owls facing straight ahead with iris, pupil and brow eyes of equal size; the Kestrel with no Klein blue. Chris's screech-owl photo is a model input (refs/, git-ignored). 4 drafts per bird plus the current version.",
+  "birds": ["eastern-screech-owl", "american-barn-owl", "american-kestrel"],
+  "seeds": [1, 2, 3, 4],
+  "page": {
+    "title": "Bird Bake-off Round 3",
+    "eyebrow": "Humaine Studio · Virginia birds · Blind vote, round 3",
+    "intro": "Three birds, five tiles each: both owls facing straight ahead with matching eyes, and the Kestrel with no blue. Four tiles are new drafts; one is the version you have now. The letters are shuffled. For each bird, pick your best and your second best, or mark that none works."
+  },
+  "incumbents": {
+    "eastern-screech-owl": "concepts/openai-traced/eastern-screech-owl.svg",
+    "american-barn-owl": "concepts/openai-traced/american-barn-owl.svg",
+    "american-kestrel": "bakeoff/traced/american-kestrel/O-ras-23.svg"
+  }
+}

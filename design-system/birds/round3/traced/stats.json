@@ -1,0 +1,146 @@
+{
+ "american-barn-owl/O-ras-1": {
+  "frame": true,
+  "colors": 3,
+  "share": {
+   "#FAF6EE": 0.803,
+   "#0B0F24": 0.028,
+   "#F7B902": 0.167,
+   "#C7301C": 0.0,
+   "#002FA7": 0.0,
+   "#5E6178": 0.002
+  }
+ },
+ "american-barn-owl/O-ras-2": {
+  "frame": true,
+  "colors": 4,
+  "share": {
+   "#FAF6EE": 0.791,
+   "#0B0F24": 0.032,
+   "#F7B902": 0.173,
+   "#C7301C": 0.0,
+   "#002FA7": 0.0,
+   "#5E6178": 0.003
+  }
+ },
+ "american-barn-owl/O-ras-3": {
+  "frame": true,
+  "colors": 3,
+  "share": {
+   "#FAF6EE": 0.802,
+   "#0B0F24": 0.02,
+   "#F7B902": 0.176,
+   "#C7301C": 0.0,
+   "#002FA7": 0.0,
+   "#5E6178": 0.002
+  }
+ },
+ "american-barn-owl/O-ras-4": {
+  "frame": true,
+  "colors": 3,
+  "share": {
+   "#FAF6EE": 0.82,
+   "#0B0F24": 0.015,
+   "#F7B902": 0.165,
+   "#C7301C": 0.0,
+   "#002FA7": 0.0,
+   "#5E6178": 0.001
+  }
+ },
+ "american-kestrel/O-ras-1": {
+  "frame": true,
+  "colors": 5,
+  "share": {
+   "#FAF6EE": 0.763,
+   "#0B0F24": 0.059,
+   "#F7B902": 0.007,
+   "#C7301C": 0.13,
+   "#002FA7": 0.0,
+   "#5E6178": 0.041
+  }
+ },
+ "american-kestrel/O-ras-2": {
+  "frame": true,
+  "colors": 5,
+  "share": {
+   "#FAF6EE": 0.679,
+   "#0B0F24": 0.061,
+   "#F7B902": 0.014,
+   "#C7301C": 0.183,
+   "#002FA7": 0.0,
+   "#5E6178": 0.062
+  }
+ },
+ "american-kestrel/O-ras-3": {
+  "frame": true,
+  "colors": 5,
+  "share": {
+   "#FAF6EE": 0.608,
+   "#0B0F24": 0.196,
+   "#F7B902": 0.011,
+   "#C7301C": 0.133,
+   "#002FA7": 0.0,
+   "#5E6178": 0.053
+  }
+ },
+ "american-kestrel/O-ras-4": {
+  "frame": true,
+  "colors": 5,
+  "share": {
+   "#FAF6EE": 0.722,
+   "#0B0F24": 0.064,
+   "#F7B902": 0.011,
+   "#C7301C": 0.139,
+   "#002FA7": 0.0,
+   "#5E6178": 0.065
+  }
+ },
+ "eastern-screech-owl/O-ras-1": {
+  "frame": true,
+  "colors": 4,
+  "share": {
+   "#FAF6EE": 0.53,
+   "#0B0F24": 0.199,
+   "#F7B902": 0.021,
+   "#C7301C": 0.0,
+   "#002FA7": 0.0,
+   "#5E6178": 0.25
+  }
+ },
+ "eastern-screech-owl/O-ras-2": {
+  "frame": true,
+  "colors": 4,
+  "share": {
+   "#FAF6EE": 0.573,
+   "#0B0F24": 0.187,
+   "#F7B902": 0.017,
+   "#C7301C": 0.0,
+   "#002FA7": 0.0,
+   "#5E6178": 0.223
+  }
+ },
+ "eastern-screech-owl/O-ras-3": {
+  "frame": true,
+  "colors": 4,
+  "share": {
+   "#FAF6EE": 0.635,
+   "#0B0F24": 0.157,
+   "#F7B902": 0.014,
+   "#C7301C": 0.0,
+   "#002FA7": 0.0,
+   "#5E6178": 0.194
+  }
+ },
+ "eastern-screech-owl/O-ras-4": {
+  "frame": true,
+  "colors": 4,
+  "share": {
+   "#FAF6EE": 0.498,
+   "#0B0F24": 0.152,
+   "#F7B902": 0.019,
+   "#C7301C": 0.0,
+   "#002FA7": 0.0,
+   "#5E6178": 0.331
+  }
+ }
+}

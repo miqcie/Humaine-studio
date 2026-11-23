@@ -1,0 +1,123 @@
+{
+  "_note": "Source of each final icon and why it was chosen. assemble.py builds final/ from this.",
+  "whimbrel": {
+    "src": "concepts/openai-traced/whimbrel.svg",
+    "why": "OpenAI concept, traced"
+  },
+  "marbled-godwit": {
+    "src": "round2/traced/marbled-godwit/O-ras-2.svg",
+    "why": "Round-2 pick B, second A (O-ras-4); buff marbled body"
+  },
+  "american-oystercatcher": {
+    "src": "concepts/openai-traced/american-oystercatcher.svg",
+    "why": "OpenAI concept, traced"
+  },
+  "brown-pelican": {
+    "src": "round2/traced/brown-pelican/O-ras-1.svg",
+    "why": "Round-2 pick C, second A (O-ras-3); replaces the Recraft bake-off pick"
+  },
+  "black-skimmer": {
+    "src": "bakeoff/traced/black-skimmer/O-ras-11.svg",
+    "why": "Chris's bake-off best pick; round-2 Klein-blue bill tip rejected (\"the Klein blue does NOT work\")"
+  },
+  "eastern-bluebird": {
+    "src": "concepts/openai-traced/eastern-bluebird.svg",
+    "why": "OpenAI concept, traced"
+  },
+  "eastern-meadowlark": {
+    "src": "concepts/openai-traced/eastern-meadowlark.svg",
+    "why": "OpenAI concept, traced"
+  },
+  "indigo-bunting": {
+    "src": "concepts/openai-traced/indigo-bunting.svg",
+    "why": "OpenAI concept, traced"
+  },
+  "northern-bobwhite": {
+    "src": "bakeoff/traced/northern-bobwhite/O-ras-23.svg",
+    "why": "Chris's bake-off best pick"
+  },
+  "red-headed-woodpecker": {
+    "src": "concepts/openai-traced/red-headed-woodpecker.svg",
+    "why": "OpenAI concept, traced"
+  },
+  "common-raven": {
+    "src": "concepts/openai-traced/common-raven.svg",
+    "why": "OpenAI concept, traced"
+  },
+  "scarlet-tanager": {
+    "src": "concepts/openai-traced/scarlet-tanager.svg",
+    "why": "OpenAI concept, traced"
+  },
+  "cerulean-warbler": {
+    "src": "concepts/openai-traced/cerulean-warbler.svg",
+    "why": "OpenAI concept, traced"
+  },
+  "peregrine-falcon": {
+    "src": "concepts/openai-traced/peregrine-falcon.svg",
+    "why": "OpenAI concept, traced"
+  },
+  "rose-breasted-grosbeak": {
+    "src": "concepts/openai-traced/rose-breasted-grosbeak.svg",
+    "why": "OpenAI concept, traced"
+  },
+  "american-kestrel": {
+    "src": "bakeoff/traced/american-kestrel/O-ras-23.svg",
+    "why": "Chris's bake-off best pick; chosen again in round 3 over four no-blue drafts"
+  },
+  "american-barn-owl": {
+    "src": "concepts/openai-traced/american-barn-owl.svg",
+    "why": "OpenAI concept, traced; chosen again in round 3 over four frontal pale-body drafts"
+  },
+  "eastern-screech-owl": {
+    "src": "round3/traced/eastern-screech-owl/O-ras-3.svg",
+    "why": "Round-3 pick A (frontal; iris, pupil and brow eyes), provisional: Chris also ticked \"none works\""
+  },
+  "belted-kingfisher": {
+    "src": "concepts/openai-traced/belted-kingfisher.svg",
+    "why": "OpenAI concept, traced"
+  },
+  "wild-turkey": {
+    "src": "concepts/openai-traced/wild-turkey.svg",
+    "why": "OpenAI concept, traced"
+  },
+  "hooded-warbler": {
+    "src": "concepts/openai-traced/hooded-warbler.svg",
+    "why": "OpenAI concept, traced"
+  },
+  "blackburnian-warbler": {
+    "src": "concepts/openai-traced/blackburnian-warbler.svg",
+    "why": "OpenAI concept, traced"
+  },
+  "black-and-white-warbler": {
+    "src": "concepts/openai-traced/black-and-white-warbler.svg",
+    "why": "OpenAI concept, traced"
+  },
+  "swainsons-warbler": {
+    "src": "concepts/openai-traced/swainsons-warbler.svg",
+    "why": "OpenAI concept, traced"
+  },
+  "ruffed-grouse": {
+    "src": "concepts/openai-traced/ruffed-grouse.svg",
+    "why": "OpenAI concept, traced"
+  },
+  "great-blue-heron": {
+    "src": "round2/traced/great-blue-heron/O-ras-2.svg",
+    "why": "Round-2 pick B, second D (O-ras-1)"
+  },
+  "osprey": {
+    "src": "round2/traced/osprey/O-ras-4.svg",
+    "why": "Round-2 pick B, second E (O-ras-3); small nape crest"
+  },
+  "double-crested-cormorant": {
+    "src": "concepts/openai-traced/double-crested-cormorant.svg",
+    "why": "OpenAI concept, traced"
+  },
+  "wood-duck": {
+    "src": "concepts/openai-traced/wood-duck.svg",
+    "why": "OpenAI concept, traced"
+  },
+  "chimney-swift": {
+    "src": "concepts/openai-traced/chimney-swift.svg",
+    "why": "OpenAI concept, traced"
+  }
+}

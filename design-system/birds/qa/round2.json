@@ -1,0 +1,893 @@
+[
+ {
+  "id": "round2/traced/american-barn-owl/O-ras-1.svg",
+  "slug": "american-barn-owl",
+  "variant": "O-ras-1",
+  "verdict": "UNSURE",
+  "flag_generic": false,
+  "reasons": [],
+  "unsure": [
+   "colors",
+   "head shape"
+  ],
+  "p_species": 1.0,
+  "p_species_64": 1.0,
+  "top": "american_barn_owl",
+  "style": 2.47,
+  "likeness": 0.792,
+  "likeness_generic": 0.777,
+  "bill_head": null,
+  "ref_ratio": null,
+  "matches_reference": 0.24
+ },
+ {
+  "id": "round2/traced/american-barn-owl/O-ras-2.svg",
+  "slug": "american-barn-owl",
+  "variant": "O-ras-2",
+  "verdict": "UNSURE",
+  "flag_generic": false,
+  "reasons": [],
+  "unsure": [
+   "colors",
+   "head shape"
+  ],
+  "p_species": 1.0,
+  "p_species_64": 1.0,
+  "top": "american_barn_owl",
+  "style": 2.62,
+  "likeness": 0.835,
+  "likeness_generic": 0.817,
+  "bill_head": null,
+  "ref_ratio": null,
+  "matches_reference": 0.19
+ },
+ {
+  "id": "round2/traced/american-barn-owl/O-ras-3.svg",
+  "slug": "american-barn-owl",
+  "variant": "O-ras-3",
+  "verdict": "UNSURE",
+  "flag_generic": false,
+  "reasons": [],
+  "unsure": [
+   "colors",
+   "head shape"
+  ],
+  "p_species": 1.0,
+  "p_species_64": 1.0,
+  "top": "american_barn_owl",
+  "style": 2.54,
+  "likeness": 0.835,
+  "likeness_generic": 0.827,
+  "bill_head": 0.17,
+  "ref_ratio": null,
+  "matches_reference": 0.23
+ },
+ {
+  "id": "round2/traced/american-barn-owl/O-ras-4.svg",
+  "slug": "american-barn-owl",
+  "variant": "O-ras-4",
+  "verdict": "UNSURE",
+  "flag_generic": false,
+  "reasons": [],
+  "unsure": [
+   "colors",
+   "head shape"
+  ],
+  "p_species": 1.0,
+  "p_species_64": 1.0,
+  "top": "american_barn_owl",
+  "style": 2.29,
+  "likeness": 0.805,
+  "likeness_generic": 0.807,
+  "bill_head": null,
+  "ref_ratio": null,
+  "matches_reference": 0.31
+ },
+ {
+  "id": "round2/traced/american-barn-owl/incumbent.svg",
+  "slug": "american-barn-owl",
+  "variant": "incumbent",
+  "verdict": "FLAG",
+  "flag_generic": true,
+  "reasons": [
+   "shows: a dark navy body",
+   "colors not true to species",
+   "head shape not true to species"
+  ],
+  "unsure": [],
+  "p_species": 1.0,
+  "p_species_64": 1.0,
+  "top": "american_barn_owl",
+  "style": 2.48,
+  "likeness": 0.554,
+  "likeness_generic": 0.712,
+  "bill_head": null,
+  "ref_ratio": null,
+  "matches_reference": 0.15
+ },
+ {
+  "id": "round2/traced/american-kestrel/O-ras-1.svg",
+  "slug": "american-kestrel",
+  "variant": "O-ras-1",
+  "verdict": "UNSURE",
+  "flag_generic": false,
+  "reasons": [],
+  "unsure": [
+   "colors",
+   "head shape",
+   "large or long bill",
+   "a crest",
+   "toucan-like shapes"
+  ],
+  "p_species": 0.54,
+  "p_species_64": 0.72,
+  "top": "american_kestrel",
+  "style": 2.49,
+  "likeness": 0.559,
+  "likeness_generic": 0.565,
+  "bill_head": 0.16,
+  "ref_ratio": 0.25,
+  "matches_reference": 0.41
+ },
+ {
+  "id": "round2/traced/american-kestrel/O-ras-2.svg",
+  "slug": "american-kestrel",
+  "variant": "O-ras-2",
+  "verdict": "UNSURE",
+  "flag_generic": false,
+  "reasons": [],
+  "unsure": [
+   "colors",
+   "head shape",
+   "a crest",
+   "toucan-like shapes"
+  ],
+  "p_species": 0.72,
+  "p_species_64": 0.77,
+  "top": "american_kestrel",
+  "style": 2.54,
+  "likeness": 0.562,
+  "likeness_generic": 0.633,
+  "bill_head": 0.15,
+  "ref_ratio": 0.25,
+  "matches_reference": 0.45
+ },
+ {
+  "id": "round2/traced/american-kestrel/O-ras-3.svg",
+  "slug": "american-kestrel",
+  "variant": "O-ras-3",
+  "verdict": "UNSURE",
+  "flag_generic": false,
+  "reasons": [],
+  "unsure": [
+   "colors",
+   "head shape",
+   "only one face stripe",
+   "large or long bill",
+   "a crest",
+   "toucan-like shapes"
+  ],
+  "p_species": 0.71,
+  "p_species_64": 0.84,
+  "top": "american_kestrel",
+  "style": 2.49,
+  "likeness": 0.659,
+  "likeness_generic": 0.668,
+  "bill_head": 0.19,
+  "ref_ratio": 0.25,
+  "matches_reference": 0.48
+ },
+ {
+  "id": "round2/traced/american-kestrel/O-ras-4.svg",
+  "slug": "american-kestrel",
+  "variant": "O-ras-4",
+  "verdict": "FLAG",
+  "flag_generic": true,
+  "reasons": [
+   "colors not true to species"
+  ],
+  "unsure": [
+   "species only 0.46",
+   "two dark vertical face stripes",
+   "head shape",
+   "only one face stripe",
+   "large or long bill",
+   "a crest",
+   "toucan-like shapes"
+  ],
+  "p_species": 0.46,
+  "p_species_64": 0.6,
+  "top": "american_kestrel",
+  "style": 2.58,
+  "likeness": 0.455,
+  "likeness_generic": 0.493,
+  "bill_head": 0.17,
+  "ref_ratio": 0.25,
+  "matches_reference": 0.27
+ },
+ {
+  "id": "round2/traced/american-kestrel/incumbent.svg",
+  "slug": "american-kestrel",
+  "variant": "incumbent",
+  "verdict": "UNSURE",
+  "flag_generic": false,
+  "reasons": [],
+  "unsure": [
+   "colors",
+   "head shape",
+   "a crest",
+   "toucan-like shapes"
+  ],
+  "p_species": 0.69,
+  "p_species_64": 0.82,
+  "top": "american_kestrel",
+  "style": 2.74,
+  "likeness": 0.597,
+  "likeness_generic": 0.63,
+  "bill_head": 0.18,
+  "ref_ratio": 0.25,
+  "matches_reference": 0.43
+ },
+ {
+  "id": "round2/traced/black-skimmer/O-ras-1.svg",
+  "slug": "black-skimmer",
+  "variant": "O-ras-1",
+  "verdict": "UNSURE",
+  "flag_generic": false,
+  "reasons": [],
+  "unsure": [
+   "head shape"
+  ],
+  "p_species": 0.99,
+  "p_species_64": 0.98,
+  "top": "black_skimmer",
+  "style": 2.62,
+  "likeness": 0.843,
+  "likeness_generic": 0.827,
+  "bill_head": 0.8,
+  "ref_ratio": 1.45,
+  "matches_reference": 0.68
+ },
+ {
+  "id": "round2/traced/black-skimmer/O-ras-2.svg",
+  "slug": "black-skimmer",
+  "variant": "O-ras-2",
+  "verdict": "UNSURE",
+  "flag_generic": false,
+  "reasons": [],
+  "unsure": [
+   "head shape"
+  ],
+  "p_species": 0.97,
+  "p_species_64": 0.97,
+  "top": "black_skimmer",
+  "style": 2.52,
+  "likeness": 0.828,
+  "likeness_generic": 0.811,
+  "bill_head": 0.57,
+  "ref_ratio": 1.45,
+  "matches_reference": 0.56
+ },
+ {
+  "id": "round2/traced/black-skimmer/O-ras-3.svg",
+  "slug": "black-skimmer",
+  "variant": "O-ras-3",
+  "verdict": "UNSURE",
+  "flag_generic": false,
+  "reasons": [],
+  "unsure": [
+   "head shape"
+  ],
+  "p_species": 0.99,
+  "p_species_64": 0.97,
+  "top": "black_skimmer",
+  "style": 2.68,
+  "likeness": 0.822,
+  "likeness_generic": 0.799,
+  "bill_head": 0.5,
+  "ref_ratio": 1.45,
+  "matches_reference": 0.62
+ },
+ {
+  "id": "round2/traced/black-skimmer/O-ras-4.svg",
+  "slug": "black-skimmer",
+  "variant": "O-ras-4",
+  "verdict": "UNSURE",
+  "flag_generic": false,
+  "reasons": [],
+  "unsure": [
+   "head shape"
+  ],
+  "p_species": 0.98,
+  "p_species_64": 0.97,
+  "top": "black_skimmer",
+  "style": 2.52,
+  "likeness": 0.842,
+  "likeness_generic": 0.833,
+  "bill_head": 0.62,
+  "ref_ratio": 1.45,
+  "matches_reference": 0.66
+ },
+ {
+  "id": "round2/traced/black-skimmer/incumbent.svg",
+  "slug": "black-skimmer",
+  "variant": "incumbent",
+  "verdict": "UNSURE",
+  "flag_generic": false,
+  "reasons": [],
+  "unsure": [
+   "blade-like bill with a visibly longer lower mandible",
+   "colors",
+   "head shape"
+  ],
+  "p_species": 0.97,
+  "p_species_64": 0.96,
+  "top": "black_skimmer",
+  "style": 2.56,
+  "likeness": 0.813,
+  "likeness_generic": 0.784,
+  "bill_head": 0.6,
+  "ref_ratio": 1.45,
+  "matches_reference": 0.6
+ },
+ {
+  "id": "round2/traced/brown-pelican/O-ras-1.svg",
+  "slug": "brown-pelican",
+  "variant": "O-ras-1",
+  "verdict": "UNSURE",
+  "flag_generic": false,
+  "reasons": [],
+  "unsure": [
+   "colors",
+   "head shape",
+   "any plume or crest on the head",
+   "an oversized bulging pouch"
+  ],
+  "p_species": 0.97,
+  "p_species_64": 0.94,
+  "top": "brown_pelican",
+  "style": 2.59,
+  "likeness": 0.675,
+  "likeness_generic": 0.736,
+  "bill_head": 2.54,
+  "ref_ratio": 3.2,
+  "matches_reference": 0.24
+ },
+ {
+  "id": "round2/traced/brown-pelican/O-ras-2.svg",
+  "slug": "brown-pelican",
+  "variant": "O-ras-2",
+  "verdict": "UNSURE",
+  "flag_generic": false,
+  "reasons": [],
+  "unsure": [
+   "colors",
+   "head shape",
+   "any plume or crest on the head",
+   "an oversized bulging pouch"
+  ],
+  "p_species": 0.9,
+  "p_species_64": 0.9,
+  "top": "brown_pelican",
+  "style": 2.54,
+  "likeness": 0.612,
+  "likeness_generic": 0.699,
+  "bill_head": 2.46,
+  "ref_ratio": 3.2,
+  "matches_reference": 0.27
+ },
+ {
+  "id": "round2/traced/brown-pelican/O-ras-3.svg",
+  "slug": "brown-pelican",
+  "variant": "O-ras-3",
+  "verdict": "FLAG",
+  "flag_generic": false,
+  "reasons": [
+   "shows: any plume or crest on the head"
+  ],
+  "unsure": [
+   "colors",
+   "head shape",
+   "an oversized bulging pouch"
+  ],
+  "p_species": 0.97,
+  "p_species_64": 0.96,
+  "top": "brown_pelican",
+  "style": 2.61,
+  "likeness": 0.635,
+  "likeness_generic": 0.787,
+  "bill_head": 2.52,
+  "ref_ratio": 3.2,
+  "matches_reference": 0.38
+ },
+ {
+  "id": "round2/traced/brown-pelican/O-ras-4.svg",
+  "slug": "brown-pelican",
+  "variant": "O-ras-4",
+  "verdict": "FLAG",
+  "flag_generic": true,
+  "reasons": [
+   "colors not true to species"
+  ],
+  "unsure": [
+   "head shape",
+   "any plume or crest on the head",
+   "an oversized bulging pouch"
+  ],
+  "p_species": 0.98,
+  "p_species_64": 0.95,
+  "top": "brown_pelican",
+  "style": 2.58,
+  "likeness": 0.632,
+  "likeness_generic": 0.736,
+  "bill_head": 2.96,
+  "ref_ratio": 3.2,
+  "matches_reference": 0.24
+ },
+ {
+  "id": "round2/traced/brown-pelican/incumbent.svg",
+  "slug": "brown-pelican",
+  "variant": "incumbent",
+  "verdict": "UNSURE",
+  "flag_generic": false,
+  "reasons": [],
+  "unsure": [
+   "colors",
+   "head shape",
+   "an oversized bulging pouch"
+  ],
+  "p_species": 0.99,
+  "p_species_64": 0.98,
+  "top": "brown_pelican",
+  "style": 2.7,
+  "likeness": 0.713,
+  "likeness_generic": 0.808,
+  "bill_head": 2.52,
+  "ref_ratio": 3.2,
+  "matches_reference": 0.4
+ },
+ {
+  "id": "round2/traced/eastern-screech-owl/O-ras-1.svg",
+  "slug": "eastern-screech-owl",
+  "variant": "O-ras-1",
+  "verdict": "FLAG",
+  "flag_generic": true,
+  "reasons": [
+   "colors not true to species",
+   "head shape not true to species"
+  ],
+  "unsure": [
+   "compact head",
+   "tall ear tufts like a Great Horned Owl"
+  ],
+  "p_species": 0.91,
+  "p_species_64": 0.93,
+  "top": "eastern_screech_owl",
+  "style": 2.6,
+  "likeness": 0.54,
+  "likeness_generic": 0.583,
+  "bill_head": 0.14,
+  "ref_ratio": null,
+  "matches_reference": 0.07
+ },
+ {
+  "id": "round2/traced/eastern-screech-owl/O-ras-2.svg",
+  "slug": "eastern-screech-owl",
+  "variant": "O-ras-2",
+  "verdict": "FLAG",
+  "flag_generic": true,
+  "reasons": [
+   "colors not true to species",
+   "head shape not true to species"
+  ],
+  "unsure": [
+   "compact head",
+   "tall ear tufts like a Great Horned Owl"
+  ],
+  "p_species": 0.94,
+  "p_species_64": 0.93,
+  "top": "eastern_screech_owl",
+  "style": 2.47,
+  "likeness": 0.579,
+  "likeness_generic": 0.625,
+  "bill_head": 0.1,
+  "ref_ratio": null,
+  "matches_reference": 0.06
+ },
+ {
+  "id": "round2/traced/eastern-screech-owl/O-ras-3.svg",
+  "slug": "eastern-screech-owl",
+  "variant": "O-ras-3",
+  "verdict": "FLAG",
+  "flag_generic": true,
+  "reasons": [
+   "colors not true to species",
+   "head shape not true to species"
+  ],
+  "unsure": [
+   "compact head",
+   "tall ear tufts like a Great Horned Owl"
+  ],
+  "p_species": 0.94,
+  "p_species_64": 0.92,
+  "top": "eastern_screech_owl",
+  "style": 2.59,
+  "likeness": 0.58,
+  "likeness_generic": 0.633,
+  "bill_head": 0.14,
+  "ref_ratio": null,
+  "matches_reference": 0.07
+ },
+ {
+  "id": "round2/traced/eastern-screech-owl/O-ras-4.svg",
+  "slug": "eastern-screech-owl",
+  "variant": "O-ras-4",
+  "verdict": "FLAG",
+  "flag_generic": true,
+  "reasons": [
+   "colors not true to species",
+   "head shape not true to species"
+  ],
+  "unsure": [
+   "compact head",
+   "tall ear tufts like a Great Horned Owl"
+  ],
+  "p_species": 0.93,
+  "p_species_64": 0.95,
+  "top": "eastern_screech_owl",
+  "style": 2.64,
+  "likeness": 0.562,
+  "likeness_generic": 0.627,
+  "bill_head": 0.09,
+  "ref_ratio": null,
+  "matches_reference": 0.05
+ },
+ {
+  "id": "round2/traced/eastern-screech-owl/incumbent.svg",
+  "slug": "eastern-screech-owl",
+  "variant": "incumbent",
+  "verdict": "FLAG",
+  "flag_generic": true,
+  "reasons": [
+   "colors not true to species",
+   "head shape not true to species"
+  ],
+  "unsure": [
+   "compact head",
+   "tall ear tufts like a Great Horned Owl"
+  ],
+  "p_species": 0.93,
+  "p_species_64": 0.94,
+  "top": "eastern_screech_owl",
+  "style": 2.69,
+  "likeness": 0.564,
+  "likeness_generic": 0.635,
+  "bill_head": 0.09,
+  "ref_ratio": null,
+  "matches_reference": 0.07
+ },
+ {
+  "id": "round2/traced/great-blue-heron/O-ras-1.svg",
+  "slug": "great-blue-heron",
+  "variant": "O-ras-1",
+  "verdict": "UNSURE",
+  "flag_generic": false,
+  "reasons": [],
+  "unsure": [
+   "colors",
+   "head shape"
+  ],
+  "p_species": 1.0,
+  "p_species_64": 0.99,
+  "top": "great_blue_heron",
+  "style": 2.47,
+  "likeness": 0.838,
+  "likeness_generic": 0.808,
+  "bill_head": 0.64,
+  "ref_ratio": 1.05,
+  "matches_reference": 0.56
+ },
+ {
+  "id": "round2/traced/great-blue-heron/O-ras-2.svg",
+  "slug": "great-blue-heron",
+  "variant": "O-ras-2",
+  "verdict": "UNSURE",
+  "flag_generic": false,
+  "reasons": [],
+  "unsure": [
+   "colors",
+   "head shape"
+  ],
+  "p_species": 1.0,
+  "p_species_64": 1.0,
+  "top": "great_blue_heron",
+  "style": 2.58,
+  "likeness": 0.823,
+  "likeness_generic": 0.788,
+  "bill_head": 0.69,
+  "ref_ratio": 1.05,
+  "matches_reference": 0.53
+ },
+ {
+  "id": "round2/traced/great-blue-heron/O-ras-3.svg",
+  "slug": "great-blue-heron",
+  "variant": "O-ras-3",
+  "verdict": "FLAG",
+  "flag_generic": true,
+  "reasons": [
+   "colors not true to species"
+  ],
+  "unsure": [
+   "head shape"
+  ],
+  "p_species": 0.99,
+  "p_species_64": 0.98,
+  "top": "great_blue_heron",
+  "style": 2.56,
+  "likeness": 0.795,
+  "likeness_generic": 0.751,
+  "bill_head": 0.59,
+  "ref_ratio": 1.05,
+  "matches_reference": 0.48
+ },
+ {
+  "id": "round2/traced/great-blue-heron/O-ras-4.svg",
+  "slug": "great-blue-heron",
+  "variant": "O-ras-4",
+  "verdict": "UNSURE",
+  "flag_generic": false,
+  "reasons": [],
+  "unsure": [
+   "colors",
+   "head shape"
+  ],
+  "p_species": 1.0,
+  "p_species_64": 0.99,
+  "top": "great_blue_heron",
+  "style": 2.64,
+  "likeness": 0.838,
+  "likeness_generic": 0.8,
+  "bill_head": 0.6,
+  "ref_ratio": 1.05,
+  "matches_reference": 0.56
+ },
+ {
+  "id": "round2/traced/great-blue-heron/incumbent.svg",
+  "slug": "great-blue-heron",
+  "variant": "incumbent",
+  "verdict": "UNSURE",
+  "flag_generic": false,
+  "reasons": [],
+  "unsure": [
+   "colors",
+   "head shape"
+  ],
+  "p_species": 0.99,
+  "p_species_64": 0.99,
+  "top": "great_blue_heron",
+  "style": 2.46,
+  "likeness": 0.836,
+  "likeness_generic": 0.794,
+  "bill_head": 0.65,
+  "ref_ratio": 1.05,
+  "matches_reference": 0.55
+ },
+ {
+  "id": "round2/traced/marbled-godwit/O-ras-1.svg",
+  "slug": "marbled-godwit",
+  "variant": "O-ras-1",
+  "verdict": "FLAG",
+  "flag_generic": true,
+  "reasons": [
+   "colors not true to species"
+  ],
+  "unsure": [
+   "head shape"
+  ],
+  "p_species": 0.99,
+  "p_species_64": 0.98,
+  "top": "marbled_godwit",
+  "style": 2.56,
+  "likeness": 0.824,
+  "likeness_generic": 0.772,
+  "bill_head": 1.8,
+  "ref_ratio": 2.8,
+  "matches_reference": 0.18
+ },
+ {
+  "id": "round2/traced/marbled-godwit/O-ras-2.svg",
+  "slug": "marbled-godwit",
+  "variant": "O-ras-2",
+  "verdict": "FLAG",
+  "flag_generic": true,
+  "reasons": [
+   "colors not true to species"
+  ],
+  "unsure": [
+   "head shape"
+  ],
+  "p_species": 0.99,
+  "p_species_64": 0.99,
+  "top": "marbled_godwit",
+  "style": 2.58,
+  "likeness": 0.799,
+  "likeness_generic": 0.745,
+  "bill_head": 1.47,
+  "ref_ratio": 2.8,
+  "matches_reference": 0.21
+ },
+ {
+  "id": "round2/traced/marbled-godwit/O-ras-3.svg",
+  "slug": "marbled-godwit",
+  "variant": "O-ras-3",
+  "verdict": "FLAG",
+  "flag_generic": true,
+  "reasons": [
+   "colors not true to species"
+  ],
+  "unsure": [
+   "head shape"
+  ],
+  "p_species": 0.99,
+  "p_species_64": 0.96,
+  "top": "marbled_godwit",
+  "style": 2.55,
+  "likeness": 0.79,
+  "likeness_generic": 0.73,
+  "bill_head": 2.03,
+  "ref_ratio": 2.8,
+  "matches_reference": 0.11
+ },
+ {
+  "id": "round2/traced/marbled-godwit/O-ras-4.svg",
+  "slug": "marbled-godwit",
+  "variant": "O-ras-4",
+  "verdict": "FLAG",
+  "flag_generic": true,
+  "reasons": [
+   "colors not true to species"
+  ],
+  "unsure": [
+   "head shape"
+  ],
+  "p_species": 0.99,
+  "p_species_64": 0.97,
+  "top": "marbled_godwit",
+  "style": 2.58,
+  "likeness": 0.807,
+  "likeness_generic": 0.757,
+  "bill_head": 2.19,
+  "ref_ratio": 2.8,
+  "matches_reference": 0.17
+ },
+ {
+  "id": "round2/traced/marbled-godwit/incumbent.svg",
+  "slug": "marbled-godwit",
+  "variant": "incumbent",
+  "verdict": "FLAG",
+  "flag_generic": true,
+  "reasons": [
+   "shows: a navy or black body",
+   "colors not true to species"
+  ],
+  "unsure": [
+   "very long, slightly upturned bill",
+   "head shape"
+  ],
+  "p_species": 0.76,
+  "p_species_64": 0.6,
+  "top": "marbled_godwit",
+  "style": 2.78,
+  "likeness": 0.444,
+  "likeness_generic": 0.585,
+  "bill_head": 1.31,
+  "ref_ratio": 2.8,
+  "matches_reference": 0.11
+ },
+ {
+  "id": "round2/traced/osprey/O-ras-1.svg",
+  "slug": "osprey",
+  "variant": "O-ras-1",
+  "verdict": "PASS",
+  "flag_generic": false,
+  "reasons": [],
+  "unsure": [],
+  "p_species": 0.98,
+  "p_species_64": 0.97,
+  "top": "osprey",
+  "style": 2.44,
+  "likeness": 0.882,
+  "likeness_generic": 0.893,
+  "bill_head": 0.26,
+  "ref_ratio": 0.3,
+  "matches_reference": 0.73
+ },
+ {
+  "id": "round2/traced/osprey/O-ras-2.svg",
+  "slug": "osprey",
+  "variant": "O-ras-2",
+  "verdict": "UNSURE",
+  "flag_generic": false,
+  "reasons": [],
+  "unsure": [
+   "bold dark eye stripe",
+   "colors",
+   "head shape"
+  ],
+  "p_species": 0.94,
+  "p_species_64": 0.95,
+  "top": "osprey",
+  "style": 2.08,
+  "likeness": 0.826,
+  "likeness_generic": 0.804,
+  "bill_head": 0.21,
+  "ref_ratio": 0.3,
+  "matches_reference": 0.59
+ },
+ {
+  "id": "round2/traced/osprey/O-ras-3.svg",
+  "slug": "osprey",
+  "variant": "O-ras-3",
+  "verdict": "UNSURE",
+  "flag_generic": false,
+  "reasons": [],
+  "unsure": [
+   "colors",
+   "head shape"
+  ],
+  "p_species": 0.97,
+  "p_species_64": 0.96,
+  "top": "osprey",
+  "style": 2.61,
+  "likeness": 0.83,
+  "likeness_generic": 0.82,
+  "bill_head": 0.24,
+  "ref_ratio": 0.3,
+  "matches_reference": 0.51
+ },
+ {
+  "id": "round2/traced/osprey/O-ras-4.svg",
+  "slug": "osprey",
+  "variant": "O-ras-4",
+  "verdict": "UNSURE",
+  "flag_generic": false,
+  "reasons": [],
+  "unsure": [
+   "colors",
+   "head shape"
+  ],
+  "p_species": 0.93,
+  "p_species_64": 0.91,
+  "top": "osprey",
+  "style": 2.44,
+  "likeness": 0.807,
+  "likeness_generic": 0.79,
+  "bill_head": 0.16,
+  "ref_ratio": 0.3,
+  "matches_reference": 0.54
+ },
+ {
+  "id": "round2/traced/osprey/incumbent.svg",
+  "slug": "osprey",
+  "variant": "incumbent",
+  "verdict": "FLAG",
+  "flag_generic": false,
+  "reasons": [
+   "shows: a tall spiky crest"
+  ],
+  "unsure": [
+   "bold dark eye stripe",
+   "colors",
+   "head shape"
+  ],
+  "p_species": 0.9,
+  "p_species_64": 0.89,
+  "top": "osprey",
+  "style": 2.41,
+  "likeness": 0.574,
+  "likeness_generic": 0.706,
+  "bill_head": 0.22,
+  "ref_ratio": 0.3,
+  "matches_reference": 0.31
+ }
+]

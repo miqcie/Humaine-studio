@@ -43,3 +43,17 @@ yarn-error.log*
 .specstory/
 # AI session logs (can contain personal data)
 .specstory/
+
+# Bird reference photos (iNaturalist CC0/CC BY): fetched by design-system/birds/refs.py, credits committed
+design-system/birds/refs/
+design-system/birds/bakeoff/raw/*/*.png
+!design-system/birds/bakeoff/raw/_style/*.png
+design-system/birds/bakeoff/vote/
+design-system/birds/qa/_cache/renders/
+design-system/birds/round2/raw/*/*.png
+design-system/birds/round2/vote/
+design-system/birds/round3/raw/*/*.png
+design-system/birds/round3/vote/
+# Blind vote and concept sheets are rebuilt by run.py sheets / build.py; only the final set is kept
+design-system/birds/*/sheets/
+!design-system/birds/final/sheets/

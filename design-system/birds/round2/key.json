@@ -1,0 +1,58 @@
+{
+ "brown-pelican": {
+  "A": "O-ras-3",
+  "B": "incumbent",
+  "C": "O-ras-1",
+  "D": "O-ras-2",
+  "E": "O-ras-4"
+ },
+ "eastern-screech-owl": {
+  "A": "O-ras-3",
+  "B": "O-ras-1",
+  "C": "O-ras-2",
+  "D": "O-ras-4",
+  "E": "incumbent"
+ },
+ "osprey": {
+  "A": "O-ras-2",
+  "B": "O-ras-4",
+  "C": "incumbent",
+  "D": "O-ras-1",
+  "E": "O-ras-3"
+ },
+ "marbled-godwit": {
+  "A": "O-ras-4",
+  "B": "O-ras-2",
+  "C": "incumbent",
+  "D": "O-ras-1",
+  "E": "O-ras-3"
+ },
+ "black-skimmer": {
+  "A": "O-ras-4",
+  "B": "O-ras-1",
+  "C": "O-ras-2",
+  "D": "O-ras-3",
+  "E": "incumbent"
+ },
+ "american-kestrel": {
+  "A": "O-ras-2",
+  "B": "O-ras-3",
+  "C": "O-ras-4",
+  "D": "incumbent",
+  "E": "O-ras-1"
+ },
+ "great-blue-heron": {
+  "A": "O-ras-3",
+  "B": "O-ras-2",
+  "C": "incumbent",
+  "D": "O-ras-1",
+  "E": "O-ras-4"
+ },
+ "american-barn-owl": {
+  "A": "O-ras-2",
+  "B": "incumbent",
+  "C": "O-ras-3",
+  "D": "O-ras-1",
+  "E": "O-ras-4"
+ }
+}

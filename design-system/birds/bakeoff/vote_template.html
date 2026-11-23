@@ -1,0 +1,240 @@
+<title>__TITLE__</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..600,0..100&family=Schibsted+Grotesk:wght@400;500;600&display=swap">
+<style>
+/* Layout: one column of bird "ballots"; each ballot = reference + field marks, then six framed tiles to pick from. Klein & Linen. */
+:root {
+  --bg: #F3ECE0; --paper: #FAF6EE; --sunken: #EAE2D4; --rule: #DCD3C3;
+  --ink: #0E1230; --mute: #5E6178; --klein: #002FA7; --on-klein: #FAF6EE; --chrome: #F7B902; --verm: #C7301C;
+  --serif: "Fraunces", Georgia, "Times New Roman", serif;
+  --sans: "Schibsted Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0B0F24; --paper: #12173A; --sunken: #1A2048; --rule: #262B4A;
+  --ink: #F1EADC; --mute: #9C9AAE; --klein: #8DA6FF; --on-klein: #0B0F24; --verm: #F1735E; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0B0F24; --paper: #12173A; --sunken: #1A2048; --rule: #262B4A;
+  --ink: #F1EADC; --mute: #9C9AAE; --klein: #8DA6FF; --on-klein: #0B0F24; --verm: #F1735E; color-scheme: dark }
+
+* { box-sizing: border-box }
+body { background: var(--bg); color: var(--ink); font: 400 16px/1.55 var(--sans);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 0 64px }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg) }
+.wrap { max-width: 1040px; margin: 0 auto }
+h1, h2 { font-family: var(--serif); font-variation-settings: "SOFT" 100, "WONK" 0; font-weight: 500; letter-spacing: -0.01em; text-wrap: balance; margin: 0 }
+h1 { font-size: clamp(34px, 5vw, 52px); line-height: 1.05 }
+h2 { font-size: clamp(26px, 3.4vw, 36px); line-height: 1.1 }
+.eyebrow { font: 500 12px/1 var(--sans); letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute) }
+a { color: var(--klein); text-underline-offset: 3px }
+p { margin: 0 }
+
+header.top { padding-block: 40px 24px; display: grid; gap: 14px; border-bottom: 1px solid var(--rule) }
+header.top p { max-width: 62ch; color: var(--ink) }
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-bottom: 1px solid var(--rule);
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; padding-block: 12px }
+.ticks { display: flex; gap: 6px }
+.tick { width: 24px; height: 24px; border: 2px solid var(--ink); background: transparent; padding: 0; cursor: pointer }
+.tick.done { background: var(--klein); border-color: var(--klein) }
+.tick:focus-visible, .tile:focus-visible, button:focus-visible, textarea:focus-visible, input:focus-visible { outline: 3px solid var(--chrome); outline-offset: 2px }
+.count { font-variant-numeric: tabular-nums; font-weight: 500 }
+.notice { color: var(--verm); font-size: 14px }
+.notice:empty { display: none }
+
+section.ballot { padding-block: 44px 8px; display: grid; gap: 22px; border-bottom: 1px solid var(--rule); scroll-margin-top: 70px }
+.head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px }
+.sci { font-style: italic; color: var(--mute) }
+.ref { display: grid; grid-template-columns: minmax(0, 320px) minmax(0, 1fr); gap: 20px; align-items: start }
+.ref img { width: 100%; height: auto; display: block; border: 1px solid var(--rule) }
+.credit { font-size: 13px; color: var(--mute); margin-top: 6px }
+.marks { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px }
+.marks li { padding-left: 18px; position: relative }
+.marks li::before { content: ""; position: absolute; left: 0; top: 0.55em; width: 8px; height: 8px; background: var(--ink) }
+.src { font-size: 13px; color: var(--mute); margin-top: 6px }
+
+.how { font-size: 14px; color: var(--mute) }
+.tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px }
+.tile { position: relative; display: grid; gap: 8px; padding: 0; border: 0; background: none; color: inherit; font: inherit; cursor: pointer; text-align: left }
+.tile img { width: 100%; height: auto; aspect-ratio: 1; display: block; outline: 4px solid transparent; outline-offset: 4px; transition: outline-color .12s }
+.tile .lab { display: flex; justify-content: space-between; align-items: center; font: 600 20px/1 var(--sans) }
+.tile .rank { font: 600 12px/1 var(--sans); letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 7px; background: var(--klein); color: var(--on-klein); visibility: hidden }
+.tile[aria-pressed="true"] img { outline-color: var(--klein) }
+.tile[aria-pressed="true"] .rank { visibility: visible }
+.tile:hover img { outline-color: var(--rule) }
+.tile[aria-pressed="true"]:hover img { outline-color: var(--klein) }
+
+.small { display: grid; gap: 8px }
+.strip { display: flex; flex-wrap: wrap; gap: 14px 22px; align-items: end }
+.strip figure { margin: 0; display: grid; gap: 4px; justify-items: center; font: 500 13px/1 var(--sans) }
+.strip .row { display: flex; gap: 8px; align-items: end }
+
+.extra { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; padding: 16px; background: var(--sunken) }
+.extra label.chk { display: flex; gap: 10px; align-items: center; font-weight: 500; cursor: pointer }
+.extra input[type=checkbox] { width: 18px; height: 18px; accent-color: var(--klein) }
+.extra textarea { width: 100%; min-height: 64px; resize: vertical; font: inherit; color: var(--ink); background: var(--paper); border: 1px solid var(--rule); padding: 10px }
+.status { font-size: 13px; color: var(--mute); min-height: 1.2em }
+.status.err { color: var(--verm) }
+
+footer.done { padding-block: 36px; display: grid; gap: 8px }
+@media (max-width: 720px) {
+  .ref { grid-template-columns: minmax(0, 1fr) }
+  .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important } }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <span class="eyebrow">__EYEBROW__</span>
+    <h1>Which bird reads best?</h1>
+    <p>__INTRO__</p>
+  </header>
+
+  <div class="bar" role="navigation" aria-label="Progress">
+    <div class="ticks" id="ticks"></div>
+    <span class="count" id="count">0 birds voted</span>
+    <span class="notice" id="notice" role="status"></span>
+  </div>
+
+  <main id="ballots"></main>
+
+  <footer class="done" id="done" hidden>
+    <span class="eyebrow">All birds voted</span>
+    <h2>Thanks. Tell Claude you have voted.</h2>
+    <p>Claude reads the votes from this page, reveals what each letter was, and records the picks.</p>
+  </footer>
+</div>
+
+<script>
+const BIRDS = __BIRDS__;
+const VOTES = "votes-" + __ROUND__;  // one collection and one browser key per round, so a reused artifact never mixes rounds
+const state = {};          // slug -> {picks: [letters], none: bool, note: string}
+const saving = {};         // slug -> {busy, again}
+let db = null;
+const $ = (s, el = document) => el.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+const LETTERS = Object.fromEntries(BIRDS.map(b => [b.slug, b.letters]));
+const clean = (slug, v) => ({ picks: Array.isArray(v.picks) ? v.picks.filter(x => LETTERS[slug].includes(x)).slice(0, 2) : [],
+                              none: !!v.none, note: typeof v.note === "string" ? v.note : "" });
+for (const b of BIRDS) state[b.slug] = { picks: [], none: false, note: "" };
+try { const saved = JSON.parse(localStorage.getItem(VOTES) || "{}"); for (const k in saved) if (state[k]) state[k] = clean(k, saved[k] || {}); } catch (e) {}
+
+function voted(s) { return state[s].picks.length > 0 || state[s].none; }
+
+function build() {
+  const main = $("#ballots"), ticks = $("#ticks");
+  BIRDS.forEach((b, i) => {
+    const t = document.createElement("button");
+    t.className = "tick"; t.type = "button"; t.title = b.name; t.setAttribute("aria-label", `Go to ${b.name}`);
+    t.onclick = () => document.getElementById(b.slug).scrollIntoView({ behavior: "smooth" });
+    t.dataset.slug = b.slug; ticks.append(t);
+
+    const sec = document.createElement("section");
+    sec.className = "ballot"; sec.id = b.slug;
+    sec.innerHTML = `
+      <div class="head"><span class="eyebrow">Bird ${i + 1} of ${BIRDS.length}</span><h2>${esc(b.name)}</h2><span class="sci">${esc(b.sci)}</span></div>
+      <div class="ref">
+        <div><img src="ref/${b.slug}.jpg" alt="Reference photo of a ${esc(b.name)}" loading="lazy">
+          <p class="credit">Photo: <a href="${esc(b.obs)}" target="_blank" rel="noopener">${esc(b.credit)}</a></p></div>
+        <div><ul class="marks">${b.marks.map(m => `<li>${esc(m)}</li>`).join("")}</ul>
+          <p class="src">Field marks checked against <a href="${esc(b.audubon)}" target="_blank" rel="noopener">Audubon</a>.</p>
+          ${b.notes ? `<p class="src"><strong>Asked for this round:</strong> ${esc(b.notes)}</p>` : ""}</div>
+      </div>
+      <p class="how">Tap your best, then your second best. Tap a pick again to remove it.</p>
+      <div class="tiles">${b.letters.map(L => `
+        <button class="tile" type="button" data-slug="${b.slug}" data-letter="${L}" aria-pressed="false" aria-label="Tile ${L}">
+          <img src="tiles/${b.slug}-${L}.svg" alt="${esc(b.name)} icon, option ${L}" loading="lazy">
+          <span class="lab">${L}<span class="rank"></span></span>
+        </button>`).join("")}</div>
+      <div class="small"><span class="eyebrow">At icon sizes, 64 and 32 pixels</span>
+        <div class="strip">${b.letters.map(L => `<figure><div class="row">
+          <img src="tiles/${b.slug}-${L}.svg" width="64" height="64" alt="">
+          <img src="tiles/${b.slug}-${L}.svg" width="32" height="32" alt=""></div><figcaption>${L}</figcaption></figure>`).join("")}</div></div>
+      <div class="extra">
+        <label class="chk"><input type="checkbox" id="none-${b.slug}"> None of these works for this bird</label>
+        <label class="eyebrow" for="note-${b.slug}">What's wrong or right (optional)</label>
+        <textarea id="note-${b.slug}" placeholder="For example: C has the right bill, but the cap is too low"></textarea>
+        <span class="status" id="st-${b.slug}" aria-live="polite"></span>
+      </div>`;
+    main.append(sec);
+
+    sec.querySelectorAll(".tile").forEach(el => el.onclick = () => pick(b.slug, el.dataset.letter));
+    $(`#none-${b.slug}`, sec).onchange = e => { state[b.slug].none = e.target.checked; changed(b.slug); };
+    let timer;
+    $(`#note-${b.slug}`, sec).oninput = e => { state[b.slug].note = e.target.value; clearTimeout(timer); timer = setTimeout(() => changed(b.slug), 700); };
+  });
+}
+
+function pick(slug, L) {
+  const p = state[slug].picks;
+  const at = p.indexOf(L);
+  if (at >= 0) p.splice(at, 1);
+  else if (p.length < 2) p.push(L);
+  else p[1] = L;              // a third pick replaces the second best
+  changed(slug);
+}
+
+function render(slug) {
+  const s = state[slug];
+  document.querySelectorAll(`.tile[data-slug="${slug}"]`).forEach(el => {
+    const at = s.picks.indexOf(el.dataset.letter);
+    el.setAttribute("aria-pressed", at >= 0 ? "true" : "false");
+    $(".rank", el).textContent = at === 0 ? "Best" : at === 1 ? "Second" : "";
+    el.setAttribute("aria-label", `Tile ${el.dataset.letter}` + (at === 0 ? ", best" : at === 1 ? ", second best" : ""));
+  });
+  const none = $(`#none-${slug}`), note = $(`#note-${slug}`);
+  if (none.checked !== s.none) none.checked = s.none;
+  if (document.activeElement !== note && note.value !== s.note) note.value = s.note;
+  document.querySelectorAll(".tick").forEach(t => t.classList.toggle("done", voted(t.dataset.slug)));
+  const n = BIRDS.filter(b => voted(b.slug)).length;
+  $("#count").textContent = `${n} of ${BIRDS.length} birds voted`;
+  $("#done").hidden = n < BIRDS.length;
+}
+
+function changed(slug) {
+  render(slug);
+  try { localStorage.setItem(VOTES, JSON.stringify(state)); } catch (e) {}
+  save(slug);
+}
+
+async function save(slug) {
+  const st = $(`#st-${slug}`);
+  if (!db) { st.className = "status"; st.textContent = "Kept in this browser only."; return; }
+  const q = saving[slug] || (saving[slug] = { busy: false, again: false });
+  if (q.busy) { q.again = true; return; }       // one write at a time per document
+  q.busy = true; st.className = "status"; st.textContent = "Saving…";
+  try {
+    const s = state[slug];
+    await db.collection(VOTES).doc(slug).set({ picks: [...s.picks], none: s.none, note: s.note, updatedAt: new Date().toISOString() });
+    st.textContent = "Saved.";
+  } catch (e) {
+    st.className = "status err";
+    st.textContent = e && e.code === "quota_exceeded" ? "Not saved: the vote store is full." : "Not saved. Check your connection and try again.";
+  } finally {
+    q.busy = false;
+    if (q.again) { q.again = false; save(slug); }
+  }
+}
+
+async function connect() {
+  const notice = $("#notice");
+  db = await window.claude?.use?.("db") ?? null;
+  if (!db) { notice.textContent = "Votes can't be saved in this view. Open the page on claude.ai while signed in."; return; }
+  const timer = setTimeout(() => { notice.textContent = "Saved votes can't be reached yet. Your picks are kept here meanwhile."; }, 10000);
+  db.collection(VOTES).onSnapshot(snap => {
+    if (!snap.metadata || !snap.metadata.fromCache) { clearTimeout(timer); notice.textContent = ""; }
+    for (const d of snap.docs) {
+      if (!state[d.id] || saving[d.id]?.busy) continue;
+      const v = d.data() || {};
+      state[d.id] = clean(d.id, v);
+      render(d.id);
+    }
+  }, () => { clearTimeout(timer); notice.textContent = "Saved votes stopped loading. Your picks are kept in this browser."; });
+}
+
+build();
+BIRDS.forEach(b => render(b.slug));
+connect();
+</script>
