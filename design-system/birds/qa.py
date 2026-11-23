@@ -63,6 +63,10 @@ VOTES = {  # bakeoff/RESULTS.md: Chris's blind picks, best first ([] = none work
     "american-kestrel": ["O-ras-23", "O-ras-11"], "black-skimmer": ["O-ras-11", "O-ras-23"],
     "brown-pelican": ["R-vec-23", "O-ras-23"], "eastern-screech-owl": [],
     "great-blue-heron": ["O-ras-11"], "northern-bobwhite": ["O-ras-23"]}
+VOTES2 = {  # round2/RESULTS.md: Chris's blind round-2 picks ([] = none works)
+    "brown-pelican": ["O-ras-1", "O-ras-3"], "great-blue-heron": ["O-ras-2", "O-ras-1"],
+    "marbled-godwit": ["O-ras-2", "O-ras-4"], "osprey": ["O-ras-4", "O-ras-3"],
+    "eastern-screech-owl": [], "american-barn-owl": [], "american-kestrel": [], "black-skimmer": []}
 
 SPECIES = {s.replace("-", "_"): f"{TAXA[s]['name']}: {', '.join(f)}" for s, f in FEATURES.items()}
 STYLE_LEVELS = [
@@ -316,6 +320,30 @@ def calibrate():
         lines += ["", f"Chris's best pick ranks first for {sum(firsts)} of {len(firsts)} birds ({sum(firsts_g)} of {len(firsts_g)} generic). "
                   f"n = {len(firsts)}: all five first by chance would be (1/6)^5, about 1 in 7,800.",
                   "The verdict fails in both directions: it flags good tiles, and it passes tiles Chris rejected (see the skimmer and pelican rows)."]
+    global PALETTE_NOTE
+    keep = PALETTE_NOTE
+    lines += ["", "## 3. Chris's blind votes on round 2 (40 tiles: 4 new drafts plus the current version per bird)", "",
+              "Rank among 5 tiles (chance of rank 1 is 1 in 5 per bird), with and without the palette note in state.", "",
+              "| Bird | Chris's best | QA rank | QA rank (palette note) | Tiles flagged (no note / note) |", "|---|---|---|---|---|"]
+    runs = {}
+    for flag in (False, True):
+        PALETTE_NOTE = flag
+        runs[flag] = load("round2")
+    PALETTE_NOTE = keep
+    firsts = {False: [], True: []}
+    for slug, picks in VOTES2.items():
+        cells, flags = [], []
+        for flag in (False, True):
+            tiles = sorted([r for r in runs[flag] if r["slug"] == slug], key=lambda r: -r["likeness"])
+            flags.append(sum(r["verdict"] == "FLAG" for r in tiles))
+            if picks and tiles:
+                rank = next(i + 1 for i, r in enumerate(tiles) if r["variant"] == picks[0])
+                firsts[flag].append(rank == 1)
+                cells.append(str(rank))
+        lines.append(f"| {slug} | {picks[0] if picks else 'none works'} | {cells[0] if cells else '-'} | "
+                     f"{cells[1] if cells else '-'} | {flags[0]} / {flags[1]} of 5 |")
+    lines += ["", f"Chris's best pick ranks first for {sum(firsts[False])} of {len(firsts[False])} birds "
+                  f"({sum(firsts[True])} of {len(firsts[True])} with the palette note)."]
     (QA / "CALIBRATION.md").write_text("\n".join(lines) + "\n")
     print("\n".join(lines))
 

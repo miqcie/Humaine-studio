@@ -10,3 +10,5 @@
 - **Show the style pilots before scaling up.** Style is the user's decision. Present 3 to 6 pilots, then draw the rest.
 - **An image judge ranks better than it gates.** TypeSafe Jev put Chris's blind best pick first for 5 of 5 birds, but as a gate it flags 16 of 30 icons: 9 of 10 flags outside the known errors were false alarms or the brand palette ("colors not true to species"), and it missed 4 of 5 minor errors. Sort variations with it; verify any flag by eye before calling it a false alarm or a catch.
 - **Keep calibration questions generic.** The "avoid" lists were written from the review of the known errors, so hits on them are partly built in. Report the verdict without them too (5 of 6 versus 6 of 6).
+- **An image judge separates styles, not siblings.** Ranking agreed with Chris 5 of 5 times across different generators, but 0 of 4 among four variations of one prompt. Use it to compare approaches, not to pick between near-duplicates.
+- **Ask before adding the accent color.** Every round-2 note that added Klein blue to a bird was rejected; the accent belongs to the frame and UI, not the plumage.
