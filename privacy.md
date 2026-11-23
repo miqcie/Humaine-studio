@@ -1,12 +1,12 @@
 ---
-layout: default
+layout: page
 title: Privacy Policy
 permalink: /privacy/
+# Set by hand when the policy text changes (site.time changed on every deploy)
+last_updated: 2026-11-18
 ---
 
-# Privacy Policy
-
-*Last updated: {{ site.time | date: "%B %d, %Y" }}*
+*Last updated: {{ page.last_updated | date: "%B %d, %Y" }}*
 
 ## Overview
 
