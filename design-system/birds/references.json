@@ -51,11 +51,8 @@
       "a crest",
       "toucan-like shapes"
     ],
-    "notes": "Keep the design of the first base icon, including both face stripes. Add a touch of Klein blue (#002FA7), as in the second base icon.",
-    "bases": [
-      "bakeoff/traced/american-kestrel/O-ras-23.svg",
-      "bakeoff/traced/american-kestrel/R-vec-23.svg"
-    ]
+    "notes": "No Klein blue anywhere. Exactly two dark vertical face stripes: one below the eye, one behind it on the ear. A slate-grey crown (slate #5E6178) with a small rufous spot, white cheeks and throat, rufous nape and back, a yellow eye-ring and a small hooked bill.",
+    "bases": []
   },
   "brown-pelican": {
     "name": "Brown Pelican",
@@ -132,8 +129,10 @@
       "heart-shaped face (that is a barn owl)",
       "a long neck"
     ],
-    "notes": "Draw the owl facing straight ahead: a frontal portrait with short triangular ear tufts, a compact square head, facial discs with a dark rim, yellow eyes and slate-grey plumage.",
-    "bases": []
+    "notes": "Face straight ahead, fully symmetric. Eyes: a yellow iris ring around a large black pupil, both eyes exactly the same size, each with a dark brow line over it that gives the stern look of the attached photo. Short ear tufts angled outward, a streaked crown, facial discs rimmed dark, a small pale bill, and a pale breast with dark vertical streaks. Slate-grey plumage.",
+    "bases": [
+      "refs/eastern-screech-owl/chris-supplied.jpg"
+    ]
   },
   "great-blue-heron": {
     "name": "Great Blue Heron",
@@ -231,9 +230,7 @@
       "a dark navy body",
       "ear tufts"
     ],
-    "notes": "Keep the design of the base icon (heart-shaped face, slightly turned), but make the body pale: a chrome-yellow buff back and an ivory front instead of navy.",
-    "bases": [
-      "concepts/openai-traced/american-barn-owl.svg"
-    ]
+    "notes": "Face straight ahead, fully symmetric. Both eyes exactly the same size: dark eyes (black pupils), each with a short dark brow line over it. A white heart-shaped facial disc with a buff rim, a small pale bill in the middle, a pale golden-buff back and an ivory front. No mismatched eyes, no ear tufts.",
+    "bases": []
   }
 }

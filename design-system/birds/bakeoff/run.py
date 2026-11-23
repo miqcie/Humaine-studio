@@ -56,7 +56,8 @@ PALETTE = [S.N, S.F, S.Y, S.R, S.B, S.M]
 
 STYLE_BLOCK = (
     "Flat geometric bird icon in a Mondrian / De Stijl spirit, matching the reference images. "
-    "A thick navy square frame (#0B0F24) around an ivory field (#FAF6EE). Right-facing head-and-upper-breast portrait. "
+    "A thick navy square frame (#0B0F24) around an ivory field (#FAF6EE). Right-facing head-and-upper-breast portrait "
+    "(owls may face straight ahead). "
     "The bird is a bold navy silhouette with a few flat color fields; it may run off the bottom and left edges of the frame "
     "only, and leaves clear ivory space between the bill tip, crest and the frame. One simple round eye. "
     "Use only these colors: navy #0B0F24, ivory #FAF6EE, chrome yellow #F7B902, vermilion #C7301C, Klein blue #002FA7, "
@@ -83,7 +84,13 @@ def base_pngs(slug):
         png = RAW / "_bases" / f"{slug}-{i}.png"
         if not png.exists():
             png.parent.mkdir(parents=True, exist_ok=True)
-            png.write_bytes(subprocess.run(["rsvg-convert", "-w", "512", str(BIRDS_DIR / rel)], capture_output=True, check=True).stdout)
+            src = BIRDS_DIR / rel
+            if src.suffix == ".svg":
+                png.write_bytes(subprocess.run(["rsvg-convert", "-w", "512", str(src)], capture_output=True, check=True).stdout)
+            else:  # a photo (e.g. one Chris supplied): pass it on as a 1024 px PNG
+                im = Image.open(src).convert("RGB")
+                im.thumbnail((1024, 1024))
+                im.save(png)
         out.append(str(png))
     return out
 
@@ -199,8 +206,8 @@ def gen_openai(slug, seed):
     bases = base_pngs(slug)
     ask = ("Use your built-in image generation tool to create ONE square 1024x1024 image. "
            f"The first {len(style)} attached images are STYLE references only (frame, flat shapes, palette); do not copy their birds. "
-           + (f"The last {len(bases)} attached image(s) are earlier versions of this same bird icon: improve on them as the "
-              "art director's change below says. " if bases else "")
+           + (f"The last {len(bases)} attached image(s) are references for this bird (earlier icon versions or a photo the "
+              "art director chose): use them as the art director's change below says. " if bases else "")
            + "Save the generated PNG into the current working directory as out.png and reply with only its path. "
            f"This is variation {seed}; vary the composition a little. Image brief:\n{prompt(slug)}")
     style += bases
