@@ -1,13 +1,14 @@
 # Likeness check: openai30
 
-Palette note in state: no. "Colors not true to species" fired on 9 of 30 icons.
+Palette note in state: no. "Colors not true to species" fired on 10 of 30 icons.
 
-Model `jev-1.14.0` (image questions are experimental). 30 icons: 1 pass, 13 unsure, 16 flagged.
+Model `jev-1.14.0` (image questions are experimental). 30 icons: 1 pass, 12 unsure, 17 flagged.
+Icons in the set with no answers: none.
 Noul read as yes above 0.7, no below 0.3. Species is read from a 30-way Choice at 480 px and at 64 px.
 
 | Icon | Verdict | Species p (480 / 64) | Style | Likeness | Bill ÷ head (ref) | Why |
 |---|---|---|---|---|---|---|
-| american-barn-owl | FLAG | 0.97 / 0.96 | 2.48 | 0.72 | - | colors not true to species; head shape not true to species |
+| american-barn-owl | FLAG | 1.0 / 1.0 | 2.48 | 0.554 | - | shows: a dark navy body; colors not true to species; head shape not true to species |
 | american-kestrel | FLAG | 0.04 / 0.13 | 2.77 | 0.188 | 0.26 (0.25) | reads as red headed woodpecker (0.36); missing: two dark vertical face stripes; shows: toucan-like shapes; colors not true to species; head shape not true to species |
 | american-oystercatcher | UNSURE | 1.0 / 1.0 | 2.82 | 0.91 | 0.93 | unsure: head shape |
 | belted-kingfisher | UNSURE | 0.95 / 0.94 | 2.48 | 0.85 | 0.33 | unsure: colors, head shape |
@@ -25,9 +26,9 @@ Noul read as yes above 0.7, no below 0.3. Species is read from a 30-way Choice a
 | great-blue-heron | FLAG | 0.97 / 0.97 | 2.4 | 0.769 | 0.64 (1.05) | colors not true to species |
 | hooded-warbler | FLAG | 0.27 / 0.32 | 2.86 | 0.591 | 0.26 | reads as american oystercatcher (0.55); colors not true to species; head shape not true to species |
 | indigo-bunting | UNSURE | 0.71 / 0.67 | 2.79 | 0.782 | 0.23 | unsure: colors, head shape |
-| marbled-godwit | UNSURE | 0.46 / 0.13 | 2.78 | 0.657 | 1.31 (2.8) | unsure: species only 0.46, very long, slightly upturned bill, colors, head shape |
+| marbled-godwit | FLAG | 0.76 / 0.6 | 2.78 | 0.444 | 1.31 (2.8) | shows: a navy or black body; colors not true to species |
 | northern-bobwhite | FLAG | 0.94 / 0.91 | 2.75 | 0.57 | 0.16 (0.3) | shows: a tall plume or topknot (that is a California or Gambel's quail); colors not true to species |
-| osprey | FLAG | 0.44 / 0.43 | 2.57 | 0.637 | 0.23 (0.3) | missing: bold dark eye stripe |
+| osprey | FLAG | 0.9 / 0.89 | 2.41 | 0.574 | 0.22 (0.3) | shows: a tall spiky crest |
 | peregrine-falcon | FLAG | 0.17 / 0.14 | 2.43 | 0.523 | 0.19 | reads as american oystercatcher (0.33); colors not true to species; head shape not true to species |
 | red-headed-woodpecker | UNSURE | 0.97 / 0.97 | 2.82 | 0.853 | 0.51 | unsure: sharply divided body and wing fields, head shape |
 | rose-breasted-grosbeak | UNSURE | 0.98 / 0.96 | 2.3 | 0.883 | 0.33 | unsure: head shape |

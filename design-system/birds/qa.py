@@ -130,7 +130,7 @@ def renders(it):
     d.mkdir(parents=True, exist_ok=True)
     key = hashlib.sha256(it["svg"].read_bytes()).hexdigest()[:16]
     big, small = d / f"{key}-480.png", d / f"{key}-64x5.png"
-    if not big.exists():
+    if not (big.exists() and small.exists()):  # an interrupted render leaves one of the two
         big.write_bytes(subprocess.run(["rsvg-convert", "-w", "480", str(it["svg"])], capture_output=True, check=True).stdout)
         tiny = PIL.open(io.BytesIO(subprocess.run(["rsvg-convert", "-w", "64", str(it["svg"])], capture_output=True, check=True).stdout))
         tiny.convert("RGB").resize((320, 320), PIL.NEAREST).save(small)
@@ -143,10 +143,17 @@ def request(it):
     images = {"icon": big, "icon_small": small, "style_reference": STYLE_REF}
     r = REFS.get(it["slug"])
     if r:
-        images["reference"] = HERE / "refs" / it["slug"] / f"{r['photo_id']}.jpg"
-    h = hashlib.sha256(json.dumps([MODEL, q, {k: hashlib.sha256(p.read_bytes()).hexdigest() for k, p in images.items()}],
-                                  sort_keys=True).encode()).hexdigest()[:20]
+        photo = HERE / "refs" / it["slug"] / f"{r['photo_id']}.jpg"
+        if min(PIL.open(photo).size) >= 280:  # TypeSafe rejects images under 280 px a side; ask without the photo
+            images["reference"] = photo
+        else:
+            q.pop("matches_reference", None)
+    h = hashlib.sha256(json.dumps([MODEL, q, image_hashes(images)], sort_keys=True).encode()).hexdigest()[:20]
     return q, images, CACHE / f"{h}.json"
+
+
+def image_hashes(images):
+    return {k: hashlib.sha256(p.read_bytes()).hexdigest() for k, p in images.items()}
 
 
 def check_limits(images):
@@ -172,7 +179,7 @@ def ask(it):
     out = {"id": it["id"], "slug": it["slug"], "variant": it["variant"], "model": r.model,
            "usage": {"in": r.usage.input_tokens, "out": r.usage.output_tokens},
            "answers": {k: v.model_dump(mode="json") for k, v in r.answers.items()}, "questions": q,
-           "palette_note": PALETTE_NOTE}
+           "palette_note": PALETTE_NOTE, "images": image_hashes(images)}
     cache.write_text(json.dumps(out, indent=1))
     return out
 
@@ -254,11 +261,23 @@ def load(set_name):
             by_id[(rec["id"], rec.get("palette_note", False))] = rec
     out = []
     for it in items(set_name):
-        _, _, cache = request(it)
+        _, images, cache = request(it)
         rec = json.loads(cache.read_text()) if cache.exists() else by_id.get((it["id"], PALETTE_NOTE))
+        # The fallback must not reuse answers about a different image (e.g. a re-traced icon). Entries written
+        # before 2026-11-23 carry no image hashes; they predate any re-trace, so they are accepted.
+        if rec and "images" in rec and rec["images"] != image_hashes(images):
+            rec = None
         if rec:
-            out.append(judge(rec))
+            # The cache is keyed by content, so an identical copy (a round's incumbent.svg) hits an entry written
+            # under another file's name. Label the answers with the icon that asked.
+            out.append(judge({**rec, "id": it["id"], "slug": it["slug"], "variant": it["variant"]}))
     return out
+
+
+def missing(set_name, rows):
+    """Icons in the set with no answers (a failed call, or never asked)."""
+    have = {r["id"] for r in rows}
+    return [it["id"] for it in items(set_name) if it["id"] not in have]
 
 
 def report(set_name):
@@ -270,6 +289,7 @@ def report(set_name):
     lines = [f"# Likeness check: {out}", "",
              f"Palette note in state: {'yes' if PALETTE_NOTE else 'no'}. \"Colors not true to species\" fired on {colors} of {len(rows)} icons.", "",
              f"Model `{MODEL}` (image questions are experimental). {len(rows)} icons: {n['PASS']} pass, {n['UNSURE']} unsure, {n['FLAG']} flagged.",
+             f"Icons in the set with no answers: {', '.join(missing(set_name, rows)) or 'none'}.",
              f"Noul read as yes above {YES}, no below {NO}. Species is read from a 30-way Choice at 480 px and at 64 px.", "",
              "| Icon | Verdict | Species p (480 / 64) | Style | Likeness | Bill ÷ head (ref) | Why |", "|---|---|---|---|---|---|---|"]
     for r in sorted(rows, key=lambda r: (r["slug"], -r["likeness"])):
@@ -282,14 +302,21 @@ def report(set_name):
     return rows
 
 
+def rank_of(tiles, variant, field="likeness"):
+    """Rank of `variant` among `tiles` by `field`, with ties counted against it (1 = strictly best). None if absent."""
+    mine = next((r[field] for r in tiles if r["variant"] == variant), None)
+    return None if mine is None else sum(r[field] >= mine for r in tiles)
+
+
 def calibrate():
     lines = ["# Calibration of the likeness check", ""]
     a = {r["slug"]: r for r in load("openai30")}
     if a:
-        known = {**KNOWN_BAD, **KNOWN_MINOR}
+        known = {s: v for s, v in {**KNOWN_BAD, **KNOWN_MINOR}.items() if s in a}  # a partial set must not crash
         flagged = {s for s, r in a.items() if r["verdict"] == "FLAG"}
         why = lambda s: "; ".join(a[s]["reasons"]) or ("unsure: " + ", ".join(a[s]["unsure"]) if a[s]["unsure"] else "")
-        caught = lambda keys, field="verdict": sum((a[s]["verdict"] == "FLAG") if field == "verdict" else a[s]["flag_generic"] for s in keys)
+        caught = lambda keys, field="verdict": sum((a[s]["verdict"] == "FLAG") if field == "verdict" else a[s]["flag_generic"]
+                                                   for s in keys if s in a)
         lines += ["## 1. Known errors in the 30 OpenAI icons", "",
                   f"Base rate: the check flags {len(flagged)} of {len(a)} icons, so a catch is weak evidence on its own.", "",
                   f"- Major errors (6): flagged {caught(KNOWN_BAD)}; from generic questions alone, {caught(KNOWN_BAD, 'generic')}.",
@@ -311,10 +338,10 @@ def calibrate():
             tiles = [r for r in b if r["slug"] == slug]
             flagged = sum(r["verdict"] == "FLAG" for r in tiles)
             if picks:
-                rank = lambda field: next(i + 1 for i, r in enumerate(sorted(tiles, key=lambda r: -r[field])) if r["variant"] == picks[0])
-                firsts.append(rank("likeness") == 1)
-                firsts_g.append(rank("likeness_generic") == 1)
-                lines.append(f"| {slug} | {picks[0]} | {rank('likeness')} | {rank('likeness_generic')} | {flagged} of {len(tiles)} |")
+                r1, rg = rank_of(tiles, picks[0]), rank_of(tiles, picks[0], "likeness_generic")
+                firsts.append(r1 == 1)
+                firsts_g.append(rg == 1)
+                lines.append(f"| {slug} | {picks[0]} | {r1 or 'missing'} | {rg or 'missing'} | {flagged} of {len(tiles)} |")
             else:
                 lines.append(f"| {slug} | none works | - | - | {flagged} of {len(tiles)} (all should fail) |")
         lines += ["", f"Chris's best pick ranks first for {sum(firsts)} of {len(firsts)} birds ({sum(firsts_g)} of {len(firsts_g)} generic). "
@@ -334,12 +361,12 @@ def calibrate():
     for slug, picks in VOTES2.items():
         cells, flags = [], []
         for flag in (False, True):
-            tiles = sorted([r for r in runs[flag] if r["slug"] == slug], key=lambda r: -r["likeness"])
+            tiles = [r for r in runs[flag] if r["slug"] == slug]
             flags.append(sum(r["verdict"] == "FLAG" for r in tiles))
-            if picks and tiles:
-                rank = next(i + 1 for i, r in enumerate(tiles) if r["variant"] == picks[0])
+            if picks:
+                rank = rank_of(tiles, picks[0])
                 firsts[flag].append(rank == 1)
-                cells.append(str(rank))
+                cells.append(str(rank or "missing"))
         lines.append(f"| {slug} | {picks[0] if picks else 'none works'} | {cells[0] if cells else '-'} | "
                      f"{cells[1] if cells else '-'} | {flags[0]} / {flags[1]} of 5 |")
     lines += ["", f"Chris's best pick ranks first for {sum(firsts[False])} of {len(firsts[False])} birds "

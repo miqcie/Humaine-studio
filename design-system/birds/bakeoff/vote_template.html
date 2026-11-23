@@ -35,7 +35,7 @@ header.top p { max-width: 62ch; color: var(--ink) }
 .bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-bottom: 1px solid var(--rule);
   display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; padding-block: 12px }
 .ticks { display: flex; gap: 6px }
-.tick { width: 14px; height: 14px; border: 2px solid var(--ink); background: transparent; padding: 0; cursor: pointer }
+.tick { width: 24px; height: 24px; border: 2px solid var(--ink); background: transparent; padding: 0; cursor: pointer }
 .tick.done { background: var(--klein); border-color: var(--klein) }
 .tick:focus-visible, .tile:focus-visible, button:focus-visible, textarea:focus-visible, input:focus-visible { outline: 3px solid var(--chrome); outline-offset: 2px }
 .count { font-variant-numeric: tabular-nums; font-weight: 500 }
@@ -51,7 +51,7 @@ section.ballot { padding-block: 44px 8px; display: grid; gap: 22px; border-botto
 .marks { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px }
 .marks li { padding-left: 18px; position: relative }
 .marks li::before { content: ""; position: absolute; left: 0; top: 0.55em; width: 8px; height: 8px; background: var(--ink) }
-.marks .src { font-size: 13px; color: var(--mute); margin-top: 6px }
+.src { font-size: 13px; color: var(--mute); margin-top: 6px }
 
 .how { font-size: 14px; color: var(--mute) }
 .tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px }
@@ -108,14 +108,18 @@ footer.done { padding-block: 36px; display: grid; gap: 8px }
 
 <script>
 const BIRDS = __BIRDS__;
+const VOTES = "votes-" + __ROUND__;  // one collection and one browser key per round, so a reused artifact never mixes rounds
 const state = {};          // slug -> {picks: [letters], none: bool, note: string}
 const saving = {};         // slug -> {busy, again}
 let db = null;
 const $ = (s, el = document) => el.querySelector(s);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
+const LETTERS = Object.fromEntries(BIRDS.map(b => [b.slug, b.letters]));
+const clean = (slug, v) => ({ picks: Array.isArray(v.picks) ? v.picks.filter(x => LETTERS[slug].includes(x)).slice(0, 2) : [],
+                              none: !!v.none, note: typeof v.note === "string" ? v.note : "" });
 for (const b of BIRDS) state[b.slug] = { picks: [], none: false, note: "" };
-try { const saved = JSON.parse(localStorage.getItem("bakeoff-votes") || "{}"); for (const k in saved) if (state[k]) state[k] = saved[k]; } catch (e) {}
+try { const saved = JSON.parse(localStorage.getItem(VOTES) || "{}"); for (const k in saved) if (state[k]) state[k] = clean(k, saved[k] || {}); } catch (e) {}
 
 function voted(s) { return state[s].picks.length > 0 || state[s].none; }
 
@@ -135,8 +139,8 @@ function build() {
         <div><img src="ref/${b.slug}.jpg" alt="Reference photo of a ${esc(b.name)}" loading="lazy">
           <p class="credit">Photo: <a href="${esc(b.obs)}" target="_blank" rel="noopener">${esc(b.credit)}</a></p></div>
         <div><ul class="marks">${b.marks.map(m => `<li>${esc(m)}</li>`).join("")}</ul>
-          <p class="marks src">Field marks checked against <a href="${esc(b.audubon)}" target="_blank" rel="noopener">Audubon</a>.</p>
-          ${b.notes ? `<p class="marks src"><strong>Asked for this round:</strong> ${esc(b.notes)}</p>` : ""}</div>
+          <p class="src">Field marks checked against <a href="${esc(b.audubon)}" target="_blank" rel="noopener">Audubon</a>.</p>
+          ${b.notes ? `<p class="src"><strong>Asked for this round:</strong> ${esc(b.notes)}</p>` : ""}</div>
       </div>
       <p class="how">Tap your best, then your second best. Tap a pick again to remove it.</p>
       <div class="tiles">${b.letters.map(L => `
@@ -178,6 +182,7 @@ function render(slug) {
     const at = s.picks.indexOf(el.dataset.letter);
     el.setAttribute("aria-pressed", at >= 0 ? "true" : "false");
     $(".rank", el).textContent = at === 0 ? "Best" : at === 1 ? "Second" : "";
+    el.setAttribute("aria-label", `Tile ${el.dataset.letter}` + (at === 0 ? ", best" : at === 1 ? ", second best" : ""));
   });
   const none = $(`#none-${slug}`), note = $(`#note-${slug}`);
   if (none.checked !== s.none) none.checked = s.none;
@@ -190,7 +195,7 @@ function render(slug) {
 
 function changed(slug) {
   render(slug);
-  try { localStorage.setItem("bakeoff-votes", JSON.stringify(state)); } catch (e) {}
+  try { localStorage.setItem(VOTES, JSON.stringify(state)); } catch (e) {}
   save(slug);
 }
 
@@ -202,7 +207,7 @@ async function save(slug) {
   q.busy = true; st.className = "status"; st.textContent = "Saving…";
   try {
     const s = state[slug];
-    await db.collection("votes").doc(slug).set({ picks: [...s.picks], none: s.none, note: s.note, updatedAt: new Date().toISOString() });
+    await db.collection(VOTES).doc(slug).set({ picks: [...s.picks], none: s.none, note: s.note, updatedAt: new Date().toISOString() });
     st.textContent = "Saved.";
   } catch (e) {
     st.className = "status err";
@@ -218,12 +223,12 @@ async function connect() {
   db = await window.claude?.use?.("db") ?? null;
   if (!db) { notice.textContent = "Votes can't be saved in this view. Open the page on claude.ai while signed in."; return; }
   const timer = setTimeout(() => { notice.textContent = "Saved votes can't be reached yet. Your picks are kept here meanwhile."; }, 10000);
-  db.collection("votes").onSnapshot(snap => {
+  db.collection(VOTES).onSnapshot(snap => {
     if (!snap.metadata || !snap.metadata.fromCache) { clearTimeout(timer); notice.textContent = ""; }
     for (const d of snap.docs) {
       if (!state[d.id] || saving[d.id]?.busy) continue;
       const v = d.data() || {};
-      state[d.id] = { picks: Array.isArray(v.picks) ? v.picks.filter(x => typeof x === "string").slice(0, 2) : [], none: !!v.none, note: typeof v.note === "string" ? v.note : "" };
+      state[d.id] = clean(d.id, v);
       render(d.id);
     }
   }, () => { clearTimeout(timer); notice.textContent = "Saved votes stopped loading. Your picks are kept in this browser."; });

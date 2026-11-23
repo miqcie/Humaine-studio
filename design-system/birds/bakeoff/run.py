@@ -18,6 +18,7 @@ import random
 import re
 import subprocess
 import sys
+import time
 import urllib.error
 import urllib.request
 import uuid
@@ -101,11 +102,18 @@ def ledger():
     return json.loads(LEDGER.read_text()) if LEDGER.exists() else []
 
 
+def spent():
+    """Spend across every round's ledger: the cap is one budget, not one per --dir."""
+    return sum(x["cost"] for f in BIRDS_DIR.glob("*/ledger.json") for x in json.loads(f.read_text()))
+
+
 def spend(item, cost):
-    """Check the cap before a paid call; record() after it succeeds, so a refused call costs nothing here."""
-    total = sum(x["cost"] for x in ledger())
+    """Check the cap and record the cost BEFORE a paid call. A call that times out may still be billed, so it counts.
+    shortcut: a call the server refuses also counts, so the cap errs toward stopping early; fine for a $5 cap."""
+    total = spent()
     if total + cost > BUDGET:
         raise SystemExit(f"budget cap: ${total:.3f} spent, next call ${cost} would pass ${BUDGET}")
+    record(item, cost)
 
 
 def record(item, cost):
@@ -137,11 +145,20 @@ def call(url, *, token, body=None, multipart=None, method=None):
             return json.load(r)
     except urllib.error.HTTPError as e:
         raise SystemExit(f"{url}: HTTP {e.code} {e.read()[:400].decode(errors='replace')}")
+    except (urllib.error.URLError, TimeoutError) as e:  # no answer: the call may still have been billed (see spend)
+        raise SystemExit(f"{url}: no response ({e})")
 
 
 def download(url):
-    with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": "humaine-bird-bakeoff"}), timeout=120) as r:
-        return r.read()
+    """The image of a call already paid for: retry, and on failure print the URL so it can be fetched by hand."""
+    for attempt in range(3):
+        try:
+            with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": "humaine-bird-bakeoff"}), timeout=120) as r:
+                return r.read()
+        except (urllib.error.URLError, TimeoutError) as e:
+            err = e
+            time.sleep(5 * (attempt + 1))
+    raise SystemExit(f"paid image not downloaded ({err}); fetch it by hand from {url}")
 
 
 # ---------- style references: the curlew plus three strong OpenAI concept icons ----------
@@ -176,9 +193,8 @@ def recraft_style(token, model):
     styles = json.loads(STYLE.read_text()) if STYLE.exists() else {}
     styles = styles if "style_id" not in styles else {"recraftv4_styles": styles}  # first run stored a single style
     if model not in styles:
-        spend("recraft style", COST["style"])
+        spend(f"recraft style {model}", COST["style"])
         r = call(f"{RECRAFT}/styles", token=token, multipart=[("model", model)] + [("files", (f"ref{i}.png", b)) for i, b in enumerate(style_refs())])
-        record(f"recraft style {model}", COST["style"])
         styles[model] = {"style_id": r["id"], "credits": r.get("credits")}
         STYLE.write_text(json.dumps(styles, indent=1) + "\n")
     return styles[model]["style_id"]
@@ -194,7 +210,6 @@ def gen_recraft(slug, seed, vector):
             "controls": {"colors": [{"rgb": list(trace_icon.rgb(c))} for c in PALETTE], "background_color": {"rgb": list(trace_icon.rgb(S.F))}}}
     spend(f"{key} {slug} {seed}", COST[key])
     r = call(f"{RECRAFT}/images/generations", token=token, body=body)
-    record(f"{key} {slug} {seed}", COST[key])
     return download(r["data"][0]["url"]), ("svg" if vector else "png"), body, r.get("credits")
 
 
@@ -214,7 +229,9 @@ def gen_openai(slug, seed):
     with tempfile.TemporaryDirectory() as td:
         cmd = ["codex", "exec", "--ignore-user-config", "--skip-git-repo-check", "--sandbox", "workspace-write"]
         cmd += [a for f in style for a in ("-i", f)]  # -i takes many values, so the prompt goes in on stdin
-        r = subprocess.run(cmd, cwd=td, input=ask, capture_output=True, text=True, timeout=900)
+        # Codex runs an agent with a shell: give it none of this process's secrets (Recraft, 1Password service account).
+        env = {k: v for k, v in os.environ.items() if not re.search(r"TOKEN|SECRET|API_KEY|PASSWORD", k)}
+        r = subprocess.run(cmd, cwd=td, input=ask, capture_output=True, text=True, timeout=900, env=env)
         out = pathlib.Path(td) / "out.png"
         if r.returncode or not out.exists():
             raise SystemExit(f"codex {slug} {seed}: exit {r.returncode}, no image. {r.stderr[-300:]}")
@@ -233,24 +250,22 @@ def gen(birds, only):
         for key in only:
             for seed in SEEDS:
                 if any(d.glob(f"{key}-{seed}.*")):
+                    old = json.loads((d / f"{key}-{seed}.json").read_text())["request"].get("prompt", "")
+                    if prompt(slug) not in old:  # notes or marks changed since this draft was made
+                        print(f"STALE {slug} {key} {seed}: the prompt changed since this draft; delete it to redraw")
                     continue
                 img, ext, req, billed = CONTESTANTS[key](slug, seed)
                 (d / f"{key}-{seed}.{ext}").write_bytes(img)
                 (d / f"{key}-{seed}.json").write_text(json.dumps({"request": req, "billed": billed}, indent=1) + "\n")
                 print(f"{slug} {key} {seed}: {len(img)} bytes, billed {billed}")
-    print(f"spent ${sum(x['cost'] for x in ledger()):.3f} of ${BUDGET}")
+    print(f"spent ${spent():.3f} of ${BUDGET} (all rounds)")
 
 
 def check():
     t = os.environ.get("RECRAFT_API_TOKEN")
     me = call(f"{RECRAFT}/users/me", token=t) if t else None
     print("recraft:", {k: v for k, v in (me or {}).items() if isinstance(v, (int, float)) or k in ("api_units", "credits")} if me else "no token")
-    o = os.environ.get("OPENAI_API_KEY")
-    try:
-        call("https://api.openai.com/v1/models", token=o or "none")
-        print("openai: ok")
-    except SystemExit as e:
-        print("openai: not usable,", str(e)[:120])
+    print("openai: runs through the local Codex CLI (`codex login status`), no API key needed")
 
 
 # ---------- normalize ----------
@@ -289,6 +304,7 @@ def sheets():
         if not tiles:
             continue
         rng.shuffle(tiles)
+        assert len(tiles) <= 8, f"{slug}: {len(tiles)} tiles, the page has letters for 8"
         letters = "ABCDEFGH"[:len(tiles)]
         key[slug] = {L: t.stem for L, t in zip(letters, tiles)}
         W, cell, gap, small = 1800, 400, 40, 64
@@ -323,7 +339,11 @@ def sheets():
         (SHEETS / f"{slug}.svg").write_text(svg)
         (SHEETS / f"{slug}.png").write_bytes(build.rsvg(svg, W))
         print("sheet", slug, len(tiles), "tiles")
-    (ROOT / "key.json").write_text(json.dumps(key, indent=1) + "\n")
+    old = ROOT / "key.json"
+    if old.exists() and json.loads(old.read_text()) != key:
+        # Votes taken under the old letters would be read against the wrong tiles.
+        raise SystemExit(f"{old} would change (the tile set changed). If no votes were taken yet, delete it and rerun.")
+    old.write_text(json.dumps(key, indent=1) + "\n")
 
 
 if __name__ == "__main__":

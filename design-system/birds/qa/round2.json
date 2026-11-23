@@ -206,9 +206,9 @@
   "matches_reference": 0.27
  },
  {
-  "id": "bakeoff/traced/american-kestrel/O-ras-23.svg",
+  "id": "round2/traced/american-kestrel/incumbent.svg",
   "slug": "american-kestrel",
-  "variant": "O-ras-23",
+  "variant": "incumbent",
   "verdict": "UNSURE",
   "flag_generic": false,
   "reasons": [],
@@ -309,9 +309,9 @@
   "matches_reference": 0.66
  },
  {
-  "id": "bakeoff/traced/black-skimmer/O-ras-11.svg",
+  "id": "round2/traced/black-skimmer/incumbent.svg",
   "slug": "black-skimmer",
-  "variant": "O-ras-11",
+  "variant": "incumbent",
   "verdict": "UNSURE",
   "flag_generic": false,
   "reasons": [],
@@ -425,9 +425,9 @@
   "matches_reference": 0.24
  },
  {
-  "id": "bakeoff/traced/brown-pelican/R-vec-23.svg",
+  "id": "round2/traced/brown-pelican/incumbent.svg",
   "slug": "brown-pelican",
-  "variant": "R-vec-23",
+  "variant": "incumbent",
   "verdict": "UNSURE",
   "flag_generic": false,
   "reasons": [],
@@ -543,9 +543,9 @@
   "matches_reference": 0.05
  },
  {
-  "id": "concepts/openai-traced/eastern-screech-owl.svg",
+  "id": "round2/traced/eastern-screech-owl/incumbent.svg",
   "slug": "eastern-screech-owl",
-  "variant": "eastern-screech-owl",
+  "variant": "incumbent",
   "verdict": "FLAG",
   "flag_generic": true,
   "reasons": [
@@ -652,9 +652,9 @@
   "matches_reference": 0.56
  },
  {
-  "id": "bakeoff/traced/great-blue-heron/O-ras-11.svg",
+  "id": "round2/traced/great-blue-heron/incumbent.svg",
   "slug": "great-blue-heron",
-  "variant": "O-ras-11",
+  "variant": "incumbent",
   "verdict": "UNSURE",
   "flag_generic": false,
   "reasons": [],

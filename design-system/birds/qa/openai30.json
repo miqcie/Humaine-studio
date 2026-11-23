@@ -6,21 +6,20 @@
   "verdict": "FLAG",
   "flag_generic": true,
   "reasons": [
+   "shows: a dark navy body",
    "colors not true to species",
    "head shape not true to species"
   ],
-  "unsure": [
-   "small central bill"
-  ],
-  "p_species": 0.97,
-  "p_species_64": 0.96,
+  "unsure": [],
+  "p_species": 1.0,
+  "p_species_64": 1.0,
   "top": "american_barn_owl",
   "style": 2.48,
-  "likeness": 0.72,
-  "likeness_generic": 0.627,
+  "likeness": 0.554,
+  "likeness_generic": 0.712,
   "bill_head": null,
   "ref_ratio": null,
-  "matches_reference": null
+  "matches_reference": 0.15
  },
  {
   "id": "concepts/openai-traced/american-kestrel.svg",
@@ -402,24 +401,25 @@
   "id": "concepts/openai-traced/marbled-godwit.svg",
   "slug": "marbled-godwit",
   "variant": "marbled-godwit",
-  "verdict": "UNSURE",
-  "flag_generic": false,
-  "reasons": [],
+  "verdict": "FLAG",
+  "flag_generic": true,
+  "reasons": [
+   "shows: a navy or black body",
+   "colors not true to species"
+  ],
   "unsure": [
-   "species only 0.46",
    "very long, slightly upturned bill",
-   "colors",
    "head shape"
   ],
-  "p_species": 0.46,
-  "p_species_64": 0.13,
+  "p_species": 0.76,
+  "p_species_64": 0.6,
   "top": "marbled_godwit",
   "style": 2.78,
-  "likeness": 0.657,
-  "likeness_generic": 0.543,
+  "likeness": 0.444,
+  "likeness_generic": 0.585,
   "bill_head": 1.31,
   "ref_ratio": 2.8,
-  "matches_reference": null
+  "matches_reference": 0.11
  },
  {
   "id": "concepts/openai-traced/northern-bobwhite.svg",
@@ -450,24 +450,24 @@
   "slug": "osprey",
   "variant": "osprey",
   "verdict": "FLAG",
-  "flag_generic": true,
+  "flag_generic": false,
   "reasons": [
-   "missing: bold dark eye stripe"
+   "shows: a tall spiky crest"
   ],
   "unsure": [
-   "species only 0.44",
+   "bold dark eye stripe",
    "colors",
    "head shape"
   ],
-  "p_species": 0.44,
-  "p_species_64": 0.43,
+  "p_species": 0.9,
+  "p_species_64": 0.89,
   "top": "osprey",
-  "style": 2.57,
-  "likeness": 0.637,
-  "likeness_generic": 0.517,
-  "bill_head": 0.23,
+  "style": 2.41,
+  "likeness": 0.574,
+  "likeness_generic": 0.706,
+  "bill_head": 0.22,
   "ref_ratio": 0.3,
-  "matches_reference": null
+  "matches_reference": 0.31
  },
  {
   "id": "concepts/openai-traced/peregrine-falcon.svg",

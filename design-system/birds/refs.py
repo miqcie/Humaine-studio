@@ -7,6 +7,7 @@ Writes: taxa.json (all 30, committed), reference-credits.csv (committed),
 Photos are references for measuring and as model inputs. Never trace them. Audubon photos are never fetched.
 """
 import csv
+import hashlib
 import json
 import pathlib
 import sys
@@ -31,7 +32,7 @@ def get(path, **params):
     """Cached GET, at most one live request per second."""
     url = f"{API}/{path}?{urllib.parse.urlencode(params)}"
     CACHE.mkdir(parents=True, exist_ok=True)
-    key = CACHE / (urllib.parse.quote(url, safe="")[-180:] + ".json")
+    key = CACHE / (hashlib.sha256(url.encode()).hexdigest()[:32] + ".json")  # the full URL, so long URLs never collide
     if key.exists():
         return json.loads(key.read_text())
     time.sleep(1)

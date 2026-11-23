@@ -30,8 +30,9 @@ def png(svg_path, w=480):
 
 def changed_share(a, b):
     """Share of pixels whose largest channel difference is over 25 (of 255)."""
-    diff = ImageChops.difference(a, b).convert("L").point(lambda v: 255 if v > 25 else 0)
-    return sum(diff.histogram()[255:]) / (a.width * a.height)
+    bands = [d.point(lambda v: 255 if v > 25 else 0) for d in ImageChops.difference(a, b).split()]
+    diff = ImageChops.lighter(ImageChops.lighter(bands[0], bands[1]), bands[2])  # any channel over 25
+    return diff.histogram()[255] / (a.width * a.height)
 
 
 def body(slug):

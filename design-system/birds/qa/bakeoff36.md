@@ -3,6 +3,7 @@
 Palette note in state: no. "Colors not true to species" fired on 19 of 36 icons.
 
 Model `jev-1.14.0` (image questions are experimental). 36 icons: 0 pass, 17 unsure, 19 flagged.
+Icons in the set with no answers: none.
 Noul read as yes above 0.7, no below 0.3. Species is read from a 30-way Choice at 480 px and at 64 px.
 
 | Icon | Verdict | Species p (480 / 64) | Style | Likeness | Bill ÷ head (ref) | Why |
