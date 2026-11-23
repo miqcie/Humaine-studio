@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
-"""Generator bake-off for the bird icons. Run through run.sh (it loads the Recraft key).
+"""Draft, trace and blind-sheet one vote round of bird icons. Run through run.sh.
 
-  run.sh check                      free: confirm each generator's key works
-  run.sh gen [bird ...] [--only C]  generate (cached; stops at the budget cap)
-  run.sh trace                      normalize every raw output with trace_icon.py
-  run.sh sheets                     blind judging sheets + key.json
+  run.sh [--dir round2] gen [bird ...]   draft with OpenAI image generation via the Codex CLI (cached)
+  run.sh [--dir round2] trace            normalize every raw draft with trace_icon.py
+  run.sh [--dir round2] sheets           blind judging sheets + key.json
 
-Contestants: R-vec (Recraft V4 Styles, SVG), R-ras (Recraft V4 Styles, raster), O-ras (OpenAI image generation via Codex CLI).
-All three get the same style references, palette and prompt; all outputs go through the same tracer.
+The first round (bakeoff/) also ran two Recraft V4 Styles contestants; OpenAI won (bakeoff/RESULTS.md) and the
+Recraft code was removed afterwards. It is in git history up to commit 2a6cae9.
 """
 import base64
 import io
@@ -18,10 +17,6 @@ import random
 import re
 import subprocess
 import sys
-import time
-import urllib.error
-import urllib.request
-import uuid
 
 from PIL import Image
 
@@ -46,14 +41,9 @@ def _take(flag, default):
 ROOT = BIRDS_DIR / _take("--dir", "bakeoff")
 CONFIG = json.loads((ROOT / "config.json").read_text()) if (ROOT / "config.json").exists() else {}
 RAW, TRACED, SHEETS = ROOT / "raw", ROOT / "traced", ROOT / "sheets"
-LEDGER, STYLE = ROOT / "ledger.json", HERE / "style.json"
 STYLE_DIR = HERE / "raw" / "_style"  # the shared style references, for every round
-BUDGET = 5.00
 SEEDS = CONFIG.get("seeds", [11, 23])
 PILOTS = CONFIG.get("birds", ["black-skimmer", "american-kestrel", "brown-pelican", "northern-bobwhite", "eastern-screech-owl", "great-blue-heron"])
-COST = {"R-vec": 0.05, "R-ras": 0.035, "O-ras": 0.0, "style": 0.005}  # O-ras runs on the ChatGPT plan via Codex
-RECRAFT = "https://external.api.recraft.ai/v1"
-PALETTE = [S.N, S.F, S.Y, S.R, S.B, S.M]
 
 STYLE_BLOCK = (
     "Flat geometric bird icon in a Mondrian / De Stijl spirit, matching the reference images. "
@@ -96,75 +86,10 @@ def base_pngs(slug):
     return out
 
 
-# ---------- ledger: every paid call is recorded; nothing runs past the cap ----------
-
-def ledger():
-    return json.loads(LEDGER.read_text()) if LEDGER.exists() else []
-
-
-def spent():
-    """Spend across every round's ledger: the cap is one budget, not one per --dir."""
-    return sum(x["cost"] for f in BIRDS_DIR.glob("*/ledger.json") for x in json.loads(f.read_text()))
-
-
-def spend(item, cost):
-    """Check the cap and record the cost BEFORE a paid call. A call that times out may still be billed, so it counts.
-    shortcut: a call the server refuses also counts, so the cap errs toward stopping early; fine for a $5 cap."""
-    total = spent()
-    if total + cost > BUDGET:
-        raise SystemExit(f"budget cap: ${total:.3f} spent, next call ${cost} would pass ${BUDGET}")
-    record(item, cost)
-
-
-def record(item, cost):
-    rows = ledger() + [{"item": item, "cost": cost}]
-    LEDGER.write_text(json.dumps(rows, indent=1) + "\n")
-
-
-# ---------- HTTP ----------
-
-def call(url, *, token, body=None, multipart=None, method=None):
-    headers = {"Authorization": f"Bearer {token}"}
-    data = None
-    if body is not None:
-        data, headers["Content-Type"] = json.dumps(body).encode(), "application/json"
-    if multipart is not None:
-        bnd = uuid.uuid4().hex
-        parts = []
-        for name, val in multipart:
-            if isinstance(val, tuple):  # (filename, bytes)
-                parts.append(f'--{bnd}\r\nContent-Disposition: form-data; name="{name}"; filename="{val[0]}"\r\n'
-                             f"Content-Type: image/png\r\n\r\n".encode() + val[1] + b"\r\n")
-            else:
-                parts.append(f'--{bnd}\r\nContent-Disposition: form-data; name="{name}"\r\n\r\n{val}\r\n'.encode())
-        data = b"".join(parts) + f"--{bnd}--\r\n".encode()
-        headers["Content-Type"] = f"multipart/form-data; boundary={bnd}"
-    req = urllib.request.Request(url, data=data, headers=headers, method=method or ("POST" if data else "GET"))
-    try:
-        with urllib.request.urlopen(req, timeout=300) as r:
-            return json.load(r)
-    except urllib.error.HTTPError as e:
-        raise SystemExit(f"{url}: HTTP {e.code} {e.read()[:400].decode(errors='replace')}")
-    except (urllib.error.URLError, TimeoutError) as e:  # no answer: the call may still have been billed (see spend)
-        raise SystemExit(f"{url}: no response ({e})")
-
-
-def download(url):
-    """The image of a call already paid for: retry, and on failure print the URL so it can be fetched by hand."""
-    for attempt in range(3):
-        try:
-            with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": "humaine-bird-bakeoff"}), timeout=120) as r:
-                return r.read()
-        except (urllib.error.URLError, TimeoutError) as e:
-            err = e
-            time.sleep(5 * (attempt + 1))
-    raise SystemExit(f"paid image not downloaded ({err}); fetch it by hand from {url}")
-
-
 # ---------- style references: the curlew plus three strong OpenAI concept icons ----------
 
 def style_refs():
-    """PNG bytes of the references, cached in bakeoff/raw/_style/."""
+    """Paths of the style reference PNGs, made once in bakeoff/raw/_style/."""
     d = STYLE_DIR
     d.mkdir(parents=True, exist_ok=True)
     src = BIRDS_DIR / "concepts" / "OpenAI Astra Concepts"
@@ -175,49 +100,19 @@ def style_refs():
     if not logo.exists():
         svg = BIRDS_DIR.parent / "project" / "assets" / "Logos" / "humaine-curlew.svg"
         logo.write_bytes(subprocess.run(["rsvg-convert", "-w", "512", str(svg)], capture_output=True, check=True).stdout)
-    out.append(logo.read_bytes())
+    out.append(str(logo))
     for name, (sheet, box) in crops.items():
         f = d / f"{name}.png"
         if not f.exists():
             Image.open(src / sheet).convert("RGB").crop(box).resize((512, 512)).save(f)
-        out.append(f.read_bytes())
+        out.append(str(f))
     return out
-
-
-def data_url(b):
-    return "data:image/png;base64," + base64.b64encode(b).decode()
-
-
-def recraft_style(token, model):
-    """One Recraft style per model (a raster style cannot drive the vector model)."""
-    styles = json.loads(STYLE.read_text()) if STYLE.exists() else {}
-    styles = styles if "style_id" not in styles else {"recraftv4_styles": styles}  # first run stored a single style
-    if model not in styles:
-        spend(f"recraft style {model}", COST["style"])
-        r = call(f"{RECRAFT}/styles", token=token, multipart=[("model", model)] + [("files", (f"ref{i}.png", b)) for i, b in enumerate(style_refs())])
-        styles[model] = {"style_id": r["id"], "credits": r.get("credits")}
-        STYLE.write_text(json.dumps(styles, indent=1) + "\n")
-    return styles[model]["style_id"]
-
-
-# ---------- contestants ----------
-
-def gen_recraft(slug, seed, vector):
-    token = os.environ["RECRAFT_API_TOKEN"]
-    key = "R-vec" if vector else "R-ras"
-    model = "recraftv4_styles_vector" if vector else "recraftv4_styles"
-    body = {"prompt": prompt(slug), "model": model, "style_id": recraft_style(token, model), "size": "1:1", "random_seed": seed,
-            "controls": {"colors": [{"rgb": list(trace_icon.rgb(c))} for c in PALETTE], "background_color": {"rgb": list(trace_icon.rgb(S.F))}}}
-    spend(f"{key} {slug} {seed}", COST[key])
-    r = call(f"{RECRAFT}/images/generations", token=token, body=body)
-    return download(r["data"][0]["url"]), ("svg" if vector else "png"), body, r.get("credits")
 
 
 def gen_openai(slug, seed):
     """OpenAI image generation through the local Codex CLI (ChatGPT plan; no API key, no dollar cost here)."""
     import tempfile
-    style = [str(STYLE_DIR / f"{n}.png") for n in ("curlew", "wood-duck", "great-blue-heron", "hooded-warbler")]
-    style_refs()
+    style = style_refs()
     bases = base_pngs(slug)
     ask = ("Use your built-in image generation tool to create ONE square 1024x1024 image. "
            f"The first {len(style)} attached images are STYLE references only (frame, flat shapes, palette); do not copy their birds. "
@@ -229,25 +124,21 @@ def gen_openai(slug, seed):
     with tempfile.TemporaryDirectory() as td:
         cmd = ["codex", "exec", "--ignore-user-config", "--skip-git-repo-check", "--sandbox", "workspace-write"]
         cmd += [a for f in style for a in ("-i", f)]  # -i takes many values, so the prompt goes in on stdin
-        # Codex runs an agent with a shell: give it none of this process's secrets (Recraft, 1Password service account).
+        # Codex runs an agent with a shell: pass it no secrets (API keys, the 1Password service-account token).
         env = {k: v for k, v in os.environ.items() if not re.search(r"TOKEN|SECRET|API_KEY|PASSWORD", k)}
         r = subprocess.run(cmd, cwd=td, input=ask, capture_output=True, text=True, timeout=900, env=env)
         out = pathlib.Path(td) / "out.png"
         if r.returncode or not out.exists():
             raise SystemExit(f"codex {slug} {seed}: exit {r.returncode}, no image. {r.stderr[-300:]}")
         img = out.read_bytes()
-    record(f"O-ras {slug} {seed}", 0.0)
     return img, "png", {"via": "codex exec (ChatGPT plan)", "prompt": ask}, "ChatGPT plan"
 
 
-CONTESTANTS = {"R-vec": lambda s, n: gen_recraft(s, n, True), "R-ras": lambda s, n: gen_recraft(s, n, False), "O-ras": gen_openai}
-
-
-def gen(birds, only):
+def gen(birds):
     for slug in birds:
         d = RAW / slug
         d.mkdir(parents=True, exist_ok=True)
-        for key in only:
+        for key in ("O-ras",):  # file names keep the bake-off contestant key
             for seed in SEEDS:
                 if any(d.glob(f"{key}-{seed}.*")):
                     side = d / f"{key}-{seed}.json"  # absent if the run stopped between image and sidecar
@@ -255,18 +146,10 @@ def gen(birds, only):
                     if prompt(slug) not in old:  # notes or marks changed since this draft was made
                         print(f"STALE {slug} {key} {seed}: the prompt changed since this draft; delete it to redraw")
                     continue
-                img, ext, req, billed = CONTESTANTS[key](slug, seed)
+                img, ext, req, billed = gen_openai(slug, seed)
                 (d / f"{key}-{seed}.{ext}").write_bytes(img)
                 (d / f"{key}-{seed}.json").write_text(json.dumps({"request": req, "billed": billed}, indent=1) + "\n")
                 print(f"{slug} {key} {seed}: {len(img)} bytes, billed {billed}")
-    print(f"spent ${spent():.3f} of ${BUDGET} (all rounds)")
-
-
-def check():
-    t = os.environ.get("RECRAFT_API_TOKEN")
-    me = call(f"{RECRAFT}/users/me", token=t) if t else None
-    print("recraft:", {k: v for k, v in (me or {}).items() if isinstance(v, (int, float)) or k in ("api_units", "credits")} if me else "no token")
-    print("openai: runs through the local Codex CLI (`codex login status`), no API key needed")
 
 
 # ---------- normalize ----------
@@ -350,9 +233,8 @@ def sheets():
 
 
 if __name__ == "__main__":
-    cmd, *rest = sys.argv[1:] or ["check"]
-    only = list(CONTESTANTS)
-    if "--only" in rest:
-        i = rest.index("--only")
-        only, rest = rest[i + 1].split(","), rest[:i] + rest[i + 2:]
-    {"check": check, "gen": lambda: gen(rest or PILOTS, only), "trace": trace, "sheets": sheets}[cmd]()
+    cmd, *rest = sys.argv[1:] or ["help"]
+    commands = {"gen": lambda: gen(rest or PILOTS), "trace": trace, "sheets": sheets}
+    if cmd not in commands:
+        raise SystemExit(__doc__)
+    commands[cmd]()

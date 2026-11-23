@@ -1,44 +1,40 @@
-# Virginia birds: concept sheets
+# Virginia bird icons
 
-30 bird icons in six regional sets of five. They extend the curlew logo. These are **concepts in the light Klein & Linen treatment**. They are not finished production assets.
+30 bird icons in six regional sets of five. They extend the curlew logo. The set was approved on 2026-11-23 and is in `final/`. Dark versions, PNG exports, favicons and ICO files are still to come (Linear HUM-314).
 
 ## Files
 
-- `species.py`: the geometry of each bird (240 × 240 units) and the palette.
-- `build.py`: the checks, and the builder for the icons, sheets and strips.
-- `concepts/sheets/`: one sheet per region, SVG and PNG (1800 px wide). Not committed: run `build.py` to rebuild them. The blind sheets of each vote round (`<round>/sheets/`) are likewise rebuilt by `bakeoff/run.sh --dir <round> sheets`; only `final/sheets/` is kept.
-- `concepts/icons/`: one icon per species, SVG and PNG (480 px).
-- `concepts/strips/`: the birds that are easy to confuse, side by side at 96 px.
+- `final/`: the 30 SVG masters, one sheet per region (SVG and PNG), and strips of the birds that are easy to confuse. `final.json` names the source of each bird.
+- `species.py`: the palette, the six regions and the 30 species, with names verbatim from the brief.
+- `build.py`: helpers for the sheets: outlined type, `rsvg`, and the regional sheet and strip layouts.
+- `concepts/OpenAI Astra Concepts/`: the 30 OpenAI concept PNGs. `concepts/openai-traced/` holds their traces.
+- The blind sheets of each vote round (`<round>/sheets/`) are not committed: `bakeoff/run.sh --dir <round> sheets` rebuilds them.
 
 ## Build
 
 ```sh
-uv run --with pillow --with fonttools --with brotli python design-system/birds/build.py           # all
-uv run --with pillow --with fonttools --with brotli python design-system/birds/build.py osprey    # one icon, checks only
+uv run --with pillow --with fonttools --with brotli python design-system/birds/assemble.py
 ```
 
-You need `rsvg-convert` (`brew install librsvg`). The labels are converted to outlines from `assets/fonts/`, so the sheets do not need installed fonts.
+You need `rsvg-convert` (`brew install librsvg`) and `bunx` (SVGO). The labels are converted to outlines from `assets/fonts/`, so the sheets do not need installed fonts.
 
 ## Rules that every icon shares
 
-- A navy frame 13 units wide (5.5%, the same as the logo). An ivory field. The bird faces right.
-- The bird can go off the left and bottom edges only. Bills, crests and wing tips stay 10 units or more inside the frame. `build.py` checks this on the unclipped art.
-- The eye has an ivory ring on dark plumage and is a navy dot on pale or yellow plumage. A species with a colored eye or eye ring uses that color (Oystercatcher, Peregrine, Osprey, Cormorant, Wood Duck).
-- Pale plumage never touches the field. It sits inside the dark silhouette, or behind a keyline in the bird's own color.
-- The chrome-yellow wing from the logo recurs on five birds: Whimbrel, Black Skimmer, Osprey, Chimney Swift and the Barn Owl's body. It is not used where the wing is the identifying mark.
-- Only flat fills from the palette. Each icon has 3 or 4 colors, frame and field included. `build.py` checks this.
+- A navy frame 13 units wide (5.5%, the same as the logo). An ivory field. The bird faces right; owls may face straight ahead.
+- The bird can go off the left and bottom edges only.
+- Only flat fills from the palette, 3 or 4 colors per icon, frame and field included. `trace_icon.py` snaps every pixel to the palette and `assemble.py` checks it. Klein blue stays out of the plumage.
 
 ## Open decisions
 
 - **Navy.** The icons use `#0B0F24` (Klein Night ground), as the brief's palette table gives. The live logo frame is `#0E1230` (`mark-line`). To change it, edit `N` in `species.py`.
-- **Weakest forms:** American Kestrel (the face reads as a helmet), Peregrine Falcon and Osprey (similar structure, told apart only by crown color), Ruffed Grouse (small crest).
+- **Deferred improvements** (Screech-Owl, the 5-color Pelican and Godwit, Ruffed Grouse, Red-headed Woodpecker, Cormorant): Linear HUM-314.
 
 ## References and the bake-off (2026-11-19)
 
-- `refs.py` resolves the 30 species on iNaturalist (`taxa.json`) and fetches up to 12 **CC0 or CC BY** photos per species into `refs/` (git-ignored), with a numbered contact sheet. `reference-credits.csv` (committed) credits every photo. NC, ND and SA licenses are refused.
+- `refs.py` resolves the 30 species on iNaturalist (`taxa.json`) and fetches up to 12 **CC0 or CC BY** photos per species into `refs/` (git-ignored, except the photos `references.json` pins: those are committed with `git add -f` so the reports and vote pages can be rebuilt on any machine), with a numbered contact sheet. `reference-credits.csv` (committed) credits every photo. NC, ND and SA licenses are refused.
 - `references.json` records the chosen photo, the Audubon page, measured ratios (for example the Black Skimmer's lower mandible is 1.45 times the head length) and the field marks for each pilot bird. Audubon photos are read only, never downloaded, traced or given to a model.
 - `trace_icon.py` turns any raster bird into the house frame and exact palette (it finds the source frame by itself). `trace_folder.py SRC_DIR OUT_DIR` runs it over a folder of `<slug>.png` icons and writes a contact sheet; it made `concepts/openai-traced/` from the 30 OpenAI PNGs.
-- `bakeoff/run.sh check | gen | trace | sheets` runs the blind generator test on 6 pilot birds: Recraft V4 Styles vector, Recraft V4 Styles raster, and OpenAI gpt-image, with the same style references, palette and prompt. A ledger stops spending at $5. `key.json` maps the sheet letters to contestants; do not open it before picking. Vote on the private page https://claude.ai/artifact/VgN4nGuFEpHpV1ST72KdDi (built by `bakeoff/vote_page.py` from `vote_template.html`; votes land in its `votes` collection; pages built from 2026-11-23 on use `votes-<round>`).
+- `bakeoff/run.sh gen | trace | sheets` ran the blind generator test on 6 pilot birds: Recraft V4 Styles vector, Recraft V4 Styles raster, and OpenAI gpt-image, with the same style references, palette and prompt. OpenAI won, and the Recraft code (with its $5 spend cap) was removed afterwards; it is in git history up to commit 2a6cae9. `key.json` maps the sheet letters to contestants; do not open it before picking. Vote on the private page https://claude.ai/artifact/VgN4nGuFEpHpV1ST72KdDi (built by `bakeoff/vote_page.py` from `vote_template.html`; votes land in its `votes` collection; pages built from 2026-11-23 on use `votes-<round>`).
 
 ## Likeness check (TypeSafe Jev, 2026-11-20)
 
