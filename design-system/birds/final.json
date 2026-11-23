@@ -1,5 +1,5 @@
 {
-  "_note": "Source of each final icon and why it was chosen. assemble.py builds final/ from this. Round-2 winners replace entries after Chris's round-2 vote.",
+  "_note": "Source of each final icon and why it was chosen. assemble.py builds final/ from this.",
   "whimbrel": {
     "src": "concepts/openai-traced/whimbrel.svg",
     "why": "OpenAI concept, traced"
@@ -62,15 +62,15 @@
   },
   "american-kestrel": {
     "src": "bakeoff/traced/american-kestrel/O-ras-23.svg",
-    "why": "Chris's bake-off best pick, kept for now; round-2 blue variants all rejected"
+    "why": "Chris's bake-off best pick; chosen again in round 3 over four no-blue drafts"
   },
   "american-barn-owl": {
     "src": "concepts/openai-traced/american-barn-owl.svg",
-    "why": "OpenAI concept, traced; all round-2 drafts rejected (\"mismatched eyes suck\"); round 3 pending"
+    "why": "OpenAI concept, traced; chosen again in round 3 over four frontal pale-body drafts"
   },
   "eastern-screech-owl": {
-    "src": "concepts/openai-traced/eastern-screech-owl.svg",
-    "why": "OpenAI concept, traced; all round-2 drafts rejected; round 3 pending"
+    "src": "round3/traced/eastern-screech-owl/O-ras-3.svg",
+    "why": "Round-3 pick A (frontal; iris, pupil and brow eyes), provisional: Chris also ticked \"none works\""
   },
   "belted-kingfisher": {
     "src": "concepts/openai-traced/belted-kingfisher.svg",
