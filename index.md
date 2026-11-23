@@ -8,7 +8,7 @@ permalink: /
 <section class="home-hero">
   <div class="home-hero-text">
     <p class="label home-eyebrow">Chris McConnell · Humaine Studio</p>
-    <h1 class="display home-display">applied ai for <span class="nowrap">human-machine</span> collaboration</h1>
+    <h1 class="display home-display">applied intelligence, <span class="nowrap">human judgment</span></h1>
     <p class="body-lg home-lede">Humaine Studio explores how AI augments human capability. The work is grounded in Zero Trust security and clean, reliable data, focusing on safe, steerable use cases and transparent workflows that keep people in command.</p>
     <div class="hs-actions">
       <a class="hs-btn" href="#writing">Read the writing</a>
