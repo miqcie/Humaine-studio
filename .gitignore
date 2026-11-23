@@ -54,3 +54,6 @@ design-system/birds/round2/raw/*/*.png
 design-system/birds/round2/vote/
 design-system/birds/round3/raw/*/*.png
 design-system/birds/round3/vote/
+# Blind vote and concept sheets are rebuilt by run.py sheets / build.py; only the final set is kept
+design-system/birds/*/sheets/
+!design-system/birds/final/sheets/

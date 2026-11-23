@@ -6,7 +6,7 @@
 
 - `species.py`: the geometry of each bird (240 × 240 units) and the palette.
 - `build.py`: the checks, and the builder for the icons, sheets and strips.
-- `concepts/sheets/`: one sheet per region, SVG and PNG (1800 px wide).
+- `concepts/sheets/`: one sheet per region, SVG and PNG (1800 px wide). Not committed: run `build.py` to rebuild them. The blind sheets of each vote round (`<round>/sheets/`) are likewise rebuilt by `bakeoff/run.sh --dir <round> sheets`; only `final/sheets/` is kept.
 - `concepts/icons/`: one icon per species, SVG and PNG (480 px).
 - `concepts/strips/`: the birds that are easy to confuse, side by side at 96 px.
 
