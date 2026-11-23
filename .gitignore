@@ -44,7 +44,8 @@ yarn-error.log*
 # AI session logs (can contain personal data)
 .specstory/
 
-# Bird reference photos (iNaturalist CC0/CC BY): fetched by design-system/birds/refs.py, credits committed
+# Bird reference photos (iNaturalist CC0/CC BY): fetched by design-system/birds/refs.py, credits committed.
+# The photos references.json pins are force-added (git add -f) so reports and vote pages rebuild anywhere.
 design-system/birds/refs/
 design-system/birds/bakeoff/raw/*/*.png
 !design-system/birds/bakeoff/raw/_style/*.png
