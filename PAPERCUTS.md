@@ -23,3 +23,6 @@
 - 2026-11-23: installing Ruby for local builds → Homebrew `ruby` is 4.0, which `github-pages ~> 228` rejects (commonmarker needs < 4.0); needed `ruby@3.3`
 - 2026-11-23: editing the homepage hero → the session-start git snapshot was stale (main had moved 6 commits, hero restyled), so a sed on the old markup matched nothing; inspect files after entering the worktree, not in the stale checkout
 - 2026-11-23: worktree session → the Bash guard rejected `grep --exclude-dir={…,.git}` and a bead title containing "git-backed" inside a loop; ran via a script file instead
+- 2026-11-23: rebuilding the bird set with assemble.py → its run line lacked `--with brotli` (fontTools needs it for the WOFF2 labels), so it crashed after deleting final/sheets; the README build line now includes brotli
+- 2026-11-23: `gh pr checks --watch` right after a push → it exits at once with "no checks reported"; wait ~20 s before watching
+- 2026-11-23: comparing QA reports with an older commit → the worktree guard refused `git show <sha>:path` in a loop, an `xargs git add -f`, and heredocs that named a ~/GitHub path; ran them from script files (known, global CLAUDE.md)
