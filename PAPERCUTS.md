@@ -19,4 +19,7 @@
 - 2026-11-18: republishing the home mockup canvas with a design-system reinstall → refused until the canvas's own copies of tokens.json/tokens.css/bundle.css were read first
 - 2026-11-18: page-side edit of the Separation artboard → it replaced the templated `{{bandOn}}` style with a literal one (dropping padding and the Tweaks binding), and the next publish was refused as a conflict; had to re-read and merge
 - 2026-11-18: main Link Check after merging #59 → it raced the Pages deploy, so the new social-card.png 404'd; rerun passed. Fourth link-check entry with the same root cause: miqcie/Humaine-studio#56 is the sanding target
-- 2026-11-23: homepage tagline PR → local Jekyll build blocked a third time (system Ruby 2.6 only); three hits = sanding target: install Ruby 3.x (brew or mise) so worktree builds run locally
+- 2026-11-23: homepage tagline PR → local Jekyll build blocked a third time (system Ruby 2.6 only); three hits = sanding target: install Ruby 3.x (brew or mise) so worktree builds run locally — SANDED same day: `ruby@3.3` on PATH, see CLAUDE.md
+- 2026-11-23: installing Ruby for local builds → Homebrew `ruby` is 4.0, which `github-pages ~> 228` rejects (commonmarker needs < 4.0); needed `ruby@3.3`
+- 2026-11-23: editing the homepage hero → the session-start git snapshot was stale (main had moved 6 commits, hero restyled), so a sed on the old markup matched nothing; inspect files after entering the worktree, not in the stale checkout
+- 2026-11-23: worktree session → the Bash guard rejected `grep --exclude-dir={…,.git}` and a bead title containing "git-backed" inside a loop; ran via a script file instead

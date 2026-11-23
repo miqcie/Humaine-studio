@@ -76,6 +76,8 @@ git status              # Check repository status
 gh repo view            # View GitHub repository (requires gh CLI)
 ```
 
+**Ruby must be 3.x, not 4.** The `github-pages` gem needs Ruby < 4.0, and Homebrew's plain `ruby` is 4.0. Use `brew install ruby@3.3` with `/opt/homebrew/opt/ruby@3.3/bin` first on PATH (set in `~/.zshrc` since 2026-11-23). macOS system Ruby 2.6 is too old. CI uses 3.1; drift is tracked in #60.
+
 ### Local Development
 ```bash
 # Start local server
