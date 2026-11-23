@@ -250,7 +250,8 @@ def gen(birds, only):
         for key in only:
             for seed in SEEDS:
                 if any(d.glob(f"{key}-{seed}.*")):
-                    old = json.loads((d / f"{key}-{seed}.json").read_text())["request"].get("prompt", "")
+                    side = d / f"{key}-{seed}.json"  # absent if the run stopped between image and sidecar
+                    old = json.loads(side.read_text())["request"].get("prompt", "") if side.exists() else ""
                     if prompt(slug) not in old:  # notes or marks changed since this draft was made
                         print(f"STALE {slug} {key} {seed}: the prompt changed since this draft; delete it to redraw")
                     continue
@@ -298,15 +299,21 @@ def sheets():
     SHEETS.mkdir(parents=True, exist_ok=True)
     refs = json.loads((BIRDS_DIR / "references.json").read_text())
     rng = random.Random(20261119)
-    key = {}
+    key, lineups = {}, {}
     for slug in PILOTS:
         tiles = sorted(TRACED.glob(f"{slug}/*.svg"))
         if not tiles:
             continue
         rng.shuffle(tiles)
         assert len(tiles) <= 8, f"{slug}: {len(tiles)} tiles, the page has letters for 8"
+        lineups[slug] = tiles
+        key[slug] = {L: t.stem for L, t in zip("ABCDEFGH", tiles)}
+    old = ROOT / "key.json"
+    if old.exists() and json.loads(old.read_text()) != key:  # checked before any sheet is rewritten
+        # Votes taken under the old letters would be read against the wrong tiles.
+        raise SystemExit(f"{old} would change (the tile set changed). If no votes were taken yet, delete it and rerun.")
+    for slug, tiles in lineups.items():
         letters = "ABCDEFGH"[:len(tiles)]
-        key[slug] = {L: t.stem for L, t in zip(letters, tiles)}
         W, cell, gap, small = 1800, 400, 40, 64
         cols = 3
         rows = -(-len(tiles) // cols)
@@ -339,10 +346,6 @@ def sheets():
         (SHEETS / f"{slug}.svg").write_text(svg)
         (SHEETS / f"{slug}.png").write_bytes(build.rsvg(svg, W))
         print("sheet", slug, len(tiles), "tiles")
-    old = ROOT / "key.json"
-    if old.exists() and json.loads(old.read_text()) != key:
-        # Votes taken under the old letters would be read against the wrong tiles.
-        raise SystemExit(f"{old} would change (the tile set changed). If no votes were taken yet, delete it and rerun.")
     old.write_text(json.dumps(key, indent=1) + "\n")
 
 
