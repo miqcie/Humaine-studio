@@ -19,3 +19,4 @@
 - 2026-11-18: republishing the home mockup canvas with a design-system reinstall → refused until the canvas's own copies of tokens.json/tokens.css/bundle.css were read first
 - 2026-11-18: page-side edit of the Separation artboard → it replaced the templated `{{bandOn}}` style with a literal one (dropping padding and the Tweaks binding), and the next publish was refused as a conflict; had to re-read and merge
 - 2026-11-18: main Link Check after merging #59 → it raced the Pages deploy, so the new social-card.png 404'd; rerun passed. Fourth link-check entry with the same root cause: miqcie/Humaine-studio#56 is the sanding target
+- 2026-11-23: homepage tagline PR → local Jekyll build blocked a third time (system Ruby 2.6 only); three hits = sanding target: install Ruby 3.x (brew or mise) so worktree builds run locally
